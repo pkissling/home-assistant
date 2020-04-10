@@ -10,6 +10,7 @@ script: !include scripts.yaml
 scene: !include scenes.yaml
 
 # Integrations
+notify: !include notify.yaml
 tado: !include tado.yaml 
 vacuum: !include vacuum.yaml
 yeelight: !include yeelight.yaml

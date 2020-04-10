@@ -4,6 +4,7 @@ default_config:
 
 # Includes
 automation: !include automations.yaml
+binary_sensor: !include binary_sensor.yaml
 device_tracker: !include device_tracker.yaml
 group: !include groups.yaml
 script: !include scripts.yaml

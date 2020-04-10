@@ -1,0 +1,63 @@
+# Residents
+residents:
+  name: Residents
+  entities:
+    - person.patrick
+    - person.sandra
+
+# Window
+window_bedroom:
+  icon: mdi:bed-king
+  entities:
+    - binary_sensor.window_sensor_bedroom_left
+    - binary_sensor.window_sensor_bedroom_right
+window_bathroom:
+  icon: mdi:shower
+  entities:
+    - binary_sensor.window_sensor_bathroom
+window_kitchen:
+  icon: mdi:stove
+  entities:
+    - binary_sensor.window_sensor_kitchen
+window_living_room:
+  icon: mdi:sofa
+  entities:
+    - binary_sensor.window_sensor_living_room
+window_study:
+  icon: mdi:desk-lamp
+  entities:
+    - binary_sensor.window_sensor_study_right_r
+    - binary_sensor.window_sensor_study_right_l
+    - binary_sensor.window_sensor_study_left_r    
+    - binary_sensor.window_sensor_study_left_l    
+window_toilet:
+  icon: mdi:toilet
+  entities:
+    - binary_sensor.window_sensor_toilet
+window_living_room_and_kitchen:
+  entities:
+  - group.window_living_room
+  - group.window_kitchen
+  
+# Motion
+motion_study:
+  icon: mdi:desk-lamp
+  entities:
+    - binary_sensor.motion_study
+
+## Lights
+lights_all:
+  entities:
+  - group.lights_living_room
+  - group.lights_bedroom
+lights_living_room:
+  name: Living Room
+  icon: mdi:sofa
+  entities:
+  - light.tv
+  - light.lamp
+lights_bedroom:
+  name: Bedroom
+  icon: mdi:bed-king
+  entities:
+  - light.bedroom

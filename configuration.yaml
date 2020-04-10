@@ -15,11 +15,7 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 device_tracker: !include device_tracker.yaml
-
-# Tado
-tado:
-  username: !secret tado_username
-  password: !secret tado_password
+tado: !include tado.yaml 
 
   # Enable HTTPS
 http:

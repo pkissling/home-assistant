@@ -12,9 +12,15 @@ scene: !include scenes.yaml
 # Integrations
 tado: !include tado.yaml 
 vacuum: !include vacuum.yaml
+yeelight: !include yeelight.yaml
 
 # Enable HTTPS
 http:
   base_url: https://192.168.0.40:8123
   ssl_certificate: !secret ssl_certificate
   ssl_key: !secret ssl_key
+
+# Discovery
+discovery:
+  ignore:
+    - yeelight

@@ -1,0 +1,23 @@
+devices:
+  192.168.0.3:
+    name: Lamp
+  192.168.0.4:
+    name: TV  
+  192.168.0.5:
+    name: Bedroom
+
+custom_effects:
+  - name: 'Sunrise'
+    flow_params:
+      count: 1
+      action: stay
+      transitions:
+      - RGBTransition: [255, 162, 78, 50, 1]
+      - RGBTransition: [255, 162, 78, 900000, 100]
+  - name: 'Sunset'
+    flow_params:
+      count: 1
+      action: 'off'
+      transitions:
+      - RGBTransition: [255, 162, 78, 50, 100]
+      - RGBTransition: [255, 162, 78, 900000, 1]

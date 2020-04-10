@@ -21,8 +21,6 @@ tado:
   username: !secret tado_username
   password: !secret tado_password
 
-# Enable HTTPS
+  # Enable HTTPS
 http:
   base_url: https://192.168.0.40:8123
-  ssl_certificate: /config/fullchain.pem
-  ssl_key: /config/privkey.pem

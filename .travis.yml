@@ -7,3 +7,6 @@ script:
   - hass -c . --script check_config
 before_install:
   - mv secrets_dummy.yaml secrets.yaml
+  - mv fullchain_dummy.pem fullchain.pem
+  - mv privkey_dummy.pem privkey.pem
+  - ls -lHa

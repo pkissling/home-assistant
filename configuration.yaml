@@ -1,12 +1,17 @@
 
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
-group: !include groups.yaml
+
+# Includes
 automation: !include automations.yaml
+device_tracker: !include device_tracker.yaml
+group: !include groups.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
-device_tracker: !include device_tracker.yaml
+
+# Integrations
 tado: !include tado.yaml 
+vacuum: !include vacuum.yaml
 
 # Enable HTTPS
 http:

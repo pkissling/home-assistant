@@ -1,0 +1,7 @@
+*
+!.gitignore
+!.travis.yaml
+!*.yaml
+secrets.yaml
+known_devices.yaml
+*/

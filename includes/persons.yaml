@@ -1,0 +1,11 @@
+- name: !secret person1_name
+  id: 7aa7dc0964ff44c7b2ccc5be75d654bd
+  device_trackers:
+  - !secret person1_device_tracker_wifi
+  - !secret person1_device_tracker_tado
+
+- name: !secret person2_name
+  id: 7aa7dc0964ff44c7b2ccc5be75d651bd
+  device_trackers:
+  - !secret person2_device_tracker_wifi
+  # TODO person2 tado

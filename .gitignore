@@ -1,7 +1,21 @@
-*
-!.gitignore
-!.travis.yaml
-!*.yaml
-secrets.yaml
+# Dotfiles
+.cloud/
+.storage/
+.deps
+.homekit.state
+
+# Extensions
+*.conf
+*.db
+*.log
+*.db-shm
+*.db-wal
+
+# Files
 known_devices.yaml
-*/
+secrets.yaml
+
+# Folders
+ssl/
+deps/
+tts/

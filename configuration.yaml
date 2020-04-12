@@ -1,28 +1,21 @@
 
-# Configure a default setup of Home Assistant (frontend, api, etc)
+# Core config
 default_config:
+homeassistant: !include includes/homeassistant.yaml
+http: !include includes/http.yaml
+discovery: !include includes/discovery.yaml
+person: !include includes/persons.yaml
 
-# Includes
+# Include root dir yamls
 automation: !include automations.yaml
-binary_sensor: !include binary_sensor.yaml
-device_tracker: !include device_tracker.yaml
-group: !include group.yaml
+binary_sensor: !include binary_sensors.yaml
+group: !include groups.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
-# Integrations
-notify: !include notify.yaml
-tado: !include tado.yaml 
-vacuum: !include vacuum.yaml
-yeelight: !include yeelight.yaml
-
-# Enable HTTPS
-http:
-  base_url: https://192.168.0.40:8123
-  ssl_certificate: !secret ssl_certificate
-  ssl_key: !secret ssl_key
-
-# Discovery
-discovery:
-  ignore:
-    - yeelight
+# Include 'includes' dir yamls
+device_tracker: !include includes/device_trackers.yaml
+notify: !include includes/notify.yaml
+tado: !include includes/tado.yaml 
+vacuum: !include includes/vacuum.yaml
+yeelight: !include includes/yeelight.yaml

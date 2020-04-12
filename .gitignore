@@ -1,10 +1,9 @@
 # Dotfiles
 .cloud/
 .storage/
-.deps
 .homekit.state
 
-# Extensions
+# By extension
 *.conf
 *.db
 *.log

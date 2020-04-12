@@ -2,11 +2,12 @@ language: python
 python:
   - "3.6"
 install:
-  - pip3 install homeassistant
+  - pip3 install homeassistant 
+  - pip3 install netdisco # https://github.com/home-assistant/core/issues/29866
 script:
   - hass -c . --script check_config
 before_install:
+  - mv secrets_dummy.yaml secrets.yaml
   - mkdir ssl
-  - mv .dummy_files/secrets_dummy.yaml secrets.yaml
-  - mv .dummy_files/fullchain_dummy.pem sll/fullchain.pem
-  - mv .dummy_files/privkey_dummy.pem sll/privkey.pem
+  - touch ssl/fullchain.pem
+  - touch ssl/privkey.pem

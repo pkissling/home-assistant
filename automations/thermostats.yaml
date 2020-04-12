@@ -1,0 +1,209 @@
+# Bedroom
+- alias: Window open - Bedroom
+  trigger:
+    platform: state
+    entity_id: group.window_bedroom
+    from: 'off'
+    to: 'on'
+    for:
+      seconds: 5
+  condition: 
+    condition: template
+    value_template: "{{ not is_state('climate.bedroom', 'off') }}"
+  action:
+  - service: input_text.set_value
+    entity_id: input_text.thermostat_old_hvac_bedroom
+    data_template: 
+      value: "{{ states('climate.bedroom') }}"
+  - service: climate.set_hvac_mode
+    entity_id: climate.bedroom
+    data:
+      hvac_mode: 'off'
+- alias: Window closed - Bedroom
+  trigger:
+    platform: state
+    entity_id: group.window_bedroom
+    from: 'on'
+    to: 'off'
+    for:
+      seconds: 5
+  condition:
+  - condition: template
+    value_template: "{{ not is_state('input_text.thermostat_old_hvac_bedroom', 'unknown') }}"
+  action:
+  - service: climate.set_hvac_mode
+    entity_id: climate.bedroom
+    data_template:
+      hvac_mode: "{{ states('input_text.thermostat_old_hvac_bedroom') }}"
+  - service: input_text.set_value
+    entity_id: input_text.thermostat_old_hvac_bedroom
+    data: 
+      value: unknown
+      
+# Study
+- alias: Window open - Study
+  trigger:
+    platform: state
+    entity_id: group.window_study
+    from: 'off'
+    to: 'on'
+    for:
+      seconds: 5
+  condition: 
+    condition: template
+    value_template: "{{ not is_state('climate.study', 'off') }}"
+  action:
+  - service: input_text.set_value
+    entity_id: input_text.thermostat_old_hvac_study
+    data_template: 
+      value: "{{ states('climate.study') }}"
+  - service: climate.set_hvac_mode
+    entity_id: climate.study
+    data:
+      hvac_mode: 'off'
+- alias: Window closed - Study
+  trigger:
+    platform: state
+    entity_id: group.window_study
+    from: 'on'
+    to: 'off'
+    for:
+      seconds: 5
+  condition:
+  - condition: template
+    value_template: "{{ not is_state('input_text.thermostat_old_hvac_study', 'unknown') }}"
+  action:
+  - service: climate.set_hvac_mode
+    entity_id: climate.study
+    data_template:
+      hvac_mode: "{{ states('input_text.thermostat_old_hvac_study') }}"
+  - service: input_text.set_value
+    entity_id: input_text.thermostat_old_hvac_study
+    data: 
+      value: unknown
+
+# Bathroom
+- alias: Window open - Bathroom
+  trigger:
+    platform: state
+    entity_id: group.window_bathroom
+    from: 'off'
+    to: 'on'
+    for:
+      seconds: 5
+  condition: 
+    condition: template
+    value_template: "{{ not is_state('climate.bathroom', 'off') }}"
+  action:
+  - service: input_text.set_value
+    entity_id: input_text.thermostat_old_hvac_bathroom
+    data_template: 
+      value: "{{ states('climate.bathroom') }}"
+  - service: climate.set_hvac_mode
+    entity_id: climate.bathroom
+    data:
+      hvac_mode: 'off'
+- alias: Window closed - Bathroom
+  trigger:
+    platform: state
+    entity_id: group.window_bathroom
+    from: 'on'
+    to: 'off'
+    for:
+      seconds: 5
+  condition:
+  - condition: template
+    value_template: "{{ not is_state('input_text.thermostat_old_hvac_bathroom', 'unknown') }}"
+  action:
+  - service: climate.set_hvac_mode
+    entity_id: climate.bathroom
+    data_template:
+      hvac_mode: "{{ states('input_text.thermostat_old_hvac_bathroom') }}"
+  - service: input_text.set_value
+    entity_id: input_text.thermostat_old_hvac_bathroom
+    data: 
+      value: unknown
+
+# Living Room
+- alias: Window open - Living Room
+  trigger:
+    platform: state
+    entity_id: group.window_living_room_and_kitchen
+    from: 'off'
+    to: 'on'
+    for:
+      seconds: 5
+  condition: 
+  - condition: template
+    value_template: "{{ not is_state('climate.living_room', 'off') }}"
+  action:
+  - service: input_text.set_value
+    entity_id: input_text.thermostat_old_hvac_living_room
+    data_template: 
+      value: "{{ states('climate.living_room') }}"
+  - service: climate.set_hvac_mode
+    entity_id: climate.living_room
+    data:
+      hvac_mode: 'off'
+- alias: Window closed - Living Room
+  trigger:
+    platform: state
+    entity_id: group.window_living_room_and_kitchen
+    from: 'on'
+    to: 'off'
+    for:
+      seconds: 5
+  condition:
+  - condition: template
+    value_template: "{{ not is_state('input_text.thermostat_old_hvac_living_room', 'unknown') }}"
+  action:
+  - service: climate.set_hvac_mode
+    entity_id: climate.living_room
+    data_template:
+      hvac_mode: "{{ states('input_text.thermostat_old_hvac_living_room') }}"
+  - service: input_text.set_value
+    entity_id: input_text.thermostat_old_hvac_living_room
+    data: 
+      value: unknown
+
+# Living Room
+- alias: Window open - Kitchen
+  trigger:
+    platform: state
+    entity_id: group.window_living_room_and_kitchen
+    from: 'off'
+    to: 'on'
+    for:
+      seconds: 5
+  condition: 
+  - condition: template
+    value_template: "{{ not is_state('climate.kitchen', 'off') }}"
+  action:
+  - service: input_text.set_value
+    entity_id: input_text.thermostat_old_hvac_kitchen
+    data_template: 
+      value: "{{ states('climate.kitchen') }}"
+  - service: climate.set_hvac_mode
+    entity_id: climate.kitchen
+    data:
+      hvac_mode: 'off'
+- alias: Window closed - Kitchen
+  trigger:
+    platform: state
+    entity_id: group.window_living_room_and_kitchen
+    from: 'on'
+    to: 'off'
+    for:
+      seconds: 5
+  condition:
+  - condition: template
+    value_template: "{{ not is_state('input_text.thermostat_old_hvac_kitchen', 'unknown') }}"
+  action:
+  - service: climate.set_hvac_mode
+    entity_id: climate.kitchen
+    data_template:
+      hvac_mode: "{{ states('input_text.thermostat_old_hvac_kitchen') }}"
+  - service: input_text.set_value
+    entity_id: input_text.thermostat_old_hvac_kitchen
+    data: 
+      value: unknown

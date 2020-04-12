@@ -34,7 +34,7 @@ window_toilet:
   icon: mdi:toilet
   entities:
     - binary_sensor.window_sensor_toilet
-window_living_room_and_kitchen: # TODO needed?
+window_living_room_and_kitchen:
   entities:
   - group.window_living_room
   - group.window_kitchen

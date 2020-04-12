@@ -6,8 +6,13 @@ http: !include includes/http.yaml
 discovery: !include includes/discovery.yaml
 person: !include includes/persons.yaml
 
+# Include files with lists
+automation: !include_dir_merge_list automations
+
+# Include files with dictionaries
+input_text: !include_dir_merge_named input_texts 
+
 # Include root dir yamls
-automation: !include automations.yaml
 binary_sensor: !include binary_sensors.yaml
 group: !include groups.yaml
 script: !include scripts.yaml

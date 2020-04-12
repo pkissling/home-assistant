@@ -1,0 +1,97 @@
+- alias: Lights - Turn on on sunset
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: -00:30
+  condition:
+  - condition: state
+    entity_id: group.residents
+    state: home
+  action:
+  - service: light.turn_on
+    entity_id: 
+    - group.lights_living_room
+    - group.lights_bedroom
+    data:
+      effect: Sunrise
+
+- alias: Lights - Turn off at 8 am
+  trigger:
+  - platform: time
+    at: 08:00
+  condition:
+  - condition: state
+    entity_id: group.all_lights
+    state: 'on'
+  - condition: sun
+    after_offset: +00:30
+    after: sunrise
+  action:
+  - service: light.turn_on
+    entity_id: all
+    data:
+      effect: Sunset
+  
+- alias: Lights - Turn off after sunrise
+  trigger:
+  - platform: sun
+    offset: +00:30
+    event: sunrise
+  condition:
+  - condition: state
+    entity_id: group.all_lights
+    state: 'on'
+  - condition: time
+    after: 08:00
+  action:
+  - service: light.turn_on
+    entity_id: all
+    data: 
+      effect: Sunset
+
+- alias: Lights - Turn on when somebody came home
+  trigger:
+  - platform: state
+    entity_id: group.residents
+    from: not_home
+    to: home
+  condition:
+  - condition: sun
+    after: sunset
+    after_offset: -00:30
+  action:
+  - service: light.turn_on
+    entity_id: 
+    - group.lights_living_room
+    - group.lights_bedroom
+    data:
+      brightness: 255
+      rgb_color: [255, 162, 78]
+
+- alias: Light - Turn off when sunlight
+  trigger:
+  - platform: state
+    entity_id: group.lights_all
+    from: 'off'
+    to: 'on'
+  condition: 
+    condition: and
+    conditions:
+    - condition: sun
+      after_offset: +00:30
+      after: sunrise
+    - condition: or
+      conditions:
+      - condition: time
+        after: 08:00
+      - condition: sun
+        after: sunset
+        after_offset: -00:30
+  action: 
+  - service: light.turn_off
+    entity_id: all
+  - service: notify.pushbullet
+    data: 
+      title: Home Assisant
+      message: Turned lights off due to sunlight
+      target: device/OnePlus 7 Pro

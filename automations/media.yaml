@@ -1,0 +1,14 @@
+- alias: Harmony - Turn on speakers when Home Group is playing
+  trigger:
+  - platform: state
+    entity_id: media_player.home_group
+    to: playing
+  condition:
+  - condition: state
+    entity_id: remote.living_room
+    state: 'off'
+  action:
+  - service: remote.turn_on # TODO call switch!
+    entity_id: remote.living_room
+    data:
+      activity: 14839573

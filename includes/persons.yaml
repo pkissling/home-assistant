@@ -8,4 +8,4 @@
   id: 7aa7dc0964ff44c7b2ccc5be75d651bd
   device_trackers:
   - !secret person2_device_tracker_wifi
-  # TODO person2 tado
+  - !secret person2_device_tracker_tado

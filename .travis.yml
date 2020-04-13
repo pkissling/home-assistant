@@ -13,5 +13,5 @@ before_install:
   - touch ssl/privkey.pem
 notifications:
   email:
-    on_success: never
+    on_success: change
     on_failure: always

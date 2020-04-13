@@ -43,7 +43,7 @@ window_living_room_and_kitchen:
 motion_study:
   icon: mdi:desk-lamp
   entities:
-    - binary_sensor.motion_study
+    - binary_sensor.motion_sensor_study
 
 ## Lights
 lights_all:

@@ -1,5 +1,5 @@
 # Bedroom
-- alias: Window open - Bedroom
+- alias: Thermostat Bedroom - Window opened
   trigger:
     platform: state
     entity_id: group.window_bedroom
@@ -19,7 +19,7 @@
     entity_id: climate.bedroom
     data:
       hvac_mode: 'off'
-- alias: Window closed - Bedroom
+- alias: Thermostat Bedroom - Window closed
   trigger:
     platform: state
     entity_id: group.window_bedroom
@@ -41,7 +41,7 @@
       value: unknown
       
 # Study
-- alias: Window open - Study
+- alias: Thermostat Study - Window openend
   trigger:
     platform: state
     entity_id: group.window_study
@@ -61,7 +61,7 @@
     entity_id: climate.study
     data:
       hvac_mode: 'off'
-- alias: Window closed - Study
+- alias: Thermostat Study - Window closed
   trigger:
     platform: state
     entity_id: group.window_study
@@ -83,7 +83,7 @@
       value: unknown
 
 # Bathroom
-- alias: Window open - Bathroom
+- alias: Thermostat Bathroom - Window openend
   trigger:
     platform: state
     entity_id: group.window_bathroom
@@ -103,7 +103,7 @@
     entity_id: climate.bathroom
     data:
       hvac_mode: 'off'
-- alias: Window closed - Bathroom
+- alias: Thermostat Bathroom - Window closed
   trigger:
     platform: state
     entity_id: group.window_bathroom
@@ -125,7 +125,7 @@
       value: unknown
 
 # Living Room
-- alias: Window open - Living Room
+- alias: Thermostat Living Room - Window openend
   trigger:
     platform: state
     entity_id: group.window_living_room_and_kitchen
@@ -145,7 +145,7 @@
     entity_id: climate.living_room
     data:
       hvac_mode: 'off'
-- alias: Window closed - Living Room
+- alias: Thermostat Living Room - Window closed
   trigger:
     platform: state
     entity_id: group.window_living_room_and_kitchen
@@ -166,8 +166,8 @@
     data: 
       value: unknown
 
-# Living Room
-- alias: Window open - Kitchen
+# Kitchen
+- alias: Thermostat Kitchen - Window openend
   trigger:
     platform: state
     entity_id: group.window_living_room_and_kitchen
@@ -187,7 +187,7 @@
     entity_id: climate.kitchen
     data:
       hvac_mode: 'off'
-- alias: Window closed - Kitchen
+- alias: Thermostat Kitchen - Window closed
   trigger:
     platform: state
     entity_id: group.window_living_room_and_kitchen

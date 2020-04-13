@@ -1,0 +1,11 @@
+- alias: Media Player - Stop casting on Home Group when TV on
+  trigger:
+  - platform: template
+    value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'TV') }}"
+  condition:
+  - condition: template
+    value_template: "{{ not is_state('media_player.home_group', 'off') }}"
+  action:
+  - service: media_player.media_stop
+    entity_id: all
+  

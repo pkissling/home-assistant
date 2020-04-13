@@ -1,9 +1,10 @@
 
 # Core config
 default_config:
+discovery: !include includes/discovery.yaml
 homeassistant: !include includes/homeassistant.yaml
 http: !include includes/http.yaml
-discovery: !include includes/discovery.yaml
+logger: !include includes/logger.yaml
 person: !include includes/persons.yaml
 
 # Include files with lists

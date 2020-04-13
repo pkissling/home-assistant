@@ -78,15 +78,15 @@
     condition: and
     conditions:
     - condition: sun
-      after_offset: +00:30
-      after: sunrise
+      before: sunset
+      before_offset: -00:30
     - condition: or
       conditions:
       - condition: time
         after: 08:00
       - condition: sun
-        after: sunset
-        after_offset: -00:30
+        after_offset: +00:30
+        after: sunrise
   action: 
   - service: light.turn_off
     entity_id: all

@@ -9,7 +9,8 @@ person: !include includes/persons.yaml
 
 # Include files with lists
 automation: !include_dir_merge_list automations
-
+sensor: !include_dir_merge_list sensors
+  
 # Include files with dictionaries
 input_text: !include_dir_merge_named input_texts 
 

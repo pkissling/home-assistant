@@ -39,7 +39,6 @@
   trigger:
   - platform: state
     entity_id: media_player.chromecast
-    from: idle
     to: 'off'
   condition:
   - condition: template

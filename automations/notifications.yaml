@@ -1,0 +1,16 @@
+- alias: Notification - New HA release available
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.updater
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: notify.pushbullet
+    data_template: 
+      title: Home Assisant
+      message: >
+        New release available: {{ state_attr('binary_sensor.updater', 'newest_version') }} 
+        Version running: {{ states('sensor.current_version') }} 
+        Release notes: {{ state_attr('binary_sensor.updater', 'release_notes') }} 
+      target: device/OnePlus 7 Pro

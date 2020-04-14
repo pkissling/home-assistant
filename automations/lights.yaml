@@ -74,6 +74,8 @@
     entity_id: light.all
     from: 'off'
     to: 'on'
+    for: 
+      minutes: 30
   condition: 
     - condition: state
       entity_id: sun.sun

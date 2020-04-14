@@ -68,25 +68,18 @@
       brightness: 255
       rgb_color: [255, 162, 78]
 
-- alias: Light - Turn off when sunlight # TODO Automation does not work anymore!
+- alias: Light - Turn off when sunlight
   trigger:
   - platform: state
     entity_id: light.all
     from: 'off'
     to: 'on'
   condition: 
-    condition: and
-    conditions:
-    - condition: sun
-      before: sunset
-      before_offset: -00:30
-    - condition: or
-      conditions:
-      - condition: time
-        after: 08:00
-      - condition: sun
-        after_offset: +00:30
-        after: sunrise
+    - condition: state
+      entity_id: sun.sun
+      state: above_horizon
+    - condition: time
+      after: 08:00
   action: 
   - service: light.turn_off
     entity_id: all

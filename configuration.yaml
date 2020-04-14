@@ -22,6 +22,7 @@ scene: !include scenes.yaml
 
 # Include 'includes' dir yamls
 device_tracker: !include includes/device_trackers.yaml
+light: !include includes/lights.yaml
 notify: !include includes/notify.yaml
 tado: !include includes/tado.yaml 
 vacuum: !include includes/vacuum.yaml

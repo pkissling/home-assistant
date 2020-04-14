@@ -4,7 +4,7 @@ devices:
   192.168.0.4:
     name: TV  
   192.168.0.5:
-    name: Bedroom
+    name: Lightstrip
 
 custom_effects:
   - name: 'Sunrise'

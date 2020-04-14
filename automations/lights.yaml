@@ -10,8 +10,8 @@
   action:
   - service: light.turn_on
     entity_id: 
-    - group.lights_living_room
-    - group.lights_bedroom
+    - light.living_room
+    - light.bedroom
     data:
       effect: Sunrise
 
@@ -62,16 +62,16 @@
   action:
   - service: light.turn_on
     entity_id: 
-    - group.lights_living_room
-    - group.lights_bedroom
+    - light.living_room
+    - light.bedroom
     data:
       brightness: 255
       rgb_color: [255, 162, 78]
 
-- alias: Light - Turn off when sunlight
+- alias: Light - Turn off when sunlight # TODO Automation does not work anymore!
   trigger:
   - platform: state
-    entity_id: group.lights_all
+    entity_id: light.all
     from: 'off'
     to: 'on'
   condition: 

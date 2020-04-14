@@ -1,0 +1,17 @@
+---
+- platform: group
+  name: Living Room 
+  entities:
+    - light.tv
+    - light.lamp
+
+- platform: group
+  name: Bedroom
+  entities:
+    - light.lightstrip
+
+- platform: group
+  name: All
+  entities:
+    - light.bedroom
+    - light.living_room

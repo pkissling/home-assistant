@@ -14,7 +14,7 @@
       activity: 14839573
 
 - alias: Remote - Turn on Chromecast when casting
-  trigger: 
+  trigger:
   - platform: state
     entity_id: media_player.chromecast
   condition:

@@ -6,6 +6,6 @@
   - condition: template
     value_template: "{{ not is_state('media_player.home_group', 'off') }}"
   action:
-  - service: media_player.media_stop #TODO something random
-    entity_id: all # TODO another thing
+  - service: media_player.media_stop
+    entity_id: all
   

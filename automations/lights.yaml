@@ -74,14 +74,19 @@
     entity_id: light.all
     from: 'off'
     to: 'on'
-    for: 
+    for:
       minutes: 30
-  condition: 
-    - condition: state
-      entity_id: sun.sun
-      state: above_horizon
-    - condition: time
-      after: 08:00
+  condition:
+    - condition: sun
+      before: sunset
+      before_offset: -00:30:00
+    - condition: or
+      conditions:
+        - condition: sun
+          after: sunrise
+          after_offset: 00:30:00
+        - condition: time
+          after: 08:00:00
   action: 
   - service: light.turn_off
     entity_id: all

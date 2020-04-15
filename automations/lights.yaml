@@ -21,7 +21,7 @@
     at: 08:00
   condition:
   - condition: state
-    entity_id: group.all_lights
+    entity_id: light.all
     state: 'on'
   - condition: sun
     after_offset: +00:30
@@ -39,7 +39,7 @@
     event: sunrise
   condition:
   - condition: state
-    entity_id: group.all_lights
+    entity_id: light.all
     state: 'on'
   - condition: time
     after: 08:00

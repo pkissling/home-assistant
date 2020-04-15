@@ -18,7 +18,7 @@
 - alias: Lights - Turn off at 8 am
   trigger:
   - platform: time
-    at: 08:00
+    at: '08:00'
   condition:
   - condition: state
     entity_id: light.all
@@ -35,14 +35,14 @@
 - alias: Lights - Turn off after sunrise
   trigger:
   - platform: sun
-    offset: +00:30
+    offset: '+00:30'
     event: sunrise
   condition:
   - condition: state
     entity_id: light.all
     state: 'on'
   - condition: time
-    after: 08:00
+    after: '08:00'
   action:
   - service: light.turn_on
     entity_id: all
@@ -79,19 +79,19 @@
   condition:
     - condition: sun
       before: sunset
-      before_offset: -00:30:00
+      before_offset: '-00:30:00'
     - condition: or
       conditions:
         - condition: sun
           after: sunrise
-          after_offset: 00:30:00
+          after_offset: '00:30:00'
         - condition: time
-          after: 08:00:00
+          after: '08:00:00'
   action: 
   - service: light.turn_off
     entity_id: all
   - service: notify.pushbullet
     data: 
-      title: Home Assisant
+      title: Home Assistant
       message: Turned lights off due to sunlight
       target: device/OnePlus 7 Pro

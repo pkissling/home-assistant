@@ -1,0 +1,70 @@
+- alias: Alarm - Indicate Alarm on/off
+  trigger:
+    - platform: template
+      value_template: >
+        {{ 
+          state_attr('light.bedroom', 'flowing') == True 
+            and 
+          is_state('light.bedroom', 'on') 
+        }}
+  condition:
+    - condition: time
+      after: '18:00:00'
+      before: '02:00:00'
+  action:
+    - service: light.turn_on
+      entity_id: light.living_room
+      data_template:
+        effect: >
+          {% if is_state('switch.alarm_next_day', 'on') %}
+            Flash Red
+          {% else %}
+            Flash Green
+          {% endif %}
+    
+- alias: Alarm - Sunrise Lights
+  trigger:
+  - platform: template
+    value_template: "{{ ((strptime(states('sensor.time'), '%H:%M').time().hour * 60 + strptime(states('sensor.time'), '%H:%M').time().minute) * 60) | int == (state_attr('input_datetime.wakeup_time', 'timestamp') | int) - 60 * 15 }}"
+  condition: 
+    - condition: state
+      entity_id: switch.alarm_next_day
+      state: 'on'
+    - condition: state
+      entity_id: group.residents
+      state: home
+  action:
+  - service: light.turn_on
+    entity_id: 
+    - light.bedroom
+    - light.living_room
+    data:
+      effect: Sunrise
+  
+- alias: Alarm - News and Music
+  trigger:
+  - platform: template
+    value_template: "{{ ((strptime(states('sensor.time'), '%H:%M').time().hour * 60 + strptime(states('sensor.time'), '%H:%M').time().minute) * 60) | int == (state_attr('input_datetime.wakeup_time', 'timestamp') | int) }}"
+  condition: 
+    - condition: state
+      entity_id: switch.alarm_next_day
+      state: 'on'
+    - condition: state
+      entity_id: group.residents
+      state: home
+  action:
+    - service: media_player.volume_set
+      entity_id: media_player.bedroom_display
+      data:
+        volume_level: 0.2
+    - service: media_extractor.play_media
+      entity_id: media_player.bedroom_display
+      data:
+        media_content_id: http://www.tagesschau.de/100sekunden/index.html
+        media_content_type: video
+    - delay: '00:02:00'
+    - service: media_player.play_media
+      entity_id: media_player.home_group
+      data:
+        media_content_id: http://nrj.de/muenchen
+        media_content_type: music

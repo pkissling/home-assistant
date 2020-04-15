@@ -1,0 +1,6 @@
+---
+wakeup_time:
+  name: Wakeup Time
+  icon: mdi:clock-outline
+  has_date: false
+  has_time: true

@@ -1,0 +1,22 @@
+alarm_monday:
+  icon: mdi:calendar-week
+  name: Monday
+alarm_tuesday:
+  icon: mdi:calendar-week
+  name: Tuesday
+alarm_wednesday:
+  icon: mdi:calendar-week
+  name: Wednesday
+alarm_thursday:
+  icon: mdi:calendar-week 
+  name: Thursday
+alarm_friday:
+  icon: mdi:calendar-week
+  name: Friday
+alarm_saturday:
+  icon: mdi:calendar-weekend
+  name: Saturday
+alarm_sunday:
+  icon: mdi:calendar-weekend
+  name: Sunday
+  

@@ -8,7 +8,7 @@
   action:
   - service: notify.pushbullet
     data_template: 
-      title: Home Assisant
+      title: Home Assistant
       message: >
         New release available: {{ state_attr('binary_sensor.updater', 'newest_version') }} 
         Version running: {{ states('sensor.current_version') }} 

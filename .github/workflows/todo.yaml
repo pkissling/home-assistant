@@ -1,7 +1,7 @@
 ---
 
 name: "Workflow"
-on: ["push"]
+on: ["push"]  # yamllint disable-line rule:truthy
 jobs:
   build:
     runs-on: "ubuntu-latest"

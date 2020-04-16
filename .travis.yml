@@ -5,7 +5,9 @@ python:
 install:
   - pip3 install homeassistant
   - pip3 install netdisco  # https://github.com/home-assistant/core/issues/29866
+  - pip3 install yamllint
 script:
+  - yamllint --strict -c .yamllint.yaml .
   - hass -c . --script check_config
 before_install:
   - mv secrets_dummy.yaml secrets.yaml

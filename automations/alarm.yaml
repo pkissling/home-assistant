@@ -1,11 +1,13 @@
+---
+
 - alias: Alarm - Indicate Alarm on/off
   trigger:
     - platform: template
       value_template: >
-        {{ 
-          state_attr('light.bedroom', 'flowing') == True 
-            and 
-          is_state('light.bedroom', 'on') 
+        {{
+          state_attr('light.bedroom', 'flowing') == True
+            and
+          is_state('light.bedroom', 'on')
         }}
   condition:
     - condition: time
@@ -21,12 +23,12 @@
           {% else %}
             Flash Green
           {% endif %}
-    
+
 - alias: Alarm - Sunrise Lights
   trigger:
-  - platform: template
-    value_template: "{{ ((strptime(states('sensor.time'), '%H:%M').time().hour * 60 + strptime(states('sensor.time'), '%H:%M').time().minute) * 60) | int == (state_attr('input_datetime.wakeup_time', 'timestamp') | int) - 60 * 15 }}"
-  condition: 
+    - platform: template
+      value_template: "{{ ((strptime(states('sensor.time'), '%H:%M').time().hour * 60 + strptime(states('sensor.time'), '%H:%M').time().minute) * 60) | int == (state_attr('input_datetime.wakeup_time', 'timestamp') | int) - 60 * 15 }}"
+  condition:
     - condition: state
       entity_id: switch.alarm_next_day
       state: 'on'
@@ -34,18 +36,18 @@
       entity_id: group.residents
       state: home
   action:
-  - service: light.turn_on
-    entity_id: 
-    - light.bedroom
-    - light.living_room
-    data:
-      effect: Sunrise
-  
+    - service: light.turn_on
+      entity_id:
+        - light.bedroom
+        - light.living_room
+      data:
+        effect: Sunrise
+
 - alias: Alarm - News and Music
   trigger:
-  - platform: template
-    value_template: "{{ ((strptime(states('sensor.time'), '%H:%M').time().hour * 60 + strptime(states('sensor.time'), '%H:%M').time().minute) * 60) | int == (state_attr('input_datetime.wakeup_time', 'timestamp') | int) }}"
-  condition: 
+    - platform: template
+      value_template: "{{ ((strptime(states('sensor.time'), '%H:%M').time().hour * 60 + strptime(states('sensor.time'), '%H:%M').time().minute) * 60) | int == (state_attr('input_datetime.wakeup_time', 'timestamp') | int) }}"
+  condition:
     - condition: state
       entity_id: switch.alarm_next_day
       state: 'on'

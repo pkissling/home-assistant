@@ -1,4 +1,5 @@
 ---
+
 switch.climate_living_room:
   icon: mdi:sofa
 switch.climate_kitchen:

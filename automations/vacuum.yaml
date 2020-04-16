@@ -23,7 +23,7 @@
       entity_id: vacuum.xiaomi_vacuum_cleaner
     - service: script.vacuum_fan_medium
     - service: notify.pushbullet
-      data: 
+      data:
         title: Home Assistant
         message: Roborock started Cleanup
         target: device/OnePlus 7 Pro
@@ -50,7 +50,7 @@
       entity_id: vacuum.xiaomi_vacuum_cleaner
     - service: script.vacuum_fan_medium
     - service: notify.pushbullet
-      data: 
+      data:
         title: Home Assistant
         message: Roborock started Cleanup
         target: device/OnePlus 7 Pro
@@ -68,11 +68,11 @@
     - service: input_boolean.turn_on
       entity_id: input_boolean.vacuum_ran_today
     - service: notify.pushbullet
-      data_template: 
+      data_template:
         title: Home Assistant
         target: device/OnePlus 7 Pro
         message: >
-          Roborock finished Cleanup: 
+          Roborock finished Cleanup:
           {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'cleaned_area') }} m²,
           {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'cleaning_time') }} minutes,
           Battery {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'battery_level') }} %

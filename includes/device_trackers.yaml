@@ -1,13 +1,15 @@
-  # Tado
-  - platform: tado
-    username: !secret tado_username
-    password: !secret tado_password
-    home_id: !secret tado_home_id
-    new_device_defaults:
-      track_new_devices: false
-  
-  # Fritzbox
-  - platform: fritz
-    host: 192.168.0.1
-    new_device_defaults:
-      track_new_devices: false
+---
+
+# Tado
+- platform: tado
+  username: !secret tado_username
+  password: !secret tado_password
+  home_id: !secret tado_home_id
+  new_device_defaults:
+    track_new_devices: false
+
+# Fritzbox
+- platform: fritz
+  host: 192.168.0.1
+  new_device_defaults:
+    track_new_devices: false

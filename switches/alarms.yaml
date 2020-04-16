@@ -1,24 +1,25 @@
 ---
+
 - platform: template
   switches:
-  
+
     alarm_next_day:
       friendly_name: Alarm
       value_template: >
         {%- if now().weekday() + 1 == 1 -%}
-        {{ states('input_boolean.alarm_tuesday') }}   
+        {{ states('input_boolean.alarm_tuesday') }}
         {%- elif now().weekday() + 1== 2 -%}
-        {{ states('input_boolean.alarm_wednesday') }} 
+        {{ states('input_boolean.alarm_wednesday') }}
         {%- elif now().weekday() + 1 == 3 -%}
-        {{ states('input_boolean.alarm_thursday') }} 
+        {{ states('input_boolean.alarm_thursday') }}
         {%- elif now().weekday() + 1 == 4 -%}
-        {{ states('input_boolean.alarm_friday') }} 
+        {{ states('input_boolean.alarm_friday') }}
         {%- elif now().weekday() + 1 == 5 -%}
-        {{ states('input_boolean.alarm_saturday') }} 
+        {{ states('input_boolean.alarm_saturday') }}
         {%- elif now().weekday() + 1== 6 -%}
-        {{ states('input_boolean.alarm_sunday') }} 
+        {{ states('input_boolean.alarm_sunday') }}
         {% else %}
-        {{ states('input_boolean.alarm_monday') }} 
+        {{ states('input_boolean.alarm_monday') }}
         {% endif %}
       turn_on:
         service: input_boolean.turn_on

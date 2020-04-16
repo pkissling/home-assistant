@@ -20,7 +20,7 @@
     platform: state
     to: home
   action:
-  - service: remote.turn_on # TODO use switch!
+  - service: remote.turn_on  # TODO use switch!
     entity_id: remote.living_room
     data:
       activity: Speakers

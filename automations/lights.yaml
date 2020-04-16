@@ -1,81 +1,83 @@
+---
+
 - alias: Lights - Turn on on sunset
   trigger:
-  - platform: sun
-    event: sunset
-    offset: -00:30
+    - platform: sun
+      event: sunset
+      offset: -00:30
   condition:
-  - condition: state
-    entity_id: group.residents
-    state: home
+    - condition: state
+      entity_id: group.residents
+      state: home
   action:
-  - service: light.turn_on
-    entity_id: 
-    - light.living_room
-    - light.bedroom
-    data:
-      effect: Sunrise
+    - service: light.turn_on
+      entity_id:
+        - light.living_room
+        - light.bedroom
+      data:
+        effect: Sunrise
 
 - alias: Lights - Turn off at 8 am
   trigger:
-  - platform: time
-    at: '08:00'
+    - platform: time
+      at: '08:00'
   condition:
-  - condition: state
-    entity_id: light.all
-    state: 'on'
-  - condition: sun
-    after_offset: +00:30
-    after: sunrise
+    - condition: state
+      entity_id: light.all
+      state: 'on'
+    - condition: sun
+      after_offset: +00:30
+      after: sunrise
   action:
-  - service: light.turn_on
-    entity_id: all
-    data:
-      effect: Sunset
-  
+    - service: light.turn_on
+      entity_id: all
+      data:
+        effect: Sunset
+
 - alias: Lights - Turn off after sunrise
   trigger:
-  - platform: sun
-    offset: '+00:30'
-    event: sunrise
+    - platform: sun
+      offset: '+00:30'
+      event: sunrise
   condition:
-  - condition: state
-    entity_id: light.all
-    state: 'on'
-  - condition: time
-    after: '08:00'
+    - condition: state
+      entity_id: light.all
+      state: 'on'
+    - condition: time
+      after: '08:00'
   action:
-  - service: light.turn_on
-    entity_id: all
-    data: 
-      effect: Sunset
+    - service: light.turn_on
+      entity_id: all
+      data:
+        effect: Sunset
 
 - alias: Lights - Turn on when somebody came home
   trigger:
-  - platform: state
-    entity_id: group.residents
-    from: not_home
-    to: home
+    - platform: state
+      entity_id: group.residents
+      from: not_home
+      to: home
   condition:
-  - condition: sun
-    after: sunset
-    after_offset: -00:30
+    - condition: sun
+      after: sunset
+      after_offset: -00:30
   action:
-  - service: light.turn_on
-    entity_id: 
-    - light.living_room
-    - light.bedroom
-    data:
-      brightness: 255
-      rgb_color: [255, 162, 78]
+    - service: light.turn_on
+      entity_id:
+        - light.living_room
+        - light.bedroom
+      data:
+        brightness: 255
+        rgb_color: [255, 162, 78]
 
 - alias: Light - Turn off when sunlight
   trigger:
-  - platform: state
-    entity_id: light.all
-    from: 'off'
-    to: 'on'
-    for:
-      minutes: 30
+    - platform: state
+      entity_id: light.all
+      from: 'off'
+      to: 'on'
+      for:
+        minutes: 30
   condition:
     - condition: sun
       before: sunset
@@ -85,11 +87,11 @@
       after_offset: '00:30:00'
     - condition: time
       after: '08:00:00'
-  action: 
-  - service: light.turn_off
-    entity_id: all
-  - service: notify.pushbullet
-    data: 
-      title: Home Assistant
-      message: Turned lights off due to sunlight
-      target: device/OnePlus 7 Pro
+  action:
+    - service: light.turn_off
+      entity_id: all
+    - service: notify.pushbullet
+      data:
+        title: Home Assistant
+        message: Turned lights off due to sunlight
+        target: device/OnePlus 7 Pro

@@ -1,3 +1,5 @@
+---
+
 vacuum_locate:
   sequence:
     - service: vacuum.locate

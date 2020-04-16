@@ -1,3 +1,4 @@
+---
 
 # Core config
 default_config:
@@ -17,7 +18,7 @@ binary_sensor: !include_dir_merge_list binary_sensors
 script: !include_dir_merge_list scripts
 sensor: !include_dir_merge_list sensors
 switch: !include_dir_merge_list switches
-  
+
 # Include files with dictionaries
 group: !include_dir_merge_named groups
 input_boolean: !include_dir_merge_named input_booleans
@@ -29,6 +30,6 @@ input_select: !include_dir_merge_named input_select
 device_tracker: !include includes/device_trackers.yaml
 light: !include includes/lights.yaml
 notify: !include includes/notify.yaml
-tado: !include includes/tado.yaml 
+tado: !include includes/tado.yaml
 vacuum: !include includes/vacuum.yaml
 yeelight: !include includes/yeelight.yaml

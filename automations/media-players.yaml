@@ -1,3 +1,5 @@
+---
+
 - alias: Media Player - Stop casting on Home Group when TV on
   trigger:
   - platform: template
@@ -8,7 +10,7 @@
   action:
   - service: media_player.media_stop
     entity_id: all
-  
+
 - alias: Media Player - Chromecast Full Volume
   trigger:
   - platform: state

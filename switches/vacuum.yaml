@@ -12,10 +12,10 @@
         service: vacuum.pause
         data:
           entity_id: vacuum.xiaomi_vacuum_cleaner
-    
+
     vacuum_dock:
       value_template: >
-        {{ 
+        {{
           is_state('vacuum.xiaomi_vacuum_cleaner', 'docked')
             or
           is_state('vacuum.xiaomi_vacuum_cleaner', 'charging')
@@ -23,15 +23,14 @@
           is_state('vacuum.xiaomi_vacuum_cleaner', 'returning')
         }}
       turn_on:
-      - service: vacuum.pause
-        data:
-          entity_id: vacuum.xiaomi_vacuum_cleaner
-      - delay: '00:00:00'
-      - service: vacuum.return_to_base
-        data:
-          entity_id: vacuum.xiaomi_vacuum_cleaner
+        - service: vacuum.pause
+          data:
+            entity_id: vacuum.xiaomi_vacuum_cleaner
+        - delay: '00:00:00'
+        - service: vacuum.return_to_base
+          data:
+            entity_id: vacuum.xiaomi_vacuum_cleaner
       turn_off:
         service: vacuum.pause
         data:
           entity_id: vacuum.xiaomi_vacuum_cleaner
-

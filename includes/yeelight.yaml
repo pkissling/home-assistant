@@ -1,9 +1,10 @@
 ---
+
 devices:
   192.168.0.3:
     name: Lamp
   192.168.0.4:
-    name: TV  
+    name: TV
   192.168.0.5:
     name: Lightstrip
 
@@ -15,7 +16,7 @@ custom_effects:
       transitions:
         - RGBTransition: [255, 162, 78, 50, 1]
         - RGBTransition: [255, 162, 78, 900000, 100]
-  
+
   - name: 'Sunset'
     flow_params:
       count: 1
@@ -23,7 +24,7 @@ custom_effects:
       transitions:
         - RGBTransition: [255, 162, 78, 50, 100]
         - RGBTransition: [255, 162, 78, 900000, 1]
-  
+
   - name: 'Flash Red'
     flow_params:
       count: 1
@@ -32,7 +33,7 @@ custom_effects:
         - RGBTransition: [255, 64, 0, 30000, 100]
         - RGBTransition: [255, 162, 78, 30000, 100]
         - RGBTransition: [255, 162, 78, 900000, 1]
-  
+
   - name: 'Flash Green'
     flow_params:
       count: 1

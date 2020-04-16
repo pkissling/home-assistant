@@ -1,4 +1,5 @@
 ---
+
 customize: !include_dir_merge_named ../customize
 elevation: !secret home_elevation
 latitude: !secret home_latitude

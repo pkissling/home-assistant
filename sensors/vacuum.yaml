@@ -1,4 +1,5 @@
 ---
+
 - platform: template
   sensors:
     vacuum_battery:

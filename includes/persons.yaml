@@ -1,3 +1,5 @@
+---
+
 - name: !secret person1_name
   id: 7aa7dc0964ff44c7b2ccc5be75d654bd
   device_trackers:

@@ -1,4 +1,5 @@
 ---
+
 - platform: template
   switches:
     remote_speakers:
@@ -47,7 +48,7 @@
       turn_off:
         service: remote.turn_off
         data:
-          entity_id: remote.living_room   
+          entity_id: remote.living_room
 
     remote_ps4:
       value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'PS4') }}"

@@ -1,4 +1,5 @@
 ---
+
 - platform: template
   switches:
 
@@ -11,7 +12,7 @@
           not is_state('switch.climate_living_room', 'off')
           or
             not is_state('switch.climate_kitchen', 'off')
-          or 
+          or
             not is_state('switch.climate_bedroom', 'off')
           or
             not is_state('switch.climate_study', 'off')
@@ -28,7 +29,7 @@
             hvac_mode: 'off'
         - service: input_text.set_value
           entity_id: group.thermostat_old_hvac_all
-          data: 
+          data:
             value: unknown
 
     climate_bathroom:
@@ -46,7 +47,7 @@
             hvac_mode: 'off'
         - service: input_text.set_value
           entity_id: input_text.thermostat_old_hvac_bathroom
-          data: 
+          data:
             value: unknown
 
     climate_living_room:
@@ -64,7 +65,7 @@
             hvac_mode: 'off'
         - service: input_text.set_value
           entity_id: input_text.thermostat_old_hvac_living_room
-          data: 
+          data:
             value: unknown
 
     climate_kitchen:
@@ -82,7 +83,7 @@
             hvac_mode: 'off'
         - service: input_text.set_value
           entity_id: input_text.thermostat_old_hvac_kitchen
-          data: 
+          data:
             value: unknown
 
     climate_bedroom:
@@ -100,7 +101,7 @@
             hvac_mode: 'off'
         - service: input_text.set_value
           entity_id: input_text.thermostat_old_hvac_bedroom
-          data: 
+          data:
             value: unknown
 
     climate_study:
@@ -118,5 +119,5 @@
             hvac_mode: 'off'
         - service: input_text.set_value
           entity_id: input_text.thermostat_old_hvac_study
-          data: 
+          data:
             value: unknown

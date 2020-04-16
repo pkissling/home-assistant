@@ -1,4 +1,5 @@
 ---
+
 thermostat_old_hvac_all:
   entities:
     - input_text.thermostat_old_hvac_bathroom

@@ -1,6 +1,7 @@
 ---
+
 - platform: group
-  name: Living Room 
+  name: Living Room
   entities:
     - light.tv
     - light.lamp

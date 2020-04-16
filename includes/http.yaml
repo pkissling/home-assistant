@@ -1,6 +1,3 @@
 ---
 
-# Enable HTTPS
-base_url: https://192.168.0.40:8123
-ssl_certificate: !secret ssl_certificate
-ssl_key: !secret ssl_key
+base_url: http://192.168.0.40:8123

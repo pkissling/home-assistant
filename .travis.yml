@@ -11,9 +11,6 @@ script:
   - hass -c . --script check_config
 before_install:
   - mv secrets_dummy.yaml secrets.yaml
-  - mkdir ssl
-  - touch ssl/fullchain.pem
-  - touch ssl/privkey.pem
 notifications:
   email:
     on_success: change

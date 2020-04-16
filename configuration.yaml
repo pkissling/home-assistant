@@ -2,6 +2,8 @@
 # Core config
 default_config:
 discovery: !include includes/discovery.yaml
+frontend:
+  themes: !include_dir_merge_named themes
 homeassistant: !include includes/homeassistant.yaml
 http: !include includes/http.yaml
 media_extractor: !include includes/media_extractor.yaml

@@ -2,13 +2,18 @@
 
 switch.climate_living_room:
   icon: mdi:sofa
+
 switch.climate_kitchen:
   icon: mdi:stove
+
 switch.climate_study:
   icon: mdi:desk-lamp
+
 switch.climate_bedroom:
-  icon: mdi:bed-king
+  icon: mdi:bed-king-outline
+
 switch.climate_bathroom:
   icon: mdi:shower
+
 switch.climate_all:
   icon: mdi:thermometer

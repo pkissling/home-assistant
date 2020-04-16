@@ -2,7 +2,7 @@
 
 # TODO join groups as platform?
 window_bedroom:
-  icon: mdi:bed-king
+  icon: mdi:bed-king-outline
   entities:
     - binary_sensor.window_sensor_bedroom_left
     - binary_sensor.window_sensor_bedroom_right

@@ -1,28 +1,41 @@
 ---
 
-- alias: Alarm - Indicate Alarm on/off
+- alias: Alarm - Prepare TTS
   trigger:
     - platform: template
       value_template: >
         {{
-          state_attr('light.bedroom', 'flowing') == True
+          state_attr('light.lightstrip', 'flowing') == True
             and
-          is_state('light.bedroom', 'on')
+          is_state('light.lightstrip', 'on')
         }}
   condition:
     - condition: time
       after: '18:00:00'
       before: '02:00:00'
   action:
-    - service: light.turn_on
-      entity_id: light.living_room
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.alarm_tts
+
+- alias: Alarm - Say alarm clock status
+  trigger:
+    platform: state
+    entity_id: media_player.bedroom_display
+    from: playing
+    to: 'off'
+  condition:
+    - condition: state
+      entity_id: input_boolean.alarm_tts
+      state: 'on'
+  action:
+    - service: media_player.play_media
+      entity_id: media_player.bedroom_display
       data_template:
-        effect: >
-          {% if is_state('switch.alarm_next_day', 'on') %}
-            Flash Red
-          {% else %}
-            Flash Green
-          {% endif %}
+        media_content_type: music
+        media_content_id: >
+          https://www.google.com/speech-api/v2/synthesize?lang=en-us&use_google_only_voices=1&client=assistant-http-tts&key={{ states('input_text.google_api_key') }}&enc=opus&text={% if is_state('switch.alarm_next_day', 'on') %}The+alarm+is+set+for+{{ state_attr('input_datetime.wakeup_time', 'hour') }}+{{ state_attr('input_datetime.wakeup_time', 'minute') }}.{% else %}No+alarm+set+for+tomorrow.{% endif %}
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.alarm_tts
 
 - alias: Alarm - Sunrise Lights
   trigger:

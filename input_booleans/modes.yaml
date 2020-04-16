@@ -5,5 +5,5 @@ vacation_mode:
   name: Vacation Mode
 
 guest_mode:
-  icon: mdi:bed-king
+  icon: mdi:bed-king-outline
   name: Guest Mode

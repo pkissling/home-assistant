@@ -2,6 +2,7 @@
 .cloud/
 .storage/
 .homekit.state
+**/.DS_Store
 
 # By extension
 *.conf

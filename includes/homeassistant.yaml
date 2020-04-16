@@ -1,6 +1,8 @@
+---
+customize: !include_dir_merge_named ../customize
+elevation: !secret home_elevation
 latitude: !secret home_latitude
 longitude: !secret home_longitude
-elevation: !secret home_elevation
 name: !secret home_name
 time_zone: !secret home_timezone
 unit_system: !secret home_unit_system

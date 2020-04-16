@@ -1,0 +1,5 @@
+---
+motion_study:
+  icon: mdi:desk-lamp
+  entities:
+    - binary_sensor.motion_sensor_study

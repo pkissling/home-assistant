@@ -1,0 +1,5 @@
+---
+!secret person1_entity_id:
+  icon: mdi:human-male
+!secret person2_entity_id:
+  icon: mdi:human-female

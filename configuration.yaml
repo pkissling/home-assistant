@@ -6,25 +6,24 @@ frontend:
   themes: !include_dir_merge_named themes
 homeassistant: !include includes/homeassistant.yaml
 http: !include includes/http.yaml
-media_extractor: !include includes/media_extractor.yaml
 logger: !include includes/logger.yaml
+lovelace: !include includes/lovelace.yaml
+media_extractor: !include includes/media_extractor.yaml
 person: !include includes/persons.yaml
 
 # Include files with lists
 automation: !include_dir_merge_list automations
+binary_sensor: !include_dir_merge_list binary_sensors
 script: !include_dir_merge_list scripts
 sensor: !include_dir_merge_list sensors
 switch: !include_dir_merge_list switches
   
 # Include files with dictionaries
+group: !include_dir_merge_named groups
 input_boolean: !include_dir_merge_named input_booleans
 input_datetime: !include_dir_merge_named input_datetimes
 input_text: !include_dir_merge_named input_texts
-
-# Include root dir yamls
-binary_sensor: !include binary_sensors.yaml
-group: !include groups.yaml
-scene: !include scenes.yaml
+input_select: !include_dir_merge_named input_select
 
 # Include 'includes' dir yamls
 device_tracker: !include includes/device_trackers.yaml

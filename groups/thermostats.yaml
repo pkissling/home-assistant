@@ -1,0 +1,8 @@
+---
+thermostat_old_hvac_all:
+  entities:
+    - input_text.thermostat_old_hvac_bathroom
+    - input_text.thermostat_old_hvac_living_room
+    - input_text.thermostat_old_hvac_study
+    - input_text.thermostat_old_hvac_bedroom
+    - input_text.thermostat_old_hvac_kitchen

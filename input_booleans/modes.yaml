@@ -1,0 +1,8 @@
+---
+vacation_mode:
+  icon: mdi:palm-tree
+  name: Vacation Mode
+
+guest_mode:
+  icon: mdi:bed-king
+  name: Guest Mode

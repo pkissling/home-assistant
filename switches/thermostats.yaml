@@ -1,0 +1,122 @@
+---
+- platform: template
+  switches:
+
+    climate_all:
+      friendly_name: Heating
+      value_template: >
+        {{
+          not is_state('switch.climate_bathroom', 'off')
+            or
+          not is_state('switch.climate_living_room', 'off')
+          or
+            not is_state('switch.climate_kitchen', 'off')
+          or 
+            not is_state('switch.climate_bedroom', 'off')
+          or
+            not is_state('switch.climate_study', 'off')
+        }}
+      turn_on:
+        service: climate.set_hvac_mode
+        entity_id: all
+        data:
+          hvac_mode: auto
+      turn_off:
+        - service: climate.set_hvac_mode
+          entity_id: all
+          data:
+            hvac_mode: 'off'
+        - service: input_text.set_value
+          entity_id: group.thermostat_old_hvac_all
+          data: 
+            value: unknown
+
+    climate_bathroom:
+      friendly_name: Bathroom
+      value_template: "{{ not is_state('climate.bathroom', 'off') }}"
+      turn_on:
+        service: climate.set_hvac_mode
+        entity_id: climate.bathroom
+        data:
+          hvac_mode: auto
+      turn_off:
+        - service: climate.set_hvac_mode
+          entity_id: climate.bathroom
+          data:
+            hvac_mode: 'off'
+        - service: input_text.set_value
+          entity_id: input_text.thermostat_old_hvac_bathroom
+          data: 
+            value: unknown
+
+    climate_living_room:
+      friendly_name: Living Room
+      value_template: "{{ not is_state('climate.living_room', 'off') }}"
+      turn_on:
+        service: climate.set_hvac_mode
+        entity_id: climate.living_room
+        data:
+          hvac_mode: auto
+      turn_off:
+        - service: climate.set_hvac_mode
+          entity_id: climate.living_room
+          data:
+            hvac_mode: 'off'
+        - service: input_text.set_value
+          entity_id: input_text.thermostat_old_hvac_living_room
+          data: 
+            value: unknown
+
+    climate_kitchen:
+      friendly_name: Kitchen
+      value_template: "{{ not is_state('climate.kitchen', 'off') }}"
+      turn_on:
+        service: climate.set_hvac_mode
+        entity_id: climate.kitchen
+        data:
+          hvac_mode: auto
+      turn_off:
+        - service: climate.set_hvac_mode
+          entity_id: climate.kitchen
+          data:
+            hvac_mode: 'off'
+        - service: input_text.set_value
+          entity_id: input_text.thermostat_old_hvac_kitchen
+          data: 
+            value: unknown
+
+    climate_bedroom:
+      friendly_name: Bedroom
+      value_template: "{{ not is_state('climate.bedroom', 'off') }}"
+      turn_on:
+        service: climate.set_hvac_mode
+        entity_id: climate.bedroom
+        data:
+          hvac_mode: auto
+      turn_off:
+        - service: climate.set_hvac_mode
+          entity_id: climate.bedroom
+          data:
+            hvac_mode: 'off'
+        - service: input_text.set_value
+          entity_id: input_text.thermostat_old_hvac_bedroom
+          data: 
+            value: unknown
+
+    climate_study:
+      friendly_name: Study
+      value_template: "{{ not is_state('climate.study', 'off') }}"
+      turn_on:
+        service: climate.set_hvac_mode
+        entity_id: climate.study
+        data:
+          hvac_mode: auto
+      turn_off:
+        - service: climate.set_hvac_mode
+          entity_id: climate.study
+          data:
+            hvac_mode: 'off'
+        - service: input_text.set_value
+          entity_id: input_text.thermostat_old_hvac_study
+          data: 
+            value: unknown

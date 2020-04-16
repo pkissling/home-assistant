@@ -1,0 +1,73 @@
+---
+- platform: template
+  switches:
+    remote_speakers:
+      value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Speakers') }}"
+      turn_on:
+        service: remote.turn_on
+        data:
+          entity_id: remote.living_room
+          activity: 14839573
+      turn_off:
+        service: remote.turn_off
+        data:
+          entity_id: remote.living_room
+
+    remote_chromecast:
+      value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Chromecast') }}"
+      turn_on:
+        service: remote.turn_on
+        data:
+          entity_id: remote.living_room
+          activity: 26534357
+      turn_off:
+        service: remote.turn_off
+        data:
+          entity_id: remote.living_room
+
+    remote_tv:
+      value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'TV') }}"
+      turn_on:
+        service: remote.turn_on
+        data:
+          entity_id: remote.living_room
+          activity: 27998788
+      turn_off:
+        service: remote.turn_off
+        data:
+          entity_id: remote.living_room
+
+    remote_kodi:
+      value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Kodi') }}"
+      turn_on:
+        service: remote.turn_on
+        data:
+          entity_id: remote.living_room
+          activity: 19233680
+      turn_off:
+        service: remote.turn_off
+        data:
+          entity_id: remote.living_room   
+
+    remote_ps4:
+      value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'PS4') }}"
+      turn_on:
+        service: remote.turn_on
+        data:
+          entity_id: remote.living_room
+          activity: 19233680
+      turn_off:
+        service: remote.turn_off
+        data:
+          entity_id: remote.living_room
+
+    remote_off:
+      value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'PowerOff') }}"
+      turn_on:
+        service: remote.turn_off
+        data:
+          entity_id: remote.living_room
+      turn_off:
+        service: remote.turn_off
+        data:
+          entity_id: remote.living_room

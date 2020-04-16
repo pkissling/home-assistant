@@ -1,0 +1,7 @@
+---
+- platform: template
+  sensors:
+    vacuum_battery:
+      value_template: "{{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'battery_level') }}"
+      unit_of_measurement: '%'
+      icon_template: "{{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'battery_icon') }}"

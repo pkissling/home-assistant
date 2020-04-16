@@ -1,3 +1,4 @@
+---
 - platform: ping
   name: internet
   host: 8.8.8.8

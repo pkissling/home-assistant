@@ -1,0 +1,467 @@
+---
+background: var(--background-image)
+
+resources:
+  - url: /hacsfiles/button-card/button-card.js
+    type: module
+  - url: /hacsfiles/custom-header/custom-header.js
+    type: module
+  - url: /hacsfiles/lovelace-fold-entity-row/fold-entity-row.js
+    type: module
+  - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
+    type: module
+  - url: /hacsfiles/mini-media-player/mini-media-player-bundle.js
+    type: module
+  - url: /hacsfiles/simple-weather-card/simple-weather-card-bundle.js
+    type: module
+  - url: /hacsfiles/swipe-card/swipe-card.js
+    type: module
+  - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
+    type: js
+
+custom_header:
+  background: 'rgba(155, 155, 155, 0.25)'
+  compact_mode: false
+  button_text:
+    options: '{{ hours24 }}:{{ minutesLZ }}'
+
+views:
+  - id: 0
+    name: Home
+    icon: mdi:home
+    cards:
+
+      # Lights and Heating
+      - type: entities
+        entities:
+          # Lights
+          - type: custom:fold-entity-row
+            head:
+              entity: light.all
+              name: Lights
+            entities:
+              - type: custom:fold-entity-row
+                head:
+                  entity: light.bedroom
+                entities:
+                  - light.lightstrip
+              - type: custom:fold-entity-row
+                head:
+                  entity: light.living_room
+                entities:
+                  - light.lightstrip
+                  - light.tv
+
+          # Climate
+          - type: custom:fold-entity-row
+            head:
+              entity: switch.climate_all
+            open: true
+            entities:
+              - switch.climate_bathroom
+              - switch.climate_living_room
+              - switch.climate_kitchen
+              - switch.climate_study
+              - switch.climate_bedroom
+
+      # Weather
+      - type: custom:simple-weather-card
+        entity: weather.home
+
+      # Toggle Modes
+      - type: entities
+        title: Modes
+        show_header_toggle: false
+        entities:
+          - input_boolean.vacation_mode
+          - input_boolean.guest_mode
+          # - binary_sensor.internet # TODO find better view
+
+      # Temperatures
+      - type: custom:swipe-card
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.living_room_temperature
+                    name: Living Room
+                decimals: 1
+                points_per_hour: 1
+                show:
+                  points: false
+                  labels: false
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                color_thresholds_transition: smooth
+                decimals: 1
+                entities:
+                  - entity: sensor.kitchen_temperature
+                    name: Kitchen
+                font_size: 100
+                group: false
+                hour24: true
+                line_width: 6
+                points_per_hour: 1
+                show:
+                  extrema: false
+                  fill: fade
+                  labels: false
+                  name: true
+                  state: true
+                  points: false
+                tap_action:
+                  action: call-service
+                  entity_id: switch.thermostat_living_room
+                  service: switch.toggle
+                  service_data:
+                    entity_id: switch.thermostat_living_room
+              - type: custom:mini-graph-card
+                color_thresholds_transition: smooth
+                entities:
+                  - entity: sensor.bathroom_temperature
+                    name: Bathroom
+                font_size: 100
+                group: false
+                hour24: true
+                line_width: 6
+                points_per_hour: 1
+                decimals: 1
+                show:
+                  extrema: false
+                  fill: fade
+                  labels: false
+                  name: true
+                  state: true
+                  points: false
+              - type: horizontal-stack
+                cards:
+                  - type: custom:mini-graph-card
+                    color_thresholds_transition: smooth
+                    entities:
+                      - entity: sensor.bedroom_temperature
+                        name: Bedroom
+                    font_size: 100
+                    group: false
+                    hour24: true
+                    line_width: 6
+                    points_per_hour: 1
+                    decimals: 1
+                    show:
+                      extrema: false
+                      fill: fade
+                      labels: false
+                      name: true
+                      state: true
+                      points: false
+                  - type: custom:mini-graph-card
+                    color_thresholds_transition: smooth
+                    entities:
+                      - entity: sensor.study_temperature
+                        name: Study
+                    font_size: 100
+                    group: false
+                    hour24: true
+                    line_width: 6
+                    points_per_hour: 1
+                    decimals: 1
+                    show:
+                      extrema: false
+                      fill: fade
+                      labels: false
+                      name: true
+                      state: true
+                      points: false
+
+      # TV Remote
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: horizontal-stack
+            cards:
+              - entity: switch.remote_tv
+                icon: 'mdi:television'
+                type: 'custom:button-card'
+                color: '#30d257'
+                show_name: false
+                styles:
+                  card:
+                    - height: 70px
+              - color: '#30d257'
+                entity: switch.remote_chromecast
+                icon: 'mdi:cast'
+                type: 'custom:button-card'
+                show_name: false
+                styles:
+                  card:
+                    - height: 70px
+              - color: '#30d257'
+                entity: switch.remote_kodi
+                icon: 'mdi:kodi'
+                type: 'custom:button-card'
+                show_name: false
+                styles:
+                  card:
+                    - height: 70px
+          - type: horizontal-stack
+            cards:
+              - color: '#30d257'
+                entity: switch.remote_speakers
+                icon: 'mdi:cast-audio'
+                type: 'custom:button-card'
+                show_name: false
+                styles:
+                  card:
+                    - height: 70px
+              - color: '#30d257'
+                entity: switch.remote_ps4
+                icon: 'mdi:playstation'
+                type: 'custom:button-card'
+                show_name: false
+                styles:
+                  card:
+                    - height: 70px
+              - color: '#ff8c8a'
+                entity: switch.remote_off
+                icon: 'mdi:power'
+                type: 'custom:button-card'
+                show_name: false
+                styles:
+                  card:
+                    - height: 70px
+
+      # Music Control
+      - type: entities
+        entities:
+          - type: custom:mini-media-player
+            entity: media_player.home_group
+            info: scroll
+            group: true
+            hide:
+              volume: true
+              progress: true
+              power: true
+            shortcuts:
+              columns: 2  # Max buttons per row
+              buttons:
+                - name: NRJ
+                  type: script
+                  id: script.turn_on_speakers_and_stream_nrj
+                - icon: mdi:power
+                  type: script
+                  id: script.turn_off_speakers_and_stop_casting
+
+          - type: custom:mini-media-player
+            entity: media_player.chromecast
+            group: true
+            hide:
+              controls: true
+              source: true
+              progress: true
+              info: true
+              power: true
+          - type: custom:mini-media-player
+            entity: media_player.kitchen_speaker
+            group: true
+            hide:
+              controls: true
+              source: true
+              progress: true
+              info: true
+              power: true
+          - type: custom:mini-media-player
+            entity: media_player.study_speaker
+            group: true
+            hide:
+              controls: true
+              source: true
+              progress: true
+              info: true
+              power: true
+          - type: custom:mini-media-player
+            entity: media_player.bathroom_speaker
+            group: true
+            hide:
+              controls: true
+              source: true
+              progress: true
+              info: true
+              power: true
+          - type: custom:mini-media-player
+            entity: media_player.bedroom_display
+            group: true
+            hide:
+              controls: true
+              source: true
+              progress: true
+              info: true
+              power: true
+
+      # Vacuum
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: entities
+            title: Roborock
+            show_header_toggle: false
+            entities:
+              - entity: input_boolean.vacuum_daily_cleanup
+              - entity: sensor.vacuum_battery
+                name: Battery
+              - entity: input_select.vacuum_fan_speed
+          - type: horizontal-stack
+            cards:
+              - icon: 'mdi:home'
+                show_name: false
+                entity: switch.vacuum_dock
+                type: 'custom:button-card'
+                color: '#30d257'
+                styles:
+                  card:
+                    - height: 40px
+              - type: 'custom:button-card'
+                icon: 'mdi:play'
+                color: '#30d257'
+                show_name: false
+                entity: switch.vacuum_start
+                styles:
+                  card:
+                    - height: 40px
+
+      # Open Windows
+      - type: entity-filter
+        entities:
+          - group.window_study
+          - group.window_living_room
+          - group.window_kitchen
+          - group.window_bedroom
+          - group.window_toilet
+          - group.window_bathroom
+        state_filter:
+          - 'on'
+        card:
+          type: glance
+          title: Open Windows
+          show_state: false
+          show_icon: true
+          show_name: false
+          columns: 2
+        show_empty: false
+
+      # Motion Sensors
+      - type: entity-filter
+        entities:
+          - group.motion_study
+        state_filter:
+          - 'on'
+        card:
+          type: glance
+          title: Motion sensor
+          show_state: false
+          show_icon: true
+          show_name: false
+          columns: 2
+        show_empty: false
+
+      # Quick actions
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                color: auto
+                icon: mdi:weather-sunset-up
+                name: Good Morning
+                styles:
+                  card:
+                    - font-size: 12px
+                    - font-weight: bold
+                    - height: 70px
+                tap_action:
+                  action: call-service
+                  haptic: success
+                  service: script.good_morning_button
+
+              - type: custom:button-card
+                color: auto
+                icon: mdi:weather-night
+                name: Good Night
+                styles:
+                  card:
+                    - font-size: 12px
+                    - font-weight: bold
+                    - height: 70px
+                tap_action:
+                  action: call-service
+                  haptic: success
+                  service: script.good_night_button
+
+
+          - type: horizontal-stack
+            cards:
+              - color: auto
+                icon: mdi:weather-sunset-up
+                name: I'm Home
+                styles:
+                  card:
+                    - font-size: 12px
+                    - font-weight: bold
+                    - height: 70px
+                tap_action:
+                  action: call-service
+                  haptic: success
+                  service: input_boolean.turn_off
+                  service_data:
+                    entity_id: input_boolean.sleep_mode
+                type: custom:button-card
+              - color: auto
+                # entity: input_boolean.sleep_mode
+                icon: mdi:weather-night
+                name: I'm leaving
+                styles:
+                  card:
+                    - font-size: 12px
+                    - font-weight: bold
+                    - height: 70px
+                tap_action:
+                  action: call-service
+                  haptic: success
+                  service: script.going_to_sleep
+                type: custom:button-card
+
+      # People at home
+      - type: entities
+        title: People
+        entities:
+          - !secret person1_entity_id
+          - !secret person2_entity_id
+
+      # Alarm Clock
+      - type: entities
+        title: Alarms
+        entities:
+          - type: custom:fold-entity-row
+            entities:
+              - input_boolean.alarm_monday
+              - input_boolean.alarm_tuesday
+              - input_boolean.alarm_wednesday
+              - input_boolean.alarm_thursday
+              - input_boolean.alarm_friday
+              - input_boolean.alarm_saturday
+              - input_boolean.alarm_sunday
+            head:
+              entity: switch.alarm_next_day
+          - entity: input_datetime.wakeup_time
+
+  - id: 1
+    icon: mdi:battery
+    views:
+
+      # Battery
+      - type: entities
+        entities:
+          - type: 'custom:battery-entity'
+            entity: sensor.motion_sensor_battery_level
+          - type: 'custom:battery-entity'
+            entity: sensor.window_sensor_study_right_l_battery_level
+          - type: 'custom:battery-entity'
+            entity: sensor.roborock_battery

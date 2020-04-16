@@ -26,7 +26,7 @@ My personal configration for [Home Assistant](https://www.home-assistant.io) run
 
 ### Gateway
 * [Conbee II Zigbee USB Gateway](https://phoscon.de/en/conbee2)
-* 
+
 ### Heating
 * [Tado Smart Radiator Thermostat](https://www.tado.com/de-en/products/smart-radiator-valve)
 
@@ -36,7 +36,7 @@ My personal configration for [Home Assistant](https://www.home-assistant.io) run
 
 ### Motion Sensors
 * [Aqara Motion Sensor](https://www.aqara.com/us/motion_sensor.html)
-  
+
 ### Vacuum Cleaner
 * [Roborock S50](https://en.roborock.com/pages/robot-vacuum-cleaner)
 

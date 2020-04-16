@@ -1,0 +1,39 @@
+vacuum_locate:
+  sequence:
+    - service: vacuum.locate
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+
+vacuum_fan_gentle:
+  sequence:
+    - service: vacuum.set_fan_speed
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        fan_speed: Gentle
+
+vacuum_fan_silent:
+  sequence:
+    - service: vacuum.set_fan_speed
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        fan_speed: '101'
+
+vacuum_fan_standard:
+  sequence:
+    - service: vacuum.set_fan_speed
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        fan_speed: '102'
+
+vacuum_fan_medium:
+  sequence:
+    - service: vacuum.set_fan_speed
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        fan_speed: '103'
+
+vacuum_fan_turbo:
+  sequence:
+    - service: vacuum.set_fan_speed
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        fan_speed: '104'

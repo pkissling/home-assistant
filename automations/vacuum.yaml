@@ -1,0 +1,86 @@
+---
+- alias: Vacuum - Daily cleanup when Residents not home
+  trigger:
+    - platform: state
+      entity_id: group.residents
+      from: home
+      to: not_home
+  condition:
+    - condition: state
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      state: 'docked'
+    - condition: time
+      after: '08:00:00'
+      before: '20:00:00'
+    - condition: state
+      entity_id: input_boolean.vacuum_ran_today
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.vacuum_daily_cleanup
+      state: 'on'
+  action:
+    - service: vacuum.start
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+    - service: script.vacuum_fan_medium
+    - service: notify.pushbullet
+      data: 
+        title: Home Assistant
+        message: Roborock started Cleanup
+        target: device/OnePlus 7 Pro
+
+- alias: Vaccum - Daily cleanup when 10:00
+  trigger:
+    platform: time
+    at: '10:00:00'
+  condition:
+    - condition: state
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      state: 'docked'
+    - condition: state
+      entity_id: input_boolean.vacuum_ran_today
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.vacuum_daily_cleanup
+      state: 'on'
+    - condition: state
+      entity_id: group.residents
+      state: not_home
+  action:
+    - service: vacuum.start
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+    - service: script.vacuum_fan_medium
+    - service: notify.pushbullet
+      data: 
+        title: Home Assistant
+        message: Roborock started Cleanup
+        target: device/OnePlus 7 Pro
+
+- alias: Vacuum - Finished Cleanup
+  trigger:
+    - platform: state
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      from: returning
+      to: docked
+  condition:
+    - condition: template
+      value_template: "{{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'cleaned_area') > 20 }}"
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.vacuum_ran_today
+    - service: notify.pushbullet
+      data_template: 
+        title: Home Assistant
+        target: device/OnePlus 7 Pro
+        message: >
+          Roborock finished Cleanup: 
+          {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'cleaned_area') }} m²,
+          {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'cleaning_time') }} minutes,
+          Battery {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'battery_level') }} %
+
+- alias: Vacuum - Reset Daily Cleanup Boolean
+  trigger:
+    - platform: time
+      at: 00:00
+  action:
+    - entity_id: input_boolean.vacuum_ran_today
+      service: input_boolean.turn_off

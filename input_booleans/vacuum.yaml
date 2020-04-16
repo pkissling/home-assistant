@@ -1,0 +1,8 @@
+---
+vacuum_ran_today:
+  name: Roborock ran today
+
+vacuum_daily_cleanup:
+  name: Daily Cleanup
+  icon: mdi:refresh
+  

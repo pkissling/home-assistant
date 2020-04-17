@@ -19,3 +19,7 @@ secrets.yaml
 ssl/
 deps/
 tts/
+
+# Python cache
+__pycache__
+*.pyc

@@ -1,6 +1,6 @@
 ---
 
-- alias: Alarm - Prepare TTS
+- alias: Alarm - Night Routine - Play TTS after News
   trigger:
     - platform: template
       value_template: >
@@ -10,14 +10,14 @@
           is_state('light.lightstrip', 'on')
         }}
   condition:
-    - condition: time
+    - condition: time  # TODO find better condition!
       after: '18:00:00'
       before: '02:00:00'
   action:
     - service: input_boolean.turn_on
-      entity_id: input_boolean.alarm_tts
+      entity_id: input_boolean.alarm_play_tts_next
 
-- alias: Alarm - Say alarm clock status
+- alias: Alarm - Night Routine - TTS alarm clock status
   trigger:
     platform: state
     entity_id: media_player.bedroom_display
@@ -25,19 +25,36 @@
     to: 'off'
   condition:
     - condition: state
-      entity_id: input_boolean.alarm_tts
+      entity_id: input_boolean.alarm_play_tts_next
       state: 'on'
   action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.alarm_turn_off_next
     - service: media_player.play_media
       entity_id: media_player.bedroom_display
       data_template:
         media_content_type: music
         media_content_id: >
-          https://www.google.com/speech-api/v2/synthesize?lang=en-us&use_google_only_voices=1&client=assistant-http-tts&key={{ states('input_text.google_api_key') }}&enc=opus&text={% if is_state('switch.alarm_next_day', 'on') %}The+alarm+is+set+for+{{ state_attr('input_datetime.wakeup_time', 'hour') }}+{{ state_attr('input_datetime.wakeup_time', 'minute') }}.{% else %}No+alarm+set+for+tomorrow.{% endif %}
+          https://www.google.com/speech-api/v2/synthesize?lang=en-us&use_google_only_voices=1&client=assistant-http-tts&key={{ states('input_text.google_api_key') }}&enc=opus&text={% if is_state('switch.alarm_next_day', 'on') %}The+alarm+is+set+for+{{ state_attr('input_datetime.wakeup_time', 'hour') }}+{{ state_attr('input_datetime.wakeup_time', 'minute') }}.{% else %}No+alarm+set+for+tomorrow.{% endif %}Good+Night.
     - service: input_boolean.turn_off
-      entity_id: input_boolean.alarm_tts
+      entity_id: input_boolean.alarm_play_tts_next
+- alias: Alarm - Night Routine - Turn Display off after TTS
+  trigger:
+    platform: state
+    entity_id: media_player.bedroom_display
+    from: playing
+    to: 'idle'
+  condition:
+    - condition: state
+      entity_id: input_boolean.alarm_turn_off_next
+      state: 'on'
+  action:
+    - service: media_player.turn_off
+      entity_id: media_player.bedroom_display
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.alarm_turn_off_next
 
-- alias: Alarm - Sunrise Lights
+- alias: Alarm - Morning Routine - Sunrise Lights
   trigger:
     - platform: template
       value_template: "{{ ((strptime(states('sensor.time'), '%H:%M').time().hour * 60 + strptime(states('sensor.time'), '%H:%M').time().minute) * 60) | int == (state_attr('input_datetime.wakeup_time', 'timestamp') | int) - 60 * 15 }}"
@@ -56,7 +73,7 @@
       data:
         effect: Sunrise
 
-- alias: Alarm - News and Music
+- alias: Alarm - Morning Routine - Play News
   trigger:
     - platform: template
       value_template: "{{ ((strptime(states('sensor.time'), '%H:%M').time().hour * 60 + strptime(states('sensor.time'), '%H:%M').time().minute) * 60) | int == (state_attr('input_datetime.wakeup_time', 'timestamp') | int) }}"
@@ -68,16 +85,27 @@
       entity_id: group.residents
       state: home
   action:
-    - service: media_player.volume_set
-      entity_id: media_player.bedroom_display
-      data:
-        volume_level: 0.2
     - service: media_extractor.play_media
       entity_id: media_player.bedroom_display
       data:
         media_content_id: http://www.tagesschau.de/100sekunden/index.html
         media_content_type: video
-    - delay: '00:02:00'
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.alarm_play_radio_next
+
+- alias: Alarm - Morning Routine - Play Radio after News
+  trigger:
+    platform: state
+    entity_id: media_player.bedroom_display
+    from: playing
+    to: idle
+  condition:
+    - condition: state
+      entity_id: input_boolean.alarm_play_radio_next
+      state: 'on'
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.alarm_play_radio_next
     - service: media_player.play_media
       entity_id: media_player.home_group
       data:

@@ -50,7 +50,7 @@ views:
                 head:
                   entity: light.living_room
                 entities:
-                  - light.lightstrip
+                  - light.lamp
                   - light.tv
 
           # Climate

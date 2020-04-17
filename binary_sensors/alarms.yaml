@@ -1,0 +1,6 @@
+---
+
+- platform: template
+  sensors:
+    alarm_in_6_days:
+      value_template: "{{ states('input_boolean.alarm_weekday_{{ (now().weekday() + 6) % 7 }}') }}"

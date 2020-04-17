@@ -442,13 +442,13 @@ views:
         entities:
           - type: custom:fold-entity-row
             entities:
-              - input_boolean.alarm_monday
-              - input_boolean.alarm_tuesday
-              - input_boolean.alarm_wednesday
-              - input_boolean.alarm_thursday
-              - input_boolean.alarm_friday
-              - input_boolean.alarm_saturday
-              - input_boolean.alarm_sunday
+              - input_boolean.alarm_weekday_0
+              - input_boolean.alarm_weekday_1
+              - input_boolean.alarm_weekday_2
+              - input_boolean.alarm_weekday_3
+              - input_boolean.alarm_weekday_4
+              - input_boolean.alarm_weekday_5
+              - input_boolean.alarm_weekday_6
             head:
               entity: switch.alarm_next_day
           - entity: input_datetime.wakeup_time

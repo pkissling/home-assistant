@@ -83,3 +83,49 @@
       data:
         media_content_id: http://nrj.de/muenchen
         media_content_type: music
+
+- alias: Alarm - Enable when workday
+  trigger:
+    platform: time
+    at: '12:00'
+  condition:
+    - condition: state
+      entity_id: binary_sensor.workday_sensor
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.alarm_in_6_days
+      state: 'off'
+  action:
+    - service: input_boolean.turn_on
+      data_template:
+        entity_id: input_boolean.alarm_weekday_{{ (now().weekday() + 6) % 7 }}
+    - service: notify.pushbullet
+      data_template:
+        title: Home Assistant
+        message: >
+          {% set days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] %}
+          Alarm for next {{ days[(now().weekday() + 6) % 7] }} turned on.
+        target: device/OnePlus 7 Pro
+
+- alias: Alarm - Disable when no workday
+  trigger:
+    platform: time
+    at: '12:00'
+  condition:
+    - condition: state
+      entity_id: binary_sensor.workday_sensor
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.alarm_in_6_days
+      state: 'on'
+  action:
+    - service: input_boolean.turn_off
+      data_template:
+        entity_id: input_boolean.alarm_weekday_{{ (now().weekday() + 6) % 7 }}
+    - service: notify.pushbullet
+      data_template:
+        title: Home Assistant
+        message: >
+          {% set days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] %}
+          Alarm for next {{ days[(now().weekday() + 6) % 7] }} turned off.
+        target: device/OnePlus 7 Pro

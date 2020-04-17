@@ -45,4 +45,4 @@ My personal configration for [Home Assistant](https://www.home-assistant.io) run
 UI heavily influenced by [@basnijholt](https://github.com/basnijholt/home-assistant-config)
 
 ### Theme
-[iOS Dark Mode Theme](https://github.com/basnijholt/lovelace-ios-dark-mode-theme)
+* [iOS Dark Mode Theme](https://github.com/basnijholt/lovelace-ios-dark-mode-theme)

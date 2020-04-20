@@ -2,49 +2,48 @@
 
 - alias: Remote - Turn on Speakers when Home Group is playing
   trigger:
-    - platform: state
-      entity_id: media_player.home_group
-      to: playing
+    platform: state
+    entity_id: media_player.home_group
+    to: playing
   condition:
-    - condition: state
-      entity_id: remote.living_room
-      state: 'off'
+    condition: state
+    entity_id: remote.living_room
+    state: 'off'
   action:
-    - service: remote.turn_on  # TODO call switch!
-      entity_id: remote.living_room
-      data:
-        activity: 14839573
+    service: switch.turn_on
+    entity_id: switch.remote_speakers
 
 - alias: Remote - Turn on Chromecast when casting
   trigger:
-    - platform: state
-      entity_id: media_player.chromecast
+    platform: template
+    value_template: "{{ not is_state('media_player.chromecast', 'off') }}"
   condition:
     - condition: template
       value_template: "{{ not is_state_attr('remote.living_room', 'current_activity', 'Chromecast') }}"
-    - condition: template
-      value_template: "{{ not is_state('media_player.chromecast', 'off') }}"
     - condition: state
       entity_id: media_player.home_group
       state: 'off'
   action:
-    - service: remote.turn_on  # TODO call switch!
-      entity_id: remote.living_room
-      data:
-        activity: 26534357
     - service: input_text.set_value
       entity_id: input_text.remote_previous_activity
       data_template:
         value: "{{ state_attr('remote.living_room', 'current_activity') }}"
+    - service: switch.turn_on
+      entity_id: switch.remote_chromecast
 
 - alias: Remote - Back to previous Activity when Chromecast off
   trigger:
-    - platform: state
-      entity_id: media_player.chromecast
-      to: 'off'
+    platform: state
+    entity_id: media_player.chromecast
+    to: 'off'
   condition:
     - condition: template
-      value_template: "{{ not is_state('input_text.remote_previous_activity', 'unknown') }}"
+      value_template: >
+        {{
+          not is_state('input_text.remote_previous_activity', 'unknown')
+            and
+          not is_state('input_text.remote_previous_activity', 'PowerOff')
+        }}
     - condition: template
       value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Chromecast') }}"
   action:
@@ -57,16 +56,34 @@
       data:
         value: unknown
 
-- alias: Remote - Turn off Harmony when Home Group stopped casting
+- alias: Remote - Turn off Speakers when Home Group stopped casting
   trigger:
-    - platform: state
-      entity_id: media_player.home_group
-      to: 'off'
-      for:
-        seconds: 30
+    platform: state
+    entity_id: media_player.home_group
+    to: 'off'
+    for:
+      seconds: 30
   condition:
-    - condition: template
-      value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Speakers') }}"
+    condition: template
+    value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Speakers') }}"
   action:
-    - service: remote.turn_off
-      entity_id: remote.living_room
+    service: remote.turn_off
+    entity_id: remote.living_room
+
+- alias: Remote - Turn off TV when Chromecast stopped casting
+  trigger:
+    platform: template
+    value_template: >
+      {{
+        is_state('media_player.chromecast', 'off')
+          or
+        is_state('media_player.chromecast', 'idle')
+      }}
+    for:
+      minutes: 5
+  condition:
+    condition: template
+    value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Chromecast') }}"
+  action:
+    service: remote.turn_off
+    entity_id: remote.living_room

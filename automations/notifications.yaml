@@ -29,5 +29,6 @@
     - service: notify.pushbullet
       data_template:
         title: Home Assistant
-        message: Thermostat in {{ expand('group.climate_all') | rejectattr('state','eq','off') | map(attribute='friendly_name') | join(', ') }} turned on
+        message: >
+          Thermostat in {{ expand('group.climate_all') | rejectattr('state','eq','off') | map(attribute='entity_id') | join(', ') }} turned on
         target: device/OnePlus 7 Pro

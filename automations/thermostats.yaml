@@ -220,6 +220,7 @@
     platform: state
     entity_id: switch.climate_all
     from: 'off'
+    to: 'on'
     for:
       hours: 3
   condition:
@@ -231,7 +232,7 @@
       data_template:
         title: Home Assistant
         message: >
-          Thermostat in {{ expand('group.climate_all') | rejectattr('state','eq','off') | map(attribute='friendly_name') | join(', ') }} turned off after 3 hours.
+          Thermostat in {{ expand('group.climate_all') | rejectattr('state','eq','off') | map(attribute='entity_id') | join(', ') }} turned off after 3 hours.
         target: device/OnePlus 7 Pro
     - service: switch.turn_off
       entity_id: switch.climate_all

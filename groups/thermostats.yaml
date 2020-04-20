@@ -7,3 +7,11 @@ thermostat_old_hvac_all:
     - input_text.thermostat_old_hvac_study
     - input_text.thermostat_old_hvac_bedroom
     - input_text.thermostat_old_hvac_kitchen
+
+climate_all:
+  entities:
+    - climate.living_room
+    - climate.bedroom
+    - climate.kitchen
+    - climate.study
+    - climate.bathroom

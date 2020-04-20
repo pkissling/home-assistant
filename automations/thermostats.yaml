@@ -214,3 +214,24 @@
       entity_id: input_text.thermostat_old_hvac_kitchen
       data:
         value: unknown
+
+- alias: Thermostat - Summer Mode - Heating on
+  trigger:
+    platform: state
+    entity_id: switch.climate_all
+    from: 'off'
+    for:
+      hours: 3
+  condition:
+    condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'on'
+  action:
+    - service: notify.pushbullet
+      data_template:
+        title: Home Assistant
+        message: >
+          Thermostat in {{ expand('group.climate_all') | rejectattr('state','eq','off') | map(attribute='friendly_name') | join(', ') }} turned off after 3 hours.
+        target: device/OnePlus 7 Pro
+    - service: switch.turn_off
+      entity_id: switch.climate_all

@@ -76,6 +76,7 @@ views:
         entities:
           - input_boolean.vacation_mode
           - input_boolean.guest_mode
+          - input_boolean.summer_mode
           # - binary_sensor.internet # TODO find better view
 
       # Temperatures

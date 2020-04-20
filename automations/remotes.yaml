@@ -62,6 +62,8 @@
     - platform: state
       entity_id: media_player.home_group
       to: 'off'
+      for:
+        seconds: 30
   condition:
     - condition: template
       value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Speakers') }}"

@@ -2,21 +2,34 @@
 
 - alias: Media Player - Stop casting on Home Group when TV on
   trigger:
-  - platform: template
-    value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'TV') }}"
+    - platform: template
+      value_template: >
+        {{
+          is_state_attr('remote.living_room', 'current_activity', 'TV')
+            or
+          is_state_attr('remote.living_room', 'current_activity', 'Kodi')
+        }}
   condition:
-  - condition: template
-    value_template: "{{ not is_state('media_player.home_group', 'off') }}"
+    - condition: template
+      value_template: "{{ not is_state('media_player.home_group', 'off') }}"
   action:
-  - service: media_player.media_stop
-    entity_id: all
+    - service: media_player.media_stop
+      entity_id: all
 
 - alias: Media Player - Chromecast Full Volume
   trigger:
   - platform: state
     entity_id: media_player.chromecast
     from: 'off'
+  condition:
+    - condition: template
+      value_template: "{{ state_attr('media_player.chromecast', 'volume_level') < 1}}"
   action:
+    - service: notify.pushbullet  # TODO remove after succesful debugging
+      data_template:
+        title: Home Assistant
+        target: device/OnePlus 7 Pro
+        message: "Adjusted Chromecast volume to {{ state_attr('media_player.chromecast', 'volume_level') }}"
     - service: media_player.volume_set
       entity_id: media_player.chromecast
       data:

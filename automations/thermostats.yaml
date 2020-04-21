@@ -215,10 +215,10 @@
       data:
         value: unknown
 
-- alias: Thermostat - Summer Mode - Heating on
+- alias: Thermostat Kitchen - Summer Mode - Heating off after 3 hours
   trigger:
     platform: state
-    entity_id: switch.climate_all
+    entity_id: binary_sensor.climate_kitchen
     from: 'off'
     to: 'on'
     for:
@@ -232,7 +232,95 @@
       data_template:
         title: Home Assistant
         message: >
-          Thermostat in {{ expand('group.climate_all') | rejectattr('state','eq','off') | map(attribute='entity_id') | join(', ') }} turned off after 3 hours.
+          Thermostat in Kitchen turned off after 3 hours.
         target: device/OnePlus 7 Pro
     - service: switch.turn_off
-      entity_id: switch.climate_all
+      entity_id: switch.climate_kitchen
+
+- alias: Thermostat Living Room - Summer Mode - Heating off after 3 hours
+  trigger:
+    platform: state
+    entity_id: binary_sensor.climate_living_room
+    from: 'off'
+    to: 'on'
+    for:
+      hours: 3
+  condition:
+    condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'on'
+  action:
+    - service: notify.pushbullet
+      data_template:
+        title: Home Assistant
+        message: >
+          Thermostat in Living Room turned off after 3 hours.
+        target: device/OnePlus 7 Pro
+    - service: switch.turn_off
+      entity_id: switch.climate_living_room
+
+- alias: Thermostat Study - Summer Mode - Heating off after 3 hours
+  trigger:
+    platform: state
+    entity_id: binary_sensor.climate_study
+    from: 'off'
+    to: 'on'
+    for:
+      hours: 3
+  condition:
+    condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'on'
+  action:
+    - service: notify.pushbullet
+      data_template:
+        title: Home Assistant
+        message: >
+          Thermostat in Study turned off after 3 hours.
+        target: device/OnePlus 7 Pro
+    - service: switch.turn_off
+      entity_id: switch.climate_study
+
+- alias: Thermostat Bathroom - Summer Mode - Heating off after 3 hours
+  trigger:
+    platform: state
+    entity_id: binary_sensor.climate_bathroom
+    from: 'off'
+    to: 'on'
+    for:
+      hours: 3
+  condition:
+    condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'on'
+  action:
+    - service: notify.pushbullet
+      data_template:
+        title: Home Assistant
+        message: >
+          Thermostat in Bathroom turned off after 3 hours.
+        target: device/OnePlus 7 Pro
+    - service: switch.turn_off
+      entity_id: switch.climate_bathroom
+
+- alias: Thermostat Bedroom - Summer Mode - Heating off after 3 hours
+  trigger:
+    platform: state
+    entity_id: binary_sensor.climate_bedroom
+    from: 'off'
+    to: 'on'
+    for:
+      hours: 3
+  condition:
+    condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'on'
+  action:
+    - service: notify.pushbullet
+      data_template:
+        title: Home Assistant
+        message: >
+          Thermostat in Bedroom turned off after 3 hours.
+        target: device/OnePlus 7 Pro
+    - service: switch.turn_off
+      entity_id: switch.climate_bedroom

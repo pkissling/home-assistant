@@ -16,11 +16,12 @@
           Release notes: {{ state_attr('binary_sensor.updater', 'release_notes') }}
         target: device/OnePlus 7 Pro
 
-- alias: Notification - Summer Mode - Heating on
+- alias: Notification - Summer Mode - Thermostat Kitchen on
   trigger:
     platform: state
-    entity_id: switch.climate_all
+    entity_id: binary_sensor.climate_kitchen
     from: 'off'
+    to: 'on'
   condition:
     condition: state
     entity_id: input_boolean.summer_mode
@@ -30,5 +31,77 @@
       data_template:
         title: Home Assistant
         message: >
-          Thermostat in {{ expand('group.climate_all') | rejectattr('state','eq','off') | map(attribute='entity_id') | join(', ') }} turned on
+          Thermostat in Kitchen turned on.
+        target: device/OnePlus 7 Pro
+
+- alias: Notification - Summer Mode - Thermostat Living Room on
+  trigger:
+    platform: state
+    entity_id: binary_sensor.climate_living_room
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'on'
+  action:
+    - service: notify.pushbullet
+      data_template:
+        title: Home Assistant
+        message: >
+          Thermostat in Living Room turned on.
+        target: device/OnePlus 7 Pro
+
+- alias: Notification - Summer Mode - Thermostat Study on
+  trigger:
+    platform: state
+    entity_id: binary_sensor.climate_study
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'on'
+  action:
+    - service: notify.pushbullet
+      data_template:
+        title: Home Assistant
+        message: >
+          Thermostat in Study turned on.
+        target: device/OnePlus 7 Pro
+
+- alias: Notification - Summer Mode - Thermostat Bedroom on
+  trigger:
+    platform: state
+    entity_id: binary_sensor.climate_bedroom
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'on'
+  action:
+    - service: notify.pushbullet
+      data_template:
+        title: Home Assistant
+        message: >
+          Thermostat in Bedroom turned on.
+        target: device/OnePlus 7 Pro
+
+- alias: Notification - Summer Mode - Thermostat Bathroom on
+  trigger:
+    platform: state
+    entity_id: binary_sensor.climate_bathroom
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'on'
+  action:
+    - service: notify.pushbullet
+      data_template:
+        title: Home Assistant
+        message: >
+          Thermostat in Bathroom turned on.
         target: device/OnePlus 7 Pro

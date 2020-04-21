@@ -1,0 +1,44 @@
+---
+
+- platform: template
+  sensors:
+
+    climate_kitchen:
+      value_template: >
+        {{
+          is_state('climate.kitchen', 'heat')
+            or
+          is_state('climate.kitchen', 'auto')
+        }}
+
+    climate_living_room:
+      value_template: >
+        {{
+          is_state('climate.living_room', 'heat')
+            or
+          is_state('climate.living_room', 'auto')
+        }}
+
+    climate_bathroom:
+      value_template: >
+        {{
+          is_state('climate.bathroom', 'heat')
+            or
+          is_state('climate.bathroom', 'auto')
+        }}
+
+    climate_study:
+      value_template: >
+        {{
+          is_state('climate.study', 'heat')
+            or
+          is_state('climate.study', 'auto')
+        }}
+
+    climate_bedroom:
+      value_template: >
+        {{
+          is_state('climate.bedroom', 'heat')
+            or
+          is_state('climate.bedroom', 'auto')
+        }}

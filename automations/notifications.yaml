@@ -19,7 +19,7 @@
 - alias: Notification - Summer Mode - Thermostat Kitchen on
   trigger:
     platform: state
-    entity_id: binary_sensor.climate_kitchen
+    entity_id: binary_sensor.thermostat_kitchen
     from: 'off'
     to: 'on'
   condition:
@@ -36,7 +36,7 @@
 - alias: Notification - Summer Mode - Thermostat Living Room on
   trigger:
     platform: state
-    entity_id: binary_sensor.climate_living_room
+    entity_id: binary_sensor.thermostat_living_room
     from: 'off'
     to: 'on'
   condition:
@@ -53,7 +53,7 @@
 - alias: Notification - Summer Mode - Thermostat Study on
   trigger:
     platform: state
-    entity_id: binary_sensor.climate_study
+    entity_id: binary_sensor.thermostat_study
     from: 'off'
     to: 'on'
   condition:
@@ -70,7 +70,7 @@
 - alias: Notification - Summer Mode - Thermostat Bedroom on
   trigger:
     platform: state
-    entity_id: binary_sensor.climate_bedroom
+    entity_id: binary_sensor.thermostat_bedroom
     from: 'off'
     to: 'on'
   condition:
@@ -87,7 +87,7 @@
 - alias: Notification - Summer Mode - Thermostat Bathroom on
   trigger:
     platform: state
-    entity_id: binary_sensor.climate_bathroom
+    entity_id: binary_sensor.thermostat_bathroom
     from: 'off'
     to: 'on'
   condition:
@@ -159,7 +159,7 @@
 - alias: Notification - Thermostat Living Room on and window open
   trigger:
     platform: state
-    entity_id: binary_sensor.climate_living_room_warning
+    entity_id: binary_sensor.thermostat_living_room_warning
     from: 'off'
     to: 'on'
     for:
@@ -174,7 +174,7 @@
 - alias: Notification - Thermostat Bedroom on and window open
   trigger:
     platform: state
-    entity_id: binary_sensor.climate_bedroom_warning
+    entity_id: binary_sensor.thermostat_bedroom_warning
     from: 'off'
     to: 'on'
     for:
@@ -189,7 +189,7 @@
 - alias: Notification - Thermostat Bathroom on and window open
   trigger:
     platform: state
-    entity_id: binary_sensor.climate_bathroom_warning
+    entity_id: binary_sensor.thermostat_bathroom_warning
     from: 'off'
     to: 'on'
     for:
@@ -204,7 +204,7 @@
 - alias: Notification - Thermostat Study on and window open
   trigger:
     platform: state
-    entity_id: binary_sensor.climate_study_warning
+    entity_id: binary_sensor.thermostat_study_warning
     from: 'off'
     to: 'on'
     for:
@@ -219,7 +219,7 @@
 - alias: Notification - Thermostat Kitchen on and window open
   trigger:
     platform: state
-    entity_id: binary_sensor.climate_kitchen_warning
+    entity_id: binary_sensor.thermostat_kitchen_warning
     from: 'off'
     to: 'on'
     for:

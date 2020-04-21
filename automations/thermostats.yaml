@@ -10,8 +10,9 @@
     for:
       seconds: 5
   condition:
-    condition: template
-    value_template: "{{ not is_state('climate.bedroom', 'off') }}"
+    condition: state
+    entity_id: binary_sensor.thermostat_bedroom
+    state: 'on'
   action:
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_bedroom
@@ -53,8 +54,9 @@
     for:
       seconds: 5
   condition:
-    condition: template
-    value_template: "{{ not is_state('climate.study', 'off') }}"
+    condition: state
+    entity_id: binary_sensor.thermostat_study
+    state: 'on'
   action:
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_study
@@ -74,8 +76,8 @@
     for:
       seconds: 5
   condition:
-    - condition: template
-      value_template: "{{ not is_state('input_text.thermostat_old_hvac_study', 'unknown') }}"
+    condition: template
+    value_template: "{{ not is_state('input_text.thermostat_old_hvac_study', 'unknown') }}"
   action:
     - service: climate.set_hvac_mode
       entity_id: climate.study
@@ -96,8 +98,9 @@
     for:
       seconds: 5
   condition:
-    condition: template
-    value_template: "{{ not is_state('climate.bathroom', 'off') }}"
+    condition: state
+    entity_id: binary_sensor.thermostat_bathroom
+    state: 'on'
   action:
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_bathroom
@@ -117,8 +120,8 @@
     for:
       seconds: 5
   condition:
-    - condition: template
-      value_template: "{{ not is_state('input_text.thermostat_old_hvac_bathroom', 'unknown') }}"
+    condition: template
+    value_template: "{{ not is_state('input_text.thermostat_old_hvac_bathroom', 'unknown') }}"
   action:
     - service: climate.set_hvac_mode
       entity_id: climate.bathroom
@@ -139,8 +142,9 @@
     for:
       seconds: 5
   condition:
-    - condition: template
-      value_template: "{{ not is_state('climate.living_room', 'off') }}"
+    condition: state
+    entity_id: binary_sensor.thermostat_living_room
+    state: 'on'
   action:
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_living_room
@@ -160,8 +164,8 @@
     for:
       seconds: 5
   condition:
-    - condition: template
-      value_template: "{{ not is_state('input_text.thermostat_old_hvac_living_room', 'unknown') }}"
+    condition: template
+    value_template: "{{ not is_state('input_text.thermostat_old_hvac_living_room', 'unknown') }}"
   action:
     - service: climate.set_hvac_mode
       entity_id: climate.living_room
@@ -182,8 +186,9 @@
     for:
       seconds: 5
   condition:
-    - condition: template
-      value_template: "{{ not is_state('climate.kitchen', 'off') }}"
+    condition: state
+    entity_id: binary_sensor.thermostat_kitchen
+    state: 'on'
   action:
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_kitchen
@@ -203,8 +208,8 @@
     for:
       seconds: 5
   condition:
-    - condition: template
-      value_template: "{{ not is_state('input_text.thermostat_old_hvac_kitchen', 'unknown') }}"
+    condition: template
+    value_template: "{{ not is_state('input_text.thermostat_old_hvac_kitchen', 'unknown') }}"
   action:
     - service: climate.set_hvac_mode
       entity_id: climate.kitchen
@@ -218,7 +223,7 @@
 - alias: Thermostat Kitchen - Summer Mode - Heating off after 3 hours
   trigger:
     platform: state
-    entity_id: binary_sensor.climate_kitchen
+    entity_id: binary_sensor.thermostat_kitchen
     from: 'off'
     to: 'on'
     for:
@@ -239,7 +244,7 @@
 - alias: Thermostat Living Room - Summer Mode - Heating off after 3 hours
   trigger:
     platform: state
-    entity_id: binary_sensor.climate_living_room
+    entity_id: binary_sensor.thermostat_living_room
     from: 'off'
     to: 'on'
     for:
@@ -260,7 +265,7 @@
 - alias: Thermostat Study - Summer Mode - Heating off after 3 hours
   trigger:
     platform: state
-    entity_id: binary_sensor.climate_study
+    entity_id: binary_sensor.thermostat_study
     from: 'off'
     to: 'on'
     for:
@@ -281,7 +286,7 @@
 - alias: Thermostat Bathroom - Summer Mode - Heating off after 3 hours
   trigger:
     platform: state
-    entity_id: binary_sensor.climate_bathroom
+    entity_id: binary_sensor.thermostat_bathroom
     from: 'off'
     to: 'on'
     for:
@@ -302,7 +307,7 @@
 - alias: Thermostat Bedroom - Summer Mode - Heating off after 3 hours
   trigger:
     platform: state
-    entity_id: binary_sensor.climate_bedroom
+    entity_id: binary_sensor.thermostat_bedroom
     from: 'off'
     to: 'on'
     for:

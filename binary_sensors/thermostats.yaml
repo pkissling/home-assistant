@@ -3,7 +3,7 @@
 - platform: template
   sensors:
 
-    climate_kitchen:
+    thermostat_kitchen:
       value_template: >
         {{
           is_state('climate.kitchen', 'heat')
@@ -11,7 +11,7 @@
           is_state('climate.kitchen', 'auto')
         }}
 
-    climate_living_room:
+    thermostat_living_room:
       value_template: >
         {{
           is_state('climate.living_room', 'heat')
@@ -19,7 +19,7 @@
           is_state('climate.living_room', 'auto')
         }}
 
-    climate_bathroom:
+    thermostat_bathroom:
       value_template: >
         {{
           is_state('climate.bathroom', 'heat')
@@ -27,7 +27,7 @@
           is_state('climate.bathroom', 'auto')
         }}
 
-    climate_study:
+    thermostat_study:
       value_template: >
         {{
           is_state('climate.study', 'heat')
@@ -35,7 +35,7 @@
           is_state('climate.study', 'auto')
         }}
 
-    climate_bedroom:
+    thermostat_bedroom:
       value_template: >
         {{
           is_state('climate.bedroom', 'heat')
@@ -43,42 +43,42 @@
           is_state('climate.bedroom', 'auto')
         }}
 
-    climate_living_room_warning:
+    thermostat_living_room_warning:
       value_template: >
         {{
-          is_state('binary_sensor.climate_living_room', 'on')
+          is_state('binary_sensor.thermostat_living_room', 'on')
             and
           is_state('group.window_living_room', 'on')
         }}
 
-    climate_kitchen_warning:
+    thermostat_kitchen_warning:
       value_template: >
         {{
-          is_state('binary_sensor.climate_kitchen', 'on')
+          is_state('binary_sensor.thermostat_kitchen', 'on')
             and
           is_state('group.window_kitchen', 'on')
         }}
 
-    climate_bedroom_warning:
+    thermostat_bedroom_warning:
       value_template: >
         {{
-          is_state('binary_sensor.climate_bedroom', 'on')
+          is_state('binary_sensor.thermostat_bedroom', 'on')
             and
           is_state('group.window_bedroom', 'on')
         }}
 
-    climate_study_warning:
+    thermostat_study_warning:
       value_template: >
         {{
-          is_state('binary_sensor.climate_study', 'on')
+          is_state('binary_sensor.thermostat_study', 'on')
             and
           is_state('group.window_study', 'on')
         }}
 
-    climate_bathroom_warning:
+    thermostat_bathroom_warning:
       value_template: >
         {{
-          is_state('binary_sensor.climate_bathroom', 'on')
+          is_state('binary_sensor.thermostat_bathroom', 'on')
             and
           is_state('group.window_bathroom', 'on')
         }}

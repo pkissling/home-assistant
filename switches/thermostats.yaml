@@ -34,7 +34,7 @@
 
     climate_bathroom:
       friendly_name: Bathroom
-      value_template: "{{ not is_state('climate.bathroom', 'off') }}"
+      value_template: "{{ states('binary_sensor.thermostat_bathroom') }}"
       turn_on:
         service: climate.set_hvac_mode
         entity_id: climate.bathroom
@@ -52,7 +52,7 @@
 
     climate_living_room:
       friendly_name: Living Room
-      value_template: "{{ not is_state('climate.living_room', 'off') }}"
+      value_template: "{{ states('binary_sensor.thermostat_living_room') }}"
       turn_on:
         service: climate.set_hvac_mode
         entity_id: climate.living_room
@@ -70,7 +70,7 @@
 
     climate_kitchen:
       friendly_name: Kitchen
-      value_template: "{{ not is_state('climate.kitchen', 'off') }}"
+      value_template: "{{ states('binary_sensor.thermostat_kitchen') }}"
       turn_on:
         service: climate.set_hvac_mode
         entity_id: climate.kitchen
@@ -88,7 +88,7 @@
 
     climate_bedroom:
       friendly_name: Bedroom
-      value_template: "{{ not is_state('climate.bedroom', 'off') }}"
+      value_template: "{{ states('binary_sensor.thermostat_bedroom') }}"
       turn_on:
         service: climate.set_hvac_mode
         entity_id: climate.bedroom
@@ -106,7 +106,7 @@
 
     climate_study:
       friendly_name: Study
-      value_template: "{{ not is_state('climate.study', 'off') }}"
+      value_template: "{{ states('binary_sensor.thermostat_study') }}"
       turn_on:
         service: climate.set_hvac_mode
         entity_id: climate.study

@@ -27,12 +27,11 @@
     entity_id: input_boolean.summer_mode
     state: 'on'
   action:
-    - service: notify.pushbullet
-      data_template:
-        title: Home Assistant
-        message: >
-          Thermostat in Kitchen turned on.
-        target: device/OnePlus 7 Pro
+    service: notify.pushbullet
+    data:
+      title: Home Assistant
+      message: Thermostat in Kitchen turned on.
+      target: device/OnePlus 7 Pro
 
 - alias: Notification - Summer Mode - Thermostat Living Room on
   trigger:
@@ -45,12 +44,11 @@
     entity_id: input_boolean.summer_mode
     state: 'on'
   action:
-    - service: notify.pushbullet
-      data_template:
-        title: Home Assistant
-        message: >
-          Thermostat in Living Room turned on.
-        target: device/OnePlus 7 Pro
+    service: notify.pushbullet
+    data:
+      title: Home Assistant
+      message: Thermostat in Living Room turned on.
+      target: device/OnePlus 7 Pro
 
 - alias: Notification - Summer Mode - Thermostat Study on
   trigger:
@@ -63,12 +61,11 @@
     entity_id: input_boolean.summer_mode
     state: 'on'
   action:
-    - service: notify.pushbullet
-      data_template:
-        title: Home Assistant
-        message: >
-          Thermostat in Study turned on.
-        target: device/OnePlus 7 Pro
+    service: notify.pushbullet
+    data:
+      title: Home Assistant
+      message: Thermostat in Study turned on.
+      target: device/OnePlus 7 Pro
 
 - alias: Notification - Summer Mode - Thermostat Bedroom on
   trigger:
@@ -81,12 +78,11 @@
     entity_id: input_boolean.summer_mode
     state: 'on'
   action:
-    - service: notify.pushbullet
-      data_template:
-        title: Home Assistant
-        message: >
-          Thermostat in Bedroom turned on.
-        target: device/OnePlus 7 Pro
+    service: notify.pushbullet
+    data:
+      title: Home Assistant
+      message: Thermostat in Bedroom turned on.
+      target: device/OnePlus 7 Pro
 
 - alias: Notification - Summer Mode - Thermostat Bathroom on
   trigger:
@@ -99,9 +95,138 @@
     entity_id: input_boolean.summer_mode
     state: 'on'
   action:
-    - service: notify.pushbullet
-      data_template:
-        title: Home Assistant
-        message: >
-          Thermostat in Bathroom turned on.
-        target: device/OnePlus 7 Pro
+    service: notify.pushbullet
+    data:
+      title: Home Assistant
+      message: Thermostat in Bathroom turned on.
+      target: device/OnePlus 7 Pro
+
+- alias: Notification - Thermostat Bathroom set to heat
+  trigger:
+    platform: template
+    value_template: "{{ is_state('climate.bathroom', 'heat') }}"
+  action:
+    service: notify.pushbullet
+    data:
+      title: Home Assistant
+      message: Thermostat in Bathroom was set to 'heat'.
+      target: device/OnePlus 7 Pro
+
+- alias: Notification - Thermostat Bedroom set to heat
+  trigger:
+    platform: template
+    value_template: "{{ is_state('climate.bedroom', 'heat') }}"
+  action:
+    service: notify.pushbullet
+    data:
+      title: Home Assistant
+      message: Thermostat in Bedroom was set to 'heat'.
+      target: device/OnePlus 7 Pro
+
+- alias: Notification - Thermostat Study set to heat
+  trigger:
+    platform: template
+    value_template: "{{ is_state('climate.study', 'heat') }}"
+  action:
+    service: notify.pushbullet
+    data:
+      title: Home Assistant
+      message: Thermostat in Study was set to 'heat'.
+      target: device/OnePlus 7 Pro
+
+- alias: Notification - Thermostat Living Room set to heat
+  trigger:
+    platform: template
+    value_template: "{{ is_state('climate.living_room', 'heat') }}"
+  action:
+    service: notify.pushbullet
+    data:
+      title: Home Assistant
+      message: Thermostat in Living Room was set to 'heat'.
+      target: device/OnePlus 7 Pro
+
+- alias: Notification - Thermostat Kitchen set to heat
+  trigger:
+    platform: template
+    value_template: "{{ is_state('climate.kitchen', 'heat') }}"
+  action:
+    service: notify.pushbullet
+    data:
+      title: Home Assistant
+      message: Thermostat in Kitchen was set to 'heat'.
+      target: device/OnePlus 7 Pro
+
+- alias: Notification - Thermostat Living Room on and window open
+  trigger:
+    platform: state
+    entity_id: binary_sensor.climate_living_room_warning
+    from: 'off'
+    to: 'on'
+    for:
+      minutes: 1
+  action:
+    service: notify.pushbullet
+    data:
+      title: Home Assistant
+      message: Thermostat in Living Room on and window open.
+      target: device/OnePlus 7 Pro
+
+- alias: Notification - Thermostat Bedroom on and window open
+  trigger:
+    platform: state
+    entity_id: binary_sensor.climate_bedroom_warning
+    from: 'off'
+    to: 'on'
+    for:
+      minutes: 1
+  action:
+    service: notify.pushbullet
+    data:
+      title: Home Assistant
+      message: Thermostat in Bedroom on and window open.
+      target: device/OnePlus 7 Pro
+
+- alias: Notification - Thermostat Bathroom on and window open
+  trigger:
+    platform: state
+    entity_id: binary_sensor.climate_bathroom_warning
+    from: 'off'
+    to: 'on'
+    for:
+      minutes: 1
+  action:
+    service: notify.pushbullet
+    data:
+      title: Home Assistant
+      message: Thermostat in Bathroom on and window open.
+      target: device/OnePlus 7 Pro
+
+- alias: Notification - Thermostat Study on and window open
+  trigger:
+    platform: state
+    entity_id: binary_sensor.climate_study_warning
+    from: 'off'
+    to: 'on'
+    for:
+      minutes: 1
+  action:
+    service: notify.pushbullet
+    data:
+      title: Home Assistant
+      message: Thermostat in Study on and window open.
+      target: device/OnePlus 7 Pro
+
+- alias: Notification - Thermostat Kitchen on and window open
+  trigger:
+    platform: state
+    entity_id: binary_sensor.climate_kitchen_warning
+    from: 'off'
+    to: 'on'
+    for:
+      minutes: 1
+  action:
+    service: notify.pushbullet
+    data:
+      title: Home Assistant
+      message: Thermostat in Kitchen on and window open.
+      target: device/OnePlus 7 Pro

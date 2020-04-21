@@ -42,3 +42,43 @@
             or
           is_state('climate.bedroom', 'auto')
         }}
+
+    climate_living_room_warning:
+      value_template: >
+        {{
+          is_state('binary_sensor.climate_living_room', 'on')
+            and
+          is_state('group.window_living_room', 'on')
+        }}
+
+    climate_kitchen_warning:
+      value_template: >
+        {{
+          is_state('binary_sensor.climate_kitchen', 'on')
+            and
+          is_state('group.window_kitchen', 'on')
+        }}
+
+    climate_bedroom_warning:
+      value_template: >
+        {{
+          is_state('binary_sensor.climate_bedroom', 'on')
+            and
+          is_state('group.window_bedroom', 'on')
+        }}
+
+    climate_study_warning:
+      value_template: >
+        {{
+          is_state('binary_sensor.climate_study', 'on')
+            and
+          is_state('group.window_study', 'on')
+        }}
+
+    climate_bathroom_warning:
+      value_template: >
+        {{
+          is_state('binary_sensor.climate_bathroom', 'on')
+            and
+          is_state('group.window_bathroom', 'on')
+        }}

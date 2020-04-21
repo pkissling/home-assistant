@@ -15,7 +15,6 @@ person: !include includes/persons.yaml
 # Include files with lists
 automation: !include_dir_merge_list automations
 binary_sensor: !include_dir_merge_list binary_sensors
-script: !include_dir_merge_list scripts
 sensor: !include_dir_merge_list sensors
 switch: !include_dir_merge_list switches
 
@@ -25,6 +24,7 @@ input_boolean: !include_dir_merge_named input_booleans
 input_datetime: !include_dir_merge_named input_datetimes
 input_text: !include_dir_merge_named input_texts
 input_select: !include_dir_merge_named input_select
+script: !include_dir_merge_named scripts
 
 # Include 'includes' dir yamls
 device_tracker: !include includes/device_trackers.yaml

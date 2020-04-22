@@ -15,9 +15,13 @@
 
 - alias: Remote - Turn on Chromecast when casting
   trigger:
-    platform: state
-    entity_id: media_player.chromecast
-    from: 'off'
+    platform: template
+    value_template: >
+      {{
+        not is_state('media_player.chromecast', 'unavailable')
+          and
+        not is_state('media_player.chromecast', 'off')
+      }}
   condition:
     - condition: template
       value_template: "{{ not is_state_attr('remote.living_room', 'current_activity', 'Chromecast') }}"

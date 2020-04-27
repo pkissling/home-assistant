@@ -10,6 +10,7 @@
 *.log
 *.db-shm
 *.db-wal
+*.swp
 
 # Files
 known_devices.yaml

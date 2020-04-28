@@ -454,6 +454,52 @@ views:
               entity: switch.alarm_next_day
           - entity: input_datetime.wakeup_time
 
+      # Synology
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                name: CPU
+                entities:
+                  - sensor.synology_dsm_cpu_load_total
+                points_per_hour: 1
+                show:
+                  points: false
+                  labels: false
+              - type: custom:mini-graph-card
+                name: MEM
+                entities:
+                  - sensor.synology_dsm_memory_usage_real
+                points_per_hour: 1
+                show:
+                  points: false
+                  labels: false
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                name: Disk
+                entities:
+                  - entity: sensor.synology_dsm_volume_used_volume_2
+                points_per_hour: 1
+                show:
+                  points: false
+                  labels: false
+              - type: custom:mini-graph-card
+                name: Network
+                entities:
+                  - entity: sensor.synology_dsm_network_down
+                    name: Down
+                    show_legend: false
+                  - entity: sensor.synology_dsm_network_up
+                    name: Up
+                    show_legend: false
+                points_per_hour: 1
+                show:
+                  points: false
+                  labels: false
+                  graph: bar
+
   - id: 1
     icon: mdi:battery
     views:

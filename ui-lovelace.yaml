@@ -19,6 +19,8 @@ resources:
     type: module
   - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
     type: js
+  - url: /hacsfiles/bar-card/bar-card.js
+    type: module
 
 custom_header:
   background: 'rgba(155, 155, 155, 0.25)'
@@ -455,50 +457,30 @@ views:
           - entity: input_datetime.wakeup_time
 
       # Synology
-      - type: vertical-stack
+      - type: custom:vertical-stack-in-card
+        title: Synology
         cards:
           - type: horizontal-stack
             cards:
               - type: custom:mini-graph-card
-                name: CPU
                 entities:
                   - sensor.synology_dsm_cpu_load_total
-                points_per_hour: 1
-                show:
-                  points: false
-                  labels: false
+                name: CPU
               - type: custom:mini-graph-card
-                name: MEM
-                entities:
-                  - sensor.synology_dsm_memory_usage_real
-                points_per_hour: 1
-                show:
-                  points: false
-                  labels: false
-          - type: horizontal-stack
-            cards:
-              - type: custom:mini-graph-card
-                name: Disk
-                entities:
-                  - entity: sensor.synology_dsm_volume_used_volume_2
-                points_per_hour: 1
-                show:
-                  points: false
-                  labels: false
-              - type: custom:mini-graph-card
-                name: Network
                 entities:
                   - entity: sensor.synology_dsm_network_down
                     name: Down
-                    show_legend: false
                   - entity: sensor.synology_dsm_network_up
                     name: Up
-                    show_legend: false
-                points_per_hour: 1
-                show:
-                  points: false
-                  labels: false
-                  graph: bar
+                name: Network
+          - type: custom:bar-card
+            entity: sensor.synology_dsm_volume_used_volume_2
+            positions:
+              name: off  # yamllint disable-line rule:truthy
+          - type: custom:bar-card
+            entity: sensor.synology_dsm_memory_usage_real
+            positions:
+              name: off  # yamllint disable-line rule:truthy
 
   - id: 1
     icon: mdi:battery

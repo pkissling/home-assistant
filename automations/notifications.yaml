@@ -230,3 +230,14 @@
       title: Home Assistant
       message: Thermostat in Kitchen on and window open.
       target: device/OnePlus 7 Pro
+
+- alias: Notification - Precipitation
+  trigger:
+    platform: state
+    entity_id: sensor.yr_precipitation
+  action:
+    service: notify.pushbullet
+    data_template:
+      title: Home Assistant
+      message: Precipitation changed to {{ states('sensor.yr_precipitation') }}
+      target: device/OnePlus 7 Pro

@@ -1,15 +1,16 @@
 # Dotfiles
 .cloud/
-.storage/
 .homekit.state
+.pip_progress
+.storage/
 **/.DS_Store
 
 # By extension
 *.conf
 *.db
-*.log
 *.db-shm
 *.db-wal
+*.log
 *.swp
 
 # Files
@@ -17,8 +18,8 @@ known_devices.yaml
 secrets.yaml
 
 # Folders
-ssl/
 deps/
+ssl/
 tts/
 
 # Python cache

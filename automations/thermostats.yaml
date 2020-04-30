@@ -334,7 +334,7 @@
   condition:
     condition: state
     entity_id: input_boolean.summer_mode
-    state: 'on'
+    state: 'off'
   action:
     - service: notify.pushbullet
       data:
@@ -353,7 +353,7 @@
   condition:
     condition: state
     entity_id: input_boolean.summer_mode
-    state: 'on'
+    state: 'off'
   action:
     - service: notify.pushbullet
       data:
@@ -372,7 +372,7 @@
   condition:
     condition: state
     entity_id: input_boolean.summer_mode
-    state: 'on'
+    state: 'off'
   action:
     - service: notify.pushbullet
       data:
@@ -391,7 +391,7 @@
   condition:
     condition: state
     entity_id: input_boolean.summer_mode
-    state: 'on'
+    state: 'off'
   action:
     - service: notify.pushbullet
       data:
@@ -410,7 +410,7 @@
   condition:
     condition: state
     entity_id: input_boolean.summer_mode
-    state: 'on'
+    state: 'off'
   action:
     - service: notify.pushbullet
       data:

@@ -21,6 +21,8 @@ resources:
     type: js
   - url: /hacsfiles/bar-card/bar-card.js
     type: module
+  - url: /hacsfiles/config-template-card/config-template-card.js
+    type: module
 
 custom_header:
   background: 'rgba(155, 155, 155, 0.25)'
@@ -59,7 +61,6 @@ views:
           - type: custom:fold-entity-row
             head:
               entity: switch.climate_all
-            open: true
             entities:
               - switch.climate_bathroom
               - switch.climate_living_room
@@ -80,103 +81,6 @@ views:
           - input_boolean.guest_mode
           - input_boolean.summer_mode
           # - binary_sensor.internet # TODO find better view
-
-      # Temperatures
-      - type: custom:swipe-card
-        cards:
-          - type: horizontal-stack
-            cards:
-              - type: custom:mini-graph-card
-                entities:
-                  - entity: sensor.living_room_temperature
-                    name: Living Room
-                decimals: 1
-                points_per_hour: 1
-                show:
-                  points: false
-                  labels: false
-          - type: horizontal-stack
-            cards:
-              - type: custom:mini-graph-card
-                color_thresholds_transition: smooth
-                decimals: 1
-                entities:
-                  - entity: sensor.kitchen_temperature
-                    name: Kitchen
-                font_size: 100
-                group: false
-                hour24: true
-                line_width: 6
-                points_per_hour: 1
-                show:
-                  extrema: false
-                  fill: fade
-                  labels: false
-                  name: true
-                  state: true
-                  points: false
-                tap_action:
-                  action: call-service
-                  entity_id: switch.thermostat_living_room
-                  service: switch.toggle
-                  service_data:
-                    entity_id: switch.thermostat_living_room
-              - type: custom:mini-graph-card
-                color_thresholds_transition: smooth
-                entities:
-                  - entity: sensor.bathroom_temperature
-                    name: Bathroom
-                font_size: 100
-                group: false
-                hour24: true
-                line_width: 6
-                points_per_hour: 1
-                decimals: 1
-                show:
-                  extrema: false
-                  fill: fade
-                  labels: false
-                  name: true
-                  state: true
-                  points: false
-              - type: horizontal-stack
-                cards:
-                  - type: custom:mini-graph-card
-                    color_thresholds_transition: smooth
-                    entities:
-                      - entity: sensor.bedroom_temperature
-                        name: Bedroom
-                    font_size: 100
-                    group: false
-                    hour24: true
-                    line_width: 6
-                    points_per_hour: 1
-                    decimals: 1
-                    show:
-                      extrema: false
-                      fill: fade
-                      labels: false
-                      name: true
-                      state: true
-                      points: false
-                  - type: custom:mini-graph-card
-                    color_thresholds_transition: smooth
-                    entities:
-                      - entity: sensor.study_temperature
-                        name: Study
-                    font_size: 100
-                    group: false
-                    hour24: true
-                    line_width: 6
-                    points_per_hour: 1
-                    decimals: 1
-                    show:
-                      extrema: false
-                      fill: fade
-                      labels: false
-                      name: true
-                      state: true
-                      points: false
 
       # TV Remote
       - type: custom:vertical-stack-in-card
@@ -481,6 +385,63 @@ views:
             entity: sensor.synology_memory_usage_real
             positions:
               name: off  # yamllint disable-line rule:truthy
+
+      # Temperature
+      - type: custom:config-template-card
+        entities:
+          - climate.bathroom
+          - climate.study
+          - climate.living_room
+          - climate.bedroom
+          - climate.kitchen
+        card:
+          type: custom:bar-card
+          entities:
+            - entity: sensor.living_room_temperature
+              icon: mdi:sofa
+              target: "${states['climate.living_room'].state == 'off' ? '' : states['climate.living_room'].attributes.temperature}"
+              tap_action:
+                action: call-service
+                service: switch.toggle
+                service_data:
+                  entity_id: switch.climate_living_room
+            - entity: sensor.kitchen_temperature
+              icon: mdi:stove
+              target: "${states['climate.kitchen'].state == 'off' ? '' : states['climate.kitchen'].attributes.temperature}"
+              tap_action:
+                action: call-service
+                service: switch.toggle
+                service_data:
+                  entity_id: switch.climate_kitchen
+            - entity: sensor.bathroom_temperature
+              icon: mdi:shower
+              target: "${states['climate.bathroom'].state == 'off' ? '' : states['climate.bathroom'].attributes.temperature}"
+              tap_action:
+                action: call-service
+                service: switch.toggle
+                service_data:
+                  entity_id: switch.climate_bathroom
+            - entity: sensor.bedroom_temperature
+              icon: mdi:bed-king-outline
+              target: "${states['climate.bedroom'].state == 'off' ? '' : states['climate.bedroom'].attributes.temperature}"
+              tap_action:
+                action: call-service
+                service: switch.toggle
+                service_data:
+                  entity_id: switch.climate_bedroom
+            - entity: sensor.study_temperature
+              icon: mdi:desk-lamp
+              target: "${states['climate.study'].state == 'off' ? '' : states['climate.study'].attributes.temperature}"
+              tap_action:
+                action: call-service
+                service: switch.toggle
+                service_data:
+                  entity_id: switch.climate_study
+          min: 15
+          max: 25
+          decimal: 1
+          positions:
+            name: off  # yamllint disable-line rule:truthy
 
   - id: 1
     icon: mdi:battery

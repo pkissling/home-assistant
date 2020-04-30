@@ -69,12 +69,12 @@ views:
               - switch.climate_bedroom
 
       # Weather
-      - type: custom:simple-weather-card
+      - type: weather-forecast
+        name: Weather
         entity: weather.home
 
       # Toggle Modes
       - type: entities
-        title: Modes
         show_header_toggle: false
         entities:
           - input_boolean.vacation_mode
@@ -207,7 +207,6 @@ views:
 
       # Vacuum
       - type: custom:vertical-stack-in-card
-        title: Roborock
         cards:
           - type: entities
             show_header_toggle: false
@@ -338,14 +337,12 @@ views:
 
       # People at home
       - type: entities
-        title: People
         entities:
           - !secret person1_entity_id
           - !secret person2_entity_id
 
       # Alarm Clock
       - type: entities
-        title: Alarms
         entities:
           - type: custom:fold-entity-row
             entities:
@@ -362,7 +359,6 @@ views:
 
       # Synology
       - type: custom:vertical-stack-in-card
-        title: Synology
         cards:
           - type: horizontal-stack
             cards:
@@ -370,19 +366,18 @@ views:
                 entities:
                   - sensor.synology_cpu_load_total
                 name: CPU
+                show:
+                  points: false
+                  labels: false
               - type: custom:mini-graph-card
                 entities:
-                  - entity: sensor.synology_network_down
-                    name: Down
-                  - entity: sensor.synology_network_up
-                    name: Up
-                name: Network
+                  - sensor.synology_memory_usage_real
+                name: Memory
+                show:
+                  points: false
+                  labels: false
           - type: custom:bar-card
             entity: sensor.synology_volume_used_volume_2
-            positions:
-              name: off  # yamllint disable-line rule:truthy
-          - type: custom:bar-card
-            entity: sensor.synology_memory_usage_real
             positions:
               name: off  # yamllint disable-line rule:truthy
 

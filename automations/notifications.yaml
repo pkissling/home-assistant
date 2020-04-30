@@ -105,6 +105,10 @@
   trigger:
     platform: template
     value_template: "{{ is_state('climate.bathroom', 'heat') }}"
+  condition:
+    condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'off'
   action:
     service: notify.pushbullet
     data:
@@ -116,6 +120,10 @@
   trigger:
     platform: template
     value_template: "{{ is_state('climate.bedroom', 'heat') }}"
+  condition:
+    condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'off'
   action:
     service: notify.pushbullet
     data:
@@ -127,6 +135,10 @@
   trigger:
     platform: template
     value_template: "{{ is_state('climate.study', 'heat') }}"
+  condition:
+    condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'off'
   action:
     service: notify.pushbullet
     data:
@@ -138,6 +150,10 @@
   trigger:
     platform: template
     value_template: "{{ is_state('climate.living_room', 'heat') }}"
+  condition:
+    condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'off'
   action:
     service: notify.pushbullet
     data:
@@ -149,6 +165,10 @@
   trigger:
     platform: template
     value_template: "{{ is_state('climate.kitchen', 'heat') }}"
+  condition:
+    condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'off'
   action:
     service: notify.pushbullet
     data:

@@ -464,21 +464,21 @@ views:
             cards:
               - type: custom:mini-graph-card
                 entities:
-                  - sensor.synology_dsm_cpu_load_total
+                  - sensor.synology_cpu_load_total
                 name: CPU
               - type: custom:mini-graph-card
                 entities:
-                  - entity: sensor.synology_dsm_network_down
+                  - entity: sensor.synology_network_down
                     name: Down
-                  - entity: sensor.synology_dsm_network_up
+                  - entity: sensor.synology_network_up
                     name: Up
                 name: Network
           - type: custom:bar-card
-            entity: sensor.synology_dsm_volume_used_volume_2
+            entity: sensor.synology_volume_used_volume_2
             positions:
               name: off  # yamllint disable-line rule:truthy
           - type: custom:bar-card
-            entity: sensor.synology_dsm_memory_usage_real
+            entity: sensor.synology_memory_usage_real
             positions:
               name: off  # yamllint disable-line rule:truthy
 

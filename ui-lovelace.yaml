@@ -303,9 +303,9 @@ views:
 
       # Vacuum
       - type: custom:vertical-stack-in-card
+        title: Roborock
         cards:
           - type: entities
-            title: Roborock
             show_header_toggle: false
             entities:
               - entity: input_boolean.vacuum_daily_cleanup

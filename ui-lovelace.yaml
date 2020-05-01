@@ -3,7 +3,11 @@
 background: var(--background-image)
 
 resources:
+  - url: /hacsfiles/bar-card/bar-card.js
+    type: module
   - url: /hacsfiles/button-card/button-card.js
+    type: module
+  - url: /hacsfiles/config-template-card/config-template-card.js
     type: module
   - url: /hacsfiles/custom-header/custom-header.js
     type: module
@@ -13,16 +17,8 @@ resources:
     type: module
   - url: /hacsfiles/mini-media-player/mini-media-player-bundle.js
     type: module
-  - url: /hacsfiles/simple-weather-card/simple-weather-card-bundle.js
-    type: module
-  - url: /hacsfiles/swipe-card/swipe-card.js
-    type: module
-  - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
+  - url: /hacsfiles/stack-in-card/stack-in-card.js
     type: js
-  - url: /hacsfiles/bar-card/bar-card.js
-    type: module
-  - url: /hacsfiles/config-template-card/config-template-card.js
-    type: module
 
 custom_header:
   background: 'rgba(155, 155, 155, 0.25)'
@@ -83,7 +79,8 @@ views:
           # - binary_sensor.internet # TODO find better view
 
       # TV Remote
-      - type: custom:vertical-stack-in-card
+      - type: custom:stack-in-card
+        mode: vertical
         cards:
           - type: horizontal-stack
             cards:
@@ -141,80 +138,83 @@ views:
       # Music Control
       - type: entities
         entities:
-          - type: custom:mini-media-player
-            entity: media_player.home_group
-            info: scroll
-            group: true
-            hide:
-              volume: true
-              progress: true
-              power: true
-            shortcuts:
-              columns: 2  # Max buttons per row
-              buttons:
-                - name: NRJ
-                  type: script
-                  id: script.turn_on_speakers_and_stream_nrj
-                - icon: mdi:power
-                  type: script
-                  id: script.turn_off_speakers_and_stop_casting
-
-          - type: custom:mini-media-player
-            entity: media_player.chromecast
-            group: true
-            hide:
-              controls: true
-              source: true
-              progress: true
-              info: true
-              power: true
-          - type: custom:mini-media-player
-            entity: media_player.kitchen_speaker
-            group: true
-            hide:
-              controls: true
-              source: true
-              progress: true
-              info: true
-              power: true
-          - type: custom:mini-media-player
-            entity: media_player.study_speaker
-            group: true
-            hide:
-              controls: true
-              source: true
-              progress: true
-              info: true
-              power: true
-          - type: custom:mini-media-player
-            entity: media_player.bathroom_speaker
-            group: true
-            hide:
-              controls: true
-              source: true
-              progress: true
-              info: true
-              power: true
-          - type: custom:mini-media-player
-            entity: media_player.bedroom_display
-            group: true
-            hide:
-              controls: true
-              source: true
-              progress: true
-              info: true
-              power: true
+          - type: custom:fold-entity-row
+            head:
+              type: custom:mini-media-player
+              entity: media_player.home_group
+              info: scroll
+              group: true
+              hide:
+                volume: true
+                progress: true
+                power: true
+              shortcuts:
+                columns: 2  # Max buttons per row
+                buttons:
+                  - name: NRJ
+                    type: script
+                    id: script.turn_on_speakers_and_stream_nrj
+                  - icon: mdi:power
+                    type: script
+                    id: script.turn_off_speakers_and_stop_casting
+            entities:
+              - type: custom:mini-media-player
+                entity: media_player.chromecast
+                group: true
+                hide:
+                  controls: true
+                  source: true
+                  progress: true
+                  info: true
+                  power: true
+              - type: custom:mini-media-player
+                entity: media_player.kitchen_speaker
+                group: true
+                hide:
+                  controls: true
+                  source: true
+                  progress: true
+                  info: true
+                  power: true
+              - type: custom:mini-media-player
+                entity: media_player.study_speaker
+                group: true
+                hide:
+                  controls: true
+                  source: true
+                  progress: true
+                  info: true
+                  power: true
+              - type: custom:mini-media-player
+                entity: media_player.bathroom_speaker
+                group: true
+                hide:
+                  controls: true
+                  source: true
+                  progress: true
+                  info: true
+                  power: true
+              - type: custom:mini-media-player
+                entity: media_player.bedroom_display
+                group: true
+                hide:
+                  controls: true
+                  source: true
+                  progress: true
+                  info: true
+                  power: true
 
       # Vacuum
-      - type: custom:vertical-stack-in-card
+      - type: custom:stack-in-card
+        mode: vertical
         cards:
           - type: entities
             show_header_toggle: false
             entities:
-              - entity: input_boolean.vacuum_daily_cleanup
+              - input_boolean.vacuum_daily_cleanup
               - entity: sensor.vacuum_battery
                 name: Battery
-              - entity: input_select.vacuum_fan_speed
+              - input_select.vacuum_fan_speed
           - type: horizontal-stack
             cards:
               - icon: 'mdi:home'
@@ -270,7 +270,8 @@ views:
         show_empty: false
 
       # Quick actions
-      - type: custom:vertical-stack-in-card
+      - type: custom:stack-in-card
+        mode: vertical
         cards:
           - type: horizontal-stack
             cards:
@@ -301,7 +302,6 @@ views:
                   action: call-service
                   haptic: success
                   service: script.good_night_button
-
 
           - type: horizontal-stack
             cards:
@@ -358,7 +358,8 @@ views:
           - entity: input_datetime.wakeup_time
 
       # Synology
-      - type: custom:vertical-stack-in-card
+      - type: custom:stack-in-card
+        mode: vertical
         cards:
           - type: horizontal-stack
             cards:
@@ -395,6 +396,7 @@ views:
             - entity: sensor.living_room_temperature
               icon: mdi:sofa
               target: "${states['climate.living_room'].state == 'off' ? '' : states['climate.living_room'].attributes.temperature}"
+              color: "${states['climate.living_room'].state == 'off' ? 'var(--light-primary-color)' : 'var(--primary-color)'}"
               tap_action:
                 action: call-service
                 service: switch.toggle
@@ -402,6 +404,7 @@ views:
                   entity_id: switch.climate_living_room
             - entity: sensor.kitchen_temperature
               icon: mdi:stove
+              color: "${states['climate.kitchen'].state == 'off' ? 'var(--light-primary-color)' : 'var(--primary-color)'}"
               target: "${states['climate.kitchen'].state == 'off' ? '' : states['climate.kitchen'].attributes.temperature}"
               tap_action:
                 action: call-service
@@ -410,6 +413,7 @@ views:
                   entity_id: switch.climate_kitchen
             - entity: sensor.bathroom_temperature
               icon: mdi:shower
+              color: "${states['climate.bathroom'].state == 'off' ? 'var(--light-primary-color)' : 'var(--primary-color)'}"
               target: "${states['climate.bathroom'].state == 'off' ? '' : states['climate.bathroom'].attributes.temperature}"
               tap_action:
                 action: call-service
@@ -418,6 +422,7 @@ views:
                   entity_id: switch.climate_bathroom
             - entity: sensor.bedroom_temperature
               icon: mdi:bed-king-outline
+              color: "${states['climate.bedroom'].state == 'off' ? 'var(--light-primary-color)' : 'var(--primary-color)'}"
               target: "${states['climate.bedroom'].state == 'off' ? '' : states['climate.bedroom'].attributes.temperature}"
               tap_action:
                 action: call-service
@@ -426,6 +431,7 @@ views:
                   entity_id: switch.climate_bedroom
             - entity: sensor.study_temperature
               icon: mdi:desk-lamp
+              color: "${states['climate.study'].state == 'off' ? 'var(--light-primary-color)' : 'var(--primary-color)'}"
               target: "${states['climate.study'].state == 'off' ? '' : states['climate.study'].attributes.temperature}"
               tap_action:
                 action: call-service

@@ -438,7 +438,7 @@ views:
                 service: switch.toggle
                 service_data:
                   entity_id: switch.climate_study
-          min: 15
+          min: 18
           max: 25
           decimal: 1
           positions:

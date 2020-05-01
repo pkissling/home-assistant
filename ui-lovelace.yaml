@@ -443,17 +443,3 @@ views:
           decimal: 1
           positions:
             name: off  # yamllint disable-line rule:truthy
-
-  - id: 1
-    icon: mdi:battery
-    views:
-
-      # Battery
-      - type: entities
-        entities:
-          - type: 'custom:battery-entity'
-            entity: sensor.motion_sensor_battery_level
-          - type: 'custom:battery-entity'
-            entity: sensor.window_sensor_study_right_l_battery_level
-          - type: 'custom:battery-entity'
-            entity: sensor.roborock_battery

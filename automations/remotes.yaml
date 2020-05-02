@@ -126,7 +126,7 @@
     entity_id: media_player.kodi_libreelec_local
     to: idle
     for:
-      minutes: 5
+      minutes: 30
   condition:
     condition: template
     value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Kodi') }}"

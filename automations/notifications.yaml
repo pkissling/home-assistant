@@ -253,8 +253,9 @@
 
 - alias: Notification - Precipitation
   trigger:
-    platform: state
+    platform: numeric_state
     entity_id: sensor.yr_precipitation
+    above: 0.8
   action:
     service: notify.pushbullet
     data_template:

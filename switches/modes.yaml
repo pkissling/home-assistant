@@ -1,0 +1,19 @@
+---
+
+- platform: template
+  switches:
+
+    summer_mode:
+      friendly_name: Summer Mode
+      value_template: "{{ states('input_boolean.summer_mode') }}"
+      turn_on:
+        - service: switch.turn_on
+          entity_id: switch.climate_all
+        - service: input_boolean.turn_on
+          entity_id: input_boolean.summer_mode
+      turn_off:
+        - service: switch.turn_off
+          entity_id: switch.climate_all
+        - service: input_boolean.turn_off
+          entity_id: input_boolean.summer_mode
+

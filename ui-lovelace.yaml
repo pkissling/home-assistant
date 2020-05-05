@@ -75,7 +75,8 @@ views:
         entities:
           - input_boolean.vacation_mode
           - input_boolean.guest_mode
-          - input_boolean.summer_mode
+          - entity: switch.summer_mode
+            icon: mdi:weather-sunny
           # - binary_sensor.internet # TODO find better view
 
       # TV Remote

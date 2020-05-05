@@ -30,6 +30,7 @@ device_tracker: !include includes/device_trackers.yaml
 light: !include includes/lights.yaml
 notify: !include includes/notify.yaml
 pi_hole: !include includes/pi_hole.yaml
+spotcast: !include includes/spotcast.yaml
 synology_dsm: !include includes/synology_dsm.yaml
 tado: !include includes/tado.yaml
 vacuum: !include includes/vacuum.yaml

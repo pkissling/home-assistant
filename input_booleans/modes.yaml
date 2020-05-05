@@ -1,13 +1,5 @@
 ---
 
-vacation_mode:
-  icon: mdi:palm-tree
-  name: Vacation Mode
-
-guest_mode:
-  icon: mdi:bed-king-outline
-  name: Guest Mode
-
 summer_mode:
   icon: mdi:weather-sunny
   name: Summer Mode

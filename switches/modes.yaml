@@ -16,4 +16,3 @@
           entity_id: switch.climate_all
         - service: input_boolean.turn_off
           entity_id: input_boolean.summer_mode
-

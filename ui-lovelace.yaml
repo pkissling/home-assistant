@@ -32,37 +32,20 @@ views:
     icon: mdi:home
     cards:
 
-      # Lights and Heating
+      # Lights
       - type: entities
         entities:
-          # Lights
           - type: custom:fold-entity-row
             head:
-              entity: light.all
-              name: Lights
+              entity: light.bedroom
             entities:
-              - type: custom:fold-entity-row
-                head:
-                  entity: light.bedroom
-                entities:
-                  - light.lightstrip
-              - type: custom:fold-entity-row
-                head:
-                  entity: light.living_room
-                entities:
-                  - light.lamp
-                  - light.tv
-
-          # Climate
+              - light.lightstrip
           - type: custom:fold-entity-row
             head:
-              entity: switch.climate_all
+              entity: light.living_room
             entities:
-              - switch.climate_bathroom
-              - switch.climate_living_room
-              - switch.climate_kitchen
-              - switch.climate_study
-              - switch.climate_bedroom
+              - light.lamp
+              - light.tv
 
       # Weather
       - type: weather-forecast
@@ -73,8 +56,6 @@ views:
       - type: entities
         show_header_toggle: false
         entities:
-          - input_boolean.vacation_mode
-          - input_boolean.guest_mode
           - entity: switch.summer_mode
             icon: mdi:weather-sunny
 
@@ -142,21 +123,25 @@ views:
             head:
               type: custom:mini-media-player
               entity: media_player.home_group
-              info: scroll
               group: true
+              info: scroll
               hide:
                 volume: true
                 progress: true
+                name: true
+                controls: true
                 power: true
               shortcuts:
-                columns: 2  # Max buttons per row
+                columns: 2
                 buttons:
                   - name: NRJ
                     type: script
                     id: script.turn_on_speakers_and_stream_nrj
-                  - icon: mdi:power
-                    type: script
-                    id: script.turn_off_speakers_and_stop_casting
+                  - type: service
+                    icon: mdi:power
+                    id: media_player.turn_off
+                    data:
+                      entity_id: all
             entities:
               - type: custom:mini-media-player
                 entity: media_player.chromecast
@@ -203,6 +188,7 @@ views:
                   progress: true
                   info: true
                   power: true
+
 
       # Vacuum
       - type: custom:stack-in-card
@@ -268,72 +254,6 @@ views:
           show_name: false
           columns: 2
         show_empty: false
-
-      # Quick actions
-      - type: custom:stack-in-card
-        mode: vertical
-        cards:
-          - type: horizontal-stack
-            cards:
-              - type: custom:button-card
-                color: auto
-                icon: mdi:weather-sunset-up
-                name: Good Morning
-                styles:
-                  card:
-                    - font-size: 12px
-                    - font-weight: bold
-                    - height: 70px
-                tap_action:
-                  action: call-service
-                  haptic: success
-                  service: script.good_morning_button
-
-              - type: custom:button-card
-                color: auto
-                icon: mdi:weather-night
-                name: Good Night
-                styles:
-                  card:
-                    - font-size: 12px
-                    - font-weight: bold
-                    - height: 70px
-                tap_action:
-                  action: call-service
-                  haptic: success
-                  service: script.good_night_button
-
-          - type: horizontal-stack
-            cards:
-              - color: auto
-                icon: mdi:weather-sunset-up
-                name: I'm Home
-                styles:
-                  card:
-                    - font-size: 12px
-                    - font-weight: bold
-                    - height: 70px
-                tap_action:
-                  action: call-service
-                  haptic: success
-                  service: input_boolean.turn_off
-                  service_data:
-                    entity_id: input_boolean.sleep_mode
-                type: custom:button-card
-              - color: auto
-                # entity: input_boolean.sleep_mode
-                icon: mdi:weather-night
-                name: I'm leaving
-                styles:
-                  card:
-                    - font-size: 12px
-                    - font-weight: bold
-                    - height: 70px
-                tap_action:
-                  action: call-service
-                  haptic: success
-                  service: script.going_to_sleep
-                type: custom:button-card
 
       # People at home
       - type: entities

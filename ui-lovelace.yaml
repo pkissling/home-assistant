@@ -77,7 +77,6 @@ views:
           - input_boolean.guest_mode
           - entity: switch.summer_mode
             icon: mdi:weather-sunny
-          # - binary_sensor.internet # TODO find better view
 
       # TV Remote
       - type: custom:stack-in-card

@@ -62,7 +62,7 @@
       to: docked
   condition:
     - condition: template
-      value_template: "{{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'cleaned_area') > 20 }}"
+      value_template: "{{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'cleaned_area') > 35 }}"
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.vacuum_ran_today

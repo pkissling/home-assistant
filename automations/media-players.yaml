@@ -25,12 +25,7 @@
     condition: template
     value_template: "{{ state_attr('media_player.chromecast', 'volume_level') < 1}}"
   action:
-    - service: notify.pushbullet  # TODO remove after succesful debugging
-      data_template:
-        title: Home Assistant
-        target: device/OnePlus 7 Pro
-        message: "Adjusted Chromecast volume to {{ state_attr('media_player.chromecast', 'volume_level') }}"
-    - service: media_player.volume_set
-      entity_id: media_player.chromecast
-      data:
-        volume_level: 1.0
+    service: media_player.volume_set
+    entity_id: media_player.chromecast
+    data:
+      volume_level: 1.0

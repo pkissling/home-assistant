@@ -134,9 +134,13 @@ views:
               shortcuts:
                 columns: 2
                 buttons:
-                  - name: NRJ
-                    type: script
-                    id: script.turn_on_speakers_and_stream_nrj
+                  - type: service
+                    name: NRJ
+                    id: media_player.play_media
+                    data:
+                      entity_id: media_player.home_group
+                      media_content_id: http://nrj.de/muenchen
+                      media_content_type: music
                   - type: service
                     icon: mdi:power
                     id: media_player.turn_off

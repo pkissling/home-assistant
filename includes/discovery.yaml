@@ -1,6 +1,4 @@
 ---
 
 ignore:
-  #  - fritzbox  # TODO uncomment once fixed
-  - igd
   - yeelight

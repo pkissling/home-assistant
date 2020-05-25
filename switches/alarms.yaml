@@ -6,26 +6,52 @@
     alarm_next_day:
       friendly_name: Alarm
       value_template: >
-        {%- if (now().weekday() + 8) % 7 == 1 -%}
-        {{ states('input_boolean.alarm_weekday_1') }}
-        {%- elif (now().weekday() + 8) % 7 == 2 -%}
-        {{ states('input_boolean.alarm_weekday_2') }}
-        {%- elif (now().weekday() + 8) % 7 == 3 -%}
-        {{ states('input_boolean.alarm_weekday_3') }}
-        {%- elif (now().weekday() + 8) % 7 == 4 -%}
-        {{ states('input_boolean.alarm_weekday_4') }}
-        {%- elif (now().weekday() + 8) % 7 == 5 -%}
-        {{ states('input_boolean.alarm_weekday_5') }}
-        {%- elif (now().weekday() + 8) % 7 == 6 -%}
-        {{ states('input_boolean.alarm_weekday_6') }}
+        {%- if (now().weekday() + 1) % 7 == 1 -%}
+          {{ states('input_boolean.alarm_weekday_1') }}
+        {%- elif (now().weekday() + 1) % 7 == 2 -%}
+          {{ states('input_boolean.alarm_weekday_2') }}
+        {%- elif (now().weekday() + 1) % 7 == 3 -%}
+          {{ states('input_boolean.alarm_weekday_3') }}
+        {%- elif (now().weekday() + 1) % 7 == 4 -%}
+          {{ states('input_boolean.alarm_weekday_4') }}
+        {%- elif (now().weekday() + 1) % 7 == 5 -%}
+          {{ states('input_boolean.alarm_weekday_5') }}
+        {%- elif (now().weekday() + 1) % 7 == 6 -%}
+          {{ states('input_boolean.alarm_weekday_6') }}
         {% else %}
-        {{ states('input_boolean.alarm_weekday_0') }}
+          {{ states('input_boolean.alarm_weekday_0') }}
         {% endif %}
       turn_on:
         service: input_boolean.turn_on
         data_template:
-          entity_id: "input_boolean.alarm_weekday_{{ (now().weekday() + 8) % 7 }}"
+          entity_id: "input_boolean.alarm_weekday_{{ (now().weekday() + 1) % 7 }}"
       turn_off:
         service: input_boolean.turn_off
         data_template:
-          entity_id: "input_boolean.alarm_weekday_{{ (now().weekday() + 8) % 7 }}"
+          entity_id: "input_boolean.alarm_weekday_{{ (now().weekday() + 1) % 7 }}"
+
+    alarm_in_6_days:
+      value_template: >
+        {%- if (now().weekday() + 6) % 7 == 1 -%}
+          {{ is_state('input_boolean.alarm_weekday_1', 'on') }}
+        {%- elif (now().weekday() + 6) % 7== 2 -%}
+          {{ is_state('input_boolean.alarm_weekday_2', 'on') }}
+        {%- elif (now().weekday() + 6) % 7 == 3 -%}
+          {{ is_state('input_boolean.alarm_weekday_3', 'on') }}
+        {%- elif (now().weekday() + 6) % 7 == 4 -%}
+          {{ is_state('input_boolean.alarm_weekday_4', 'on') }}
+        {%- elif (now().weekday() + 6) % 7 == 5 -%}
+          {{ is_state('input_boolean.alarm_weekday_5', 'on') }}
+        {%- elif (now().weekday() + 6) % 7 == 6 -%}
+          {{ is_state('input_boolean.alarm_weekday_6', 'on') }}
+        {% else %}
+          {{ is_state('input_boolean.alarm_weekday_0', 'on') }}
+        {% endif %}
+      turn_on:
+        service: input_boolean.turn_on
+        data_template:
+          entity_id: "input_boolean.alarm_weekday_{{ (now().weekday() + 6) % 7 }}"
+      turn_off:
+        service: input_boolean.turn_off
+        data_template:
+          entity_id: "input_boolean.alarm_weekday_{{ (now().weekday() + 6) % 7 }}"

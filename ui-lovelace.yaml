@@ -204,7 +204,6 @@ views:
               - input_boolean.vacuum_daily_cleanup
               - entity: sensor.vacuum_battery
                 name: Battery
-              - input_select.vacuum_fan_speed
           - type: horizontal-stack
             cards:
               - icon: 'mdi:home'

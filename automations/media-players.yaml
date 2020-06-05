@@ -10,10 +10,13 @@
         is_state_attr('remote.living_room', 'current_activity', 'Kodi')
       }}
   condition:
-    condition: template
-    value_template: "{{ not is_state('media_player.home_group', 'off') }}"
+    condition: not
+    conditions:
+      condition: state
+      entity_id: media_player.home_group
+      state: 'off'
   action:
-    service: media_player.media_stop
+    service: media_player.turn_off
     entity_id: all
 
 - alias: Media Player - Chromecast Full Volume
@@ -29,3 +32,18 @@
     entity_id: media_player.chromecast
     data:
       volume_level: 1.0
+
+- alias: Media Player - Stop casting on Home Group when TV off
+  trigger:
+    platform: state
+    entity_id: remote.living_room
+    to: 'off'
+  condition:
+    condition: not
+    conditions:
+      condition: state
+      entity_id: media_player.home_group
+      state: 'off'
+  action:
+    service: media_player.turn_off
+    entity_id: all

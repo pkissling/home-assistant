@@ -5,22 +5,7 @@
 
     alarm_next_day:
       friendly_name: Alarm
-      value_template: >
-        {%- if (now().weekday() + 1) % 7 == 1 -%}
-          {{ is_state('input_boolean.alarm_weekday_1', 'on') }}
-        {%- elif (now().weekday() + 1) % 7 == 2 -%}
-          {{ is_state('input_boolean.alarm_weekday_2', 'on') }}
-        {%- elif (now().weekday() + 1) % 7 == 3 -%}
-          {{ is_state('input_boolean.alarm_weekday_3', 'on') }}
-        {%- elif (now().weekday() + 1) % 7 == 4 -%}
-          {{ is_state('input_boolean.alarm_weekday_4', 'on') }}
-        {%- elif (now().weekday() + 1) % 7 == 5 -%}
-          {{ is_state('input_boolean.alarm_weekday_5', 'on') }}
-        {%- elif (now().weekday() + 1) % 7 == 6 -%}
-          {{ is_state('input_boolean.alarm_weekday_6', 'on') }}
-        {% else %}
-          {{ is_state('input_boolean.alarm_weekday_0', 'on') }}
-        {% endif %}
+      value_template: "{{ states('binary_sensor.alarm_next_day') }}"
       turn_on:
         service: input_boolean.turn_on
         data_template:
@@ -31,22 +16,7 @@
           entity_id: "input_boolean.alarm_weekday_{{ (now().weekday() + 1) % 7 }}"
 
     alarm_in_6_days:
-      value_template: >
-        {%- if (now().weekday() + 6) % 7 == 1 -%}
-          {{ is_state('input_boolean.alarm_weekday_1', 'on') }}
-        {%- elif (now().weekday() + 6) % 7== 2 -%}
-          {{ is_state('input_boolean.alarm_weekday_2', 'on') }}
-        {%- elif (now().weekday() + 6) % 7 == 3 -%}
-          {{ is_state('input_boolean.alarm_weekday_3', 'on') }}
-        {%- elif (now().weekday() + 6) % 7 == 4 -%}
-          {{ is_state('input_boolean.alarm_weekday_4', 'on') }}
-        {%- elif (now().weekday() + 6) % 7 == 5 -%}
-          {{ is_state('input_boolean.alarm_weekday_5', 'on') }}
-        {%- elif (now().weekday() + 6) % 7 == 6 -%}
-          {{ is_state('input_boolean.alarm_weekday_6', 'on') }}
-        {% else %}
-          {{ is_state('input_boolean.alarm_weekday_0', 'on') }}
-        {% endif %}
+      value_template: "{{ states('binary_sensor.alarm_in_6_days') }}"
       turn_on:
         service: input_boolean.turn_on
         data_template:

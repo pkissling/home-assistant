@@ -122,7 +122,7 @@
       entity_id: binary_sensor.workday_sensor
       state: 'on'
     - condition: state
-      entity_id: binary_sensor.alarm_in_6_days
+      entity_id: switch.alarm_in_6_days
       state: 'off'
   action:
     - service: switch.turn_on

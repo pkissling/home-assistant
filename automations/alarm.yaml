@@ -158,4 +158,4 @@
         target: device/OnePlus 7 Pro
         message: >
           {% set days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] %}
-          Alarm for next {{ days[(now().weekday() + 1) % 7] }} turned off.
+          Alarm for next {{ days[(now().weekday() + 6) % 7] }} turned off.

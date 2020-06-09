@@ -262,3 +262,17 @@
       title: Home Assistant
       message: Precipitation changed to {{ states('sensor.yr_precipitation') }}
       target: device/OnePlus 7 Pro
+
+- alias: Notification - Device Tracker not working when Residents home for 2 days
+  trigger:
+    platform: state
+    entity_id: group.residents
+    to: home
+    for:
+      days: 2
+  action:
+    service: notify.pushbullet
+    data_template:
+      title: Home Assistant
+      message: Residents state has been 'home' for 2 days sraight. Please check device tracker settings.
+      target: device/OnePlus 7 Pro

@@ -1,4 +1,4 @@
 ---
 
-switch.alarm_next_day:
+switch.alarm:
   icon: mdi:alarm

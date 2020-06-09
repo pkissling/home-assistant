@@ -3,20 +3,55 @@
 - platform: template
   switches:
 
-    alarm_next_day:
+    alarm:
       friendly_name: Alarm
-      value_template: "{{ states('binary_sensor.alarm_next_day') }}"
+      value_template: >
+        {% set offset = states('sensor.alarm_offset') | int %}
+        {% if (now().weekday() + offset) % 7 == 1 %}
+          {{ is_state('input_boolean.alarm_weekday_1', 'on') }}
+        {% elif (now().weekday() + offset) % 7 == 2 %}
+          {{ is_state('input_boolean.alarm_weekday_2', 'on') }}
+        {% elif (now().weekday() + offset) % 7 == 3 %}
+          {{ is_state('input_boolean.alarm_weekday_3', 'on') }}
+        {% elif (now().weekday() + offset) % 7 == 4 %}
+          {{ is_state('input_boolean.alarm_weekday_4', 'on') }}
+        {% elif (now().weekday() + offset) % 7 == 5 %}
+          {{ is_state('input_boolean.alarm_weekday_5', 'on') }}
+        {% elif (now().weekday() + offset) % 7 == 6 %}
+          {{ is_state('input_boolean.alarm_weekday_6', 'on') }}
+        {% else %}
+          {{ is_state('input_boolean.alarm_weekday_0', 'on') }}
+        {% endif %}
       turn_on:
         service: input_boolean.turn_on
         data_template:
-          entity_id: "input_boolean.alarm_weekday_{{ (now().weekday() + 1) % 7 }}"
+          entity_id: >
+            {% set offset = states('sensor.alarm_offset') | int %}
+            input_boolean.alarm_weekday_{{ (now().weekday() + offset) % 7 }}
       turn_off:
         service: input_boolean.turn_off
         data_template:
-          entity_id: "input_boolean.alarm_weekday_{{ (now().weekday() + 1) % 7 }}"
+          entity_id: >
+            {% set offset = states('sensor.alarm_offset') | int %}
+            input_boolean.alarm_weekday_{{ (now().weekday() + offset) % 7 }}
 
     alarm_in_6_days:
-      value_template: "{{ states('binary_sensor.alarm_in_6_days') }}"
+      value_template: >
+        {% if (now().weekday() + 6) % 7 == 1 %}
+          {{ is_state('input_boolean.alarm_weekday_1', 'on') }}
+        {% elif (now().weekday() + 6) % 7== 2 %}
+          {{ is_state('input_boolean.alarm_weekday_2', 'on') }}
+        {% elif (now().weekday() + 6) % 7 == 3 %}
+          {{ is_state('input_boolean.alarm_weekday_3', 'on') }}
+        {% elif (now().weekday() + 6) % 7 == 4 %}
+          {{ is_state('input_boolean.alarm_weekday_4', 'on') }}
+        {% elif (now().weekday() + 6) % 7 == 5 %}
+          {{ is_state('input_boolean.alarm_weekday_5', 'on') }}
+        {% elif (now().weekday() + 6) % 7 == 6 %}
+          {{ is_state('input_boolean.alarm_weekday_6', 'on') }}
+        {% else %}
+          {{ is_state('input_boolean.alarm_weekday_0', 'on') }}
+        {% endif %}
       turn_on:
         service: input_boolean.turn_on
         data_template:

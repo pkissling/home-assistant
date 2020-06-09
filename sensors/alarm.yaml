@@ -1,0 +1,13 @@
+---
+
+- platform: template
+  sensors:
+    alarm_offset:
+      value_template: >
+        {% set current_time = (strptime(states('sensor.time'), '%H:%M').time().hour * 60 + strptime(states('sensor.time'), '%H:%M').time().minute) * 60 | int %}
+        {% set alarm_time = state_attr('input_datetime.wakeup_time', 'timestamp') | int %}
+        {% if current_time < alarm_time %}
+          0
+        {% else %}
+          1
+        {% endif %}

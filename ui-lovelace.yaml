@@ -277,7 +277,7 @@ views:
               - input_boolean.alarm_weekday_5
               - input_boolean.alarm_weekday_6
             head:
-              entity: switch.alarm_next_day
+              entity: switch.alarm
           - entity: input_datetime.wakeup_time
 
       # Synology

@@ -1,6 +1,5 @@
 ---
 
-# TODO join groups as platform?
 window_bedroom:
   icon: mdi:bed-king-outline
   entities:
@@ -39,3 +38,12 @@ window_living_room_and_kitchen:
   entities:
     - group.window_living_room
     - group.window_kitchen
+
+window_all:
+  entities:
+    - group.window_bedroom
+    - group.window_bathroom
+    - group.window_kitchen
+    - group.window_living_room
+    - group.window_study
+    - group.window_toilet

@@ -251,16 +251,22 @@
       message: Thermostat in Kitchen on and window open.
       target: device/OnePlus 7 Pro
 
-- alias: Notification - Precipitation
+- alias: Notification - Open windows when rain
   trigger:
     platform: numeric_state
     entity_id: sensor.yr_precipitation
-    above: 0.8
+    above: 1.0
+  condition:
+    condition: state
+    entity_id: group.window_all
+    state: 'on'
   action:
     service: notify.pushbullet
     data_template:
       title: Home Assistant
-      message: Precipitation changed to {{ states('sensor.yr_precipitation') }}
+      message: >
+        Precipitation changed to {{ states('sensor.yr_precipitation') }} and Windows are open:
+        {{ expand('group.window_all') | selectattr("state", "eq", "on") | map(attribute='name')| join(', ') }}
       target: device/OnePlus 7 Pro
 
 - alias: Notification - Device Tracker not working when Residents home for 2 days

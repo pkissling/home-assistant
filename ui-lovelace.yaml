@@ -157,7 +157,7 @@ views:
                   info: true
                   power: true
               - type: custom:mini-media-player
-                entity: media_player.kitchen_speaker
+                entity: media_player.kitchen
                 group: true
                 hide:
                   controls: true
@@ -166,7 +166,7 @@ views:
                   info: true
                   power: true
               - type: custom:mini-media-player
-                entity: media_player.study_speaker
+                entity: media_player.study
                 group: true
                 hide:
                   controls: true
@@ -175,7 +175,7 @@ views:
                   info: true
                   power: true
               - type: custom:mini-media-player
-                entity: media_player.bathroom_speaker
+                entity: media_player.bathroom
                 group: true
                 hide:
                   controls: true
@@ -184,7 +184,16 @@ views:
                   info: true
                   power: true
               - type: custom:mini-media-player
-                entity: media_player.bedroom_display
+                entity: media_player.bedroom
+                group: true
+                hide:
+                  controls: true
+                  source: true
+                  progress: true
+                  info: true
+                  power: true
+              - type: custom:mini-media-player
+                entity: media_player.toilet
                 group: true
                 hide:
                   controls: true

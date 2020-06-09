@@ -7,8 +7,6 @@ from .const import LOCALE
 TOKEN = "token"
 SIDEPANEL_TITLE = "sidepanel_title"
 SIDEPANEL_ICON = "sidepanel_icon"
-FRONTEND_REPO = "frontend_repo"
-FRONTEND_REPO_URL = "frontend_repo_url"
 APPDAEMON = "appdaemon"
 NETDAEMON = "netdaemon"
 
@@ -42,8 +40,6 @@ def hacs_config_option_schema(options: dict = {}) -> dict:
             RELEASE_LIMIT: 5,
             SIDEPANEL_ICON: "hacs:hacs",
             SIDEPANEL_TITLE: "HACS",
-            FRONTEND_REPO: "",
-            FRONTEND_REPO_URL: "",
         }
     return {
         vol.Optional(SIDEPANEL_TITLE, default=options.get(SIDEPANEL_TITLE)): str,
@@ -54,8 +50,6 @@ def hacs_config_option_schema(options: dict = {}) -> dict:
         vol.Optional(NETDAEMON, default=options.get(NETDAEMON)): bool,
         vol.Optional(DEBUG, default=options.get(DEBUG)): bool,
         vol.Optional(EXPERIMENTAL, default=options.get(EXPERIMENTAL)): bool,
-        vol.Optional(FRONTEND_REPO, default=options.get(FRONTEND_REPO)): str,
-        vol.Optional(FRONTEND_REPO_URL, default=options.get(FRONTEND_REPO_URL)): str,
     }
 
 

@@ -42,7 +42,6 @@ class HacsFrontend:
 
     version_running = None
     version_available = None
-    version_expected = None
     update_pending = False
 
 

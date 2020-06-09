@@ -14,22 +14,9 @@ class HacsTheme(HacsRepository):
         self.data.full_name = full_name
         self.data.category = "theme"
         self.content.path.remote = "themes"
-        self.content.path.local = self.localpath
+        self.content.path.local = f"{self.hacs.system.config_path}/themes/"
         self.content.single = False
         self.logger = Logger(f"hacs.repository.{self.data.category}.{full_name}")
-
-    @property
-    def localpath(self):
-        """Return localpath."""
-        return f"{self.hacs.system.config_path}/themes/{self.data.file_name.replace('.yaml', '')}"
-
-    async def async_post_installation(self):
-        """Run post installation steps."""
-        try:
-            await self.hacs.hass.services.async_call("frontend", "reload_themes", {})
-            self.logger.info("Themes reloaded")
-        except Exception:  # pylint: disable=broad-except
-            pass
 
     async def validate_repository(self):
         """Validate."""
@@ -57,11 +44,20 @@ class HacsTheme(HacsRepository):
                     self.logger.error(error)
         return self.validate.success
 
-    async def async_post_registration(self):
+    async def registration(self, ref=None):
         """Registration."""
+        if ref is not None:
+            self.ref = ref
+            self.force_branch = True
+        if not await self.validate_repository():
+            return False
+
+        # Run common registration steps.
+        await self.common_registration()
+
         # Set name
         find_file_name(self)
-        self.content.path.local = self.localpath
+        self.content.path.local = f"{self.hacs.system.config_path}/themes/{self.data.file_name.replace('.yaml', '')}"
 
     async def update_repository(self, ignore_issues=False):
         """Update."""
@@ -73,4 +69,4 @@ class HacsTheme(HacsRepository):
 
         # Update name
         find_file_name(self)
-        self.content.path.local = self.localpath
+        self.content.path.local = f"{self.hacs.system.config_path}/themes/{self.data.file_name.replace('.yaml', '')}"

@@ -20,8 +20,6 @@ class Configuration:
     dev: bool = False
     frontend_mode: str = "Grid"
     frontend_compact: bool = False
-    frontend_repo: str = ""
-    frontend_repo_url: str = ""
     options: dict = {}
     onboarding_done: bool = False
     plugin_path: str = "www/community/"

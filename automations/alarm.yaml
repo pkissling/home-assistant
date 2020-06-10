@@ -20,7 +20,7 @@
 - alias: Alarm - Night Routine - TTS alarm clock status
   trigger:
     platform: state
-    entity_id: media_player.bedroom_display
+    entity_id: media_player.bedroom
     from: playing
     to: 'off'
   condition:
@@ -31,7 +31,7 @@
     - service: input_boolean.turn_on
       entity_id: input_boolean.alarm_turn_off_next
     - service: media_player.play_media
-      entity_id: media_player.bedroom_display
+      entity_id: media_player.bedroom
       data_template:
         media_content_type: music
         media_content_id: >
@@ -42,7 +42,7 @@
 - alias: Alarm - Night Routine - Turn Display off after TTS
   trigger:
     platform: state
-    entity_id: media_player.bedroom_display
+    entity_id: media_player.bedroom
     from: playing
     to: 'idle'
   condition:
@@ -51,7 +51,7 @@
     state: 'on'
   action:
     - service: media_player.turn_off
-      entity_id: media_player.bedroom_display
+      entity_id: media_player.bedroom
     - service: input_boolean.turn_off
       entity_id: input_boolean.alarm_turn_off_next
 
@@ -87,7 +87,7 @@
       state: home
   action:
     - service: media_extractor.play_media
-      entity_id: media_player.bedroom_display
+      entity_id: media_player.bedroom
       data:
         media_content_id: http://www.tagesschau.de/100sekunden/index.html
         media_content_type: video
@@ -97,7 +97,7 @@
 - alias: Alarm - Morning Routine - Play Radio after News
   trigger:
     platform: state
-    entity_id: media_player.bedroom_display
+    entity_id: media_player.bedroom
     from: playing
     to: idle
   condition:

@@ -1,5 +1,4 @@
 ---
 
 summer_mode:
-  icon: mdi:weather-sunny
-  name: Summer Mode
+guest_mode:

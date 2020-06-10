@@ -56,10 +56,8 @@ views:
       - type: entities
         show_header_toggle: false
         entities:
-          - entity: switch.summer_mode
-            icon: mdi:weather-sunny
-          - entity: switch.guest_mode
-            icon: mdi:human-male-female
+          - switch.summer_mode
+          - switch.guest_mode
 
       # TV Remote
       - type: custom:stack-in-card

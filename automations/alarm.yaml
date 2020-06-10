@@ -61,7 +61,7 @@
     value_template: "{{ ((strptime(states('sensor.time'), '%H:%M').time().hour * 60 + strptime(states('sensor.time'), '%H:%M').time().minute) * 60) | int == (state_attr('input_datetime.wakeup_time', 'timestamp') | int) - 60 * 15 }}"
   condition:
     - condition: state
-      entity_id: binary_sensor.alarm_today
+      entity_id: switch.alarm
       state: 'on'
     - condition: state
       entity_id: group.residents
@@ -80,7 +80,7 @@
     value_template: "{{ ((strptime(states('sensor.time'), '%H:%M').time().hour * 60 + strptime(states('sensor.time'), '%H:%M').time().minute) * 60) | int == (state_attr('input_datetime.wakeup_time', 'timestamp') | int) }}"
   condition:
     - condition: state
-      entity_id: binary_sensor.alarm_today
+      entity_id: switch.alarm
       state: 'on'
     - condition: state
       entity_id: group.residents

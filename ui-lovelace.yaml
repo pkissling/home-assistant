@@ -327,8 +327,8 @@ views:
           entities:
             - entity: sensor.living_room_temperature
               icon: mdi:sofa
-              target: "${states['climate.living_room'].state == 'off' ? '' : states['climate.living_room'].attributes.temperature}"
-              color: "${states['climate.living_room'].state == 'off' ? 'var(--light-primary-color)' : 'var(--primary-color)'}"
+              target: "${states['binary_sensor.thermostat_living_room'].state == 'off' ? '' : states['climate.living_room'].attributes.temperature}"
+              color: "${states['binary_sensor.thermostat_living_room'].state == 'off' ? 'var(--light-primary-color)' : 'var(--primary-color)'}"
               tap_action:
                 action: call-service
                 service: switch.toggle
@@ -336,8 +336,8 @@ views:
                   entity_id: switch.climate_living_room
             - entity: sensor.kitchen_temperature
               icon: mdi:stove
-              color: "${states['climate.kitchen'].state == 'off' ? 'var(--light-primary-color)' : 'var(--primary-color)'}"
-              target: "${states['climate.kitchen'].state == 'off' ? '' : states['climate.kitchen'].attributes.temperature}"
+              target: "${states['binary_sensor.thermostat_kitchen'].state == 'off' ? '' : states['climate.kitchen'].attributes.temperature}"
+              color: "${states['binary_sensor.thermostat_kitchen'].state == 'off' ? 'var(--light-primary-color)' : 'var(--primary-color)'}"
               tap_action:
                 action: call-service
                 service: switch.toggle
@@ -345,8 +345,8 @@ views:
                   entity_id: switch.climate_kitchen
             - entity: sensor.bathroom_temperature
               icon: mdi:shower
-              color: "${states['climate.bathroom'].state == 'off' ? 'var(--light-primary-color)' : 'var(--primary-color)'}"
-              target: "${states['climate.bathroom'].state == 'off' ? '' : states['climate.bathroom'].attributes.temperature}"
+              target: "${states['binary_sensor.thermostat_bathroom'].state == 'off' ? '' : states['climate.bathroom'].attributes.temperature}"
+              color: "${states['binary_sensor.thermostat_bathroom'].state == 'off' ? 'var(--light-primary-color)' : 'var(--primary-color)'}"
               tap_action:
                 action: call-service
                 service: switch.toggle
@@ -354,8 +354,8 @@ views:
                   entity_id: switch.climate_bathroom
             - entity: sensor.bedroom_temperature
               icon: mdi:bed-king-outline
-              color: "${states['climate.bedroom'].state == 'off' ? 'var(--light-primary-color)' : 'var(--primary-color)'}"
-              target: "${states['climate.bedroom'].state == 'off' ? '' : states['climate.bedroom'].attributes.temperature}"
+              target: "${states['binary_sensor.thermostat_bedroom'].state == 'off' ? '' : states['climate.bedroom'].attributes.temperature}"
+              color: "${states['binary_sensor.thermostat_bedroom'].state == 'off' ? 'var(--light-primary-color)' : 'var(--primary-color)'}"
               tap_action:
                 action: call-service
                 service: switch.toggle
@@ -363,8 +363,8 @@ views:
                   entity_id: switch.climate_bedroom
             - entity: sensor.study_temperature
               icon: mdi:desk-lamp
-              color: "${states['climate.study'].state == 'off' ? 'var(--light-primary-color)' : 'var(--primary-color)'}"
-              target: "${states['climate.study'].state == 'off' ? '' : states['climate.study'].attributes.temperature}"
+              target: "${states['binary_sensor.thermostat_study'].state == 'off' ? '' : states['climate.study'].attributes.temperature}"
+              color: "${states['binary_sensor.thermostat_study'].state == 'off' ? 'var(--light-primary-color)' : 'var(--primary-color)'}"
               tap_action:
                 action: call-service
                 service: switch.toggle

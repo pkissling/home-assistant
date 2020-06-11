@@ -11,8 +11,8 @@
       data_template:
         title: Home Assistant
         message: >
-          New release available: {{ state_attr('binary_sensor.updater', 'newest_version') }}
-          Version running: {{ states('sensor.current_version') }}
+          Home Assisant update available from {{ state_attr('binary_sensor.updater', 'newest_version') }}
+          to {{ states('sensor.current_version') }}.
           Release notes: {{ state_attr('binary_sensor.updater', 'release_notes') }}
         target: device/OnePlus 7 Pro
 

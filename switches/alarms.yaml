@@ -37,6 +37,8 @@
 
     alarm_in_6_days:
       value_template: >
+        # Offset is a dummy variable to force value being re-evaluated daily"
+        {% set offset = states('sensor.alarm_offset') | int %}
         {% if (now().weekday() + 6) % 7 == 1 %}
           {{ is_state('input_boolean.alarm_weekday_1', 'on') }}
         {% elif (now().weekday() + 6) % 7== 2 %}

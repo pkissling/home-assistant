@@ -113,19 +113,15 @@
         media_content_id: http://nrj.de/muenchen
         media_content_type: music
 
-- alias: Alarm - Enable when workday
+- alias: Alarm - Toggle alarm when alarm needs adjustment due to workday
   trigger:
     platform: time
     at: '12:00'
   condition:
-    - condition: state
-      entity_id: binary_sensor.workday_sensor
-      state: 'on'
-    - condition: state
-      entity_id: switch.alarm_in_6_days
-      state: 'off'
+    condition: template
+    value_template: "{{ states('binary_sensor.workday_sensor') != states('switch.alarm_in_6_days') }}"
   action:
-    - service: switch.turn_on
+    - service: switch.toggle
       data:
         entity_id: switch.alarm_in_6_days
     - service: notify.pushbullet
@@ -134,28 +130,4 @@
         target: device/OnePlus 7 Pro
         message: >
           {% set days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] %}
-          Alarm for next {{ days[(now().weekday() + 6) % 7] }} turned on.
-
-
-- alias: Alarm - Disable when no workday
-  trigger:
-    platform: time
-    at: '12:00'
-  condition:
-    - condition: state
-      entity_id: binary_sensor.workday_sensor
-      state: 'off'
-    - condition: state
-      entity_id: switch.alarm_in_6_days
-      state: 'on'
-  action:
-    - service: switch.turn_off
-      data:
-        entity_id: switch.alarm_in_6_days
-    - service: notify.pushbullet
-      data_template:
-        title: Home Assistant
-        target: device/OnePlus 7 Pro
-        message: >
-          {% set days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] %}
-          Alarm for next {{ days[(now().weekday() + 6) % 7] }} turned off.
+          Alarm for next {{ days[(now().weekday() + 6) % 7] }} turned {{ states('binary_sensor.workday_sensor') }}.

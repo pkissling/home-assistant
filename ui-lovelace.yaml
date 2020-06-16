@@ -193,7 +193,7 @@ views:
                   info: true
                   power: true
               - type: custom:mini-media-player
-                entity: media_player.toilet
+                entity: media_player.balcony
                 group: true
                 hide:
                   controls: true
@@ -201,7 +201,6 @@ views:
                   progress: true
                   info: true
                   power: true
-
 
       # Vacuum
       - type: custom:stack-in-card

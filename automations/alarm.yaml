@@ -119,11 +119,27 @@
     at: '12:00'
   condition:
     condition: template
-    value_template: "{{ states('binary_sensor.workday_sensor') != states('switch.alarm_in_6_days') }}"
+    value_template: >
+      {% if (now().weekday() + 6) % 7 == 1 %}
+        {% set alarm_in_6_days = states('input_boolean.alarm_weekday_1') %}
+      {% elif (now().weekday() + 6) % 7== 2 %}
+        {% set alarm_in_6_days = states('input_boolean.alarm_weekday_2') %}
+      {% elif (now().weekday() + 6) % 7 == 3 %}
+        {% set alarm_in_6_days = states('input_boolean.alarm_weekday_3') %}
+      {% elif (now().weekday() + 6) % 7 == 4 %}
+        {% set alarm_in_6_days = states('input_boolean.alarm_weekday_4') %}
+      {% elif (now().weekday() + 6) % 7 == 5 %}
+        {% set alarm_in_6_days = states('input_boolean.alarm_weekday_5') %}
+      {% elif (now().weekday() + 6) % 7 == 6 %}
+        {% set alarm_in_6_days = states('input_boolean.alarm_weekday_6') %}
+      {% else %}
+        {% set alarm_in_6_days = states('input_boolean.alarm_weekday_0') %}
+      {% endif %}
+      {{ states('binary_sensor.workday_sensor') != alarm_in_6_days }}
   action:
-    - service: switch.toggle
-      data:
-        entity_id: switch.alarm_in_6_days
+    - service: input_boolean.toggle
+      data_template:
+        entity_id: "input_boolean.alarm_weekday_{{ (now().weekday() + 6) % 7 }}"
     - service: notify.pushbullet
       data_template:
         title: Home Assistant

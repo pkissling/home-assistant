@@ -34,31 +34,3 @@
           entity_id: >
             {% set offset = states('sensor.alarm_offset') | int %}
             input_boolean.alarm_weekday_{{ (now().weekday() + offset) % 7 }}
-
-    alarm_in_6_days:
-      value_template: >
-        # Offset is a dummy variable to force value being re-evaluated daily"
-        {% set offset = states('sensor.alarm_offset') | int %}
-        {% if (now().weekday() + 6) % 7 == 1 %}
-          {{ is_state('input_boolean.alarm_weekday_1', 'on') }}
-        {% elif (now().weekday() + 6) % 7== 2 %}
-          {{ is_state('input_boolean.alarm_weekday_2', 'on') }}
-        {% elif (now().weekday() + 6) % 7 == 3 %}
-          {{ is_state('input_boolean.alarm_weekday_3', 'on') }}
-        {% elif (now().weekday() + 6) % 7 == 4 %}
-          {{ is_state('input_boolean.alarm_weekday_4', 'on') }}
-        {% elif (now().weekday() + 6) % 7 == 5 %}
-          {{ is_state('input_boolean.alarm_weekday_5', 'on') }}
-        {% elif (now().weekday() + 6) % 7 == 6 %}
-          {{ is_state('input_boolean.alarm_weekday_6', 'on') }}
-        {% else %}
-          {{ is_state('input_boolean.alarm_weekday_0', 'on') }}
-        {% endif %}
-      turn_on:
-        service: input_boolean.turn_on
-        data_template:
-          entity_id: "input_boolean.alarm_weekday_{{ (now().weekday() + 6) % 7 }}"
-      turn_off:
-        service: input_boolean.turn_off
-        data_template:
-          entity_id: "input_boolean.alarm_weekday_{{ (now().weekday() + 6) % 7 }}"

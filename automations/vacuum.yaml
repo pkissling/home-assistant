@@ -26,7 +26,7 @@
         message: Roborock started Cleanup
         target: device/OnePlus 7 Pro
 
-- alias: Vaccum - Daily cleanup when 10:00
+- alias: Vaccum - Daily cleanup at 10:00
   trigger:
     platform: time
     at: '10:00:00'
@@ -50,18 +50,40 @@
         message: Roborock started Cleanup
         target: device/OnePlus 7 Pro
 
-- alias: Vacuum - Finished Cleanup
+- alias: Vacuum - Notify cleanup finished
   trigger:
-    - platform: state
-      entity_id: vacuum.xiaomi_vacuum_cleaner
-      from: returning
-      to: docked
+    platform: state
+    entity_id: vacuum.xiaomi_vacuum_cleaner
+    to: returning
   condition:
-    - condition: template
-      value_template: "{{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'cleaned_area') > 35 }}"
+    condition: state
+    entity_id: input_boolean.vacuum_notify_finish_on_dock
+    state: 'on'
+  action:
+    service: notify.pushbullet
+    data_template:
+      title: Home Assistant
+      target: device/OnePlus 7 Pro
+      message: >
+        Roborock finished Cleanup:
+        {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'cleaned_area') }} m²,
+        {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'cleaning_time') }} minutes,
+        Battery {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'battery_level') }} %
+
+- alias: Vacuum - Notify cleanup finished
+  trigger:
+    platform: state
+    entity_id: vacuum.xiaomi_vacuum_cleaner
+    to: returning
+  condition:
+    condition: state
+    entity_id: input_boolean.vacuum_notify_finish_on_return
+    state: 'on'
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.vacuum_ran_today
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.vacuum_notify_finish_on_return
     - service: notify.pushbullet
       data_template:
         title: Home Assistant
@@ -74,8 +96,19 @@
 
 - alias: Vacuum - Reset Daily Cleanup Boolean
   trigger:
-    - platform: time
-      at: 00:00
+    platform: time
+    at: 00:00
   action:
-    - entity_id: input_boolean.vacuum_ran_today
-      service: input_boolean.turn_off
+    service: input_boolean.turn_off
+    entity_id: input_boolean.vacuum_ran_today
+
+- alias: Vacuum - Trigger cleanup done
+  trigger:
+    platform: state
+    entity_id: vacuum.xiaomi_vacuum_cleaner
+    to: cleaning
+    for:
+      minutes: 20
+  action:
+    service: input_boolean.turn_on
+    entity_id: input_boolean.vacuum_notify_finish_on_return

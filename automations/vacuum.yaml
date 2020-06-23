@@ -112,3 +112,15 @@
   action:
     service: input_boolean.turn_on
     entity_id: input_boolean.vacuum_notify_finish_on_return
+
+- alias: Vacuum - Notify on error
+  trigger:
+    platform: state
+    entity_id: vacuum.xiaomi_vacuum_cleaner
+    to: error
+  action:
+    service: notify.pushbullet
+    data_template:
+      title: Home Assistant
+      target: device/OnePlus 7 Pro
+      message: "Roborock Error: {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.error }}"

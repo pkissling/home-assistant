@@ -67,12 +67,16 @@
       entity_id: group.residents
       state: home
   action:
-    service: light.turn_on
-    entity_id:
-      - light.bedroom
-      - light.living_room
-    data:
-      effect: Sunrise
+    - service: light.turn_on
+      entity_id:
+        - light.bedroom
+        - light.living_room
+      data:
+        effect: Sunrise
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.alarm_turn_off_next
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.alarm_play_tts_next
 
 - alias: Alarm - Morning Routine - Play News
   trigger:

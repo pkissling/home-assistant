@@ -120,7 +120,7 @@
     platform: state
     entity_id: vacuum.xiaomi_vacuum_cleaner
     to: cleaning
-  actions:
+  action:
     service: notify.pushbullet
     data:
       title: Home Assistant

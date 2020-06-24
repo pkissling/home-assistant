@@ -20,11 +20,6 @@
     - service: vacuum.start
       entity_id: vacuum.xiaomi_vacuum_cleaner
     - service: script.vacuum_fan_medium
-    - service: notify.pushbullet
-      data:
-        title: Home Assistant
-        message: Roborock started Cleanup
-        target: device/OnePlus 7 Pro
 
 - alias: Vaccum - Daily cleanup at 10:00
   trigger:
@@ -44,11 +39,6 @@
     - service: vacuum.start
       entity_id: vacuum.xiaomi_vacuum_cleaner
     - service: script.vacuum_fan_medium
-    - service: notify.pushbullet
-      data:
-        title: Home Assistant
-        message: Roborock started Cleanup
-        target: device/OnePlus 7 Pro
 
 - alias: Vacuum - Notify cleanup finished
   trigger:
@@ -70,7 +60,7 @@
         {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'cleaning_time') }} minutes,
         Battery {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'battery_level') }} %
 
-- alias: Vacuum - Notify cleanup finished
+- alias: Vacuum - Notify on cleanup finished
   trigger:
     platform: state
     entity_id: vacuum.xiaomi_vacuum_cleaner
@@ -124,3 +114,15 @@
       title: Home Assistant
       target: device/OnePlus 7 Pro
       message: "Roborock Error: {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.error }}"
+
+- alias: Vacuum - Notify on cleanup start
+  trigger:
+    platform: state
+    entity_id: vacuum.xiaomi_vacuum_cleaner
+    to: cleaning
+  actions:
+    service: notify.pushbullet
+    data:
+      title: Home Assistant
+      message: Roborock started Cleanup
+      target: device/OnePlus 7 Pro

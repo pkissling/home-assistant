@@ -40,35 +40,18 @@
       entity_id: vacuum.xiaomi_vacuum_cleaner
     - service: script.vacuum_fan_medium
 
-- alias: Vacuum - Notify cleanup finished
-  trigger:
-    platform: state
-    entity_id: vacuum.xiaomi_vacuum_cleaner
-    to: returning
-  condition:
-    condition: state
-    entity_id: input_boolean.vacuum_notify_finish_on_dock
-    state: 'on'
-  action:
-    service: notify.pushbullet
-    data_template:
-      title: Home Assistant
-      target: device/OnePlus 7 Pro
-      message: >
-        Roborock finished Cleanup:
-        {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'cleaned_area') }} m²,
-        {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'cleaning_time') }} minutes,
-        Battery {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'battery_level') }} %
-
 - alias: Vacuum - Notify on cleanup finished
   trigger:
     platform: state
     entity_id: vacuum.xiaomi_vacuum_cleaner
     to: returning
   condition:
-    condition: state
-    entity_id: input_boolean.vacuum_notify_finish_on_return
-    state: 'on'
+    - condition: state
+      entity_id: input_boolean.vacuum_notify_finish_on_return
+      state: 'on'
+    - condition: state
+      entity_id: !secret person1_entity_id
+      state: not_home
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.vacuum_ran_today
@@ -92,7 +75,7 @@
     service: input_boolean.turn_off
     entity_id: input_boolean.vacuum_ran_today
 
-- alias: Vacuum - Trigger cleanup done
+- alias: Vacuum - Trigger cleanup done notification
   trigger:
     platform: state
     entity_id: vacuum.xiaomi_vacuum_cleaner
@@ -120,6 +103,10 @@
     platform: state
     entity_id: vacuum.xiaomi_vacuum_cleaner
     to: cleaning
+  condition:
+    condition: state
+    entity_id: !secret person1_entity_id
+    state: not_home
   action:
     service: notify.pushbullet
     data:

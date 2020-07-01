@@ -40,7 +40,7 @@
       entity_id: vacuum.xiaomi_vacuum_cleaner
     - service: script.vacuum_fan_medium
 
-- alias: Vacuum - Notify on cleanup finished
+- alias: Vacuum - Notify on cleanup finished when not home
   trigger:
     platform: state
     entity_id: vacuum.xiaomi_vacuum_cleaner
@@ -53,8 +53,6 @@
       entity_id: !secret person1_entity_id
       state: not_home
   action:
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.vacuum_ran_today
     - service: input_boolean.turn_off
       entity_id: input_boolean.vacuum_notify_finish_on_return
     - service: notify.pushbullet
@@ -67,6 +65,19 @@
           {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'cleaning_time') }} minutes,
           Battery {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'battery_level') }} %
 
+- alias: Vacuum - Don't notify when home
+  trigger:
+    platform: state
+    entity_id: vacuum.xiaomi_vacuum_cleaner
+    to: returning
+  condition:
+    condition: state
+    entity_id: group.residents
+    state: home
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.vacuum_notify_finish_on_return
+
 - alias: Vacuum - Reset Daily Cleanup Boolean
   trigger:
     platform: time
@@ -75,7 +86,7 @@
     service: input_boolean.turn_off
     entity_id: input_boolean.vacuum_ran_today
 
-- alias: Vacuum - Trigger cleanup done notification
+- alias: Vacuum - Trigger set states on cleanup done
   trigger:
     platform: state
     entity_id: vacuum.xiaomi_vacuum_cleaner
@@ -83,8 +94,10 @@
     for:
       minutes: 20
   action:
-    service: input_boolean.turn_on
-    entity_id: input_boolean.vacuum_notify_finish_on_return
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.vacuum_notify_finish_on_return
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.vacuum_ran_today
 
 - alias: Vacuum - Notify on error
   trigger:

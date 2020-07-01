@@ -1,8 +1,10 @@
+# My Home Assistant Configuration
+
 [![Build Status](https://travis-ci.org/pkissling/home-assistant.svg?branch=master)](https://travis-ci.org/pkissling/home-assistant)
 
-# My Home Assistant Configuration
 My personal configration for [Home Assistant](https://www.home-assistant.io) running in a [Docker container](https://www.home-assistant.io/docs/installation/docker/) on a [Synology DS418play](https://www.synology.com/en-global/products/DS418play).
 
+![Dashboard](/.screenshots/dashboard.png)
 
 ## HACS Plugins
 * [button-card](https://github.com/custom-cards/button-card)

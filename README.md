@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/pkissling/home-assistant.svg?branch=master)](https://travis-ci.org/pkissling/home-assistant)
 
-My personal configration for [Home Assistant](https://www.home-assistant.io) running in a [Docker container](https://www.home-assistant.io/docs/installation/docker/) on a [Synology DS418play](https://www.synology.com/en-global/products/DS418play).
+My personal configuration for [Home Assistant](https://www.home-assistant.io) running in a [Docker container](https://www.home-assistant.io/docs/installation/docker/) on [Synology DS418play](https://www.synology.com/en-global/products/DS418play).
 
 ![Dashboard](/.screenshots/dashboard.png)
 

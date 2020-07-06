@@ -72,7 +72,7 @@
     to: returning
   condition:
     condition: state
-    entity_id: group.residents
+    entity_id: !secret person1_entity_id
     state: home
   action:
     service: input_boolean.turn_off

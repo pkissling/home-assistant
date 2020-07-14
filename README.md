@@ -7,15 +7,14 @@ My personal configuration for [Home Assistant](https://www.home-assistant.io) ru
 ![Dashboard](/.screenshots/dashboard.png)
 
 ## HACS Plugins
+* [bar-card](https://github.com/custom-cards/bar-card)
 * [button-card](https://github.com/custom-cards/button-card)
+* [config-template-card](https://github.com/iantrich/config-template-card)
 * [custom-header](https://github.com/maykar/custom-header)
 * [lovelace-fold-entity-row](https://github.com/thomasloven/lovelace-fold-entity-row)
 * [mini-graph-card](https://github.com/kalkih/mini-graph-card)
 * [mini-media-player](https://github.com/kalkih/mini-media-player)
-* [simple-weather-card](https://github.com/kalkih/simple-weather-card)
-* [swipe-card](https://github.com/bramkragten/swipe-card)
-* [vertical-stack-in-card](https://github.com/ofekashery/vertical-stack-in-card)
-
+* [stack-in-card](https://github.com/custom-cards/stack-in-card)
 
 ## Hardware
 

@@ -101,7 +101,7 @@ views:
                     - height: 70px
               - color: '#30d257'
                 entity: switch.remote_ps4
-                icon: 'mdi:playstation'
+                icon: 'mdi:sony-playstation'
                 type: 'custom:button-card'
                 show_name: false
                 styles:

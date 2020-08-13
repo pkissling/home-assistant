@@ -1,0 +1,8 @@
+---
+
+host: 192.168.0.7
+turn_on_action:
+  service: wake_on_lan.send_magic_packet
+  data:
+    mac: !secret webostv_mac
+    broadcast_address: 192.168.0.7

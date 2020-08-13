@@ -41,6 +41,8 @@ My personal configuration for [Home Assistant](https://www.home-assistant.io) ru
 ### Vacuum Cleaner
 * [Roborock S50](https://en.roborock.com/pages/robot-vacuum-cleaner)
 
+### TV
+* [LG OLED 69E9](https://www.lg.com/uk/tvs/lg-OLED65E9)
 
 ## UI
 UI heavily influenced by [@basnijholt](https://github.com/basnijholt/home-assistant-config)

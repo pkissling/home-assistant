@@ -1,4 +1,0 @@
----
-
-- host: 192.168.0.20
-  api_key: !secret pi_hole_api_key

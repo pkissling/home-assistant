@@ -50,13 +50,13 @@
         data:
           entity_id: remote.living_room
 
-    remote_ps4:
-      value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'PS4') }}"
+    remote_smart_tv:
+      value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Smart TV') }}"
       turn_on:
         service: remote.turn_on
         data:
           entity_id: remote.living_room
-          activity: 19233680
+          activity: 45428615
       turn_off:
         service: remote.turn_off
         data:

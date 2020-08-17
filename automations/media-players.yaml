@@ -8,6 +8,8 @@
         is_state_attr('remote.living_room', 'current_activity', 'TV')
           or
         is_state_attr('remote.living_room', 'current_activity', 'Kodi')
+          or
+        is_state_attr('remote.living_room', 'current_activity', 'Smart TV')
       }}
   condition:
     condition: not

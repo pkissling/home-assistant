@@ -9,7 +9,7 @@ devices:
     name: Lightstrip
 
 custom_effects:
-  - name: 'Sunrise'
+  - name: sunrise
     flow_params:
       count: 1
       action: stay
@@ -17,7 +17,7 @@ custom_effects:
         - RGBTransition: [255, 162, 78, 50, 1]
         - RGBTransition: [255, 162, 78, 900000, 100]
 
-  - name: 'Sunset'
+  - name: sunset
     flow_params:
       count: 1
       action: 'off'

@@ -72,7 +72,7 @@
         - light.bedroom
         - light.living_room
       data:
-        effect: Sunrise
+        effect: sunrise
     - service: input_boolean.turn_off
       entity_id: input_boolean.alarm_turn_off_next
     - service: input_boolean.turn_off

@@ -15,7 +15,7 @@
         - light.living_room
         - light.bedroom
       data:
-        effect: Sunrise
+        effect: sunrise
 
 - alias: Lights - Turn off at 8 am
   trigger:
@@ -30,9 +30,9 @@
       after: sunrise
   action:
     - service: light.turn_on
-      entity_id: all
+      entity_id: light.all
       data:
-        effect: Sunset
+        effect: sunset
 
 - alias: Lights - Turn off after sunrise
   trigger:
@@ -47,9 +47,9 @@
       after: '08:00'
   action:
     - service: light.turn_on
-      entity_id: all
+      entity_id: light.all
       data:
-        effect: Sunset
+        effect: sunset
 
 - alias: Lights - Turn on when somebody came home
   trigger:
@@ -88,4 +88,4 @@
       after: '08:00:00'
   action:
     service: light.turn_off
-    entity_id: all
+    entity_id: light.all

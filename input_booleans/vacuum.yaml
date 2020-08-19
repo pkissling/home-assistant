@@ -1,5 +1,6 @@
 ---
 
+# Temp variable to track daily cleanup
 vacuum_ran_today:
 
 vacuum_daily_cleanup:
@@ -8,3 +9,6 @@ vacuum_daily_cleanup:
 
 # Temp variable to send notification on next dock
 vacuum_notify_finish_on_return:
+
+# Temp variable to reset input select
+vacuum_segment_cleanup:

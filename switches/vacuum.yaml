@@ -26,7 +26,7 @@
         - service: vacuum.pause
           data:
             entity_id: vacuum.xiaomi_vacuum_cleaner
-        - delay: '00:00:05'
+        - delay: '00:00:02'
         - service: vacuum.return_to_base
           data:
             entity_id: vacuum.xiaomi_vacuum_cleaner

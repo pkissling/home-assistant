@@ -2,26 +2,6 @@
 
 background: var(--background-image)
 
-resources:
-  - url: /hacsfiles/atomic-calendar-revive/atomic-calendar-revive.js
-    type: module
-  - url: /hacsfiles/bar-card/bar-card.js
-    type: module
-  - url: /hacsfiles/button-card/button-card.js
-    type: module
-  - url: /hacsfiles/config-template-card/config-template-card.js
-    type: module
-  - url: /hacsfiles/custom-header/custom-header.js
-    type: module
-  - url: /hacsfiles/lovelace-fold-entity-row/fold-entity-row.js
-    type: module
-  - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
-    type: module
-  - url: /hacsfiles/mini-media-player/mini-media-player-bundle.js
-    type: module
-  - url: /hacsfiles/stack-in-card/stack-in-card.js
-    type: js
-
 custom_header:
   background: 'rgba(155, 155, 155, 0.25)'
   compact_mode: false
@@ -214,6 +194,7 @@ views:
               - input_boolean.vacuum_daily_cleanup
               - entity: sensor.vacuum_battery
                 name: Battery
+              - input_select.vacuum_room_cleanup
           - type: horizontal-stack
             cards:
               - type: custom:button-card

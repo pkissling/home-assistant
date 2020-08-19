@@ -216,19 +216,27 @@ views:
                 name: Battery
           - type: horizontal-stack
             cards:
-              - icon: 'mdi:home'
+              - type: custom:button-card
+                icon: mdi:play
+                color: '#30d257'
+                show_name: false
+                entity: switch.vacuum_start
+                styles:
+                  card:
+                    - height: 40px
+              - type: custom:button-card
+                icon: mdi:home
                 show_name: false
                 entity: switch.vacuum_dock
-                type: 'custom:button-card'
                 color: '#30d257'
                 styles:
                   card:
                     - height: 40px
-              - type: 'custom:button-card'
-                icon: 'mdi:play'
+              - type: custom:button-card
+                icon: mdi:trash-can
                 color: '#30d257'
                 show_name: false
-                entity: switch.vacuum_start
+                entity: switch.vacuum_dust_bin
                 styles:
                   card:
                     - height: 40px

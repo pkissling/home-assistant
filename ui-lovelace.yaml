@@ -386,3 +386,4 @@ views:
         showWeekDay: true
         showMonth: true
         showLocation: false
+        showLoader: false

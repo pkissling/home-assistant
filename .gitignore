@@ -1,5 +1,6 @@
 # Dotfiles
 .cloud/
+.google.token
 .homekit.state
 .pip_progress
 .storage/
@@ -14,6 +15,7 @@
 *.swp
 
 # Files
+google_calendars.yaml
 known_devices.yaml
 secrets.yaml
 

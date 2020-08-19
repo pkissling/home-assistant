@@ -3,6 +3,8 @@
 background: var(--background-image)
 
 resources:
+  - url: /hacsfiles/atomic-calendar-revive/atomic-calendar-revive.js
+    type: module
   - url: /hacsfiles/bar-card/bar-card.js
     type: module
   - url: /hacsfiles/button-card/button-card.js
@@ -374,3 +376,13 @@ views:
           decimal: 1
           positions:
             name: off  # yamllint disable-line rule:truthy
+
+      # Calendar
+      - type: custom:atomic-calendar-revive
+        name: Calendar
+        entities:
+          - calendar.s_p
+          - calendar.holidays_in_germany
+        showWeekDay: true
+        showMonth: true
+        showLocation: false

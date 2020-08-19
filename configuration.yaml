@@ -26,6 +26,7 @@ script: !include_dir_merge_named scripts
 
 # Include 'includes' dir yamls
 device_tracker: !include includes/device_trackers.yaml
+google: !include includes/google.yaml
 light: !include includes/lights.yaml
 notify: !include includes/notify.yaml
 synology_dsm: !include includes/synology_dsm.yaml

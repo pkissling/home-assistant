@@ -7,6 +7,7 @@ My personal configuration for [Home Assistant](https://www.home-assistant.io) ru
 ![Dashboard](/.screenshots/dashboard.png)
 
 ## HACS Plugins
+* [atomic-calendar-revivie](https://github.com/marksie1988/atomic-calendar-revive)
 * [bar-card](https://github.com/custom-cards/bar-card)
 * [button-card](https://github.com/custom-cards/button-card)
 * [config-template-card](https://github.com/iantrich/config-template-card)

@@ -1,0 +1,10 @@
+---
+
+sensor.kodi_cpu_temp:
+  icon: mdi:thermometer
+
+sensor.kodi_cpu_usage:
+  icon: mdi:chip
+
+sensor.kodi_memory_usage:
+  icon: mdi:memory

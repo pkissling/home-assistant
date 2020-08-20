@@ -1,0 +1,9 @@
+---
+
+- platform: ping
+  name: kodi_ping
+  host: libreelec
+
+- platform: command_line
+  name: kodi_healthcheck
+  command: curl -m 3 -s libreelec:8080/ > /dev/null && echo ON || echo OFF

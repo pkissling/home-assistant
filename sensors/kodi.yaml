@@ -1,0 +1,21 @@
+---
+
+- platform: command_line
+  name: Kodi CPU Temp
+  command: ssh root@libreelec /bin/cat /sys/class/thermal/thermal_zone0/temp
+  unit_of_measurement: "ºC"
+  value_template: '{{ value | multiply(0.001) }}'
+
+- platform: command_line
+  name: Kodi Uptime
+  command: ssh root@libreelec /usr/bin/uptime | sed 's/.*up \([^,]*\), .*/\1/'
+
+- platform: command_line
+  name: Kodi Memory Usage
+  command: ssh root@libreelec echo $(($(cat /proc/meminfo | grep MemFree | awk '{print $2}') * 100 / $(cat /proc/meminfo | grep MemTotal | awk '{print $2}')))
+  unit_of_measurement: "%"
+
+- platform: command_line
+  name: Kodi CPU Usage
+  command: ssh root@libreelec mpstat | awk 'NR > 3 {print 100 - $11}'
+  unit_of_measurement: "%"

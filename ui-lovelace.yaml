@@ -9,7 +9,7 @@ custom_header:
     options: '{{ hours24 }}:{{ minutesLZ }}'
 
 views:
-  - id: 0
+  - id: home
     name: Home
     icon: mdi:home
     cards:
@@ -258,7 +258,8 @@ views:
         show_empty: false
 
       # People at home
-      - type: entities
+      - type: glance
+        show_name: false
         entities:
           - !secret person1_entity_id
           - !secret person2_entity_id
@@ -278,31 +279,6 @@ views:
             head:
               entity: switch.alarm
           - entity: input_datetime.wakeup_time
-
-      # Synology
-      - type: custom:stack-in-card
-        mode: vertical
-        cards:
-          - type: horizontal-stack
-            cards:
-              - type: custom:mini-graph-card
-                entities:
-                  - sensor.synology_cpu_load_total
-                name: CPU
-                show:
-                  points: false
-                  labels: false
-              - type: custom:mini-graph-card
-                entities:
-                  - sensor.synology_memory_usage_real
-                name: Memory
-                show:
-                  points: false
-                  labels: false
-          - type: custom:bar-card
-            entity: sensor.synology_volume_used_volume_2
-            positions:
-              name: off  # yamllint disable-line rule:truthy
 
       # Temperature
       - type: custom:config-template-card
@@ -377,6 +353,78 @@ views:
         showLocation: false
         showLoader: false
 
+  - id: monitoring
+    name: Monitoring
+    icon: mdi:server-security
+    cards:
+
+      # Pi-hole monitoring
+      - type: custom:stack-in-card
+        mode: vertical
+        title: Pi-hole
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.pi_hole_cpu_temp
+                decimals: 0
+                show:
+                  points: false
+                  labels: false
+                  name: false
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.pi_hole_cpu_usage
+                decimals: 0
+                show:
+                  points: false
+                  labels: false
+                  name: false
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.pi_hole_memory_usage
+                decimals: 0
+                show:
+                  points: false
+                  labels: false
+                  name: false
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                entity: binary_sensor.pi_hole_healthcheck
+                show_name: false
+                state:
+                  - value: 'off'
+                    color: '#ff8c8a'
+                    icon: mdi:heart-broken
+                  - value: 'on'
+                    color: var(--switch-checked-color)
+                    icon: mdi:heart
+                styles:
+                  card:
+                    - height: 72px
+              - type: custom:button-card
+                entity: sensor.pi_hole_uptime
+                show_name: false
+                show_state: true
+                show_icon: false
+                styles:
+                  card:
+                    - height: 72px
+              - type: custom:button-card
+                entity: binary_sensor.pi_hole_ping
+                show_name: false
+                state:
+                  - value: 'off'
+                    color: '#ff8c8a'
+                    icon: mdi:lan-disconnect
+                  - value: 'on'
+                    color: var(--switch-checked-color)
+                    icon: mdi:lan-connect
+                styles:
+                  card:
+                    - height: 72px
 
       # Kodi monitoring
       - type: custom:stack-in-card
@@ -445,3 +493,42 @@ views:
                 styles:
                   card:
                     - height: 72px
+
+      # Synology
+      - type: custom:stack-in-card
+        title: Synology
+        mode: vertical
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.synology_temp_1
+                  - sensor.synology_temp_2
+                  - sensor.synology_temp_4
+                show:
+                  points: false
+                  labels: false
+                  name: false
+                  legend: false
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.synology_cpu_load_total
+                show:
+                  points: false
+                  labels: false
+                  name: false
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.synology_memory_usage_real
+                show:
+                  points: false
+                  labels: false
+                  name: false
+          - type: custom:bar-card
+            entity: sensor.synology_volume_used_volume_2
+            positions:
+              name: off  # yamllint disable-line rule:truthy
+          - type: entities
+            entities:
+              - sensor.synology_uptime

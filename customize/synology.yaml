@@ -1,0 +1,5 @@
+---
+
+sensor.synology_uptime:
+  friendly_name: Uptime
+  icon: mdi:clock-check-outline

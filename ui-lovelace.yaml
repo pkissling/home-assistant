@@ -258,8 +258,7 @@ views:
         show_empty: false
 
       # People at home
-      - type: glance
-        show_name: false
+      - type: entities
         entities:
           - !secret person1_entity_id
           - !secret person2_entity_id
@@ -494,18 +493,18 @@ views:
                   card:
                     - height: 72px
 
-      # Synology
+      # Diskstation
       - type: custom:stack-in-card
-        title: Synology
+        title: Diskstation
         mode: vertical
         cards:
           - type: horizontal-stack
             cards:
               - type: custom:mini-graph-card
                 entities:
-                  - sensor.synology_temp_1
-                  - sensor.synology_temp_2
-                  - sensor.synology_temp_4
+                  - sensor.diskstation_temp_1
+                  - sensor.diskstation_temp_2
+                  - sensor.diskstation_temp_4
                 show:
                   points: false
                   labels: false
@@ -513,22 +512,22 @@ views:
                   legend: false
               - type: custom:mini-graph-card
                 entities:
-                  - sensor.synology_cpu_load_total
+                  - sensor.diskstation_cpu_load_total
                 show:
                   points: false
                   labels: false
                   name: false
               - type: custom:mini-graph-card
                 entities:
-                  - sensor.synology_memory_usage_real
+                  - sensor.diskstation_memory_usage_real
                 show:
                   points: false
                   labels: false
                   name: false
           - type: custom:bar-card
-            entity: sensor.synology_volume_used_volume_2
+            entity: sensor.diskstation_volume_2_volume_used
             positions:
               name: off  # yamllint disable-line rule:truthy
           - type: entities
             entities:
-              - sensor.synology_uptime
+              - sensor.diskstation_uptime

@@ -1,5 +1,5 @@
 ---
 
-sensor.synology_uptime:
+sensor.diskstation_uptime:
   friendly_name: Uptime
   icon: mdi:clock-check-outline

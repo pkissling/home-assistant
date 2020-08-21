@@ -3,7 +3,7 @@
 - platform: snmp
   host: diskstation
   community: public
-  name: Synology Uptime
+  name: Diskstation Uptime
   baseoid: 1.3.6.1.2.1.25.1.1.0
   value_template: >
     {%- set time = value | int // 100 %}
@@ -16,19 +16,19 @@
     {{ 'Less than 1 min' if time < 60 else days + hours + minutes }}
 
 - platform: command_line
-  name: Synology Temp 1
+  name: Diskstation Temp 1
   command: cat /hwmon/temp1_input
   unit_of_measurement: "ºC"
   value_template: '{{ value | multiply(0.001) }}'
 
 - platform: command_line
-  name: Synology Temp 2
+  name: Diskstation Temp 2
   command: cat /hwmon/temp2_input
   unit_of_measurement: "ºC"
   value_template: '{{ value | multiply(0.001) }}'
 
 - platform: command_line
-  name: Synology Temp 4
+  name: Diskstation Temp 4
   command: cat /hwmon/temp4_input
   unit_of_measurement: "ºC"
   value_template: '{{ value | multiply(0.001) }}'

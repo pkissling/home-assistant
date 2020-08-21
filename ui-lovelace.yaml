@@ -4,7 +4,7 @@ background: var(--background-image)
 
 custom_header:
   background: 'rgba(155, 155, 155, 0.25)'
-  compact_mode: false
+  compact_mode: true
   button_text:
     options: '{{ hours24 }}:{{ minutesLZ }}'
 

@@ -1,0 +1,180 @@
+---
+
+- path: monitoring
+  icon: mdi:server-security
+  cards:
+
+    # Pi-hole
+    - type: custom:stack-in-card
+      mode: vertical
+      title: Pi-hole
+      cards:
+        - type: horizontal-stack
+          cards:
+            - type: custom:mini-graph-card
+              entities:
+                - sensor.pi_hole_cpu_temp
+              decimals: 0
+              show:
+                points: false
+                labels: false
+                name: false
+            - type: custom:mini-graph-card
+              entities:
+                - sensor.pi_hole_cpu_usage
+              decimals: 0
+              show:
+                points: false
+                labels: false
+                name: false
+            - type: custom:mini-graph-card
+              entities:
+                - sensor.pi_hole_memory_usage
+              decimals: 0
+              show:
+                points: false
+                labels: false
+                name: false
+        - type: horizontal-stack
+          cards:
+            - type: custom:button-card
+              entity: binary_sensor.pi_hole_healthcheck
+              show_name: false
+              state:
+                - value: 'off'
+                  color: '#ff8c8a'
+                  icon: mdi:heart-broken
+                - value: 'on'
+                  color: var(--switch-checked-color)
+                  icon: mdi:heart
+              styles:
+                card:
+                  - height: 72px
+            - type: custom:button-card
+              entity: sensor.pi_hole_uptime
+              show_name: false
+              show_state: true
+              show_icon: false
+              styles:
+                card:
+                  - height: 72px
+            - type: custom:button-card
+              entity: binary_sensor.pi_hole_ping
+              show_name: false
+              state:
+                - value: 'off'
+                  color: '#ff8c8a'
+                  icon: mdi:lan-disconnect
+                - value: 'on'
+                  color: var(--switch-checked-color)
+                  icon: mdi:lan-connect
+              styles:
+                card:
+                  - height: 72px
+
+    # Kodi
+    - type: custom:stack-in-card
+      mode: vertical
+      title: Kodi
+      cards:
+        - type: horizontal-stack
+          cards:
+            - type: custom:mini-graph-card
+              entities:
+                - sensor.kodi_cpu_temp
+              decimals: 0
+              show:
+                points: false
+                labels: false
+                name: false
+            - type: custom:mini-graph-card
+              entities:
+                - sensor.kodi_cpu_usage
+              decimals: 0
+              show:
+                points: false
+                labels: false
+                name: false
+            - type: custom:mini-graph-card
+              entities:
+                - sensor.kodi_memory_usage
+              decimals: 0
+              show:
+                points: false
+                labels: false
+                name: false
+        - type: horizontal-stack
+          cards:
+            - type: custom:button-card
+              entity: binary_sensor.kodi_healthcheck
+              show_name: false
+              state:
+                - value: 'off'
+                  color: '#ff8c8a'
+                  icon: mdi:heart-broken
+                - value: 'on'
+                  color: var(--switch-checked-color)
+                  icon: mdi:heart
+              styles:
+                card:
+                  - height: 72px
+            - type: custom:button-card
+              entity: sensor.kodi_uptime
+              show_name: false
+              show_state: true
+              show_icon: false
+              styles:
+                card:
+                  - height: 72px
+            - type: custom:button-card
+              entity: binary_sensor.kodi_ping
+              show_name: false
+              state:
+                - value: 'off'
+                  color: '#ff8c8a'
+                  icon: mdi:lan-disconnect
+                - value: 'on'
+                  color: var(--switch-checked-color)
+                  icon: mdi:lan-connect
+              styles:
+                card:
+                  - height: 72px
+
+    # Diskstation
+    - type: custom:stack-in-card
+      title: Diskstation
+      mode: vertical
+      cards:
+        - type: horizontal-stack
+          cards:
+            - type: custom:mini-graph-card
+              entities:
+                - sensor.diskstation_temp_1
+                - sensor.diskstation_temp_2
+                - sensor.diskstation_temp_4
+              show:
+                points: false
+                labels: false
+                name: false
+                legend: false
+            - type: custom:mini-graph-card
+              entities:
+                - sensor.diskstation_cpu_load_total
+              show:
+                points: false
+                labels: false
+                name: false
+            - type: custom:mini-graph-card
+              entities:
+                - sensor.diskstation_memory_usage_real
+              show:
+                points: false
+                labels: false
+                name: false
+        - type: custom:bar-card
+          entity: sensor.diskstation_volume_2_volume_used
+          positions:
+            name: off  # yamllint disable-line rule:truthy
+        - type: entities
+          entities:
+            - sensor.diskstation_uptime

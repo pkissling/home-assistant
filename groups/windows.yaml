@@ -3,36 +3,36 @@
 window_bedroom:
   icon: mdi:bed-king-outline
   entities:
-    - binary_sensor.window_sensor_bedroom_left
-    - binary_sensor.window_sensor_bedroom_right
+    - binary_sensor.window_bedroom_left
+    - binary_sensor.window_bedroom_right
 
 window_bathroom:
   icon: mdi:shower
   entities:
-    - binary_sensor.window_sensor_bathroom
+    - binary_sensor.window_bathroom
 
 window_kitchen:
   icon: mdi:stove
   entities:
-    - binary_sensor.window_sensor_kitchen
+    - binary_sensor.window_kitchen
 
 window_living_room:
   icon: mdi:sofa
   entities:
-    - binary_sensor.window_sensor_living_room
+    - binary_sensor.window_living_room
 
 window_study:
   icon: mdi:desk-lamp
   entities:
-    - binary_sensor.window_sensor_study_right_r
-    - binary_sensor.window_sensor_study_right_l
-    - binary_sensor.window_sensor_study_left_r
-    - binary_sensor.window_sensor_study_left_l
+    - binary_sensor.window_study_right_r
+    - binary_sensor.window_study_right_l
+    - binary_sensor.window_study_left_r
+    - binary_sensor.window_study_left_l
 
 window_toilet:
   icon: mdi:toilet
   entities:
-    - binary_sensor.window_sensor_toilet
+    - binary_sensor.window_toilet
 
 window_living_room_and_kitchen:
   entities:

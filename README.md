@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/pkissling/home-assistant.svg?branch=master)](https://travis-ci.org/pkissling/home-assistant)
 
-My personal configuration for [Home Assistant](https://www.home-assistant.io) running in a [Docker container](https://www.home-assistant.io/docs/installation/docker/) on [Synology DS418play](https://www.synology.com/en-global/products/DS418play).
+My personal configuration for [Home Assistant](https://www.home-assistant.io) running in a [Docker container](https://www.home-assistant.io/docs/installation/docker/) on [Raspberry Pi 4 Model B](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/).
 
 ![Dashboard](/.screenshots/dashboard.png)
 
@@ -24,7 +24,7 @@ My personal configuration for [Home Assistant](https://www.home-assistant.io) ru
 * [Tado](https://www.tado.com/de-en/products/smart-radiator-starter-kit)
 
 ### Docker Host
-* [Synology DS418play](https://www.synology.com/en-global/products/DS418play)
+* [Raspberry Pi 4 Model B](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/)
 
 ### Gateway
 * [Conbee II Zigbee USB Gateway](https://phoscon.de/en/conbee2)

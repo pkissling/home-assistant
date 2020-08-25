@@ -1,0 +1,3 @@
+---
+
+db_url: !secret recorder_db_url

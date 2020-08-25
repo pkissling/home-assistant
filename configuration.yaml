@@ -30,6 +30,7 @@ device_tracker: !include includes/device_trackers.yaml
 google: !include includes/google.yaml
 light: !include includes/lights.yaml
 notify: !include includes/notify.yaml
+recorder: !include includes/recorder.yaml
 synology_dsm: !include includes/synology_dsm.yaml
 tado: !include includes/tado.yaml
 vacuum: !include includes/vacuum.yaml

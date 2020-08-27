@@ -23,6 +23,8 @@
               entities:
                 - sensor.pi_hole_cpu_usage
               decimals: 0
+              lower_bound: 0
+              upper_bound: 100
               show:
                 points: false
                 labels: false
@@ -31,57 +33,27 @@
               entities:
                 - sensor.pi_hole_memory_usage
               decimals: 0
+              lower_bound: 0
+              upper_bound: 100
               show:
                 points: false
                 labels: false
                 name: false
-        - type: horizontal-stack
-          cards:
-            - type: custom:button-card
-              entity: binary_sensor.pi_hole_healthcheck
-              show_name: false
-              state:
-                - value: 'off'
-                  color: '#ff8c8a'
-                  icon: mdi:heart-broken
-                - value: 'on'
-                  color: var(--switch-checked-color)
-                  icon: mdi:heart
-              styles:
-                card:
-                  - height: 72px
-            - type: custom:button-card
-              entity: sensor.pi_hole_uptime
-              show_name: false
-              show_state: true
-              show_icon: false
-              styles:
-                card:
-                  - height: 72px
-            - type: custom:button-card
-              entity: binary_sensor.pi_hole_ping
-              show_name: false
-              state:
-                - value: 'off'
-                  color: '#ff8c8a'
-                  icon: mdi:lan-disconnect
-                - value: 'on'
-                  color: var(--switch-checked-color)
-                  icon: mdi:lan-connect
-              styles:
-                card:
-                  - height: 72px
+        - type: entities
+          entities:
+            - binary_sensor.pi_hole_healthcheck
+            - sensor.pi_hole_uptime
 
-    # Kodi
+    # HA
     - type: custom:stack-in-card
       mode: vertical
-      title: Kodi
+      title: Home Assistant
       cards:
         - type: horizontal-stack
           cards:
             - type: custom:mini-graph-card
               entities:
-                - sensor.kodi_cpu_temp
+                - sensor.ha_cpu_temp
               decimals: 0
               show:
                 points: false
@@ -89,56 +61,27 @@
                 name: false
             - type: custom:mini-graph-card
               entities:
-                - sensor.kodi_cpu_usage
+                - sensor.ha_cpu_usage
               decimals: 0
+              lower_bound: 0
+              upper_bound: 100
               show:
                 points: false
                 labels: false
                 name: false
             - type: custom:mini-graph-card
               entities:
-                - sensor.kodi_memory_usage
+                - sensor.ha_memory_usage
               decimals: 0
+              lower_bound: 0
+              upper_bound: 100
               show:
                 points: false
                 labels: false
                 name: false
-        - type: horizontal-stack
-          cards:
-            - type: custom:button-card
-              entity: binary_sensor.kodi_healthcheck
-              show_name: false
-              state:
-                - value: 'off'
-                  color: '#ff8c8a'
-                  icon: mdi:heart-broken
-                - value: 'on'
-                  color: var(--switch-checked-color)
-                  icon: mdi:heart
-              styles:
-                card:
-                  - height: 72px
-            - type: custom:button-card
-              entity: sensor.kodi_uptime
-              show_name: false
-              show_state: true
-              show_icon: false
-              styles:
-                card:
-                  - height: 72px
-            - type: custom:button-card
-              entity: binary_sensor.kodi_ping
-              show_name: false
-              state:
-                - value: 'off'
-                  color: '#ff8c8a'
-                  icon: mdi:lan-disconnect
-                - value: 'on'
-                  color: var(--switch-checked-color)
-                  icon: mdi:lan-connect
-              styles:
-                card:
-                  - height: 72px
+        - type: entities
+          entities:
+            - sensor.ha_uptime
 
     # Diskstation
     - type: custom:stack-in-card
@@ -160,6 +103,8 @@
             - type: custom:mini-graph-card
               entities:
                 - sensor.diskstation_cpu_load_total
+              lower_bound: 0
+              upper_bound: 100
               show:
                 points: false
                 labels: false
@@ -167,6 +112,8 @@
             - type: custom:mini-graph-card
               entities:
                 - sensor.diskstation_memory_usage_real
+              lower_bound: 0
+              upper_bound: 100
               show:
                 points: false
                 labels: false

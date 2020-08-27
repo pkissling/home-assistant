@@ -1,0 +1,14 @@
+---
+
+sensor.ha_cpu_temp:
+  icon: mdi:thermometer
+
+sensor.ha_cpu_usage:
+  icon: mdi:chip
+
+sensor.ha_memory_usage:
+  icon: mdi:memory
+
+sensor.ha_uptime:
+  friendly_name: Uptime
+  icon: mdi:clock-check-outline

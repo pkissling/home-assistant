@@ -8,3 +8,11 @@ sensor.pi_hole_cpu_usage:
 
 sensor.pi_hole_memory_usage:
   icon: mdi:memory
+
+sensor.pi_hole_uptime:
+  friendly_name: Uptime
+  icon: mdi:clock-check-outline
+
+binary_sensor.pi_hole_healthcheck:
+  friendly_name: Healthcheck
+  icon: mdi:heart

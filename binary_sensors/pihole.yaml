@@ -6,4 +6,5 @@
 
 - platform: command_line
   name: pi_hole_healthcheck
-  command: curl -m 3 -s http://pihole/admin/api.php?summary > /dev/null && echo ON || echo OFF
+  device_class: connectivity
+  command: 'nslookup google.com pihole > /dev/null && echo ON || echo OFF'

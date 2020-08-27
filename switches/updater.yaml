@@ -1,0 +1,6 @@
+---
+
+- platform: command_line
+  switches:
+    updater:
+      command_on: "ssh pi@home-assistant 'COMPOSE_HTTP_TIMEOUT=300 docker-compose -f /home/pi/diskstation/raspberry-utilities/docker/docker-compose.yaml pull home-assistant && docker-compose -f /home/pi/diskstation/raspberry-utilities/docker/docker-compose.yaml up -d home-assistant'"

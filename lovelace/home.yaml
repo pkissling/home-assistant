@@ -4,6 +4,24 @@
   icon: mdi:home
   cards:
 
+    # HA update
+    - type: conditional
+      card:
+        type: custom:config-template-card
+        entities:
+          - binary_sensor.updater
+        card:
+          type: button
+          name: "${states['binary_sensor.updater'].attributes.newest_version}"
+          tap_action:
+            action: call-service
+            service: switch.turn_on
+            service_data:
+              entity_id: switch.updater
+      conditions:
+        - entity: binary_sensor.updater
+          state: 'on'
+
     # Lights
     - type: entities
       entities:

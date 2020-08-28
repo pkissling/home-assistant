@@ -1,21 +1,7 @@
 ---
 
-- platform: command_line
-  name: Pi-hole CPU Temp
-  command: ssh homeassistant@pihole /bin/cat /sys/class/thermal/thermal_zone0/temp
-  unit_of_measurement: "ºC"
-  value_template: '{{ value | multiply(0.001) }}'
-
-- platform: command_line
+- platform: rest
+  resource: http://pihole:61208/api/3/uptime
   name: Pi-hole Uptime
-  command: ssh homeassistant@pihole /usr/bin/uptime | sed 's/.*up \([^,]*\), .*/\1/'
-
-- platform: command_line
-  name: Pi-hole Memory Usage
-  command: ssh homeassistant@pihole echo $(($(cat /proc/meminfo | grep MemFree | awk '{print $2}') * 100 / $(cat /proc/meminfo | grep MemTotal | awk '{print $2}')))
-  unit_of_measurement: "%"
-
-- platform: command_line
-  name: Pi-hole CPU Usage
-  command: ssh homeassistant@pihole top -bn1 | grep 'Cpu(s)' | sed 's/.*, *\([0-9.]*\)%* id.*/\1/' | awk '{print 100 - $1}'
-  unit_of_measurement: "%"
+  value_template: '{{ value_json }}'
+  scan_interval: 60

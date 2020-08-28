@@ -1,6 +1,0 @@
----
-
-- host: diskstation
-  port: 5551
-  username: !secret synology_username
-  password: !secret synology_password

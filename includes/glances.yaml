@@ -1,0 +1,10 @@
+---
+
+- host: pihole
+  name: Pi-hole
+
+- host: diskstation
+  name: Diskstation
+
+- host: localhost
+  name: Home-Assistant

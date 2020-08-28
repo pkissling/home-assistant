@@ -6,4 +6,3 @@ sensor.pi_hole_uptime:
 
 binary_sensor.pi_hole_healthcheck:
   friendly_name: Healthcheck
-  icon: mdi:heart

@@ -21,17 +21,15 @@
             - type: custom:mini-graph-card
               entities:
                 - sensor.pi_hole_cpu_used
-              lower_bound: 0
-              upper_bound: 100
+                - sensor.pi_hole_cpu_load
               show:
                 points: false
                 labels: false
                 name: false
+                legend: false
             - type: custom:mini-graph-card
               entities:
                 - sensor.pi_hole_ram_used_percent
-              lower_bound: 0
-              upper_bound: 100
               show:
                 points: false
                 labels: false
@@ -62,17 +60,15 @@
             - type: custom:mini-graph-card
               entities:
                 - sensor.home_assistant_cpu_used
-              lower_bound: 0
-              upper_bound: 100
+                - sensor.home_assistant_cpu_load
               show:
                 points: false
                 labels: false
                 name: false
+                legend: false
             - type: custom:mini-graph-card
               entities:
                 - sensor.home_assistant_ram_used_percent
-              lower_bound: 0
-              upper_bound: 100
               show:
                 points: false
                 labels: false
@@ -105,17 +101,15 @@
             - type: custom:mini-graph-card
               entities:
                 - sensor.diskstation_cpu_used
-              lower_bound: 0
-              upper_bound: 100
+                - sensor.diskstation_cpu_load
               show:
                 points: false
                 labels: false
                 name: false
+                legend: false
             - type: custom:mini-graph-card
               entities:
                 - sensor.diskstation_ram_used_percent
-              lower_bound: 0
-              upper_bound: 100
               show:
                 points: false
                 labels: false

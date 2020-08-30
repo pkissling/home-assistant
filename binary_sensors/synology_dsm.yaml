@@ -1,0 +1,5 @@
+---
+
+- platform: ping
+  host: diskstation
+  name: Diskstation Ping

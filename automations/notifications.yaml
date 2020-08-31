@@ -250,16 +250,30 @@
       message: Thermostat in Kitchen on and window open.
       target: device/OnePlus 7 Pro
 
-- alias: Notification - Device Tracker not working when Residents home for 2 days
+- alias: Notification - Device Tracker not working when Person 1 not home for 2 days
   trigger:
     platform: state
-    entity_id: group.residents
-    to: home
+    entity_id: !secret person1_entity_id
+    to: not_home
     for:
       days: 2
   action:
     service: notify.pushbullet
     data_template:
       title: Home Assistant
-      message: Residents state has been 'home' for 2 days sraight. Please check device tracker settings.
+      message: Person 1 state has been 'not_home' for 2 days sraight. Please check device tracker settings.
+      target: device/OnePlus 7 Pro
+
+- alias: Notification - Device Tracker not working when Person 2 not home for 2 days
+  trigger:
+    platform: state
+    entity_id: !secret person2_entity_id
+    to: not_home
+    for:
+      days: 2
+  action:
+    service: notify.pushbullet
+    data_template:
+      title: Home Assistant
+      message: Person 2 state has been 'not_home' for 2 days sraight. Please check device tracker settings.
       target: device/OnePlus 7 Pro

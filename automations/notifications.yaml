@@ -250,30 +250,38 @@
       message: Thermostat in Kitchen on and window open.
       target: device/OnePlus 7 Pro
 
-- alias: Notification - Device Tracker not working when Person 1 not home for 2 days
+- alias: Notification - Device Tracker not working for Patrick
   trigger:
-    platform: state
-    entity_id: person.patrick
-    to: not_home
+    platform: template
+    value_template: >
+      {{
+        is_state('device_tracker.tado_patrick_oneplus7pro', 'not_home')
+          and
+        is_state('device_tracker.wifi_patrick_oneplus7pro', 'home')
+      }}
     for:
-      days: 2
+      hours: 1
   action:
     service: notify.pushbullet
     data_template:
       title: Home Assistant
-      message: Person 1 state has been 'not_home' for 2 days sraight. Please check device tracker settings.
+      message: Patrick's device tracker is out of sync
       target: device/OnePlus 7 Pro
 
-- alias: Notification - Device Tracker not working when Person 2 not home for 2 days
+- alias: Notification - Device Tracker not working for Sandra
   trigger:
-    platform: state
-    entity_id: person.sandra
-    to: not_home
+    platform: template
+    value_template: >
+      {{
+        is_state('device_tracker.tado_sandra_iphone', 'not_home')
+          and
+        is_state('device_tracker.wifi_sandra_iphone', 'home')
+      }}
     for:
-      days: 2
+      hours: 1
   action:
     service: notify.pushbullet
     data_template:
       title: Home Assistant
-      message: Person 2 state has been 'not_home' for 2 days sraight. Please check device tracker settings.
+      message: Sandra's device tracker is out of sync
       target: device/OnePlus 7 Pro

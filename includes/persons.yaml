@@ -1,13 +1,13 @@
 ---
 
-- name: !secret person1_name
+- name: Patrick
   id: 7aa7dc0964ff44c7b2ccc5be75d654bd
   device_trackers:
-  - !secret person1_device_tracker_wifi
-  - !secret person1_device_tracker_tado
+  - device_tracker.wifi_patrick_oneplus7pro
+  - device_tracker.tado_patrick_oneplus7pro
 
-- name: !secret person2_name
+- name: Sandra
   id: 7aa7dc0964ff44c7b2ccc5be75d651bd
   device_trackers:
-  - !secret person2_device_tracker_wifi
-  - !secret person2_device_tracker_tado
+  - device_tracker.wifi_sandra_iphone
+  - device_tracker.tado_sandra_iphone

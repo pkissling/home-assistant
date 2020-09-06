@@ -50,7 +50,7 @@
       entity_id: input_boolean.vacuum_notify_finish_on_return
       state: 'on'
     - condition: state
-      entity_id: !secret person1_entity_id
+      entity_id: person.patrick
       state: not_home
   action:
     - service: input_boolean.turn_off
@@ -72,7 +72,7 @@
     to: returning
   condition:
     condition: state
-    entity_id: !secret person1_entity_id
+    entity_id: person.patrick
     state: home
   action:
     service: input_boolean.turn_off
@@ -118,7 +118,7 @@
     to: cleaning
   condition:
     condition: state
-    entity_id: !secret person1_entity_id
+    entity_id: person.patrick
     state: not_home
   action:
     service: notify.pushbullet

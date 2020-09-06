@@ -1,6 +1,6 @@
 ---
 
-!secret person1_entity_id:
+person.patrick:
   icon: mdi:human-male
-!secret person2_entity_id:
+person.sandra:
   icon: mdi:human-female

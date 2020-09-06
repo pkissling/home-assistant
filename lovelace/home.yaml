@@ -268,8 +268,8 @@
     # People at home
     - type: entities
       entities:
-        - !secret person1_entity_id
-        - !secret person2_entity_id
+        - person.patrick
+        - person.sandra
 
     # Alarm Clock
     - type: entities

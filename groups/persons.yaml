@@ -3,5 +3,5 @@
 residents:
   name: Residents
   entities:
-    - !secret person1_entity_id
-    - !secret person2_entity_id
+    - person.patrick
+    - person.sandra

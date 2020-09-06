@@ -253,7 +253,7 @@
 - alias: Notification - Device Tracker not working when Person 1 not home for 2 days
   trigger:
     platform: state
-    entity_id: !secret person1_entity_id
+    entity_id: person.patrick
     to: not_home
     for:
       days: 2
@@ -267,7 +267,7 @@
 - alias: Notification - Device Tracker not working when Person 2 not home for 2 days
   trigger:
     platform: state
-    entity_id: !secret person2_entity_id
+    entity_id: person.sandra
     to: not_home
     for:
       days: 2

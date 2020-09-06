@@ -4,7 +4,8 @@
 
 My personal configuration for [Home Assistant](https://www.home-assistant.io) running in a [Docker container](https://www.home-assistant.io/docs/installation/docker/) on [Raspberry Pi 4 Model B](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/).
 
-![Dashboard](/.screenshots/dashboard.png)
+![Home](/.screenshots/home.png)
+![Monitoring](/.screenshots/monitoring.png)
 
 ## HACS Plugins
 * [atomic-calendar-revivie](https://github.com/marksie1988/atomic-calendar-revive)

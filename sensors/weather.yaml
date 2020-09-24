@@ -1,5 +1,0 @@
----
-
-- platform: yr
-  monitored_conditions:
-    - precipitation

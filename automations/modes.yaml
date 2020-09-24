@@ -4,13 +4,11 @@
   trigger:
     platform: state
     entity_id: media_player.study
-    from: 'off'
   condition:
     - condition: state
       entity_id: input_boolean.guest_mode
       state: 'on'
-    - condition: template
-      value_template: "{{ not is_state_attr('media_player.study', 'is_volume_muted', true) }}"
+    - "{{ not is_state_attr('media_player.study', 'is_volume_muted', true) }}"
   action:
     service: media_player.volume_mute
     entity_id: media_player.study

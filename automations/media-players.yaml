@@ -2,15 +2,14 @@
 
 - alias: Media Player - Stop casting on Home Group when TV on
   trigger:
-    platform: template
-    value_template: >
-      {{
-        is_state_attr('remote.living_room', 'current_activity', 'TV')
-          or
-        is_state_attr('remote.living_room', 'current_activity', 'Kodi')
-          or
-        is_state_attr('remote.living_room', 'current_activity', 'Smart TV')
-      }}
+    - platform: state
+      entity_id: remote.living_room
+      attribute: current_activity
+      to: TV
+    - platform: state
+      entity_id: remote.living_room
+      attribute: current_activity
+      to: Smart TV
   condition:
     condition: not
     conditions:
@@ -27,8 +26,10 @@
     entity_id: media_player.chromecast
     from: 'off'
   condition:
-    condition: template
-    value_template: "{{ state_attr('media_player.chromecast', 'volume_level') < 1}}"
+    condition: numeric_state
+    entity_id: media_player.chromecast
+    attribute: volume_level
+    below: 1
   action:
     service: media_player.volume_set
     entity_id: media_player.chromecast

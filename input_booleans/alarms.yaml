@@ -27,9 +27,3 @@ alarm_weekday_5:
 alarm_weekday_6:
   icon: mdi:calendar-weekend
   name: Sunday
-
-alarm_play_tts_next:  # Temp variable to say alarm clock status after news
-
-alarm_play_radio_next:  # Temp variable to play radio after news
-
-alarm_turn_off_next:  # Temp variable to stop display after tts

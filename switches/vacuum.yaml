@@ -26,14 +26,28 @@
         - service: vacuum.pause
           data:
             entity_id: vacuum.xiaomi_vacuum_cleaner
-        - delay: '00:00:02'
+        - wait_for_trigger:
+            platform: state
+            entity_id: vacuum.xiaomi_vacuum_cleaner
+            to: paused
+            continue_on_timeout: true
+            timeout: '0:00:10'
         - service: vacuum.return_to_base
           data:
             entity_id: vacuum.xiaomi_vacuum_cleaner
       turn_off:
-        service: vacuum.pause
-        data:
-          entity_id: vacuum.xiaomi_vacuum_cleaner
+        - service: vacuum.pause
+          data:
+            entity_id: vacuum.xiaomi_vacuum_cleaner
+        - wait_for_trigger:
+            platform: state
+            entity_id: vacuum.xiaomi_vacuum_cleaner
+            to: paused
+            continue_on_timeout: true
+            timeout: '0:00:10'
+        - service: vacuum.return_to_base
+          data:
+            entity_id: vacuum.xiaomi_vacuum_cleaner
 
     vacuum_dust_bin:
       value_template: >

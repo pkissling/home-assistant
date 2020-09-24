@@ -2,10 +2,10 @@
 
 - alias: Vacuum - Daily cleanup when Residents not home
   trigger:
-    - platform: state
-      entity_id: group.residents
-      from: home
-      to: not_home
+    platform: state
+    entity_id: group.residents
+    from: home
+    to: not_home
   condition:
     - condition: time
       after: '08:00:00'
@@ -46,37 +46,19 @@
     entity_id: vacuum.xiaomi_vacuum_cleaner
     to: returning
   condition:
-    - condition: state
-      entity_id: input_boolean.vacuum_notify_finish_on_return
-      state: 'on'
-    - condition: state
-      entity_id: person.patrick
-      state: not_home
-  action:
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.vacuum_notify_finish_on_return
-    - service: notify.pushbullet
-      data_template:
-        title: Home Assistant
-        target: device/OnePlus 7 Pro
-        message: >
-          Roborock finished Cleanup:
-          {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'cleaned_area') }} m²,
-          {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'cleaning_time') }} minutes,
-          Battery {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'battery_level') }} %
-
-- alias: Vacuum - Don't notify when home
-  trigger:
-    platform: state
-    entity_id: vacuum.xiaomi_vacuum_cleaner
-    to: returning
-  condition:
     condition: state
     entity_id: person.patrick
-    state: home
+    state: not_home
   action:
-    service: input_boolean.turn_off
-    entity_id: input_boolean.vacuum_notify_finish_on_return
+    service: notify.pushbullet
+    data_template:
+      title: Home Assistant
+      target: device/OnePlus 7 Pro
+      message: >
+        Roborock finished Cleanup:
+        {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'cleaned_area') }} m²,
+        {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'cleaning_time') }} minutes,
+        Battery {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'battery_level') }} %
 
 - alias: Vacuum - Reset Daily Cleanup Boolean
   trigger:
@@ -94,10 +76,8 @@
     for:
       minutes: 20
   action:
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.vacuum_notify_finish_on_return
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.vacuum_ran_today
+    service: input_boolean.turn_on
+    entity_id: input_boolean.vacuum_ran_today
 
 - alias: Vacuum - Notify on error
   trigger:
@@ -151,21 +131,13 @@
           {% elif states('input_select.vacuum_room_cleanup') == 'Bathroom' %}
             20
           {% endif %}
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.vacuum_segment_cleanup
+    - wait_for_trigger:
+        platform: state
+        entity_id: vacuum.xiaomi_vacuum_cleaner
 
-- alias: Vacuum - Reset input select
-  trigger:
-    platform: state
-    entity_id: vacuum.xiaomi_vacuum_cleaner
-    to: returning
-  condition:
-    condition: state
-    entity_id: input_boolean.vacuum_segment_cleanup
-    state: 'on'
-  action:
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.vacuum_segment_cleanup
+        from: cleaning
+      continue_on_timeout: true
+      timeout: '00:30:00'
     - service: input_select.select_option
       entity_id: input_select.vacuum_room_cleanup
       data:

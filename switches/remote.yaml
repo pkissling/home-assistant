@@ -38,18 +38,6 @@
         data:
           entity_id: remote.living_room
 
-    remote_kodi:
-      value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Kodi') }}"
-      turn_on:
-        service: remote.turn_on
-        data:
-          entity_id: remote.living_room
-          activity: 19233680
-      turn_off:
-        service: remote.turn_off
-        data:
-          entity_id: remote.living_room
-
     remote_smart_tv:
       value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Smart TV') }}"
       turn_on:

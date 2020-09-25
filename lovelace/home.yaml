@@ -71,14 +71,6 @@
               styles:
                 card:
                   - height: 70px
-            - color: var(--switch-checked-color)
-              entity: switch.remote_kodi
-              icon: 'mdi:kodi'
-              type: 'custom:button-card'
-              show_name: false
-              styles:
-                card:
-                  - height: 70px
         - type: horizontal-stack
           cards:
             - color: var(--switch-checked-color)

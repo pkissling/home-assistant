@@ -7,7 +7,7 @@
       to: 'on'
   action:
     - service: notify.pushbullet
-      data_template:
+      data:
         title: Home Assistant
         message: >
           Home Assistant update available from {{ states('sensor.current_version') }}
@@ -263,7 +263,7 @@
       hours: 1
   action:
     service: notify.pushbullet
-    data_template:
+    data:
       title: Home Assistant
       message: Patrick's device tracker is out of sync
       target: device/OnePlus 7 Pro
@@ -281,7 +281,7 @@
       hours: 1
   action:
     service: notify.pushbullet
-    data_template:
+    data:
       title: Home Assistant
       message: Sandra's device tracker is out of sync
       target: device/OnePlus 7 Pro

@@ -31,7 +31,7 @@
   action:
     - service: input_text.set_value
       entity_id: input_text.remote_previous_activity
-      data_template:
+      data:
         value: "{{ state_attr('remote.living_room', 'current_activity') }}"
     - service: switch.turn_on
       entity_id: switch.remote_chromecast
@@ -54,7 +54,7 @@
   action:
     - service: remote.turn_on
       entity_id: remote.living_room
-      data_template:
+      data:
         activity: "{{ states('input_text.remote_previous_activity') }}"
     - service: input_text.set_value
       entity_id: input_text.remote_previous_activity

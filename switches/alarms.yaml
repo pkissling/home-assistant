@@ -24,13 +24,13 @@
         {% endif %}
       turn_on:
         service: input_boolean.turn_on
-        data_template:
+        data:
           entity_id: >
             {% set offset = states('sensor.alarm_offset') | int %}
             input_boolean.alarm_weekday_{{ (now().weekday() + offset) % 7 }}
       turn_off:
         service: input_boolean.turn_off
-        data_template:
+        data:
           entity_id: >
             {% set offset = states('sensor.alarm_offset') | int %}
             input_boolean.alarm_weekday_{{ (now().weekday() + offset) % 7 }}

@@ -51,7 +51,7 @@
     state: not_home
   action:
     service: notify.pushbullet
-    data_template:
+    data:
       title: Home Assistant
       target: device/OnePlus 7 Pro
       message: >
@@ -86,7 +86,7 @@
     to: error
   action:
     service: notify.pushbullet
-    data_template:
+    data:
       title: Home Assistant
       target: device/OnePlus 7 Pro
       message: "Roborock Error: {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.error }}"
@@ -113,7 +113,7 @@
     entity_id: input_select.vacuum_room_cleanup
   action:
     - service: xiaomi_miio.vacuum_clean_segment
-      data_template:
+      data:
         entity_id: vacuum.xiaomi_vacuum_cleaner
         segments: >
           {% if states('input_select.vacuum_room_cleanup') == 'Living Room' %}

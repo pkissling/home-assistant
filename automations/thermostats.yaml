@@ -16,7 +16,7 @@
   action:
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_bedroom
-      data_template:
+      data:
         value: "{{ states('climate.bedroom') }}"
     - service: climate.set_hvac_mode
       entity_id: climate.bedroom
@@ -37,7 +37,7 @@
   action:
     - service: climate.set_hvac_mode
       entity_id: climate.bedroom
-      data_template:
+      data:
         hvac_mode: "{{ states('input_text.thermostat_old_hvac_bedroom') }}"
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_bedroom
@@ -60,7 +60,7 @@
   action:
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_study
-      data_template:
+      data:
         value: "{{ states('climate.study') }}"
     - service: climate.set_hvac_mode
       entity_id: climate.study
@@ -81,7 +81,7 @@
   action:
     - service: climate.set_hvac_mode
       entity_id: climate.study
-      data_template:
+      data:
         hvac_mode: "{{ states('input_text.thermostat_old_hvac_study') }}"
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_study
@@ -104,7 +104,7 @@
   action:
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_bathroom
-      data_template:
+      data:
         value: "{{ states('climate.bathroom') }}"
     - service: climate.set_hvac_mode
       entity_id: climate.bathroom
@@ -125,7 +125,7 @@
   action:
     - service: climate.set_hvac_mode
       entity_id: climate.bathroom
-      data_template:
+      data:
         hvac_mode: "{{ states('input_text.thermostat_old_hvac_bathroom') }}"
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_bathroom
@@ -148,7 +148,7 @@
   action:
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_living_room
-      data_template:
+      data:
         value: "{{ states('climate.living_room') }}"
     - service: climate.set_hvac_mode
       entity_id: climate.living_room
@@ -169,7 +169,7 @@
   action:
     - service: climate.set_hvac_mode
       entity_id: climate.living_room
-      data_template:
+      data:
         hvac_mode: "{{ states('input_text.thermostat_old_hvac_living_room') }}"
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_living_room
@@ -192,7 +192,7 @@
   action:
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_kitchen
-      data_template:
+      data:
         value: "{{ states('climate.kitchen') }}"
     - service: climate.set_hvac_mode
       entity_id: climate.kitchen
@@ -213,7 +213,7 @@
   action:
     - service: climate.set_hvac_mode
       entity_id: climate.kitchen
-      data_template:
+      data:
         hvac_mode: "{{ states('input_text.thermostat_old_hvac_kitchen') }}"
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_kitchen

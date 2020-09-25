@@ -32,6 +32,7 @@ glances: !include includes/glances.yaml
 light: !include includes/lights.yaml
 notify: !include includes/notify.yaml
 recorder: !include includes/recorder.yaml
+spotify: !include includes/spotify.yaml
 tado: !include includes/tado.yaml
 vacuum: !include includes/vacuum.yaml
 webostv: !include includes/webostv.yaml

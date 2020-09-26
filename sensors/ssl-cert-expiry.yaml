@@ -1,0 +1,4 @@
+---
+
+- platform: cert_expiry
+  host: !secret external_ha_domain

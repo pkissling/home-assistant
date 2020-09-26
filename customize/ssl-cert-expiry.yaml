@@ -1,0 +1,4 @@
+---
+
+!secret sensor_ssl_cert_ha_expiry:
+  friendly_name: SSL Certificate

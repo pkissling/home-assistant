@@ -285,3 +285,15 @@
       title: Home Assistant
       message: Sandra's device tracker is out of sync
       target: device/OnePlus 7 Pro
+
+- alias: Notification - Expiring SSL Certificate
+  trigger:
+    platform: numeric_state
+    entity_id: !secret sensor_ssl_cert_ha_expiry
+    below: 5
+  action:
+    service: notify.pushbullet
+    data:
+      title: Home Assistant
+      message: "HA SSL certificate exipres in less than 5 days."
+      target: device/OnePlus 7 Pro

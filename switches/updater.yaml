@@ -3,4 +3,10 @@
 - platform: command_line
   switches:
     updater:
-      command_on: "ssh pi@home-assistant 'COMPOSE_HTTP_TIMEOUT=300 docker-compose -f /home/pi/diskstation/raspberry-utilities/docker/docker-compose.yaml pull home-assistant && docker-compose -f /home/pi/diskstation/raspberry-utilities/docker/docker-compose.yaml up -d home-assistant'"
+      command_on: >
+        curl -X PUT \
+        # API Key injected by docker-compose as environment variable
+        -H X-Api-key:$UPDATER_API_KEY \
+        # API of separate service capable of updating home-assistant docker container
+        # https://github.com/pkissling/home-assistant-updater
+        localhost:5000/docker/containers/home-assistant/update"

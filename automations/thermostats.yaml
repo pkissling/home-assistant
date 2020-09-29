@@ -220,14 +220,14 @@
       data:
         value: unknown
 
-- alias: Thermostat Kitchen - Summer Mode - Heating off after 6 hours
+- alias: Thermostat Kitchen - Summer Mode - Heating off after 4 hours
   trigger:
     platform: state
     entity_id: binary_sensor.thermostat_kitchen
     from: 'off'
     to: 'on'
     for:
-      hours: 6
+      hours: 4
   condition:
     condition: state
     entity_id: input_boolean.summer_mode
@@ -236,19 +236,19 @@
     - service: notify.pushbullet
       data:
         title: Home Assistant
-        message: Thermostat in Kitchen turned off after 6 hours.
+        message: Thermostat in Kitchen turned off after 4 hours.
         target: device/OnePlus 7 Pro
     - service: switch.turn_off
       entity_id: switch.climate_kitchen
 
-- alias: Thermostat Living Room - Summer Mode - Heating off after 6 hours
+- alias: Thermostat Living Room - Summer Mode - Heating off after 4 hours
   trigger:
     platform: state
     entity_id: binary_sensor.thermostat_living_room
     from: 'off'
     to: 'on'
     for:
-      hours: 6
+      hours: 4
   condition:
     condition: state
     entity_id: input_boolean.summer_mode
@@ -257,19 +257,19 @@
     - service: notify.pushbullet
       data:
         title: Home Assistant
-        message: Thermostat in Living Room turned off after 6 hours.
+        message: Thermostat in Living Room turned off after 4 hours.
         target: device/OnePlus 7 Pro
     - service: switch.turn_off
       entity_id: switch.climate_living_room
 
-- alias: Thermostat Study - Summer Mode - Heating off after 6 hours
+- alias: Thermostat Study - Summer Mode - Heating off after 4 hours
   trigger:
     platform: state
     entity_id: binary_sensor.thermostat_study
     from: 'off'
     to: 'on'
     for:
-      hours: 6
+      hours: 4
   condition:
     condition: state
     entity_id: input_boolean.summer_mode
@@ -278,19 +278,19 @@
     - service: notify.pushbullet
       data:
         title: Home Assistant
-        message: Thermostat in Study turned off after 6 hours.
+        message: Thermostat in Study turned off after 4 hours.
         target: device/OnePlus 7 Pro
     - service: switch.turn_off
       entity_id: switch.climate_study
 
-- alias: Thermostat Bathroom - Summer Mode - Heating off after 6 hours
+- alias: Thermostat Bathroom - Summer Mode - Heating off after 4 hours
   trigger:
     platform: state
     entity_id: binary_sensor.thermostat_bathroom
     from: 'off'
     to: 'on'
     for:
-      hours: 6
+      hours: 4
   condition:
     condition: state
     entity_id: input_boolean.summer_mode
@@ -299,19 +299,19 @@
     - service: notify.pushbullet
       data:
         title: Home Assistant
-        message: Thermostat in Bathroom turned off after 6 hours.
+        message: Thermostat in Bathroom turned off after 4 hours.
         target: device/OnePlus 7 Pro
     - service: switch.turn_off
       entity_id: switch.climate_bathroom
 
-- alias: Thermostat Bedroom - Summer Mode - Heating off after 6 hours
+- alias: Thermostat Bedroom - Summer Mode - Heating off after 4 hours
   trigger:
     platform: state
     entity_id: binary_sensor.thermostat_bedroom
     from: 'off'
     to: 'on'
     for:
-      hours: 6
+      hours: 4
   condition:
     condition: state
     entity_id: input_boolean.summer_mode
@@ -320,17 +320,17 @@
     - service: notify.pushbullet
       data:
         title: Home Assistant
-        message: Thermostat in Bedroom turned off after 6 hours.
+        message: Thermostat in Bedroom turned off after 4 hours.
         target: device/OnePlus 7 Pro
     - service: switch.turn_off
       entity_id: switch.climate_bedroom
 
-- alias: Thermostat Kitchen - Manual heating off after 6 hours
+- alias: Thermostat Kitchen - Manual heating off after 4 hours
   trigger:
     platform: template
     value_template: "{{ is_state('climate.kitchen', 'heat') }}"
     for:
-      hours: 6
+      hours: 4
   condition:
     condition: state
     entity_id: input_boolean.summer_mode
@@ -339,17 +339,17 @@
     - service: notify.pushbullet
       data:
         title: Home Assistant
-        message: Manual heating in Kitchen turned off after 6 hours.
+        message: Manual heating in Kitchen turned off after 4 hours.
         target: device/OnePlus 7 Pro
     - service: switch.turn_on
       entity_id: switch.climate_kitchen
 
-- alias: Thermostat Living Room - Manual heating off after 6 hours
+- alias: Thermostat Living Room - Manual heating off after 4 hours
   trigger:
     platform: template
     value_template: "{{ is_state('climate.living_room', 'heat') }}"
     for:
-      hours: 6
+      hours: 4
   condition:
     condition: state
     entity_id: input_boolean.summer_mode
@@ -358,17 +358,17 @@
     - service: notify.pushbullet
       data:
         title: Home Assistant
-        message: Manual heating in Living Room turned off after 6 hours.
+        message: Manual heating in Living Room turned off after 4 hours.
         target: device/OnePlus 7 Pro
     - service: switch.turn_on
       entity_id: switch.climate_living_room
 
-- alias: Thermostat Study - Manual heating off after 6 hours
+- alias: Thermostat Study - Manual heating off after 4 hours
   trigger:
     platform: template
     value_template: "{{ is_state('climate.study', 'heat') }}"
     for:
-      hours: 6
+      hours: 4
   condition:
     condition: state
     entity_id: input_boolean.summer_mode
@@ -377,17 +377,17 @@
     - service: notify.pushbullet
       data:
         title: Home Assistant
-        message: Manual heating in Study turned off after 6 hours.
+        message: Manual heating in Study turned off after 4 hours.
         target: device/OnePlus 7 Pro
     - service: switch.turn_on
       entity_id: switch.climate_study
 
-- alias: Thermostat Bathroom - Manual heating off after 6 hours
+- alias: Thermostat Bathroom - Manual heating off after 4 hours
   trigger:
     platform: template
     value_template: "{{ is_state('climate.bathroom', 'heat') }}"
     for:
-      hours: 6
+      hours: 4
   condition:
     condition: state
     entity_id: input_boolean.summer_mode
@@ -396,17 +396,17 @@
     - service: notify.pushbullet
       data:
         title: Home Assistant
-        message: Manual heating in Bathroom turned off after 6 hours.
+        message: Manual heating in Bathroom turned off after 4 hours.
         target: device/OnePlus 7 Pro
     - service: switch.turn_on
       entity_id: switch.climate_bathroom
 
-- alias: Thermostat Bedroom - Manual heating off after 6 hours
+- alias: Thermostat Bedroom - Manual heating off after 4 hours
   trigger:
     platform: template
     value_template: "{{ is_state('climate.bedroom', 'heat') }}"
     for:
-      hours: 6
+      hours: 4
   condition:
     condition: state
     entity_id: input_boolean.summer_mode
@@ -415,7 +415,7 @@
     - service: notify.pushbullet
       data:
         title: Home Assistant
-        message: Manual heating in Bedroom turned off after 6 hours.
+        message: Manual heating in Bedroom turned off after 4 hours.
         target: device/OnePlus 7 Pro
     - service: switch.turn_on
       entity_id: switch.climate_bedroom

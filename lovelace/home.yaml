@@ -56,8 +56,8 @@
         - type: horizontal-stack
           cards:
             - entity: switch.remote_tv
-              icon: 'mdi:television'
-              type: 'custom:button-card'
+              icon: mdi:television
+              type: custom:button-card
               color: var(--switch-checked-color)
               show_name: false
               styles:
@@ -65,8 +65,8 @@
                   - height: 70px
             - color: var(--switch-checked-color)
               entity: switch.remote_chromecast
-              icon: 'mdi:cast'
-              type: 'custom:button-card'
+              icon: mdi:cast
+              type: custom:button-card
               show_name: false
               styles:
                 card:
@@ -75,24 +75,24 @@
           cards:
             - color: var(--switch-checked-color)
               entity: switch.remote_speakers
-              icon: 'mdi:cast-audio'
-              type: 'custom:button-card'
+              icon: mdi:cast-audio
+              type: custom:button-card
               show_name: false
               styles:
                 card:
                   - height: 70px
             - color: var(--switch-checked-color)
               entity: switch.remote_smart_tv
-              icon: 'mdi:netflix'
-              type: 'custom:button-card'
+              icon: mdi:netflix
+              type: custom:button-card
               show_name: false
               styles:
                 card:
                   - height: 70px
             - color: '#ff8c8a'
               entity: switch.remote_off
-              icon: 'mdi:power'
-              type: 'custom:button-card'
+              icon: mdi:power
+              type: custom:button-card
               show_name: false
               styles:
                 card:

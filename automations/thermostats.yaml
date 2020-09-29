@@ -419,3 +419,121 @@
         target: device/OnePlus 7 Pro
     - service: switch.turn_on
       entity_id: switch.climate_bedroom
+
+- alias: Thermostat Living Room - Force off and notify
+  trigger:
+    platform: state
+    entity_id: binary_sensor.thermostat_living_room_warning
+    from: 'off'
+    to: 'on'
+    for:
+      minutes: 1
+  action:
+    - service: notify.pushbullet
+      data:
+        title: Home Assistant
+        message: Thermostat in Living Room turned off because window is open.
+        target: device/OnePlus 7 Pro
+    - service: input_text.set_value
+      entity_id: input_text.thermostat_old_hvac_living_room
+      data:
+        value: "{{ states('climate.living_room') }}"
+    - service: climate.set_hvac_mode
+      entity_id: climate.living_room
+      data:
+        hvac_mode: 'off'
+
+- alias: Thermostat Bedroom - Force off and notify
+  trigger:
+    platform: state
+    entity_id: binary_sensor.thermostat_bedroom_warning
+    from: 'off'
+    to: 'on'
+    for:
+      minutes: 1
+  action:
+    - service: notify.pushbullet
+      data:
+        title: Home Assistant
+        message: Thermostat in Bedroom turned off because window is open.
+        target: device/OnePlus 7 Pro
+    - service: input_text.set_value
+      entity_id: input_text.thermostat_old_hvac_bedroom
+      data:
+        value: "{{ states('climate.bedroom') }}"
+    - service: climate.set_hvac_mode
+      entity_id: climate.bedroom
+      data:
+        hvac_mode: 'off'
+
+
+- alias: Thermostat Bathroom - Force off and notify
+  trigger:
+    platform: state
+    entity_id: binary_sensor.thermostat_bathroom_warning
+    from: 'off'
+    to: 'on'
+    for:
+      minutes: 1
+  action:
+    - service: notify.pushbullet
+      data:
+        title: Home Assistant
+        message: Thermostat in Bathroom turned off because window is open.
+        target: device/OnePlus 7 Pro
+    - service: input_text.set_value
+      entity_id: input_text.thermostat_old_hvac_bathroom
+      data:
+        value: "{{ states('climate.bathroom') }}"
+    - service: climate.set_hvac_mode
+      entity_id: climate.bathroom
+      data:
+        hvac_mode: 'off'
+
+
+- alias: Thermostat Study - Force off and notify
+  trigger:
+    platform: state
+    entity_id: binary_sensor.thermostat_study_warning
+    from: 'off'
+    to: 'on'
+    for:
+      minutes: 1
+  action:
+    - service: notify.pushbullet
+      data:
+        title: Home Assistant
+        message: Thermostat in Study turned off because window is open.
+        target: device/OnePlus 7 Pro
+    - service: input_text.set_value
+      entity_id: input_text.thermostat_old_hvac_study
+      data:
+        value: "{{ states('climate.study') }}"
+    - service: climate.set_hvac_mode
+      entity_id: climate.study
+      data:
+        hvac_mode: 'off'
+
+
+- alias: Thermostat Kitchen - Force off and notify
+  trigger:
+    platform: state
+    entity_id: binary_sensor.thermostat_kitchen_warning
+    from: 'off'
+    to: 'on'
+    for:
+      minutes: 1
+  action:
+    - service: notify.pushbullet
+      data:
+        title: Home Assistant
+        message: Thermostat in Kitchen turned off because window is open.
+        target: device/OnePlus 7 Pro
+    - service: input_text.set_value
+      entity_id: input_text.thermostat_old_hvac_kitchen
+      data:
+        value: "{{ states('climate.kitchen') }}"
+    - service: climate.set_hvac_mode
+      entity_id: climate.kitchen
+      data:
+        hvac_mode: 'off'

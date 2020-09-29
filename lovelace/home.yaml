@@ -336,7 +336,7 @@
               service_data:
                 entity_id: switch.climate_study
         min: 15
-        max: 25
+        max: 26
         decimal: 1
         positions:
           name: off  # yamllint disable-line rule:truthy

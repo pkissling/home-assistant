@@ -12,7 +12,7 @@
           - binary_sensor.updater
         card:
           type: button
-          name: "${states['binary_sensor.updater'].attributes.newest_version}"
+          name: "${states['sensor.updater_text'].state}"
           tap_action:
             action: call-service
             service: switch.turn_on

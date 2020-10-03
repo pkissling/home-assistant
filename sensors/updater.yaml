@@ -1,0 +1,6 @@
+---
+
+- platform: template
+  sensors:
+    updater_text:
+      value_template: "Update from {{ states('sensor.current_version') }} to {{ state_attr('binary_sensor.updater', 'newest_version') }}"

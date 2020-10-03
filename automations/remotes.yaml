@@ -106,3 +106,23 @@
   action:
     service: remote.turn_off
     entity_id: remote.living_room
+
+- alias: Remote - Force TV off
+  trigger:
+    platform: template
+    value_template: >
+      {{
+        is_state('media_player.lg_webos_smart_tv', 'on')
+          and
+        is_state('remote.living_room', 'off')
+      }}
+    for:
+      minutes: 1
+  action:
+    - service: notify.pushbullet
+      data:
+        title: Home Assistant
+        message: TV forced off as Harmony is off as well.
+        target: device/OnePlus 7 Pro
+    - service: media_player.turn_off
+      entity_id: media_player.lg_webos_smart_tv

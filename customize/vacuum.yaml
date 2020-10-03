@@ -1,0 +1,4 @@
+---
+
+sensor.vacuum_battery:
+  friendly_name: Vacuum

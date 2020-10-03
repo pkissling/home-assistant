@@ -3,10 +3,7 @@
 - platform: command_line
   switches:
     updater:
+      # API Key injected by docker-compose as environment variable
+      # API of separate service capable of updating home-assistant docker container https://github.com/pkissling/home-assistant-updater
       command_on: >
-        curl -X PUT \
-        # API Key injected by docker-compose as environment variable
-        -H X-Api-key:$UPDATER_API_KEY \
-        # API of separate service capable of updating home-assistant docker container
-        # https://github.com/pkissling/home-assistant-updater
-        localhost:5000/docker/containers/home-assistant/update"
+        curl -X PUT -H X-Api-key:$UPDATER_API_KEY localhost:5000/docker/containers/home-assistant/update

@@ -1,33 +1,29 @@
 ---
 
-- path: battery
-  icon: mdi:battery
-  cards:
+# Windows
+- type: custom:battery-state-card
+  title: Windows
+  entities:
+    - sensor.window_toilet_battery_level
+    - sensor.window_kitchen_battery_level
+    - sensor.window_bedroom_right_battery_level
+    - sensor.window_bedroom_left_battery_level
+    - sensor.window_living_room_battery_level
+    - sensor.window_study_left_l_battery_level
+    - sensor.window_study_left_r_battery_level
+    - sensor.window_study_right_r_battery_level
+    - sensor.window_study_right_l_battery_level
 
-    # Windows
-    - type: custom:battery-state-card
-      title: Windows
-      entities:
-        - sensor.window_toilet_battery_level
-        - sensor.window_kitchen_battery_level
-        - sensor.window_bedroom_right_battery_level
-        - sensor.window_bedroom_left_battery_level
-        - sensor.window_living_room_battery_level
-        - sensor.window_study_left_l_battery_level
-        - sensor.window_study_left_r_battery_level
-        - sensor.window_study_right_r_battery_level
-        - sensor.window_study_right_l_battery_level
+# Vacuum
+- type: custom:battery-state-card
+  title: Vacuum
+  entities:
+    - sensor.vacuum_battery
 
-    # Vacuum
-    - type: custom:battery-state-card
-      title: Vacuum
-      entities:
-        - sensor.vacuum_battery
-
-    # Devices
-    - type: custom:battery-state-card
-      title: Devices
-      entities:
-        - sensor.mi_pad_3_battery_level
-        - sensor.gm1913_battery_level
-        - sensor.patricks_macbook_pro_internal_battery_level
+# Devices
+- type: custom:battery-state-card
+  title: Devices
+  entities:
+    - sensor.mi_pad_3_battery_level
+    - sensor.gm1913_battery_level
+    - sensor.patricks_macbook_pro_internal_battery_level

@@ -9,4 +9,20 @@ custom_header:
     options: '{{ hours24 }}:{{ minutesLZ }}'
 
 views:
-  !include_dir_merge_list lovelace
+  # home
+  - path: home
+    icon: mdi:home
+    cards:
+      !include lovelace/home.yaml
+
+  # monitoring
+  - path: monitoring
+    icon: mdi:server-security
+    cards:
+      !include lovelace/monitoring.yaml
+
+  # battery
+  - path: battery
+    icon: mdi:battery
+    cards:
+      !include lovelace/battery.yaml

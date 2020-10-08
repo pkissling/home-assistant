@@ -1,187 +1,183 @@
 ---
 
-- path: monitoring
-  icon: mdi:server-security
+# Pi-hole
+- type: custom:stack-in-card
+  mode: vertical
+  title: Pi-hole
   cards:
-
-    # Pi-hole
-    - type: custom:stack-in-card
-      mode: vertical
-      title: Pi-hole
+    - type: horizontal-stack
       cards:
-        - type: horizontal-stack
-          cards:
-            - type: custom:mini-graph-card
-              entities:
-                - sensor.pi_hole_cpu_thermal_1_temp
-              lower_bound: 30
-              upper_bound: 80
-              show:
-                points: false
-                labels: false
-                name: false
-            - type: custom:mini-graph-card
-              entities:
-                - sensor.pi_hole_ram_used_percent
-              lower_bound: 0
-              upper_bound: 100
-              show:
-                points: false
-                labels: false
-                name: false
-        - type: horizontal-stack
-          cards:
-            - type: custom:mini-graph-card
-              entities:
-                - sensor.pi_hole_cpu_used
-              lower_bound: 0
-              upper_bound: 100
-              show:
-                points: false
-                labels: false
-                name: false
-            - type: custom:mini-graph-card
-              entities:
-                - sensor.pi_hole_cpu_load
-              lower_bound: 0
-              upper_bound: 2
-              show:
-                graph: bar
-                points: false
-                labels: false
-                name: false
-              color_thresholds:
-                - value: 1.00
-                  color: var(--primary-color)
-                - value: 1.01
-                  color: '#d35400'
-        - type: custom:bar-card
-          entity: sensor.pi_hole_boot_used_percent
-          positions:
-            name: off  # yamllint disable-line rule:truthy
-        - type: entities
+        - type: custom:mini-graph-card
           entities:
-            - binary_sensor.pi_hole_healthcheck
-            - sensor.pi_hole_uptime
-
-    # HA
-    - type: custom:stack-in-card
-      mode: vertical
-      title: Home-Assistant
+            - sensor.pi_hole_cpu_thermal_1_temp
+          lower_bound: 30
+          upper_bound: 80
+          show:
+            points: false
+            labels: false
+            name: false
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.pi_hole_ram_used_percent
+          lower_bound: 0
+          upper_bound: 100
+          show:
+            points: false
+            labels: false
+            name: false
+    - type: horizontal-stack
       cards:
-        - type: horizontal-stack
-          cards:
-            - type: custom:mini-graph-card
-              entities:
-                - sensor.home_assistant_cpu_thermal_1_temp
-              lower_bound: 30
-              upper_bound: 80
-              decimals: 0
-              show:
-                points: false
-                labels: false
-                name: false
-            - type: custom:mini-graph-card
-              entities:
-                - sensor.home_assistant_ram_used_percent
-              lower_bound: 0
-              upper_bound: 100
-              show:
-                points: false
-                labels: false
-                name: false
-        - type: horizontal-stack
-          cards:
-            - type: custom:mini-graph-card
-              entities:
-                - sensor.home_assistant_cpu_used
-              lower_bound: 0
-              upper_bound: 100
-              show:
-                points: false
-                labels: false
-                name: false
-            - type: custom:mini-graph-card
-              entities:
-                - sensor.home_assistant_cpu_load
-              lower_bound: 0
-              upper_bound: 2
-              show:
-                graph: bar
-                points: false
-                labels: false
-                name: false
-              color_thresholds:
-                - value: 1.00
-                  color: var(--primary-color)
-                - value: 1.01
-                  color: '#d35400'
-        - type: custom:bar-card
-          entity: sensor.home_assistant_etc_hostname_used_percent
-          positions:
-            name: off  # yamllint disable-line rule:truthy
-        - type: entities
+        - type: custom:mini-graph-card
           entities:
-            - !secret sensor_ssl_cert_ha_expiry
-            - sensor.home_assistant_uptime
+            - sensor.pi_hole_cpu_used
+          lower_bound: 0
+          upper_bound: 100
+          show:
+            points: false
+            labels: false
+            name: false
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.pi_hole_cpu_load
+          lower_bound: 0
+          upper_bound: 2
+          show:
+            graph: bar
+            points: false
+            labels: false
+            name: false
+          color_thresholds:
+            - value: 1.00
+              color: var(--primary-color)
+            - value: 1.01
+              color: '#d35400'
+    - type: custom:bar-card
+      entity: sensor.pi_hole_boot_used_percent
+      positions:
+        name: off  # yamllint disable-line rule:truthy
+    - type: entities
+      entities:
+        - binary_sensor.pi_hole_healthcheck
+        - sensor.pi_hole_uptime
 
-    # Diskstation
-    - type: custom:stack-in-card
-      title: Diskstation
-      mode: vertical
+# HA
+- type: custom:stack-in-card
+  mode: vertical
+  title: Home-Assistant
+  cards:
+    - type: horizontal-stack
       cards:
-        - type: horizontal-stack
-          cards:
-            - type: custom:mini-graph-card
-              entities:
-                - sensor.diskstation_physical_id_0_temp
-              lower_bound: 30
-              upper_bound: 80
-              show:
-                points: false
-                labels: false
-                name: false
-                legend: false
-            - type: custom:mini-graph-card
-              entities:
-                - sensor.diskstation_ram_used_percent
-              lower_bound: 0
-              upper_bound: 100
-              show:
-                points: false
-                labels: false
-                name: false
-        - type: horizontal-stack
-          cards:
-            - type: custom:mini-graph-card
-              entities:
-                - sensor.diskstation_cpu_used
-              lower_bound: 0
-              upper_bound: 100
-              show:
-                points: false
-                labels: false
-                name: false
-            - type: custom:mini-graph-card
-              entities:
-                - sensor.diskstation_cpu_load
-              lower_bound: 0
-              upper_bound: 2
-              show:
-                graph: bar
-                points: false
-                labels: false
-                name: false
-              color_thresholds:
-                - value: 1.00
-                  color: var(--primary-color)
-                - value: 1.01
-                  color: '#d35400'
-        - type: custom:bar-card
-          entity: sensor.diskstation_used_percent
-          positions:
-            name: off  # yamllint disable-line rule:truthy
-        - type: entities
+        - type: custom:mini-graph-card
           entities:
-            - binary_sensor.diskstation_ping
-            - sensor.diskstation_uptime
+            - sensor.home_assistant_cpu_thermal_1_temp
+          lower_bound: 30
+          upper_bound: 80
+          decimals: 0
+          show:
+            points: false
+            labels: false
+            name: false
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.home_assistant_ram_used_percent
+          lower_bound: 0
+          upper_bound: 100
+          show:
+            points: false
+            labels: false
+            name: false
+    - type: horizontal-stack
+      cards:
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.home_assistant_cpu_used
+          lower_bound: 0
+          upper_bound: 100
+          show:
+            points: false
+            labels: false
+            name: false
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.home_assistant_cpu_load
+          lower_bound: 0
+          upper_bound: 2
+          show:
+            graph: bar
+            points: false
+            labels: false
+            name: false
+          color_thresholds:
+            - value: 1.00
+              color: var(--primary-color)
+            - value: 1.01
+              color: '#d35400'
+    - type: custom:bar-card
+      entity: sensor.home_assistant_etc_hostname_used_percent
+      positions:
+        name: off  # yamllint disable-line rule:truthy
+    - type: entities
+      entities:
+        - !secret sensor_ssl_cert_ha_expiry
+        - sensor.home_assistant_uptime
+
+# Diskstation
+- type: custom:stack-in-card
+  title: Diskstation
+  mode: vertical
+  cards:
+    - type: horizontal-stack
+      cards:
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.diskstation_physical_id_0_temp
+          lower_bound: 30
+          upper_bound: 80
+          show:
+            points: false
+            labels: false
+            name: false
+            legend: false
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.diskstation_ram_used_percent
+          lower_bound: 0
+          upper_bound: 100
+          show:
+            points: false
+            labels: false
+            name: false
+    - type: horizontal-stack
+      cards:
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.diskstation_cpu_used
+          lower_bound: 0
+          upper_bound: 100
+          show:
+            points: false
+            labels: false
+            name: false
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.diskstation_cpu_load
+          lower_bound: 0
+          upper_bound: 2
+          show:
+            graph: bar
+            points: false
+            labels: false
+            name: false
+          color_thresholds:
+            - value: 1.00
+              color: var(--primary-color)
+            - value: 1.01
+              color: '#d35400'
+    - type: custom:bar-card
+      entity: sensor.diskstation_used_percent
+      positions:
+        name: off  # yamllint disable-line rule:truthy
+    - type: entities
+      entities:
+        - binary_sensor.diskstation_ping
+        - sensor.diskstation_uptime

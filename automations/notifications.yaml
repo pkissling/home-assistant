@@ -1,20 +1,5 @@
 ---
 
-- alias: Notification - New HA release available
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.updater
-      to: 'on'
-  action:
-    - service: notify.pushbullet
-      data:
-        title: Home Assistant
-        message: >
-          Home Assistant update available from {{ states('sensor.current_version') }}
-          to {{ state_attr('binary_sensor.updater', 'newest_version') }}.
-          Release notes: {{ state_attr('binary_sensor.updater', 'release_notes') }}
-        target: device/OnePlus 7 Pro
-
 - alias: Notification - Summer Mode - Thermostat Kitchen on
   trigger:
     platform: state

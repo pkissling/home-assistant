@@ -283,6 +283,7 @@
     - climate.living_room
     - climate.bedroom
     - climate.kitchen
+    - climate.toilet
   card:
     type: custom:bar-card
     entities:
@@ -331,6 +332,15 @@
           service: switch.toggle
           service_data:
             entity_id: switch.climate_study
+      - entity: sensor.toilet_temperature
+        icon: mdi:toilet
+        target: "${states['climate.toilet'].state == 'auto' || states['climate.toilet'].state == 'heat' ? states['climate.toilet'].attributes.temperature : ''}"
+        color: "${states['climate.toilet'].state == 'auto' || states['climate.toilet'].state == 'heat' ? 'var(--primary-color)' : 'var(--light-primary-color)'}"
+        tap_action:
+          action: call-service
+          service: switch.toggle
+          service_data:
+            entity_id: switch.climate_toilet
     min: 15
     max: 26
     decimal: 1
@@ -347,3 +357,4 @@
   showMonth: true
   showLocation: false
   showLoader: false
+  

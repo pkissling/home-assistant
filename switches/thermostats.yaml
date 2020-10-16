@@ -16,6 +16,8 @@
             not is_state('switch.climate_bedroom', 'off')
           or
             not is_state('switch.climate_study', 'off')
+          or
+            not is_state('switch.climate_toilet', 'off')
         }}
       turn_on:
         service: climate.set_hvac_mode
@@ -119,5 +121,23 @@
             hvac_mode: 'off'
         - service: input_text.set_value
           entity_id: input_text.thermostat_old_hvac_study
+          data:
+            value: unknown
+
+    climate_toilet:
+      friendly_name: Toilet
+      value_template: "{{ states('binary_sensor.thermostat_toilet') }}"
+      turn_on:
+        service: climate.set_hvac_mode
+        entity_id: climate.toilet
+        data:
+          hvac_mode: auto
+      turn_off:
+        - service: climate.set_hvac_mode
+          entity_id: climate.toilet
+          data:
+            hvac_mode: 'off'
+        - service: input_text.set_value
+          entity_id: input_text.thermostat_old_hvac_toilet
           data:
             value: unknown

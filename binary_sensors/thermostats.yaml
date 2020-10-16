@@ -42,3 +42,11 @@
             or
           is_state('climate.bedroom', 'auto')
         }}
+
+    thermostat_toilet:
+      value_template: >
+        {{
+          is_state('climate.toilet', 'heat')
+            or
+          is_state('climate.toilet', 'auto')
+        }}

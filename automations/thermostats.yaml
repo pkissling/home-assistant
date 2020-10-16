@@ -220,6 +220,50 @@
       data:
         value: unknown
 
+# Toilet
+- alias: Thermostat Toilet - Window openend
+  trigger:
+    platform: state
+    entity_id: group.window_toilet
+    from: 'off'
+    to: 'on'
+    for:
+      seconds: 5
+  condition:
+    condition: state
+    entity_id: binary_sensor.thermostat_toilet
+    state: 'on'
+  action:
+    - service: input_text.set_value
+      entity_id: input_text.thermostat_old_hvac_toilet
+      data:
+        value: "{{ states('climate.toilet') }}"
+    - service: climate.set_hvac_mode
+      entity_id: climate.toilet
+      data:
+        hvac_mode: 'off'
+
+- alias: Thermostat Toilet - Window closed
+  trigger:
+    platform: state
+    entity_id: group.window_toilet
+    from: 'on'
+    to: 'off'
+    for:
+      seconds: 5
+  condition:
+    condition: template
+    value_template: "{{ not is_state('input_text.thermostat_old_hvac_toilet', 'unknown') }}"
+  action:
+    - service: climate.set_hvac_mode
+      entity_id: climate.toilet
+      data:
+        hvac_mode: "{{ states('input_text.thermostat_old_hvac_toilet') }}"
+    - service: input_text.set_value
+      entity_id: input_text.thermostat_old_hvac_toilet
+      data:
+        value: unknown
+
 - alias: Thermostat Kitchen - Summer Mode - Heating off after 4 hours
   trigger:
     platform: state
@@ -325,6 +369,27 @@
     - service: switch.turn_off
       entity_id: switch.climate_bedroom
 
+- alias: Thermostat Toilet - Summer Mode - Heating off after 4 hours
+  trigger:
+    platform: state
+    entity_id: binary_sensor.thermostat_toilet
+    from: 'off'
+    to: 'on'
+    for:
+      hours: 4
+  condition:
+    condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'on'
+  action:
+    - service: notify.pushbullet
+      data:
+        title: Home Assistant
+        message: Thermostat in Toilet turned off after 4 hours.
+        target: device/OnePlus 7 Pro
+    - service: switch.turn_off
+      entity_id: switch.climate_toilet
+
 - alias: Thermostat Kitchen - Manual heating off after 4 hours
   trigger:
     platform: template
@@ -419,6 +484,25 @@
         target: device/OnePlus 7 Pro
     - service: switch.turn_on
       entity_id: switch.climate_bedroom
+
+- alias: Thermostat Toilet - Manual heating off after 4 hours
+  trigger:
+    platform: template
+    value_template: "{{ is_state('climate.toilet', 'heat') }}"
+    for:
+      hours: 4
+  condition:
+    condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'off'
+  action:
+    - service: notify.pushbullet
+      data:
+        title: Home Assistant
+        message: Manual heating in Toilet turned off after 4 hours.
+        target: device/OnePlus 7 Pro
+    - service: switch.turn_on
+      entity_id: switch.climate_toilet
 
 - alias: Thermostat Living Room - Force off and notify
   trigger:
@@ -551,5 +635,31 @@
         value: "{{ states('climate.kitchen') }}"
     - service: climate.set_hvac_mode
       entity_id: climate.kitchen
+      data:
+        hvac_mode: 'off'
+
+- alias: Thermostat Toilet - Force off and notify
+  trigger:
+    platform: template
+    value_template: >
+      {{
+        is_state('binary_sensor.thermostat_toilet', 'on')
+          and
+        is_state('group.window_toilet', 'on')
+      }}
+    for:
+      minutes: 1
+  action:
+    - service: notify.pushbullet
+      data:
+        title: Home Assistant
+        message: Thermostat in Toilet turned off because window is open.
+        target: device/OnePlus 7 Pro
+    - service: input_text.set_value
+      entity_id: input_text.thermostat_old_hvac_toilet
+      data:
+        value: "{{ states('climate.toilet') }}"
+    - service: climate.set_hvac_mode
+      entity_id: climate.toilet
       data:
         hvac_mode: 'off'

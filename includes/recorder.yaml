@@ -1,3 +1,9 @@
 ---
 
 db_url: !secret recorder_db_url
+
+exclude:
+  entity_globs:
+    - sensor.*_uptime
+  entities:
+    - sensor.time

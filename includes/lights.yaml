@@ -5,6 +5,7 @@
   entities:
     - light.tv
     - light.lamp
+    # - light.ceiling
 
 - platform: group
   name: Bedroom

@@ -32,6 +32,7 @@
       entities:
         - light.lamp
         - light.tv
+        - light.ceiling
 
 # Weather
 - type: weather-forecast
@@ -357,4 +358,3 @@
   showMonth: true
   showLocation: false
   showLoader: false
-  

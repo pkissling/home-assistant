@@ -7,6 +7,8 @@ devices:
     name: TV
   192.168.0.5:
     name: Lightstrip
+  192.168.0.6:
+    name: Ceiling
 
 custom_effects:
   - name: sunrise

@@ -1,0 +1,30 @@
+name: Home-Assistant
+
+on: [push] # yamllint disable-line rule:truthy
+
+jobs:
+  verify:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Set up Python 3.x
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x
+
+    - name: Install dependencies
+      run: |
+        pip install homeassistant==$(cat .HA_VERSION)
+        pip install yamllint
+
+    - name: Lint YAMLs
+      run: yamllint --strict -c .yamllint.yaml .
+
+    - name: Verify Home-Assistant config
+      run: |
+        mv secrets_dummy.yaml secrets.yaml
+        hass -c . --script check_config

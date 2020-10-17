@@ -1,6 +1,6 @@
 ---
 
-name: "Workflow"
+name: Convert TODOs into Github issues
 on: ["push"]  # yamllint disable-line rule:truthy
 jobs:
   build:

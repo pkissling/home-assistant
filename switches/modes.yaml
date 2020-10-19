@@ -34,3 +34,13 @@
             is_volume_muted: false
         - service: input_boolean.turn_off
           entity_id: input_boolean.guest_mode
+
+    home_office_mode:
+      friendly_name: Home Office Mode
+      value_template: "{{ states('input_boolean.home_office_mode') }}"
+      turn_on:
+        service: input_boolean.turn_on
+        entity_id: input_boolean.home_office_mode
+      turn_off:
+        service: input_boolean.turn_off
+        entity_id: input_boolean.home_office_mode

@@ -14,3 +14,43 @@
     entity_id: media_player.study
     data:
       is_volume_muted: true
+
+- alias: Mode - Home Office Mode - Turn mode on when device on
+  trigger:
+    platform: state
+    entity_id: group.work_laptops
+    to: home
+  action:
+    service: input_boolean.turn_on
+    entity_id: input_boolean.home_office_mode
+
+- alias: Mode - Home Office Mode - Turn mode off when device off
+  trigger:
+    platform: state
+    entity_id: group.work_laptops
+    to: not_home
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.home_office_mode
+
+- alias: Mode - Home Office Mode - Turn heating on when mode on
+  trigger:
+    platform: state
+    entity_id: input_boolean.home_office_mode
+    to: 'on'
+  action:
+    service: climate.set_temperature
+    entity_id: climate.study
+    data:
+      temperature: 21
+
+- alias: Mode - Home Office Mode - Turn heating off when mode off
+  trigger:
+    platform: state
+    entity_id: input_boolean.home_office_mode
+    to: 'off'
+  action:
+    service: climate.set_hvac_mode
+    entity_id: climate.study
+    data:
+      hvac_mode: auto

@@ -45,6 +45,7 @@
   entities:
     - switch.summer_mode
     - switch.guest_mode
+    - switch.home_office_mode
 
 # TV Remote
 - type: custom:stack-in-card

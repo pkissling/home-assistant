@@ -435,9 +435,12 @@
     for:
       hours: 4
   condition:
-    condition: state
-    entity_id: input_boolean.summer_mode
-    state: 'off'
+    - condition: state
+      entity_id: input_boolean.summer_mode
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.home_office_mode
+      state: 'off'
   action:
     - service: notify.pushbullet
       data:

@@ -9,7 +9,7 @@
       cards:
         - type: custom:mini-graph-card
           entities:
-          - sensor.musaceae_moisture
+            - sensor.musaceae_moisture
           show:
             name: false
           hours_to_show: 72
@@ -24,7 +24,7 @@
 
         - type: custom:mini-graph-card
           entities:
-          - sensor.musaceae_conductivity
+            - sensor.musaceae_conductivity
           show:
             name: false
           hours_to_show: 72
@@ -42,7 +42,7 @@
       cards:
         - type: custom:mini-graph-card
           entities:
-          - sensor.musaceae_light_intensity
+            - sensor.musaceae_light_intensity
           show:
             name: false
           hours_to_show: 72
@@ -57,7 +57,7 @@
 
         - type: custom:mini-graph-card
           entities:
-          - sensor.musaceae_temperature
+            - sensor.musaceae_temperature
           show:
             name: false
           hours_to_show: 72

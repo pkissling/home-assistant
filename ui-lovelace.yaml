@@ -3,7 +3,7 @@
 background: var(--background-image)
 
 custom_header:
-  background: 'rgba(155, 155, 155, 0.25)'
+  background: var(--sidebar-background-color)
   compact_mode: true
   button_text:
     options: '{{ hours24 }}:{{ minutesLZ }}'

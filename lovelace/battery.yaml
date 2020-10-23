@@ -27,3 +27,9 @@
     - sensor.mi_pad_3_battery_level
     - sensor.gm1913_battery_level
     - sensor.patricks_macbook_pro_internal_battery_level
+
+# Plants
+- type: custom:battery-state-card
+  title: Plants
+  entities:
+    - sensor.musaceae_battery

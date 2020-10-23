@@ -1,0 +1,14 @@
+---
+
+- alias: Plant - Musaceae - Unavailable
+  trigger:
+    platform: state
+    entity_id: sensor.musaceae_temperature
+    for: 24:00:00
+    to: unavailable
+  action:
+    service: notify.pushbullet
+    data:
+      title: Home Assistant
+      message: "Musaceae unavailable since 24 hours"
+      target: device/OnePlus 7 Pro

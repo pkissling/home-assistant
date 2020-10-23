@@ -1,0 +1,6 @@
+---
+
+- platform: miflora
+  mac: !secret musaceae_mac
+  name: Musaceae
+  force_update: true

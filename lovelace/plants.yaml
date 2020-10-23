@@ -1,0 +1,72 @@
+---
+
+- type: custom:stack-in-card
+  title: Musaceae
+  mode: vertical
+  cards:
+
+    - type: horizontal-stack
+      cards:
+        - type: custom:mini-graph-card
+          entities:
+          - sensor.musaceae_moisture
+          show:
+            name: false
+          hours_to_show: 72
+          aggregate_func: last
+          color_thresholds:
+            - value: 0
+              color: '#d35400'
+            - value: 15
+              color: var(--primary-color)
+            - value: 60.0
+              color: '#d35400'
+
+        - type: custom:mini-graph-card
+          entities:
+          - sensor.musaceae_conductivity
+          show:
+            name: false
+          hours_to_show: 72
+          aggregate_func: last
+          color_thresholds:
+            - value: 0
+              color: '#d35400'
+            - value: 350
+              color: var(--primary-color)
+            - value: 2000
+              color: '#d35400'
+          color_thresholds_transition: hard
+
+    - type: horizontal-stack
+      cards:
+        - type: custom:mini-graph-card
+          entities:
+          - sensor.musaceae_light_intensity
+          show:
+            name: false
+          hours_to_show: 72
+          aggregate_func: last
+          color_thresholds:
+            - value: 0
+              color: '#d35400'
+            - value: 4000
+              color: var(--primary-color)
+            - value: 45000
+              color: '#d35400'
+
+        - type: custom:mini-graph-card
+          entities:
+          - sensor.musaceae_temperature
+          show:
+            name: false
+          hours_to_show: 72
+          aggregate_func: last
+          color_thresholds:
+            - value: 0
+              color: '#d35400'
+            - value: 5
+              color: var(--primary-color)
+            - value: 35
+              color: '#d35400'
+          color_thresholds_transition: hard

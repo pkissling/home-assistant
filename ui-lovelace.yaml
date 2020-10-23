@@ -26,3 +26,9 @@ views:
     icon: mdi:battery
     cards:
       !include lovelace/battery.yaml
+
+  # plants
+  - path: plants
+    icon: mdi:leaf
+    cards:
+      !include lovelace/plants.yaml

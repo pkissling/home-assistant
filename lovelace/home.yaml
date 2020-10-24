@@ -256,6 +256,17 @@
     columns: 2
   show_empty: false
 
+# Plants
+- type: entity-filter
+  entities:
+    - plant.musaceae
+  state_filter:
+    - problem
+  card:
+    title: Dying plants
+  show_empty: false
+
+
 # People at home
 - type: entities
   entities:

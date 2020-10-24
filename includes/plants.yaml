@@ -1,0 +1,15 @@
+---
+
+musaceae:
+  sensors:
+    moisture: sensor.musaceae_moisture
+    temperature: sensor.musaceae_temperature
+    conductivity: sensor.musaceae_conductivity
+    brightness: sensor.musaceae_light_intensity
+  min_moisture: 15
+  max_moisture: 60
+  min_conductivity: 350
+  max_conductivity: 2000
+  max_brightness: 45000
+  min_temperature: 5
+  max_temperature: 35

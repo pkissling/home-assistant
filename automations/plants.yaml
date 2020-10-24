@@ -10,5 +10,28 @@
     service: notify.pushbullet
     data:
       title: Home Assistant
-      message: "Musaceae unavailable since 24 hours"
+      message: Musaceae 🍌🌴 unavailable since 24 hours
+      target: device/OnePlus 7 Pro
+
+- alias: Plant - Musaceae - Problem
+  trigger:
+    platform: time
+    at: "20:00"
+  condition:
+    condition: state
+    entity_id: plant.musaceae
+    state: >
+      {{
+        is_state('plant.musaceae', 'problem')
+          and
+        not is_state('sensor.musaceae_temperature', 'unavailable')
+          and
+        not is_state('sensor.musaceae_temperature', 'unknown')
+      }}
+  action:
+    service: notify.pushbullet
+    data:
+      title: Home Assistant
+      message: >
+        Musaceae 🍌🌴 needs love: {{ state_attr('plant.musaceae', 'problem') }}
       target: device/OnePlus 7 Pro

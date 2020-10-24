@@ -32,6 +32,7 @@ google: !include includes/google.yaml
 glances: !include includes/glances.yaml
 light: !include includes/lights.yaml
 notify: !include includes/notify.yaml
+plant: !include includes/plants.yaml
 recorder: !include includes/recorder.yaml
 spotify: !include includes/spotify.yaml
 tado: !include includes/tado.yaml

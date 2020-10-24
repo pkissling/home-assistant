@@ -111,20 +111,37 @@
           controls: true
           power: true
         shortcuts:
-          columns: 2
+          columns: 3
           buttons:
             - type: service
-              name: NRJ
-              id: media_player.play_media
+              icon: mdi:volume-minus
+              id: remote.send_command
               data:
-                entity_id: media_player.home_group
-                media_content_id: http://nrj.de/muenchen
-                media_content_type: music
+                entity_id: remote.living_room
+                device: Pioneer-AV-Receiver
+                command: VolumeDown
+                num_repeats: 10
+            - type: service
+              icon: mdi:volume-plus
+              id: remote.send_command
+              data:
+                entity_id: remote.living_room
+                device: Pioneer-AV-Receiver
+                command: VolumeUp
+                num_repeats: 10
             - type: service
               icon: mdi:power
               id: media_player.turn_off
               data:
                 entity_id: all
+            # - type: service
+            #   name: NRJ
+            #   id: media_player.play_media
+            #   data:
+            #     entity_id: media_player.home_group
+            #     media_content_id: http://nrj.de/muenchen
+            #     media_content_type: music
+
       entities:
         - type: custom:mini-media-player
           entity: media_player.chromecast

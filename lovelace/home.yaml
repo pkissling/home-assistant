@@ -45,7 +45,6 @@
   entities:
     - switch.summer_mode
     - switch.guest_mode
-    - switch.home_office_mode
 
 # TV Remote
 - type: custom:stack-in-card
@@ -240,21 +239,6 @@
     columns: 2
   show_empty: false
 
-# Motion Sensors
-- type: entity-filter
-  entities:
-    - group.motion_study
-  state_filter:
-    - 'on'
-  card:
-    type: glance
-    title: Motion sensor
-    show_state: false
-    show_icon: true
-    show_name: false
-    columns: 2
-  show_empty: false
-
 # People at home
 - type: entities
   entities:
@@ -316,6 +300,15 @@
           service: switch.toggle
           service_data:
             entity_id: switch.climate_bathroom
+      - entity: sensor.toilet_temperature
+        icon: mdi:toilet
+        target: "${states['climate.toilet'].state == 'auto' || states['climate.toilet'].state == 'heat' ? states['climate.toilet'].attributes.temperature : ''}"
+        color: "${states['climate.toilet'].state == 'auto' || states['climate.toilet'].state == 'heat' ? 'var(--primary-color)' : 'var(--light-primary-color)'}"
+        tap_action:
+          action: call-service
+          service: switch.toggle
+          service_data:
+            entity_id: switch.climate_toilet
       - entity: sensor.bedroom_temperature
         icon: mdi:bed-king-outline
         target: "${states['climate.bedroom'].state == 'auto' || states['climate.bedroom'].state == 'heat' ? states['climate.bedroom'].attributes.temperature : ''}"
@@ -334,15 +327,6 @@
           service: switch.toggle
           service_data:
             entity_id: switch.climate_study
-      - entity: sensor.toilet_temperature
-        icon: mdi:toilet
-        target: "${states['climate.toilet'].state == 'auto' || states['climate.toilet'].state == 'heat' ? states['climate.toilet'].attributes.temperature : ''}"
-        color: "${states['climate.toilet'].state == 'auto' || states['climate.toilet'].state == 'heat' ? 'var(--primary-color)' : 'var(--light-primary-color)'}"
-        tap_action:
-          action: call-service
-          service: switch.toggle
-          service_data:
-            entity_id: switch.climate_toilet
     min: 15
     max: 26
     decimal: 1

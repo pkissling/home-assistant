@@ -5,6 +5,3 @@ switch.guest_mode:
 
 switch.summer_mode:
   icon: mdi:weather-sunny
-
-switch.home_office_mode:
-  icon: mdi:laptop

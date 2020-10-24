@@ -1,0 +1,25 @@
+---
+
+- alias: Motion - Study - Turn on on moition
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_study
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: input_boolean.guest_mode
+    state: 'off'
+  action:
+    service: input_boolean.turn_on
+    entity_id: input_boolean.motion_study
+
+- alias: Motion - Study - Turn on on moition
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_study
+    to: 'off'
+    for:
+      minutes: 5
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.motion_study

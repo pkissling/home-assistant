@@ -435,12 +435,9 @@
     for:
       hours: 4
   condition:
-    - condition: state
-      entity_id: input_boolean.summer_mode
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.home_office_mode
-      state: 'off'
+    condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'off'
   action:
     - service: notify.pushbullet
       data:
@@ -666,3 +663,46 @@
       entity_id: climate.toilet
       data:
         hvac_mode: 'off'
+
+- alias: Thermostat Study - Turn on when motion
+  trigger:
+    platform: state
+    entity_id: input_boolean.motion_study
+    to: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.summer_mode
+      state: 'off'
+    - condition: state
+      entity_id: group.residents
+      state: 'home'
+    - condition: template
+      value_template: "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
+    - condition: time
+      after: '08:00'
+    - condition: time
+      before: '22:00'
+  action:
+    service: climate.set_temperature
+    data:
+      temperature: 21
+
+- alias: Thermostat Study - Turn off when no motion for 30 mins
+  trigger:
+    platform: state
+    entity_id: input_boolean.motion_study
+    to: 'off'
+    for:
+      minutes: 30
+  condition:
+    - condition: state
+      entity_id: input_boolean.summer_mode
+      state: 'off'
+    - condition: state
+      entity_id: climate.study
+      state: heat
+  action:
+    service: climate.set_hvac_mode
+    entity_id: climate.study
+    data:
+      hvac_mode: auto

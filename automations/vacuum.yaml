@@ -19,7 +19,10 @@
   action:
     - service: vacuum.start
       entity_id: vacuum.xiaomi_vacuum_cleaner
-    - service: script.vacuum_fan_medium
+    - service: vacuum.set_fan_speed
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        fan_speed: '103'  # medium
 
 - alias: Vaccum - Daily cleanup at 10:00
   trigger:
@@ -38,7 +41,10 @@
   action:
     - service: vacuum.start
       entity_id: vacuum.xiaomi_vacuum_cleaner
-    - service: script.vacuum_fan_medium
+    - service: vacuum.set_fan_speed
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        fan_speed: '103'  # medium
 
 - alias: Vacuum - Notify on cleanup finished when not home
   trigger:

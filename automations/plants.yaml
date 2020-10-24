@@ -33,3 +33,6 @@
       title: Plant
       message: >
         Musaceae 🍌🌴 needs love: {{ state_attr('plant.musaceae', 'problem') }}
+      data:
+        clickAction: lovelace/plants
+        # url: lovelace/plants test!

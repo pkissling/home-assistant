@@ -50,10 +50,9 @@
     entity_id: person.patrick
     state: not_home
   action:
-    service: notify.pushbullet
+    service: notify.patricks
     data:
-      title: Home Assistant
-      target: device/OnePlus 7 Pro
+      title: Roborock
       message: >
         Roborock finished Cleanup:
         {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'cleaned_area') }} m²,
@@ -85,11 +84,11 @@
     entity_id: vacuum.xiaomi_vacuum_cleaner
     to: error
   action:
-    service: notify.pushbullet
+    service: notify.patrick
     data:
-      title: Home Assistant
-      target: device/OnePlus 7 Pro
-      message: "Roborock Error: {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.error }}"
+      title: Roborock
+      message: >
+        Roborock Error: {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.error }}
 
 - alias: Vacuum - Notify on cleanup start
   trigger:
@@ -101,11 +100,10 @@
     entity_id: person.patrick
     state: not_home
   action:
-    service: notify.pushbullet
+    service: notify.patrick
     data:
-      title: Home Assistant
+      title: Roborock
       message: Roborock started Cleanup
-      target: device/OnePlus 7 Pro
 
 - alias: Vacuum - Start room cleaup on input select
   trigger:

@@ -137,10 +137,9 @@
     - service: input_boolean.toggle
       data:
         entity_id: "input_boolean.alarm_weekday_{{ (now().weekday() + 6) % 7 }}"
-    - service: notify.pushbullet
+    - service: notify.patrick
       data:
-        title: Home Assistant
-        target: device/OnePlus 7 Pro
+        title: Alarm Clock
         message: >
           {% set days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] %}
           Alarm for next {{ days[(now().weekday() + 6) % 7] }} turned {{ states('binary_sensor.workday_sensor') }}.

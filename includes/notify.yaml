@@ -1,5 +1,17 @@
 ---
 
-- name: pushbullet
-  platform: pushbullet
-  api_key: !secret pushbullet_api_key
+- platform: group
+  name: all
+  services:
+    - service: mobile_app_gm1913
+    - service: mobile_app_iphone_von_sandra
+
+- platform: group
+  name: patrick
+  services:
+    - service: mobile_app_gm1913
+
+- platform: group
+  name: sandra
+  services:
+    - service: mobile_app_iphone_von_sandra

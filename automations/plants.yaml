@@ -7,11 +7,10 @@
     for: 24:00:00
     to: unavailable
   action:
-    service: notify.pushbullet
+    service: notify.patrick
     data:
-      title: Home Assistant
+      title: Plant
       message: Musaceae 🍌🌴 unavailable since 24 hours
-      target: device/OnePlus 7 Pro
 
 - alias: Plant - Musaceae - Problem
   trigger:
@@ -29,9 +28,8 @@
         not is_state('sensor.musaceae_temperature', 'unknown')
       }}
   action:
-    service: notify.pushbullet
+    service: notify.patrick
     data:
-      title: Home Assistant
+      title: Plant
       message: >
         Musaceae 🍌🌴 needs love: {{ state_attr('plant.musaceae', 'problem') }}
-      target: device/OnePlus 7 Pro

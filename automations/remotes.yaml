@@ -119,10 +119,9 @@
     for:
       minutes: 1
   action:
-    - service: notify.pushbullet
+    - service: notify.patrick
       data:
-        title: Home Assistant
+        title: Harmony
         message: TV forced off as Harmony is off as well.
-        target: device/OnePlus 7 Pro
     - service: media_player.turn_off
       entity_id: media_player.lg_webos_smart_tv

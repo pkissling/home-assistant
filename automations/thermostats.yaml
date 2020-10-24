@@ -277,11 +277,10 @@
     entity_id: input_boolean.summer_mode
     state: 'on'
   action:
-    - service: notify.pushbullet
+    - service: notify.patrick
       data:
-        title: Home Assistant
+        title: Thermostat
         message: Thermostat in Kitchen turned off after 4 hours.
-        target: device/OnePlus 7 Pro
     - service: switch.turn_off
       entity_id: switch.climate_kitchen
 
@@ -298,11 +297,10 @@
     entity_id: input_boolean.summer_mode
     state: 'on'
   action:
-    - service: notify.pushbullet
+    - service: notify.patrick
       data:
-        title: Home Assistant
+        title: Thermostat
         message: Thermostat in Living Room turned off after 4 hours.
-        target: device/OnePlus 7 Pro
     - service: switch.turn_off
       entity_id: switch.climate_living_room
 
@@ -319,11 +317,10 @@
     entity_id: input_boolean.summer_mode
     state: 'on'
   action:
-    - service: notify.pushbullet
+    - service: notify.patrick
       data:
-        title: Home Assistant
+        title: Thermostat
         message: Thermostat in Study turned off after 4 hours.
-        target: device/OnePlus 7 Pro
     - service: switch.turn_off
       entity_id: switch.climate_study
 
@@ -340,11 +337,10 @@
     entity_id: input_boolean.summer_mode
     state: 'on'
   action:
-    - service: notify.pushbullet
+    - service: notify.patrick
       data:
-        title: Home Assistant
+        title: Thermostat
         message: Thermostat in Bathroom turned off after 4 hours.
-        target: device/OnePlus 7 Pro
     - service: switch.turn_off
       entity_id: switch.climate_bathroom
 
@@ -361,11 +357,10 @@
     entity_id: input_boolean.summer_mode
     state: 'on'
   action:
-    - service: notify.pushbullet
+    - service: notify.patrick
       data:
-        title: Home Assistant
+        title: Thermostat
         message: Thermostat in Bedroom turned off after 4 hours.
-        target: device/OnePlus 7 Pro
     - service: switch.turn_off
       entity_id: switch.climate_bedroom
 
@@ -382,11 +377,10 @@
     entity_id: input_boolean.summer_mode
     state: 'on'
   action:
-    - service: notify.pushbullet
+    - service: notify.patrick
       data:
-        title: Home Assistant
+        title: Thermostat
         message: Thermostat in Toilet turned off after 4 hours.
-        target: device/OnePlus 7 Pro
     - service: switch.turn_off
       entity_id: switch.climate_toilet
 
@@ -401,11 +395,10 @@
     entity_id: input_boolean.summer_mode
     state: 'off'
   action:
-    - service: notify.pushbullet
+    - service: notify.patrick
       data:
-        title: Home Assistant
+        title: Thermostat
         message: Manual heating in Kitchen turned off after 4 hours.
-        target: device/OnePlus 7 Pro
     - service: switch.turn_on
       entity_id: switch.climate_kitchen
 
@@ -420,11 +413,10 @@
     entity_id: input_boolean.summer_mode
     state: 'off'
   action:
-    - service: notify.pushbullet
+    - service: notify.patrick
       data:
-        title: Home Assistant
+        title: Thermostat
         message: Manual heating in Living Room turned off after 4 hours.
-        target: device/OnePlus 7 Pro
     - service: switch.turn_on
       entity_id: switch.climate_living_room
 
@@ -439,11 +431,10 @@
     entity_id: input_boolean.summer_mode
     state: 'off'
   action:
-    - service: notify.pushbullet
+    - service: notify.patrick
       data:
-        title: Home Assistant
+        title: Thermostat
         message: Manual heating in Study turned off after 4 hours.
-        target: device/OnePlus 7 Pro
     - service: switch.turn_on
       entity_id: switch.climate_study
 
@@ -458,11 +449,10 @@
     entity_id: input_boolean.summer_mode
     state: 'off'
   action:
-    - service: notify.pushbullet
+    - service: notify.patrick
       data:
-        title: Home Assistant
+        title: Thermostat
         message: Manual heating in Bathroom turned off after 4 hours.
-        target: device/OnePlus 7 Pro
     - service: switch.turn_on
       entity_id: switch.climate_bathroom
 
@@ -477,11 +467,10 @@
     entity_id: input_boolean.summer_mode
     state: 'off'
   action:
-    - service: notify.pushbullet
+    - service: notify.patrick
       data:
-        title: Home Assistant
+        title: Thermostat
         message: Manual heating in Bedroom turned off after 4 hours.
-        target: device/OnePlus 7 Pro
     - service: switch.turn_on
       entity_id: switch.climate_bedroom
 
@@ -496,11 +485,10 @@
     entity_id: input_boolean.summer_mode
     state: 'off'
   action:
-    - service: notify.pushbullet
+    - service: notify.patrick
       data:
-        title: Home Assistant
+        title: Thermostat
         message: Manual heating in Toilet turned off after 4 hours.
-        target: device/OnePlus 7 Pro
     - service: switch.turn_on
       entity_id: switch.climate_toilet
 
@@ -516,11 +504,10 @@
     for:
       minutes: 1
   action:
-    - service: notify.pushbullet
+    - service: notify.patrick
       data:
-        title: Home Assistant
+        title: Thermostat
         message: Thermostat in Living Room turned off because window is open.
-        target: device/OnePlus 7 Pro
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_living_room
       data:
@@ -542,11 +529,10 @@
     for:
       minutes: 1
   action:
-    - service: notify.pushbullet
+    - service: notify.patrick
       data:
-        title: Home Assistant
+        title: Thermostat
         message: Thermostat in Bedroom turned off because window is open.
-        target: device/OnePlus 7 Pro
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_bedroom
       data:
@@ -570,11 +556,10 @@
     for:
       minutes: 1
   action:
-    - service: notify.pushbullet
+    - service: notify.patrick
       data:
-        title: Home Assistant
+        title: Thermostat
         message: Thermostat in Bathroom turned off because window is open.
-        target: device/OnePlus 7 Pro
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_bathroom
       data:
@@ -597,11 +582,10 @@
     for:
       minutes: 1
   action:
-    - service: notify.pushbullet
+    - service: notify.patrick
       data:
-        title: Home Assistant
+        title: Thermostat
         message: Thermostat in Study turned off because window is open.
-        target: device/OnePlus 7 Pro
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_study
       data:
@@ -624,11 +608,10 @@
     for:
       minutes: 1
   action:
-    - service: notify.pushbullet
+    - service: notify.patrick
       data:
-        title: Home Assistant
+        title: Thermostat
         message: Thermostat in Kitchen turned off because window is open.
-        target: device/OnePlus 7 Pro
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_kitchen
       data:
@@ -650,11 +633,10 @@
     for:
       minutes: 1
   action:
-    - service: notify.pushbullet
+    - service: notify.patrick
       data:
-        title: Home Assistant
+        title: Thermostat
         message: Thermostat in Toilet turned off because window is open.
-        target: device/OnePlus 7 Pro
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_toilet
       data:

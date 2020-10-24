@@ -11,11 +11,10 @@
     entity_id: input_boolean.summer_mode
     state: 'on'
   action:
-    service: notify.pushbullet
+    service: notify.patrick
     data:
-      title: Home Assistant
+      title: Thermostat
       message: Thermostat in Kitchen turned on.
-      target: device/OnePlus 7 Pro
 
 - alias: Notification - Summer Mode - Thermostat Living Room on
   trigger:
@@ -28,11 +27,10 @@
     entity_id: input_boolean.summer_mode
     state: 'on'
   action:
-    service: notify.pushbullet
+    service: notify.patrick
     data:
-      title: Home Assistant
+      title: Thermostat
       message: Thermostat in Living Room turned on.
-      target: device/OnePlus 7 Pro
 
 - alias: Notification - Summer Mode - Thermostat Study on
   trigger:
@@ -45,11 +43,10 @@
     entity_id: input_boolean.summer_mode
     state: 'on'
   action:
-    service: notify.pushbullet
+    service: notify.patrick
     data:
-      title: Home Assistant
+      title: Thermostat
       message: Thermostat in Study turned on.
-      target: device/OnePlus 7 Pro
 
 - alias: Notification - Summer Mode - Thermostat Bedroom on
   trigger:
@@ -62,11 +59,10 @@
     entity_id: input_boolean.summer_mode
     state: 'on'
   action:
-    service: notify.pushbullet
+    service: notify.patrick
     data:
-      title: Home Assistant
+      title: Thermostat
       message: Thermostat in Bedroom turned on.
-      target: device/OnePlus 7 Pro
 
 - alias: Notification - Summer Mode - Thermostat Bathroom on
   trigger:
@@ -79,11 +75,10 @@
     entity_id: input_boolean.summer_mode
     state: 'on'
   action:
-    service: notify.pushbullet
+    service: notify.patrick
     data:
-      title: Home Assistant
+      title: Thermostat
       message: Thermostat in Bathroom turned on.
-      target: device/OnePlus 7 Pro
 
 - alias: Notification - Thermostat Bathroom set to heat
   trigger:
@@ -94,11 +89,10 @@
     entity_id: input_boolean.summer_mode
     state: 'off'
   action:
-    service: notify.pushbullet
+    service: notify.patrick
     data:
-      title: Home Assistant
+      title: Thermostat
       message: Thermostat in Bathroom was set to 'heat'.
-      target: device/OnePlus 7 Pro
 
 - alias: Notification - Thermostat Bedroom set to heat
   trigger:
@@ -109,11 +103,10 @@
     entity_id: input_boolean.summer_mode
     state: 'off'
   action:
-    service: notify.pushbullet
+    service: notify.patrick
     data:
-      title: Home Assistant
+      title: Thermostat
       message: Thermostat in Bedroom was set to 'heat'.
-      target: device/OnePlus 7 Pro
 
 - alias: Notification - Thermostat Study set to heat
   trigger:
@@ -124,11 +117,10 @@
     entity_id: input_boolean.summer_mode
     state: 'off'
   action:
-    service: notify.pushbullet
+    service: notify.patrick
     data:
-      title: Home Assistant
+      title: Thermostat
       message: Thermostat in Study was set to 'heat'.
-      target: device/OnePlus 7 Pro
 
 - alias: Notification - Thermostat Living Room set to heat
   trigger:
@@ -139,11 +131,10 @@
     entity_id: input_boolean.summer_mode
     state: 'off'
   action:
-    service: notify.pushbullet
+    service: notify.patrick
     data:
-      title: Home Assistant
+      title: Thermostat
       message: Thermostat in Living Room was set to 'heat'.
-      target: device/OnePlus 7 Pro
 
 - alias: Notification - Thermostat Kitchen set to heat
   trigger:
@@ -154,11 +145,10 @@
     entity_id: input_boolean.summer_mode
     state: 'off'
   action:
-    service: notify.pushbullet
+    service: notify.patrick
     data:
-      title: Home Assistant
+      title: Thermostat
       message: Thermostat in Kitchen was set to 'heat'.
-      target: device/OnePlus 7 Pro
 
 - alias: Notification - Device Tracker not working for Patrick
   trigger:
@@ -172,11 +162,10 @@
     for:
       hours: 1
   action:
-    service: notify.pushbullet
+    service: notify.patrick
     data:
-      title: Home Assistant
+      title: Device Tracker
       message: Patrick's device tracker is out of sync
-      target: device/OnePlus 7 Pro
 
 - alias: Notification - Device Tracker not working for Sandra
   trigger:
@@ -190,11 +179,10 @@
     for:
       hours: 1
   action:
-    service: notify.pushbullet
+    service: notify.patrick
     data:
-      title: Home Assistant
+      title: Device Tracker
       message: Sandra's device tracker is out of sync
-      target: device/OnePlus 7 Pro
 
 - alias: Notification - Expiring SSL Certificate
   trigger:
@@ -202,8 +190,7 @@
     entity_id: !secret sensor_ssl_cert_ha_expiry
     below: 5
   action:
-    service: notify.pushbullet
+    service: notify.patrick
     data:
-      title: Home Assistant
-      message: "HA SSL certificate exipres in less than 5 days."
-      target: device/OnePlus 7 Pro
+      title: SSL Certificate
+      message: HA SSL certificate exipres in less than 5 days.

@@ -3,8 +3,8 @@ extends: default
 
 rules:
   line-length: disable
+  comments-indentation: disable
 #   comments: disable
-#   comments-indentation: disable
 
 ignore: |
   .github/

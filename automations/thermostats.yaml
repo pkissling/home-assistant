@@ -658,8 +658,7 @@
     - condition: state
       entity_id: group.residents
       state: 'home'
-    - condition: template
-      value_template: "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
+    -  "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
     - condition: time
       after: '08:00'
     - condition: time

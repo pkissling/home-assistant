@@ -427,9 +427,12 @@
     for:
       hours: 4
   condition:
-    condition: state
-    entity_id: input_boolean.summer_mode
-    state: 'off'
+    - condition: state
+      entity_id: input_boolean.summer_mode
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.thermostat_study_triggered_by_motion
+      state: 'off'
   action:
     - service: notify.patrick
       data:
@@ -667,18 +670,21 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
   action:
-    service: climate.set_temperature
-    entity_id: climate.study
-    data:
-      temperature: 22
+    - service: climate.set_temperature
+      entity_id: climate.study
+      data:
+        temperature: 22
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.thermostat_study_triggered_by_motion
 
-- alias: Thermostat Study - Turn off when no motion for 30 mins
+
+- alias: Thermostat Study - Turn off when no motion for 1 hour
   trigger:
     platform: state
     entity_id: binary_sensor.motion_study
     to: 'off'
     for:
-      minutes: 30
+      hours: 1
   condition:
     - condition: state
       entity_id: input_boolean.summer_mode
@@ -690,7 +696,9 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
   action:
-    service: climate.set_hvac_mode
-    entity_id: climate.study
-    data:
-      hvac_mode: auto
+    - service: climate.set_hvac_mode
+      entity_id: climate.study
+      data:
+        hvac_mode: auto
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.thermostat_study_triggered_by_motion

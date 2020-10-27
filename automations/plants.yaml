@@ -4,7 +4,7 @@
   trigger:
     platform: state
     entity_id: sensor.musaceae_temperature
-    for: 24:00:00
+    for: '24:00:00'
     to: unavailable
   action:
     service: notify.patrick
@@ -17,9 +17,8 @@
     platform: time
     at: "20:00"
   condition:
-    condition: state
-    entity_id: plant.musaceae
-    state: >
+    condition: template
+    value_template: >
       {{
         is_state('plant.musaceae', 'problem')
           and
@@ -35,4 +34,4 @@
         Musaceae 🍌🌴 needs love: {{ state_attr('plant.musaceae', 'problem') }}
       data:
         clickAction: /lovelace/plants
-        # url: /lovelace/plants
+        url: /lovelace/plants

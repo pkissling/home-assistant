@@ -33,6 +33,7 @@
         - light.lamp
         - light.tv
         - light.ceiling
+    - light.study
 
 # Weather
 - type: weather-forecast

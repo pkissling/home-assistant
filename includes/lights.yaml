@@ -1,6 +1,13 @@
 ---
 
 - platform: group
+  name: All
+  entities:
+    - light.bedroom
+    - light.living_room
+    - light.study
+
+- platform: group
   name: Living Room
   entities:
     - light.tv
@@ -12,8 +19,11 @@
   entities:
     - light.lightstrip
 
+- platform: switch
+  name: Desk
+  entity_id: switch.study_lamp
+
 - platform: group
-  name: All
+  name: Study
   entities:
-    - light.bedroom
-    - light.living_room
+    - light.desk

@@ -89,3 +89,35 @@
   action:
     service: light.turn_off
     entity_id: light.all
+
+- alias: Light Study - Turn on when motion
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_study
+    to: 'on'
+  condition:
+    - condition: state
+      entity_id: group.residents
+      state: 'home'
+    -  "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+  action:
+    service: switch.turn_on
+    entity_id: switch.study_lamp
+
+- alias: Light Study - Turn off when no motion for 15 minutes
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_study
+    to: 'off'
+    for:
+      minutes: 15
+  condition:
+    condition: state
+    entity_id: input_boolean.guest_mode
+    state: 'off'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.study_lamp

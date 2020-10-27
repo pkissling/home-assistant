@@ -684,7 +684,7 @@
     entity_id: binary_sensor.motion_study
     to: 'off'
     for:
-      hours: 1
+      minutes: 30
   condition:
     - condition: state
       entity_id: input_boolean.summer_mode

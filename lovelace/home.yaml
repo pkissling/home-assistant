@@ -33,7 +33,11 @@
         - light.lamp
         - light.tv
         - light.ceiling
-    - light.study
+    - type: custom:fold-entity-row
+      head:
+        entity: light.study
+      entities:
+        - light.desk
 
 # Weather
 - type: weather-forecast

@@ -82,8 +82,9 @@
 
 - alias: Notification - Thermostat Bathroom set to heat
   trigger:
-    platform: template
-    value_template: "{{ is_state('climate.bathroom', 'heat') }}"
+    platform: state
+    entity_id: climate.bathroom
+    to: heat
   condition:
     condition: state
     entity_id: input_boolean.summer_mode
@@ -96,8 +97,9 @@
 
 - alias: Notification - Thermostat Bedroom set to heat
   trigger:
-    platform: template
-    value_template: "{{ is_state('climate.bedroom', 'heat') }}"
+    platform: state
+    entity_id: climate.bedroom
+    to: heat
   condition:
     condition: state
     entity_id: input_boolean.summer_mode
@@ -110,8 +112,9 @@
 
 - alias: Notification - Thermostat Study set to heat
   trigger:
-    platform: template
-    value_template: "{{ is_state('climate.study', 'heat') }}"
+    platform: state
+    entity_id: climate.study
+    to: heat
   condition:
     condition: state
     entity_id: input_boolean.summer_mode
@@ -124,8 +127,9 @@
 
 - alias: Notification - Thermostat Living Room set to heat
   trigger:
-    platform: template
-    value_template: "{{ is_state('climate.living_room', 'heat') }}"
+    platform: state
+    entity_id: climate.living_room
+    to: heat
   condition:
     condition: state
     entity_id: input_boolean.summer_mode
@@ -138,8 +142,9 @@
 
 - alias: Notification - Thermostat Kitchen set to heat
   trigger:
-    platform: template
-    value_template: "{{ is_state('climate.kitchen', 'heat') }}"
+    platform: state
+    entity_id: climate.kitchen
+    to: heat
   condition:
     condition: state
     entity_id: input_boolean.summer_mode

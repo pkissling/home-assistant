@@ -661,7 +661,7 @@
     - condition: state
       entity_id: group.residents
       state: 'home'
-    -  "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
+    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
     - condition: state
       entity_id: input_boolean.guest_mode
       state: 'off'

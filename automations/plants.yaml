@@ -27,7 +27,7 @@
         not is_state('sensor.musaceae_temperature', 'unknown')
       }}
   action:
-    service: notify.patrick
+    service: notify.all
     data:
       title: Plant
       message: >

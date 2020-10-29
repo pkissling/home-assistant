@@ -665,6 +665,9 @@
     - condition: state
       entity_id: input_boolean.guest_mode
       state: 'off'
+    - condition: state
+      entity_id: group.window_study
+      state: 'off'
   action:
     - service: climate.set_temperature
       entity_id: climate.study
@@ -674,7 +677,7 @@
       entity_id: input_boolean.thermostat_study_triggered_by_motion
 
 
-- alias: Thermostat Study - Turn off when no motion for 1 hour
+- alias: Thermostat Study - Turn off when no motion for 30 hour
   trigger:
     platform: state
     entity_id: binary_sensor.motion_study

@@ -2,12 +2,6 @@
 
 background: var(--background-image)
 
-custom_header:
-  background: var(--sidebar-background-color)
-  compact_mode: true
-  button_text:
-    options: '{{ hours24 }}:{{ minutesLZ }}'
-
 views:
   # home
   - path: home

@@ -371,11 +371,11 @@
   entities:
     - binary_sensor.motion_study
   show:
-    name: off
+    name: off  # yamllint disable-line rule:truthy
     points: false
     labels: false
     state: false
-    icon: off
+    icon: off  # yamllint disable-line rule:truthy
   hours_to_show: 1
   points_per_hour: 60
   update_interval: 30

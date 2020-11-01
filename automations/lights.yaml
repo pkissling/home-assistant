@@ -119,5 +119,5 @@
     entity_id: input_boolean.guest_mode
     state: 'off'
   action:
-    - service: switch.turn_off
-      entity_id: switch.study_lamp
+    service: switch.turn_off
+    entity_id: switch.study_lamp

@@ -1,0 +1,101 @@
+---
+
+- alias: Windows - Living Room - Notify window open more than 1 hr
+  trigger:
+    platform: state
+    entity_id: group.window_living_room
+    to: 'on'
+    for:
+      hours: 1
+  condition:
+    condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'off'
+  action:
+    service: notify.all
+    data:
+      title: Living Room window open
+      message: >
+        Window in Living Room open for 1 hour.
+        You might want to close it.
+        Current temperature: {{ state_attr('climate.living_room', 'temperature') }} °C
+
+- alias: Windows - Kitchen - Notify window open more than 1 hr
+  trigger:
+    platform: state
+    entity_id: group.window_kitchen
+    to: 'on'
+    for:
+      hours: 1
+  condition:
+    condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'off'
+  action:
+    service: notify.all
+    data:
+      title: Kitchen window open
+      message: >
+        Window in Kitchen open for 1 hour.
+        You might want to close it.
+        Current temperature: {{ state_attr('climate.kitchen', 'temperature') }} °C
+
+- alias: Windows - Bedroom - Notify window open more than 1 hr
+  trigger:
+    platform: state
+    entity_id: group.window_bedroom
+    to: 'on'
+    for:
+      hours: 1
+  condition:
+    condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'off'
+  action:
+    service: notify.all
+    data:
+      title: Bedroom window open
+      message: >
+        Window in Bedroom open for 1 hour.
+        You might want to close it.
+        Current temperature: {{ state_attr('climate.bedroom', 'temperature') }} °C
+
+- alias: Windows - Study - Notify window open more than 1 hr
+  trigger:
+    platform: state
+    entity_id: group.window_study
+    to: 'on'
+    for:
+      hours: 1
+  condition:
+    condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'off'
+  action:
+    service: notify.all
+    data:
+      title: Study window open
+      message: >
+        Window in Study open for 1 hour.
+        You might want to close it.
+        Current temperature: {{ state_attr('climate.study', 'temperature') }} °C
+
+- alias: Windows - Bathroom - Notify window open more than 1 hr
+  trigger:
+    platform: state
+    entity_id: group.window_bathroom
+    to: 'on'
+    for:
+      hours: 1
+  condition:
+    condition: state
+    entity_id: input_boolean.summer_mode
+    state: 'off'
+  action:
+    service: notify.all
+    data:
+      title: Bathroom window open
+      message: >
+        Window in Bathroom open for 1 hour.
+        You might want to close it.
+        Current temperature: {{ state_attr('climate.bathroom', 'temperature') }} °C

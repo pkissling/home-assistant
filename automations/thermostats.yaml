@@ -497,15 +497,15 @@
 
 - alias: Thermostat Living Room - Force off and notify
   trigger:
-    platform: template
-    value_template: >
-      {{
-        is_state('binary_sensor.thermostat_living_room', 'on')
-          and
-        is_state('group.window_living_room', 'on')
-      }}
-    for:
-      minutes: 1
+    platform: time_pattern
+    minutes: /5
+  condition:
+    - condition: state
+      entity_id: binary_sensor.thermostat_living_room
+      state: 'on'
+    - condition: state
+      entity_id: group.window_living_room
+      state: 'on'
   action:
     - service: notify.patrick
       data:
@@ -522,15 +522,15 @@
 
 - alias: Thermostat Bedroom - Force off and notify
   trigger:
-    platform: template
-    value_template: >
-      {{
-        is_state('binary_sensor.thermostat_bedroom', 'on')
-          and
-        is_state('group.window_bedroom', 'on')
-      }}
-    for:
-      minutes: 1
+    platform: time_pattern
+    minutes: /5
+  condition:
+    - condition: state
+      entity_id: binary_sensor.thermostat_bedroom
+      state: 'on'
+    - condition: state
+      entity_id: group.window_bedroom
+      state: 'on'
   action:
     - service: notify.patrick
       data:
@@ -548,16 +548,15 @@
 
 - alias: Thermostat Bathroom - Force off and notify
   trigger:
-    platform: template
-    value_template: >
-      {{
-        is_state('binary_sensor.thermostat_bathroom', 'on')
-          and
-        is_state('group.window_bathroom', 'on')
-      }}
-
-    for:
-      minutes: 1
+    platform: time_pattern
+    minutes: /5
+  condition:
+    - condition: state
+      entity_id: binary_sensor.thermostat_bathroom
+      state: 'on'
+    - condition: state
+      entity_id: group.window_bathroom
+      state: 'on'
   action:
     - service: notify.patrick
       data:
@@ -575,15 +574,15 @@
 
 - alias: Thermostat Study - Force off and notify
   trigger:
-    platform: template
-    value_template: >
-      {{
-        is_state('binary_sensor.thermostat_study', 'on')
-          and
-        is_state('group.window_study', 'on')
-      }}
-    for:
-      minutes: 1
+    platform: time_pattern
+    minutes: /5
+  condition:
+    - condition: state
+      entity_id: binary_sensor.thermostat_study
+      state: 'on'
+    - condition: state
+      entity_id: group.window_study
+      state: 'on'
   action:
     - service: notify.patrick
       data:
@@ -601,15 +600,15 @@
 
 - alias: Thermostat Kitchen - Force off and notify
   trigger:
-    platform: template
-    value_template: >
-      {{
-        is_state('binary_sensor.thermostat_kitchen', 'on')
-          and
-        is_state('group.window_kitchen', 'on')
-      }}
-    for:
-      minutes: 1
+    platform: time_pattern
+    minutes: /5
+  condition:
+    - condition: state
+      entity_id: binary_sensor.thermostat_kitchen
+      state: 'on'
+    - condition: state
+      entity_id: group.window_kitchen
+      state: 'on'
   action:
     - service: notify.patrick
       data:
@@ -626,15 +625,15 @@
 
 - alias: Thermostat Toilet - Force off and notify
   trigger:
-    platform: template
-    value_template: >
-      {{
-        is_state('binary_sensor.thermostat_toilet', 'on')
-          and
-        is_state('group.window_toilet', 'on')
-      }}
-    for:
-      minutes: 1
+    platform: time_pattern
+    minutes: /5
+  condition:
+    - condition: state
+      entity_id: binary_sensor.thermostat_toilet
+      state: 'on'
+    - condition: state
+      entity_id: group.window_toilet
+      state: 'on'
   action:
     - service: notify.patrick
       data:

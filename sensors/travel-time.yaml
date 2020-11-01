@@ -1,0 +1,9 @@
+---
+
+- platform: google_travel_time
+  name: Patrick Commute
+  api_key: !secret google_distance_matrix_api_key
+  origin: zone.home
+  destination: !secret work_address_patrick
+  options:
+    mode: transit

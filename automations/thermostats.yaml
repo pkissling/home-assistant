@@ -386,8 +386,9 @@
 
 - alias: Thermostat Kitchen - Manual heating off after 4 hours
   trigger:
-    platform: template
-    value_template: "{{ is_state('climate.kitchen', 'heat') }}"
+    platform: state
+    entity_id: climate.kitchen
+    to: heat
     for:
       hours: 4
   condition:
@@ -404,8 +405,9 @@
 
 - alias: Thermostat Living Room - Manual heating off after 4 hours
   trigger:
-    platform: template
-    value_template: "{{ is_state('climate.living_room', 'heat') }}"
+    platform: state
+    entity_id: climate.living_room
+    to: heat
     for:
       hours: 4
   condition:
@@ -422,8 +424,9 @@
 
 - alias: Thermostat Study - Manual heating off after 4 hours
   trigger:
-    platform: template
-    value_template: "{{ is_state('climate.study', 'heat') }}"
+    platform: state
+    entity_id: climate.study
+    to: heat
     for:
       hours: 4
   condition:
@@ -443,8 +446,9 @@
 
 - alias: Thermostat Bathroom - Manual heating off after 4 hours
   trigger:
-    platform: template
-    value_template: "{{ is_state('climate.bathroom', 'heat') }}"
+    platform: state
+    entity_id: climate.bathroom
+    to: heat
     for:
       hours: 4
   condition:
@@ -461,8 +465,9 @@
 
 - alias: Thermostat Bedroom - Manual heating off after 4 hours
   trigger:
-    platform: template
-    value_template: "{{ is_state('climate.bedroom', 'heat') }}"
+    platform: state
+    entity_id: climate.bedroom
+    to: heat
     for:
       hours: 4
   condition:
@@ -479,8 +484,9 @@
 
 - alias: Thermostat Toilet - Manual heating off after 4 hours
   trigger:
-    platform: template
-    value_template: "{{ is_state('climate.toilet', 'heat') }}"
+    platform: state
+    entity_id: climate.toilet
+    to: heat
     for:
       hours: 4
   condition:

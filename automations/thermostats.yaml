@@ -682,13 +682,13 @@
       entity_id: input_boolean.thermostat_study_triggered_by_motion
 
 
-- alias: Thermostat Study - Turn off when no motion for 30 hour
+- alias: Thermostat Study - Turn off when no motion for 15 minutes
   trigger:
     platform: state
     entity_id: binary_sensor.motion_study
     to: 'off'
     for:
-      minutes: 30
+    minutes: 15
   condition:
     - condition: state
       entity_id: input_boolean.summer_mode

@@ -72,11 +72,11 @@
 
 - alias: Light - Turn off when sunlight
   trigger:
-    - platform: state
-      entity_id: light.all
-      to: 'on'
-      for:
-        minutes: 30
+    platform: state
+    entity_id: light.all
+    to: 'on'
+    for:
+      minutes: 30
   condition:
     - condition: sun
       before: sunset

@@ -8,4 +8,4 @@
   action:
     service: frontend.set_theme
     data:
-      name: ios-dark-mode
+      name: ios-dark-mode-light-green

@@ -39,11 +39,20 @@ My personal configuration for [Home Assistant](https://www.home-assistant.io) ru
 ### Motion Sensors
 * [Aqara Motion Sensor](https://www.aqara.com/us/motion_sensor.html)
 
-### Vacuum Cleaner
-* [Roborock S50](https://en.roborock.com/pages/robot-vacuum-cleaner)
+### Plug
+* [Shelly Plsug S](https://shelly.cloud/products/shelly-plug-s-smart-home-automation-device/)
 
 ### TV
 * [LG OLED 69E9](https://www.lg.com/uk/tvs/lg-OLED65E9)
+
+### Vacuum Cleaner
+* [Roborock S50](https://en.roborock.com/pages/robot-vacuum-cleaner)
+
+### Vibration Sensors
+* [Aqara Vibration Sensor](https://www.aqara.com/us/vibration_sensor.html)
+
+### Window Sensors
+* [Aqara Door and Window Sensor][https://www.aqara.com/us/door_and_window_sensor.html]
 
 ## UI
 UI heavily influenced by [@basnijholt](https://github.com/basnijholt/home-assistant-config)

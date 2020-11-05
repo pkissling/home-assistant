@@ -1,0 +1,11 @@
+---
+
+- platform: mqtt
+  unique_id: plug_living_room_amplifier
+  name: Plug Living Room Amlifier
+  state_topic: shellies/shellyplug-s-9A3C76/relay/0
+  command_topic: shellies/shellyplug-s-9A3C76/relay/0/command
+  payload_on: 'on'
+  payload_off: 'off'
+  state_on: 'on'
+  state_off: 'off'

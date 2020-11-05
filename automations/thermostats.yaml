@@ -8,7 +8,7 @@
     from: 'off'
     to: 'on'
     for:
-      seconds: 5
+      minutes: 1
   condition:
     condition: state
     entity_id: binary_sensor.thermostat_bedroom
@@ -30,7 +30,7 @@
     from: 'on'
     to: 'off'
     for:
-      seconds: 5
+      minutes: 5
   condition:
     - condition: template
       value_template: "{{ not is_state('input_text.thermostat_old_hvac_bedroom', 'unknown') }}"
@@ -52,7 +52,7 @@
     from: 'off'
     to: 'on'
     for:
-      seconds: 5
+      minutes: 1
   condition:
     condition: state
     entity_id: binary_sensor.thermostat_study
@@ -74,7 +74,7 @@
     from: 'on'
     to: 'off'
     for:
-      seconds: 5
+      minutes: 5
   condition:
     condition: template
     value_template: "{{ not is_state('input_text.thermostat_old_hvac_study', 'unknown') }}"
@@ -96,7 +96,7 @@
     from: 'off'
     to: 'on'
     for:
-      seconds: 5
+      minutes: 1
   condition:
     condition: state
     entity_id: binary_sensor.thermostat_bathroom
@@ -118,7 +118,7 @@
     from: 'on'
     to: 'off'
     for:
-      seconds: 5
+      minutes: 5
   condition:
     condition: template
     value_template: "{{ not is_state('input_text.thermostat_old_hvac_bathroom', 'unknown') }}"
@@ -140,7 +140,7 @@
     from: 'off'
     to: 'on'
     for:
-      seconds: 5
+      minutes: 1
   condition:
     condition: state
     entity_id: binary_sensor.thermostat_living_room
@@ -162,7 +162,7 @@
     from: 'on'
     to: 'off'
     for:
-      seconds: 5
+      minutes: 5
   condition:
     condition: template
     value_template: "{{ not is_state('input_text.thermostat_old_hvac_living_room', 'unknown') }}"
@@ -184,7 +184,7 @@
     from: 'off'
     to: 'on'
     for:
-      seconds: 5
+      minutes: 1
   condition:
     condition: state
     entity_id: binary_sensor.thermostat_kitchen
@@ -206,7 +206,7 @@
     from: 'on'
     to: 'off'
     for:
-      seconds: 5
+      minutes: 5
   condition:
     condition: template
     value_template: "{{ not is_state('input_text.thermostat_old_hvac_kitchen', 'unknown') }}"
@@ -227,8 +227,6 @@
     entity_id: group.window_toilet
     from: 'off'
     to: 'on'
-    for:
-      seconds: 5
   condition:
     condition: state
     entity_id: binary_sensor.thermostat_toilet
@@ -250,7 +248,7 @@
     from: 'on'
     to: 'off'
     for:
-      seconds: 5
+      minutes: 5
   condition:
     condition: template
     value_template: "{{ not is_state('input_text.thermostat_old_hvac_toilet', 'unknown') }}"

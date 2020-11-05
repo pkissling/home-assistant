@@ -39,3 +39,9 @@
   title: Motion Sensors
   entities:
     - sensor.motion_study_battery_level
+
+# Vibration
+- type: custom:battery-state-card
+  title: Vibration
+  entities:
+    - sensor.vibration_study_chair_battery_level

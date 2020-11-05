@@ -657,7 +657,7 @@
 - alias: Thermostat Study - Turn on when motion
   trigger:
     platform: state
-    entity_id: binary_sensor.motion_study
+    entity_id: group.motion_study_desk
     to: 'on'
   condition:
     - condition: state
@@ -685,7 +685,7 @@
 - alias: Thermostat Study - Turn off when no motion for 15 minutes
   trigger:
     platform: state
-    entity_id: binary_sensor.motion_study
+    entity_id: group.motion_study_desk
     to: 'off'
     for:
       minutes: 30

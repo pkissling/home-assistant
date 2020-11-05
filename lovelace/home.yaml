@@ -369,7 +369,8 @@
 # Motion
 - type: custom:mini-graph-card
   entities:
-    - binary_sensor.motion_study
+    - binary_sensor.motion_study_desk
+    - binary_sensor.vibration_study_chair
   show:
     name: off  # yamllint disable-line rule:truthy
     points: false

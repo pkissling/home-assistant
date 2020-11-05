@@ -93,13 +93,14 @@
 - alias: Light Study - Turn on when motion
   trigger:
     platform: state
-    entity_id: binary_sensor.motion_study
+    entity_id: group.motion_study_desk
     to: 'on'
   condition:
     - condition: state
       entity_id: group.residents
       state: 'home'
     - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
+    - "{{ states('sensor.motion_study_lightlevel') | float <= 15 }}"
     - condition: state
       entity_id: input_boolean.guest_mode
       state: 'off'
@@ -109,11 +110,16 @@
 
 - alias: Light Study - Turn off when no motion for 30 minutes
   trigger:
-    platform: state
-    entity_id: binary_sensor.motion_study
-    to: 'off'
-    for:
-      minutes: 30
+    - platform: state
+      entity_id: group.motion_study_desk
+      to: 'off'
+      for:
+        minutes: 30
+    - platform: numeric_state
+      entity_id: sensor.motion_study_lightlevel
+      above: 15
+      for:
+        minutes: 30
   condition:
     condition: state
     entity_id: input_boolean.guest_mode

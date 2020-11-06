@@ -101,7 +101,7 @@
       state: 'home'
     - condition: numeric_state
       entity_id: sensor.motion_study_lightlevel
-      below: 15
+      below: 25
     - condition: state
       entity_id: input_boolean.guest_mode
       state: 'off'
@@ -119,7 +119,7 @@
         minutes: 30
     - platform: numeric_state
       entity_id: sensor.motion_study_lightlevel
-      above: 15
+      above: 25
       for:
         minutes: 30
   condition:

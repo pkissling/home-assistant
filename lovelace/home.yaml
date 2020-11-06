@@ -377,7 +377,7 @@
     labels: false
     state: false
     icon: off  # yamllint disable-line rule:truthy
-  hours_to_show: 1
+  hours_to_show: 0.5
   points_per_hour: 60
   update_interval: 30
   aggregate_func: max

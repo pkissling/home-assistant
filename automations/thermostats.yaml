@@ -664,20 +664,23 @@
     - condition: state
       entity_id: group.residents
       state: 'home'
-    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
     - condition: state
       entity_id: input_boolean.guest_mode
       state: 'off'
     - condition: state
       entity_id: group.window_study
       state: 'off'
+    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
+    - "{{ not is_state('climate.study', 'heat') }}"
   action:
+    # input_boolean must be changed before actual temperature.
+    # otherwise notification (from notification.yaml) will fire
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.thermostat_study_triggered_by_motion
     - service: climate.set_temperature
       entity_id: climate.study
       data:
         temperature: 22
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.thermostat_study_triggered_by_motion
 
 
 - alias: Thermostat Study - Turn off when no motion for 15 minutes

@@ -125,3 +125,77 @@
         message: TV forced off as Harmony is off as well.
     - service: media_player.turn_off
       entity_id: media_player.lg_webos_smart_tv
+
+- alias: Remote - Turn off Amplifer if still running
+  trigger:
+    platform: state
+    entity_id: remote.living_room
+    to: 'off'
+    for:
+      seconds: 10
+  condition:
+    condition: numeric_state
+    entity_id: sensor.plug_living_room_amplifier
+    above: 10
+  mode: queued
+  action:
+    repeat:
+      sequence:
+        # Run command that for some reason doesn't always work
+        - service: remote.send_command
+          entity_id: remote.living_room
+          data:
+            device: Pioneer-AV-Receiver
+            command: PowerOff
+        # Give plug time to update the sensor
+        - delay:
+            seconds: 5
+      until:
+        condition: numeric_state
+        entity_id: sensor.plug_living_room_amplifier
+        below: 10
+
+- alias: Remote - Turn on Amplifer if not running
+  trigger:
+    platform: state
+    entity_id: remote.living_room
+    to: 'on'
+    for:
+      seconds: 10
+  condition:
+    condition: numeric_state
+    entity_id: sensor.plug_living_room_amplifier
+    below: 10
+  mode: queued
+  action:
+    repeat:
+      sequence:
+        # Retry turning on amplifier
+        - service: remote.send_command
+          entity_id: remote.living_room
+          data:
+            device: Pioneer-AV-Receiver
+            command: PowerOn
+
+        # Give amplifier time to start and get ready
+        - delay:
+            seconds: 10
+
+        # Set correct input source
+        - service: remote.send_command
+          entity_id: remote.living_room
+          data:
+            device: Pioneer-AV-Receiver
+            command: >
+              {% if state_attr('remote.living_room', 'current_activity') == 'Speakers' %}
+                InputHdmi1
+              {% elif state_attr('remote.living_room', 'current_activity') == 'Chromecast' %}
+                InputHdmi1
+              {% else %}
+                InputTv
+              {% endif %}
+
+      until:
+        condition: numeric_state
+        entity_id: sensor.plug_living_room_amplifier
+        above: 10

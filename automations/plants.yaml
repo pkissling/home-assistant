@@ -1,6 +1,6 @@
 ---
 
-- alias: Plant - Musaceae - Unavailable
+- alias: Plant - Musaceae - Connection Problem
   trigger:
     platform: state
     entity_id: sensor.musaceae_temperature
@@ -10,7 +10,7 @@
     service: notify.patrick
     data:
       title: Plant
-      message: Musaceae 🍌🌴 unavailable since 24 hours
+      message: Musaceae 🍌🌴 has a connection problem since 24 hours
 
 - alias: Plant - Musaceae - Problem
   trigger:

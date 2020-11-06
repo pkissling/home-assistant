@@ -99,11 +99,13 @@
     - condition: state
       entity_id: group.residents
       state: 'home'
-    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
-    - "{{ states('sensor.motion_study_lightlevel') | float <= 15 }}"
+    - condition: numeric_state
+      entity_id: sensor.motion_study_lightlevel
+      below: 15
     - condition: state
       entity_id: input_boolean.guest_mode
       state: 'off'
+    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
   action:
     service: switch.turn_on
     entity_id: switch.study_lamp

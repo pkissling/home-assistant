@@ -116,9 +116,12 @@
     entity_id: climate.study
     to: heat
   condition:
-    condition: state
-    entity_id: input_boolean.summer_mode
-    state: 'off'
+    - condition: state
+      entity_id: input_boolean.summer_mode
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.thermostat_study_triggered_by_motion
+      state: 'off'
   action:
     service: notify.patrick
     data:

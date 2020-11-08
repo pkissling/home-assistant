@@ -499,7 +499,7 @@
     - service: switch.turn_on
       entity_id: switch.climate_toilet
 
-- alias: Thermostat Living Room - Force off and notify
+- alias: Thermostat Living Room - Force off when window open
   trigger:
     platform: time_pattern
     minutes: /5
@@ -511,10 +511,6 @@
       entity_id: group.window_living_room
       state: 'on'
   action:
-    - service: notify.patrick
-      data:
-        title: Thermostat
-        message: Thermostat in Living Room turned off because window is open.
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_living_room
       data:
@@ -524,7 +520,7 @@
       data:
         hvac_mode: 'off'
 
-- alias: Thermostat Bedroom - Force off and notify
+- alias: Thermostat Bedroom - Force off when window open
   trigger:
     platform: time_pattern
     minutes: /5
@@ -536,10 +532,6 @@
       entity_id: group.window_bedroom
       state: 'on'
   action:
-    - service: notify.patrick
-      data:
-        title: Thermostat
-        message: Thermostat in Bedroom turned off because window is open.
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_bedroom
       data:
@@ -550,7 +542,7 @@
         hvac_mode: 'off'
 
 
-- alias: Thermostat Bathroom - Force off and notify
+- alias: Thermostat Bathroom - Force off when window open
   trigger:
     platform: time_pattern
     minutes: /5
@@ -562,10 +554,6 @@
       entity_id: group.window_bathroom
       state: 'on'
   action:
-    - service: notify.patrick
-      data:
-        title: Thermostat
-        message: Thermostat in Bathroom turned off because window is open.
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_bathroom
       data:
@@ -576,7 +564,7 @@
         hvac_mode: 'off'
 
 
-- alias: Thermostat Study - Force off and notify
+- alias: Thermostat Study - Force off when window open
   trigger:
     platform: time_pattern
     minutes: /5
@@ -588,10 +576,6 @@
       entity_id: group.window_study
       state: 'on'
   action:
-    - service: notify.patrick
-      data:
-        title: Thermostat
-        message: Thermostat in Study turned off because window is open.
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_study
       data:
@@ -602,7 +586,7 @@
         hvac_mode: 'off'
 
 
-- alias: Thermostat Kitchen - Force off and notify
+- alias: Thermostat Kitchen - Force off when window open
   trigger:
     platform: time_pattern
     minutes: /5
@@ -614,10 +598,6 @@
       entity_id: group.window_kitchen
       state: 'on'
   action:
-    - service: notify.patrick
-      data:
-        title: Thermostat
-        message: Thermostat in Kitchen turned off because window is open.
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_kitchen
       data:
@@ -627,7 +607,7 @@
       data:
         hvac_mode: 'off'
 
-- alias: Thermostat Toilet - Force off and notify
+- alias: Thermostat Toilet - Force off when window open
   trigger:
     platform: time_pattern
     minutes: /5
@@ -639,10 +619,6 @@
       entity_id: group.window_toilet
       state: 'on'
   action:
-    - service: notify.patrick
-      data:
-        title: Thermostat
-        message: Thermostat in Toilet turned off because window is open.
     - service: input_text.set_value
       entity_id: input_text.thermostat_old_hvac_toilet
       data:

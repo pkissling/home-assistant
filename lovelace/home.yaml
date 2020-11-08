@@ -5,7 +5,7 @@
   card:
     type: custom:config-template-card
     entities:
-      - binary_sensor.updater
+      - sensor.updater_text
     card:
       type: button
       name: "${states['sensor.updater_text'].state}"

@@ -6,7 +6,7 @@
     entity_id: binary_sensor.updater
     to: 'on'
   action:
-    service: notify.mobile_app_gm1913
+    service: notify.patrick
     data:
       message: >
         Home Assistant update available from {{ states('sensor.current_version') }}

@@ -138,7 +138,6 @@
     - wait_for_trigger:
         platform: state
         entity_id: vacuum.xiaomi_vacuum_cleaner
-
         from: cleaning
       continue_on_timeout: true
       timeout: '00:30:00'

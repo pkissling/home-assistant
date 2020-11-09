@@ -3,5 +3,8 @@
 switch.guest_mode:
   icon: mdi:human-male-female
 
+switch.home_office_mode:
+  icon: mdi:laptop
+
 switch.summer_mode:
   icon: mdi:weather-sunny

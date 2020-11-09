@@ -631,7 +631,7 @@
 - alias: Thermostat Study - Turn on when motion
   trigger:
     platform: state
-    entity_id: group.motion_study_desk
+    entity_id: input_boolean.home_office_mode
     to: 'on'
   condition:
     - condition: state
@@ -658,14 +658,11 @@
       data:
         temperature: 22
 
-
-- alias: Thermostat Study - Turn off when no motion for 15 minutes
+- alias: Thermostat Study - Turn off when home office mode off
   trigger:
     platform: state
-    entity_id: group.motion_study_desk
+    entity_id: input_boolean.home_office_mode
     to: 'off'
-    for:
-      minutes: 30
   condition:
     - condition: state
       entity_id: input_boolean.summer_mode

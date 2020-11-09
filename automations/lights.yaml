@@ -90,10 +90,10 @@
     service: light.turn_off
     entity_id: light.all
 
-- alias: Light Study - Turn on when motion
+- alias: Light Study - Turn on when home office mode on
   trigger:
     platform: state
-    entity_id: group.motion_study_desk
+    entity_id: input_boolean.home_office_mode
     to: 'on'
   condition:
     - condition: state
@@ -110,13 +110,11 @@
     service: switch.turn_on
     entity_id: switch.study_lamp
 
-- alias: Light Study - Turn off when no motion for 30 minutes
+- alias: Light Study - Turn off when home office mode off
   trigger:
     - platform: state
-      entity_id: group.motion_study_desk
+      entity_id: input_boolean.home_office_mode
       to: 'off'
-      for:
-        minutes: 30
     - platform: numeric_state
       entity_id: sensor.motion_study_lightlevel
       above: 25

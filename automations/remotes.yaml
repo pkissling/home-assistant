@@ -150,6 +150,12 @@
         # Give plug time to update the sensor
         - delay:
             seconds: 5
+
+        # Debug
+        - service: notify.patrick
+          data:
+            message: 'Pioneer-AV-Receiver retry: PowerOff'
+
       until:
         condition: numeric_state
         entity_id: sensor.plug_living_room_amplifier
@@ -194,6 +200,11 @@
               {% else %}
                 InputTv
               {% endif %}
+
+        # Debug
+        - service: notify.patrick
+          data:
+            message: 'Pioneer-AV-Receiver retry: PowerOn'
 
       until:
         condition: numeric_state

@@ -90,12 +90,18 @@
     service: light.turn_off
     entity_id: light.all
 
-- alias: Light Study - Turn on when home office mode on
+- alias: Light Study - Turn on when home office mode on and dark
   trigger:
-    platform: state
-    entity_id: input_boolean.home_office_mode
-    to: 'on'
+    - platform: state
+      entity_id: input_boolean.home_office_mode
+      to: 'on'
+    - platform: numeric_state
+      entity_id: sensor.motion_study_lightlevel
+      below: 25
   condition:
+    - condition: state
+      entity_id: input_boolean.home_office_mode
+      state: 'on'
     - condition: state
       entity_id: group.residents
       state: 'home'

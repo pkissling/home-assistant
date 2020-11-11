@@ -99,7 +99,7 @@
       entity_id: sensor.motion_study_lightlevel
       below: 25
       for:
-        minutes: 1
+        minutes: 5
   condition:
     - condition: state
       entity_id: input_boolean.home_office_mode

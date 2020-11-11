@@ -4,5 +4,10 @@
   unique_id: plug_living_room_amplifier
   name: Plug Living Room Amplifier
   state_topic: shellies/shellyplug-s-9A3C76/relay/0/power
-  qos: 1
+  unit_of_measurement: W
+
+- platform: mqtt
+  unique_id: plug_study_monitor
+  name: Plug Study Monitor
+  state_topic: shellies/shellyplug-s-9D9424/relay/0/power
   unit_of_measurement: W

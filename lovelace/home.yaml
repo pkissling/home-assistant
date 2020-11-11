@@ -74,8 +74,6 @@
           styles:
             card:
               - height: 70px
-    - type: horizontal-stack
-      cards:
         - color: var(--switch-checked-color)
           entity: switch.remote_speakers
           icon: mdi:cast-audio

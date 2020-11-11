@@ -43,7 +43,7 @@ My personal configuration for [Home Assistant](https://www.home-assistant.io) ru
 * [Xiaomi Plant Sensor](https://wiki.fhem.de/wiki/Xiaomi_Flower_Sensor)
 
 ### Plug
-* [Shelly Plsug S](https://shelly.cloud/products/shelly-plug-s-smart-home-automation-device/)
+* [Shelly Plug S](https://shelly.cloud/products/shelly-plug-s-smart-home-automation-device/)
 
 ### TV
 * [LG OLED 69E9](https://www.lg.com/uk/tvs/lg-OLED65E9)

@@ -39,6 +39,9 @@ My personal configuration for [Home Assistant](https://www.home-assistant.io) ru
 ### Motion Sensors
 * [Aqara Motion Sensor](https://www.aqara.com/us/motion_sensor.html)
 
+### Plant Sensor
+* [Xiaomi Plant Sensor](https://wiki.fhem.de/wiki/Xiaomi_Flower_Sensor)
+
 ### Plug
 * [Shelly Plsug S](https://shelly.cloud/products/shelly-plug-s-smart-home-automation-device/)
 
@@ -52,7 +55,7 @@ My personal configuration for [Home Assistant](https://www.home-assistant.io) ru
 * [Aqara Vibration Sensor](https://www.aqara.com/us/vibration_sensor.html)
 
 ### Window Sensors
-* [Aqara Door and Window Sensor][https://www.aqara.com/us/door_and_window_sensor.html]
+* [Aqara Door and Window Sensor](https://www.aqara.com/us/door_and_window_sensor.html)
 
 ## UI
 UI heavily influenced by [@basnijholt](https://github.com/basnijholt/home-assistant-config)

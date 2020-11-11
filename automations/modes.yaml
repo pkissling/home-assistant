@@ -17,20 +17,20 @@
 
 - alias: Mode - Home Office Mode - Turn off
   trigger:
-    platform: numeric_state
-    entity_id: sensor.plug_study_monitor
-    below: 15
+    platform: state
+    entity_id: group.motion_study_desk
+    to: 'off'
     for:
-      minutes: 5
+      minutes: 30
   action:
     service: input_boolean.turn_off
     entity_id: input_boolean.home_office_mode
 
 - alias: Mode - Home Office Mode - Turn on
   trigger:
-    platform: numeric_state
-    entity_id: sensor.plug_study_monitor
-    above: 15
+    platform: state
+    entity_id: group.motion_study_desk
+    to: 'on'
   action:
     service: input_boolean.turn_on
     entity_id: input_boolean.home_office_mode

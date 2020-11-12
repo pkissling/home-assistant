@@ -17,11 +17,14 @@
 
 - alias: Mode - Home Office Mode - Turn off
   trigger:
-    platform: state
-    entity_id: group.motion_study_desk
-    to: 'off'
-    for:
-      minutes: 30
+    - platform: state
+      entity_id: group.motion_study_desk
+      to: 'off'
+      for:
+        minutes: 15
+    - platform: state
+      entity_id: group.residents
+      to: 'not_home'
   action:
     service: input_boolean.turn_off
     entity_id: input_boolean.home_office_mode

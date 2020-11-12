@@ -7,3 +7,4 @@ exclude:
     - sensor.*_uptime
   entities:
     - sensor.time
+    - sensor.mqtt_broker_heartbeat

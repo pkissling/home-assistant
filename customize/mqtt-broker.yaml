@@ -1,0 +1,4 @@
+---
+
+binary_sensor.mqtt_broker_health:
+  friendly_name: MQTT Broker

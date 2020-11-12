@@ -1,0 +1,7 @@
+---
+
+- platform: mqtt
+  name: MQTT Broker Heartbeat
+  unique_id: mqtt_broker_heartbeat
+  state_topic: mqtt-broker/heartbeat
+  expire_after: 300  # seconds

@@ -12,7 +12,7 @@
     entity_id: input_boolean.summer_mode
     state: 'off'
   action:
-    service: notify.patrick
+    service: notify.all
     data:
       title: Living Room window open
       message: >
@@ -32,7 +32,7 @@
     entity_id: input_boolean.summer_mode
     state: 'off'
   action:
-    service: notify.patrick
+    service: notify.all
     data:
       title: Kitchen window open
       message: >
@@ -52,7 +52,7 @@
     entity_id: input_boolean.summer_mode
     state: 'off'
   action:
-    service: notify.patrick
+    service: notify.all
     data:
       title: Bedroom window open
       message: >
@@ -72,7 +72,7 @@
     entity_id: input_boolean.summer_mode
     state: 'off'
   action:
-    service: notify.patrick
+    service: notify.all
     data:
       title: Study window open
       message: >
@@ -92,7 +92,7 @@
     entity_id: input_boolean.summer_mode
     state: 'off'
   action:
-    service: notify.patrick
+    service: notify.all
     data:
       title: Bathroom window open
       message: >

@@ -11,14 +11,15 @@
       state: home
   action:
     - service: light.turn_on
-      entity_id:
-        - light.living_room
-        - light.bedroom
+      entity_id: light.ambient
       data:
         effect: sunrise
 
-- alias: Lights - Turn off at 8 am
+- alias: Lights - Turn off after sunrise or 8 am
   trigger:
+    - platform: sun
+      offset: '+00:30:00'
+      event: sunrise
     - platform: time
       at: '08:00'
   condition:
@@ -28,26 +29,11 @@
     - condition: sun
       after_offset: '+00:30:00'
       after: sunrise
-  action:
-    - service: light.turn_on
-      entity_id: light.all
-      data:
-        effect: sunset
-
-- alias: Lights - Turn off after sunrise
-  trigger:
-    - platform: sun
-      offset: '+00:30:00'
-      event: sunrise
-  condition:
-    - condition: state
-      entity_id: light.all
-      state: 'on'
     - condition: time
       after: '08:00'
   action:
     - service: light.turn_on
-      entity_id: light.all
+      entity_id: light.ambient
       data:
         effect: sunset
 

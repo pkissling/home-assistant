@@ -8,6 +8,13 @@
     - light.study
 
 - platform: group
+  name: ambient
+  entities:
+    - light.lightstrip
+    - light.tv
+    - light.lamp
+
+- platform: group
   name: Living Room
   entities:
     - light.tv

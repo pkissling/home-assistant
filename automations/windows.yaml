@@ -1,23 +1,35 @@
 ---
 
-- alias: Windows - Living Room - Notify window open more than 1 hr
+- alias: Windows - Living Room - Notify window still open
   trigger:
-    platform: state
-    entity_id: group.window_living_room
-    to: 'on'
-    for:
-      hours: 1
+    - platform: numeric_state
+      entity_id: climate.living_room
+      attribute: temperature
+      below: 17
+    - platform: state
+      entity_id: group.window_living_room
+      to: 'on'
+      for:
+        hours: 1
   condition:
-    condition: state
-    entity_id: input_boolean.summer_mode
-    state: 'off'
+    - condition: state
+      entity_id: input_boolean.summer_mode
+      state: 'off'
+    - condition: state
+      entity_id: group.window_living_room
+      state: 'on'
+      for:
+        hours: 30
+    - condition: numeric_state
+      entity_id: climate.living_room
+      attribute: temperature
+      below: 17
   action:
-    service: notify.all
+    service: notify.patrick
     data:
       title: Living Room window open
       message: >
-        Window in Living Room open for 1 hour.
-        You might want to close it.
+        Window in Living Room is still open. You might want to close it.
         Current temperature: {{ state_attr('climate.living_room', 'temperature') }} °C
 
 - alias: Windows - Kitchen - Notify window open more than 1 hr

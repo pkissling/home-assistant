@@ -56,7 +56,7 @@
     entity_id: person.patrick
     state: not_home
   action:
-    service: notify.patricks
+    service: notify.patrick
     data:
       title: Roborock
       message: >

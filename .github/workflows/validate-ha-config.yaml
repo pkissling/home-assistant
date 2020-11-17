@@ -1,0 +1,66 @@
+---
+
+name: validate Home-Assistant configuration
+on: [ push ]  # yamllint disable-line rule:truthy
+
+jobs:
+
+  STABLE:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Move dummy secrets file
+        run: mv secrets_dummy.yaml secrets.yaml
+
+      - name: Home Assistant Version
+        uses: "docker://homeassistant/home-assistant:stable"
+        with:
+          args: |
+            python -m homeassistant --version
+
+      - name: Home Assistant STABLE configruation validation
+        uses: "docker://homeassistant/home-assistant:stable"
+        with:
+          args: |
+            python -m homeassistant --config . --script check_config  --info all
+
+  BETA:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Move dummy secrets file
+        run: mv secrets_dummy.yaml secrets.yaml
+
+      - name: Home Assistant Version
+        uses: "docker://homeassistant/home-assistant:beta"
+        with:
+          args: |
+            python -m homeassistant --version
+
+      - name: Home Assistant BETA configruation validation
+        uses: "docker://homeassistant/home-assistant:beta"
+        with:
+          args: |
+            python -m homeassistant --config . --script check_config  --info all
+
+  DEV:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Move dummy secrets file
+        run: mv secrets_dummy.yaml secrets.yaml
+
+      - name: Home Assistant Version
+        uses: "docker://homeassistant/home-assistant:dev"
+        with:
+          args: |
+            python -m homeassistant --version
+
+      - name: Home Assistant DEV configruation validation
+        uses: "docker://homeassistant/home-assistant:dev"
+        with:
+          args: |
+            python -m homeassistant --config . --script check_config  --info all

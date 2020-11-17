@@ -1,0 +1,19 @@
+---
+
+name: Lint
+on: [ push ]  # yamllint disable-line rule:truthy
+
+jobs:
+  build:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      - name: Install yamllint
+        run: pip3 install yamllint
+      - name: Perform yamllint
+        run: yamllint --strict -c .yamllint.yaml .

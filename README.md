@@ -1,6 +1,7 @@
 # My Home Assistant Configuration
 
-[![Build Status](https://travis-ci.org/pkissling/home-assistant.svg?branch=master)](https://travis-ci.org/pkissling/home-assistant)
+![yamllint](https://github.com/pkissling/home-assistant/workflows/lint/badge.svg)
+![validate Home-Assistant configuration](https://github.com/pkissling/home-assistant/workflows/validate%20Home-Assistant%20configuration/badge.svg)
 
 My personal configuration for [Home Assistant](https://www.home-assistant.io) running in a [Docker container](https://www.home-assistant.io/docs/installation/docker/) on [Raspberry Pi 4 Model B](https://www.raspberrypi.org/products/raspberry-pi-4-model-b/).
 

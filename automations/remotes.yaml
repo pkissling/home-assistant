@@ -23,8 +23,7 @@
         not is_state('media_player.chromecast', 'off')
       }}
   condition:
-    - condition: template
-      value_template: "{{ not is_state_attr('remote.living_room', 'current_activity', 'Chromecast') }}"
+    - "{{ not is_state_attr('remote.living_room', 'current_activity', 'Chromecast') }}"
     - condition: state
       entity_id: media_player.home_group
       state: 'off'
@@ -42,15 +41,16 @@
     entity_id: media_player.chromecast
     to: 'off'
   condition:
-    - condition: template
-      value_template: >
-        {{
-          not is_state('input_text.remote_previous_activity', 'unknown')
-            and
-          not is_state('input_text.remote_previous_activity', 'PowerOff')
-        }}
-    - condition: template
-      value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Chromecast') }}"
+    - >
+      {{
+        not is_state('input_text.remote_previous_activity', 'unknown')
+          and
+        not is_state('input_text.remote_previous_activity', 'PowerOff')
+      }}
+    - condition: state
+      entity_id: remote.living_room
+      attribute: current_activity
+      state: Chromecast
   action:
     - service: remote.turn_on
       entity_id: remote.living_room
@@ -61,48 +61,44 @@
       data:
         value: unknown
 
-- alias: Remote - Turn off Speakers when Home Group stopped casting for 30 seconds
+- alias: Remote - Turn off Speakers when Home Group stopped/paused casting for 30 seconds
   trigger:
-    platform: state
-    entity_id: media_player.home_group
-    to: 'off'
-    for:
-      seconds: 30
+    - platform: state
+      entity_id: media_player.home_group
+      to: 'off'
+      for:
+        seconds: 30
+    - platform: state
+      entity_id: media_player.home_group
+      to: paused
+      for:
+        seconds: 30
   condition:
-    condition: template
-    value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Speakers') }}"
-  action:
-    service: remote.turn_off
+    condition: state
     entity_id: remote.living_room
-
-- alias: Remote - Turn off Speakers when Home Group paused casting for 15 minutes
-  trigger:
-    platform: state
-    entity_id: media_player.home_group
-    to: 'paused'
-    for:
-      minutes: 15
-  condition:
-    condition: template
-    value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Speakers') }}"
+    attribute: current_activity
+    state: Speakers
   action:
     service: remote.turn_off
     entity_id: remote.living_room
 
 - alias: Remote - Turn off TV when Chromecast stopped casting for 5 minutes
   trigger:
-    platform: template
-    value_template: >
-      {{
-        is_state('media_player.chromecast', 'off')
-          or
-        is_state('media_player.chromecast', 'idle')
-      }}
-    for:
-      minutes: 5
+    - platform: state
+      entity_id: media_player.chromecast
+      to: 'off'
+      for:
+        minutes: 5
+    - platform: state
+      entity_id: media_player.chromecast
+      to: 'idle'
+      for:
+        minutes: 5
   condition:
-    condition: template
-    value_template: "{{ is_state_attr('remote.living_room', 'current_activity', 'Chromecast') }}"
+    condition: state
+    entity_id: remote.living_room
+    attribute: current_activity
+    state: Chromecast
   action:
     service: remote.turn_off
     entity_id: remote.living_room
@@ -210,3 +206,52 @@
         condition: numeric_state
         entity_id: sensor.plug_living_room_amplifier
         above: 10
+
+- alias: Remote - Notify when still running
+  trigger:
+    - platform: state
+      entity_id: media_player.home_group
+      to: paused
+      for:
+        minutes: 5
+    - platform: state
+      entity_id: media_player.home_group
+      to: idle
+      for:
+        minutes: 5
+    - platform: state
+      entity_id: media_player.home_group
+      to: 'off'
+      for:
+        minutes: 5
+    - platform: state
+      entity_id: media_player.chromecast
+      to: paused
+      for:
+        minutes: 5
+    - platform: state
+      entity_id: media_player.chromecast
+      to: idle
+      for:
+        minutes: 5
+    - platform: state
+      entity_id: media_player.chromecast
+      to: 'off'
+      for:
+        minutes: 5
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: remote.living_room
+        attribute: current_activity
+        state: 'Chromecast'
+      - condition: state
+        entity_id: remote.living_room
+        attribute: current_activity
+        state: Speakers
+  action:
+    service: notify.patrick
+    data:
+      title: Amplifier running
+      message: Amplifier is still running

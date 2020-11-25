@@ -21,7 +21,7 @@
       entity_id: group.motion_study_desk
       to: 'off'
       for:
-        minutes: 15
+        minutes: 20
     - platform: state
       entity_id: group.residents
       to: 'not_home'

@@ -24,7 +24,7 @@
       at: '08:00'
   condition:
     - condition: state
-      entity_id: light.all
+      entity_id: light.ambient
       state: 'on'
     - condition: sun
       after_offset: '+00:30:00'
@@ -59,7 +59,7 @@
 - alias: Light - Turn off when sunlight
   trigger:
     platform: state
-    entity_id: light.all
+    entity_id: light.ambient
     to: 'on'
     for:
       minutes: 30
@@ -74,7 +74,7 @@
       after: '08:00:00'
   action:
     service: light.turn_off
-    entity_id: light.all
+    entity_id: light.ambient
 
 - alias: Light Study - Turn on when home office mode on and dark
   trigger:

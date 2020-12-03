@@ -1,0 +1,6 @@
+---
+
+- platform: template
+  sensors:
+    motion_study_desk_dark:
+      value_template: "{{ state_attr('sensor.motion_study_lightlevel', 'dark') }}"

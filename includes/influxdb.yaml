@@ -7,3 +7,7 @@ port: 8086
 username: home-assistant
 password: !secret influxdb_password
 database: homeassistant  # dashes not allowed
+
+include:
+  domains:
+    - climate

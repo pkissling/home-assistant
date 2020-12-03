@@ -1,8 +1,14 @@
 ---
 
+db_url: !secret recorder_db_url
+
 exclude:
+  domains:
+    - calendar
   entity_globs:
     - sensor.*_uptime
   entities:
-    - sensor.time
+    - input_text.google_api_key
     - sensor.mqtt_broker_heartbeat
+    - sensor.time
+    - sensor.updater_text

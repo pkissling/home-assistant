@@ -10,6 +10,6 @@
 
 # Fritzbox
 - platform: fritz
-  host: 192.168.0.1
+  host: fritz.box
   new_device_defaults:
     track_new_devices: false

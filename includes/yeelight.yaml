@@ -1,14 +1,14 @@
 ---
 
 devices:
-  192.168.0.3:
-    name: Lamp
-  192.168.0.4:
-    name: TV
-  192.168.0.5:
+  192.168.0.10:
     name: Lightstrip
-  192.168.0.6:
+  192.168.0.11:
+    name: TV
+  192.168.0.12:
     name: Ceiling
+  192.168.0.13:
+    name: Lamp
 
 custom_effects:
   - name: sunrise

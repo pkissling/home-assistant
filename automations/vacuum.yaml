@@ -125,15 +125,15 @@
           {% elif states('input_select.vacuum_room_cleanup') == 'Kitchen' %}
             17
           {% elif states('input_select.vacuum_room_cleanup') == 'Toilet' %}
-            20
+            4
           {% elif states('input_select.vacuum_room_cleanup') == 'Corridor' %}
             19
           {% elif states('input_select.vacuum_room_cleanup') == 'Bedroom' %}
-            1
+            18
           {% elif states('input_select.vacuum_room_cleanup') == 'Study' %}
             2
           {% elif states('input_select.vacuum_room_cleanup') == 'Bathroom' %}
-            18
+            5
           {% endif %}
     - wait_for_trigger:
         platform: state

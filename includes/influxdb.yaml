@@ -18,3 +18,4 @@ include:
     - binary_sensor.motion_*
     - binary_sensor.window_*
     - sensor.cert_expiry_*
+    - sensor.speedtest_*

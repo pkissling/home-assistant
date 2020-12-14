@@ -1,0 +1,4 @@
+---
+
+binary_sensor.internet_health_check:
+  friendly_name: Internet

@@ -120,6 +120,7 @@
       entities:
         - !secret sensor_ssl_cert_ha_expiry
         - binary_sensor.mqtt_broker_health
+        - binary_sensor.internet_health_check
         - sensor.home_assistant_uptime
 
 # Diskstation

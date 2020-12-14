@@ -1,0 +1,8 @@
+---
+
+- platform: command_line
+  name: Internet Health Check
+  command: 'curl https://google.com --silent > /dev/null && echo ON || echo OFF'
+  device_class: connectivity
+  payload_on: 'ON'
+  payload_off: 'OFF'

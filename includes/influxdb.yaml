@@ -7,6 +7,7 @@ port: 8086
 username: home-assistant
 password: !secret influxdb_password
 database: homeassistant  # dashes not allowed
+measurement_attr: entity_id
 
 include:
   domains:
@@ -18,4 +19,5 @@ include:
     - binary_sensor.motion_*
     - binary_sensor.window_*
     - sensor.cert_expiry_*
+    - sensor.fritz_box_7590_kib_s_*
     - sensor.speedtest_*

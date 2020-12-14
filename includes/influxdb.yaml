@@ -11,8 +11,10 @@ database: homeassistant  # dashes not allowed
 include:
   domains:
     - climate
+    - light
     - person
     - weather
   entity_globs:
     - binary_sensor.motion_*
     - binary_sensor.window_*
+    - sensor.cert_expiry_*

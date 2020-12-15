@@ -651,10 +651,6 @@
   action:
     # input_boolean must be changed before actual temperature.
     # otherwise notification (from notification.yaml) will fire
-    - service: notify.patrick
-      data:
-        title: Debug
-        message: Study turn on because of motion
     - service: input_boolean.turn_on
       entity_id: input_boolean.thermostat_study_triggered_by_motion
     - service: climate.set_temperature
@@ -678,10 +674,6 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
   action:
-    - service: notify.patrick
-      data:
-        title: Debug
-        message: Study turn off because no motion
     - service: climate.set_hvac_mode
       entity_id: climate.study
       data:

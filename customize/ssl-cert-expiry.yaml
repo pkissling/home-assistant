@@ -1,4 +1,5 @@
 ---
 
-!secret sensor_ssl_cert_ha_expiry:
+sensor.cert_expiry_days_ha:
   friendly_name: SSL Certificate
+  icon: mdi:certificate

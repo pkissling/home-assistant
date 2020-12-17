@@ -118,7 +118,7 @@
         name: off  # yamllint disable-line rule:truthy
     - type: entities
       entities:
-        - !secret sensor_ssl_cert_ha_expiry
+        - sensor.cert_expiry_days_ha
         - binary_sensor.mqtt_broker_health
         - binary_sensor.internet_health_check
         - sensor.home_assistant_uptime

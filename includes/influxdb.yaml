@@ -18,7 +18,7 @@ include:
   entity_globs:
     - binary_sensor.motion_*
     - binary_sensor.window_*
-    - sensor.cert_expiry_*
+    - sensor.cert_expiry_days_*
     - sensor.fritz_box_7590_b_*
     - sensor.fritz_box_7590_kib_s_*
     - sensor.speedtest_*

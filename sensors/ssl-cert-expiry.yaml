@@ -2,3 +2,12 @@
 
 - platform: cert_expiry
   host: !secret external_ha_domain
+
+- platform: template
+  sensors:
+    cert_expiry_days_ha:
+      value_template: >
+        {% set now_in_days = as_timestamp(now()) / 60 / 60 / 24 %}
+        {% set expiry_in_days = as_timestamp(states('sensor.cert_expiry_timestamp_ha')) / 60 / 60 / 24 %}
+        {{ (expiry_in_days - now_in_days) | int }}
+      unit_of_measurement: days

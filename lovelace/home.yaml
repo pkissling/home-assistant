@@ -364,3 +364,25 @@
   showMonth: true
   showLocation: false
   showLoader: false
+
+# Motion
+- type: custom:mini-graph-card
+  entities:
+    - binary_sensor.motion_study_desk
+  show:
+    name: off  # yamllint disable-line rule:truthy
+    points: false
+    labels: false
+    state: false
+    icon: off  # yamllint disable-line rule:truthy
+  hours_to_show: 0.33
+  points_per_hour: 60
+  update_interval: 30
+  aggregate_func: max
+  line_width: 2
+  smoothing: false
+  state_map:
+    - value: "off"
+      label: Clear
+    - value: "on"
+      label: Detected

@@ -18,7 +18,19 @@ include:
   entity_globs:
     - binary_sensor.motion_*
     - binary_sensor.window_*
+
+    # SSL
     - sensor.cert_expiry_days_*
+
+    # Internet
     - sensor.fritz_box_7590_b_*
     - sensor.fritz_box_7590_kib_s_*
     - sensor.speedtest_*
+
+    # Monitoring
+    - sensor.*_cpu_load
+    - sensor.*_cpu_used
+    - sensor.*_ram_used_percent
+    - sensor.diskstation_physical_id_0_temp
+    - sensor.pi_hole_cpu_thermal_1_temp
+    - sensor.home_assistant_cpu_thermal_1_temp

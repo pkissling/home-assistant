@@ -5,6 +5,8 @@ mode: yaml
 resources:
   - url: /hacsfiles/atomic-calendar-revive/atomic-calendar-revive.js
     type: module
+  - url: /hacsfiles/battery-state-card/battery-state-card.js
+    type: module
   - url: /hacsfiles/bar-card/bar-card.js
     type: module
   - url: /hacsfiles/button-card/button-card.js
@@ -19,5 +21,3 @@ resources:
     type: module
   - url: /hacsfiles/stack-in-card/stack-in-card.js
     type: js
-  - url: /hacsfiles/battery-state-card/battery-state-card.js
-    type: module

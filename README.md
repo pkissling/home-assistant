@@ -21,7 +21,7 @@ My personal configuration for [Home Assistant](https://www.home-assistant.io) ru
 ## Hardware
 
 ### Device Trackers
-* [Fritzbox 7530](https://en.avm.de/products/fritzbox/fritzbox-7530/)
+* [Fritzbox 7590](https://en.avm.de/products/fritzbox/fritzbox-7590/)
 * [Tado](https://www.tado.com/de-en/products/smart-radiator-starter-kit)
 
 ### Docker Host

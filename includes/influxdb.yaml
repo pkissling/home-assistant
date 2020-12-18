@@ -16,26 +16,48 @@ include:
     - person
     - weather
   entity_globs:
-    - binary_sensor.motion_*
     - binary_sensor.window_*
 
+  entities:
+    # Lights
+    - light.desk
+    - light.lamp
+    - light.lightstrip
+    - light.tv
+
+    # Motion
+    - binary_sensor.motion_study_desk
+
     # SSL
-    - sensor.cert_expiry_days_*
+    - sensor.cert_expiry_days_ha
 
     # Internet
-    - sensor.fritz_box_7590_b_*
-    - sensor.fritz_box_7590_kib_s_*
-    - sensor.speedtest_*
-
-    # Monitoring
-    - sensor.*_cpu_load
-    - sensor.*_cpu_used
-    - sensor.*_ram_used_percent
-    - sensor.diskstation_physical_id_0_temp
-    - sensor.pi_hole_cpu_thermal_1_temp
-    - sensor.home_assistant_cpu_thermal_1_temp
+    - sensor.fritz_box_7590_b_received
+    - sensor.fritz_box_7590_b_sent
+    - sensor.fritz_box_7590_kib_s_received
+    - sensor.fritz_box_7590_kib_s_sent
+    - sensor.speedtest_download
+    - sensor.speedtest_ping
+    - sensor.speedtest_upload
 
     # Pi-Hole
     - sensor.pi_hole_ads_blocked_today
     - sensor.pi_hole_ads_percentage_blocked_today
     - sensor.pi_hole_dns_unique_clients
+
+    # Monitoring
+    ## Pihole
+    - sensor.pi_hole_cpu_load
+    - sensor.pi_hole_cpu_used
+    - sensor.pi_hole_cpu_thermal_1_temp
+    - sensor.pi_hole_ram_used_percent
+    ## HA
+    - sensor.home_assistant_cpu_load
+    - sensor.home_assistant_cpu_used
+    - sensor.home_assistant_cpu_thermal_1_temp
+    - sensor.home_assistant_ram_used_percent
+    ## Diskstation
+    - sensor.diskstation_cpu_load
+    - sensor.diskstation_cpu_used
+    - sensor.diskstation_physical_id_0_temp
+    - sensor.diskstation_ram_used_percent

@@ -33,6 +33,7 @@ glances: !include includes/glances.yaml
 influxdb: !include includes/influxdb.yaml
 light: !include includes/lights.yaml
 notify: !include includes/notify.yaml
+pi_hole: !include includes/pi_hole.yaml
 plant: !include includes/plants.yaml
 recorder: !include includes/recorder.yaml
 speedtestdotnet: !include includes/speedtestdotnet.yaml

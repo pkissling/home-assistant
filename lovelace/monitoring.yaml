@@ -57,6 +57,7 @@
         name: off  # yamllint disable-line rule:truthy
     - type: entities
       entities:
+        - switch.pi_hole
         - binary_sensor.pi_hole_healthcheck
         - sensor.pi_hole_uptime
 

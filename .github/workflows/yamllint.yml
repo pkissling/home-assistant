@@ -16,4 +16,4 @@ jobs:
       - name: Install yamllint
         run: pip3 install yamllint
       - name: Perform yamllint
-        run: yamllint --strict -c .yamllint.yaml .
+        run: yamllint -f github --strict -c .yamllint.yaml .

@@ -19,9 +19,6 @@
       entity_id: input_boolean.vacuum_daily_cleanup
       state: 'on'
     - condition: state
-      entity_id: vacuum.xiaomi_vacuum_cleaner
-      state: docked
-    - condition: state
       entity_id: group.residents
       state: not_home
   action:

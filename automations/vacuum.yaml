@@ -82,21 +82,6 @@
       message: >
         Roborock Error: {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.error }}
 
-- alias: Vacuum - Notify on cleanup start
-  trigger:
-    platform: state
-    entity_id: vacuum.xiaomi_vacuum_cleaner
-    to: cleaning
-  condition:
-    condition: state
-    entity_id: person.patrick
-    state: not_home
-  action:
-    service: notify.patrick
-    data:
-      title: Roborock
-      message: Roborock started Cleanup
-
 - alias: Vacuum - Start room cleaup on input select
   trigger:
     platform: state

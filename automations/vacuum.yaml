@@ -2,13 +2,15 @@
 
 - alias: Vacuum - Daily cleanup when Residents not home
   trigger:
-    platform: state
-    entity_id: group.residents
-    from: home
-    to: not_home
+    - platform: time
+      at: '10:00:00'
+    - platform: state
+      entity_id: group.residents
+      from: home
+      to: not_home
   condition:
     - condition: time
-      after: '08:00:00'
+      after: '07:00:00'
       before: '20:00:00'
     - condition: state
       entity_id: input_boolean.vacuum_ran_today
@@ -16,25 +18,9 @@
     - condition: state
       entity_id: input_boolean.vacuum_daily_cleanup
       state: 'on'
-  action:
-    - service: vacuum.start
+    - condition: state
       entity_id: vacuum.xiaomi_vacuum_cleaner
-    - service: vacuum.set_fan_speed
-      data:
-        entity_id: vacuum.xiaomi_vacuum_cleaner
-        fan_speed: '103'  # medium
-
-- alias: Vaccum - Daily cleanup at 10:00
-  trigger:
-    platform: time
-    at: '10:00:00'
-  condition:
-    - condition: state
-      entity_id: input_boolean.vacuum_ran_today
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.vacuum_daily_cleanup
-      state: 'on'
+      state: docked
     - condition: state
       entity_id: group.residents
       state: not_home

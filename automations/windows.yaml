@@ -19,7 +19,7 @@
       entity_id: group.window_living_room
       state: 'on'
       for:
-        minutes: 5
+        minutes: 15
     - condition: numeric_state
       entity_id: climate.living_room
       attribute: temperature
@@ -51,7 +51,7 @@
       entity_id: group.window_kitchen
       state: 'on'
       for:
-        minutes: 5
+        minutes: 15
     - condition: numeric_state
       entity_id: climate.kitchen
       attribute: temperature
@@ -83,7 +83,7 @@
       entity_id: group.window_bedroom
       state: 'on'
       for:
-        minutes: 5
+        minutes: 15
     - condition: numeric_state
       entity_id: climate.bedroom
       attribute: temperature
@@ -115,7 +115,7 @@
       entity_id: group.window_study
       state: 'on'
       for:
-        minutes: 5
+        minutes: 15
     - condition: numeric_state
       entity_id: climate.study
       attribute: temperature
@@ -147,7 +147,7 @@
       entity_id: group.window_bathroom
       state: 'on'
       for:
-        minutes: 5
+        minutes: 15
     - condition: numeric_state
       entity_id: climate.bathroom
       attribute: temperature

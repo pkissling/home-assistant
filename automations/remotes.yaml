@@ -91,7 +91,12 @@
         minutes: 5
     - platform: state
       entity_id: media_player.chromecast
-      to: 'idle'
+      to: idle
+      for:
+        minutes: 5
+    - platform: state
+      entity_id: media_player.chromecast
+      to: paused
       for:
         minutes: 5
   condition:

@@ -27,6 +27,8 @@
             is_volume_muted: true
         - service: input_boolean.turn_on
           entity_id: input_boolean.guest_mode
+        - service: input_boolean.turn_off
+          entity_id: input_boolean.home_office_mode
       turn_off:
         - service: media_player.volume_mute
           entity_id: media_player.study

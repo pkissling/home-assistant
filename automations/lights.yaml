@@ -96,9 +96,6 @@
     - condition: numeric_state
       entity_id: sensor.motion_study_lightlevel
       below: 25
-    - condition: state
-      entity_id: input_boolean.guest_mode
-      state: 'off'
     - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
   action:
     service: switch.turn_on
@@ -114,10 +111,6 @@
       above: 25
       for:
         minutes: 30
-  condition:
-    condition: state
-    entity_id: input_boolean.guest_mode
-    state: 'off'
   action:
     service: switch.turn_off
     entity_id: switch.study_lamp

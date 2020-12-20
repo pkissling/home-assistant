@@ -641,9 +641,6 @@
       entity_id: group.residents
       state: 'home'
     - condition: state
-      entity_id: input_boolean.guest_mode
-      state: 'off'
-    - condition: state
       entity_id: group.window_study
       state: 'off'
     - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
@@ -670,9 +667,6 @@
     - condition: state
       entity_id: climate.study
       state: heat
-    - condition: state
-      entity_id: input_boolean.guest_mode
-      state: 'off'
   action:
     - service: climate.set_hvac_mode
       entity_id: climate.study

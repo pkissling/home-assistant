@@ -34,6 +34,10 @@
     platform: state
     entity_id: group.motion_study_desk
     to: 'on'
+  condition:
+    condition: state
+    entity_id: input_boolean.guest_mode
+    state: 'off'
   action:
     service: input_boolean.turn_on
     entity_id: input_boolean.home_office_mode

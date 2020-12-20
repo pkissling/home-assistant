@@ -97,6 +97,7 @@
       entity_id: sensor.motion_study_lightlevel
       below: 25
     - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
+    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'returning') }}"
   action:
     service: switch.turn_on
     entity_id: switch.study_lamp

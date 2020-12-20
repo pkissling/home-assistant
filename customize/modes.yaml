@@ -6,5 +6,8 @@ switch.guest_mode:
 switch.home_office_mode:
   icon: mdi:laptop
 
+switch.party_mode:
+  icon: mdi:party-popper
+
 switch.summer_mode:
   icon: mdi:weather-sunny

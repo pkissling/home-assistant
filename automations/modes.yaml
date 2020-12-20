@@ -41,3 +41,36 @@
   action:
     service: input_boolean.turn_on
     entity_id: input_boolean.home_office_mode
+
+- alias: Mode - Party Mode - Turn off after 4 hours
+  trigger:
+    platform: state
+    entity_id: input_boolean.party_mode
+    to: 'on'
+    for:
+      hours: 4
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.party_mode
+
+- alias: Mode - Party Mode - Turn on
+  trigger:
+    platform: state
+    entity_id: input_boolean.party_mode
+    to: 'on'
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: all
+        temperature: 22
+
+- alias: Mode - Party Mode - Turn off
+  trigger:
+    platform: state
+    entity_id: input_boolean.party_mode
+    to: 'off'
+  action:
+    - service: climate.set_hvac_mode
+      data:
+        entity_id: all
+        hvac_mode: auto

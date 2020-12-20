@@ -49,6 +49,9 @@ include:
     - sensor.plug_living_room_amplifier
     - sensor.plug_study_monitor
 
+    # Modes
+    - input_boolean.home_office_mode
+
     # Monitoring
     ## Pihole
     - sensor.pi_hole_cpu_load

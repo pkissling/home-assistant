@@ -73,6 +73,11 @@
       to: paused
       for:
         seconds: 30
+    - platform: state
+      entity_id: media_player.home_group
+      to: unavailable
+      for:
+        seconds: 30
   condition:
     condition: state
     entity_id: remote.living_room

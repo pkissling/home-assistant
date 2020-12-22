@@ -58,13 +58,22 @@ include:
     - sensor.pi_hole_cpu_used
     - sensor.pi_hole_cpu_thermal_1_temp
     - sensor.pi_hole_ram_used_percent
+    - sensor.pi_hole_etc_hostname_used_percent
+    - sensor.pi_hole_containers_active
+    - sensor.pi_hole_containers_cpu_used
     ## HA
     - sensor.home_assistant_cpu_load
     - sensor.home_assistant_cpu_used
     - sensor.home_assistant_cpu_thermal_1_temp
     - sensor.home_assistant_ram_used_percent
+    - sensor.home_assistant_etc_hostname_used_percent
+    - sensor.home_assistant_containers_active
+    - sensor.home_assistant_containers_cpu_used
     ## Diskstation
     - sensor.diskstation_cpu_load
     - sensor.diskstation_cpu_used
     - sensor.diskstation_physical_id_0_temp
     - sensor.diskstation_ram_used_percent
+    - sensor.diskstation_etc_hostname_used_percent
+    - sensor.diskstation_containers_active
+    - sensor.diskstation_containers_cpu_used

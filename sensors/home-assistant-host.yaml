@@ -5,9 +5,3 @@
   name: Home-Assistant Uptime
   value_template: '{{ value_json }}'
   scan_interval: 60
-
-- platform: command_line
-  name: Home-Assistant CPU Thermal 1 Temp
-  command: "cat /sys/class/thermal/thermal_zone0/temp"
-  unit_of_measurement: "°C"
-  value_template: '{{ value | multiply(0.001) }}'

@@ -52,7 +52,7 @@
             - value: 1.01
               color: '#d35400'
     - type: custom:bar-card
-      entity: sensor.pi_hole_boot_used_percent
+      entity: sensor.pi_hole_etc_hostname_used_percent
       positions:
         name: off  # yamllint disable-line rule:truthy
     - type: entities
@@ -177,7 +177,7 @@
             - value: 1.01
               color: '#d35400'
     - type: custom:bar-card
-      entity: sensor.diskstation_used_percent
+      entity: sensor.diskstation_etc_hostname_used_percent
       positions:
         name: off  # yamllint disable-line rule:truthy
     - type: entities

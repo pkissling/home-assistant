@@ -81,9 +81,9 @@
     - platform: state
       entity_id: switch.home_office_mode
       to: 'on'
-    - platform: numeric_state
-      entity_id: sensor.motion_study_lightlevel
-      below: 25
+    - platform: state
+      entity_id: binary_sensor.lightlevel_study_desk_dark
+      to: 'on'
       for:
         minutes: 5
   condition:
@@ -92,10 +92,10 @@
       state: 'on'
     - condition: state
       entity_id: group.residents
-      state: 'home'
-    - condition: numeric_state
-      entity_id: sensor.motion_study_lightlevel
-      below: 25
+      state: home
+    - condition: state
+      entity_id: binary_sensor.lightlevel_study_desk_dark
+      state: 'on'
     - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
     - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'returning') }}"
   action:
@@ -107,9 +107,9 @@
     - platform: state
       entity_id: switch.home_office_mode
       to: 'off'
-    - platform: numeric_state
-      entity_id: sensor.motion_study_lightlevel
-      above: 25
+    - platform: state
+      entity_id: binary_sensor.lightlevel_study_desk_dark
+      to: 'off'
       for:
         minutes: 30
   action:

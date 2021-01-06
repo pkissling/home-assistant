@@ -78,6 +78,11 @@
       to: unavailable
       for:
         seconds: 30
+    - platform: state
+      entity_id: media_player.home_group
+      to: idle
+      for:
+        seconds: 30
   condition:
     condition: state
     entity_id: remote.living_room
@@ -102,6 +107,11 @@
     - platform: state
       entity_id: media_player.chromecast
       to: paused
+      for:
+        minutes: 5
+    - platform: state
+      entity_id: media_player.chromecast
+      to: idle
       for:
         minutes: 5
   condition:

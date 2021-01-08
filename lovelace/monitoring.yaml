@@ -9,7 +9,7 @@
       cards:
         - type: custom:mini-graph-card
           entities:
-            - sensor.pi_hole_cpu_thermal_1_temp
+            - sensor.pi_hole_cpu_thermal_1_temperature
           lower_bound: 30
           upper_bound: 80
           show:
@@ -70,7 +70,7 @@
       cards:
         - type: custom:mini-graph-card
           entities:
-            - sensor.home_assistant_cpu_thermal_1_temp
+            - sensor.home_assistant_cpu_thermal_1_temperature
           lower_bound: 30
           upper_bound: 80
           decimals: 0
@@ -133,7 +133,7 @@
       cards:
         - type: custom:mini-graph-card
           entities:
-            - sensor.diskstation_physical_id_0_temp
+            - sensor.diskstation_physical_id_0_temperature
           lower_bound: 30
           upper_bound: 80
           show:

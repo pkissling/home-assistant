@@ -1,0 +1,31 @@
+---
+
+binary_sensor.ib1903757824_connection_state:
+  friendly_name: Tado
+
+binary_sensor.va0080352768_battery_state:
+  friendly_name: Living Room R
+
+binary_sensor.va0782306048_battery_state:
+  friendly_name: Bedroom
+
+binary_sensor.va1821837824_battery_state:
+  friendly_name: Bathroom L
+
+binary_sensor.va1875318272_battery_state:
+  friendly_name: Toilet
+
+binary_sensor.va1925780992_battery_state:
+  friendly_name: Kitchen
+
+binary_sensor.va3533244928_battery_state:
+  friendly_name: Living Room L
+
+binary_sensor.va3653834240_battery_state:
+  friendly_name: Study R
+
+binary_sensor.va3737720320_battery_state:
+  friendly_name: Bathroom R
+
+binary_sensor.va4188015360_battery_state:
+  friendly_name: Study L

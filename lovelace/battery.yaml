@@ -50,12 +50,12 @@
 - type: entities
   title: Thermostats
   entities:
-     - binary_sensor.va3533244928_battery_state
-     - binary_sensor.va0080352768_battery_state
-     - binary_sensor.va1925780992_battery_state
-     - binary_sensor.va4188015360_battery_state
-     - binary_sensor.va3653834240_battery_state
-     - binary_sensor.va0782306048_battery_state
-     - binary_sensor.va1821837824_battery_state
-     - binary_sensor.va3737720320_battery_state
-     - binary_sensor.va1875318272_battery_state
+    - binary_sensor.va3533244928_battery_state
+    - binary_sensor.va0080352768_battery_state
+    - binary_sensor.va1925780992_battery_state
+    - binary_sensor.va4188015360_battery_state
+    - binary_sensor.va3653834240_battery_state
+    - binary_sensor.va0782306048_battery_state
+    - binary_sensor.va1821837824_battery_state
+    - binary_sensor.va3737720320_battery_state
+    - binary_sensor.va1875318272_battery_state

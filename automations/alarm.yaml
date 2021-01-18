@@ -111,7 +111,7 @@
 - alias: Alarm - Toggle alarm when alarm needs adjustment due to workday
   trigger:
     platform: time
-    at: '12:00'
+    at: '12:00:00'
   condition:
     condition: template
     value_template: >

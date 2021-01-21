@@ -387,3 +387,17 @@
       label: Clear
     - value: "on"
       label: Detected
+
+# Lightlevel
+- type: custom:mini-graph-card
+  entities:
+    - sensor.motion_study_lightlevel
+  show:
+    name: off  # yamllint disable-line rule:truthy
+    points: false
+    state: true
+    icon: off  # yamllint disable-line rule:truthy
+  hours_to_show: 24
+  points_per_hour: 6
+  update_interval: 30
+  line_width: 2

@@ -25,6 +25,9 @@ include:
     - light.lightstrip
     - light.tv
 
+    # Lightlevel
+    - sensor.motion_study_lightlevel
+
     # Motion
     - binary_sensor.motion_study_desk
 

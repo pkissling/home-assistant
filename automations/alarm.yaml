@@ -91,6 +91,10 @@
         to: idle
       continue_on_timeout: false
       timeout: '0:03:00'
+    - service: media_player.volume_set
+      entity_id: media_player.bedroom
+      data:
+        volume_level: 0.1
     - service: media_player.play_media
       entity_id: media_player.home_group
       data:

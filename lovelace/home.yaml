@@ -25,19 +25,19 @@
       head:
         entity: light.bedroom
       entities:
-        - light.lightstrip
+        - light.bedroom_wardrobe
     - type: custom:fold-entity-row
       head:
         entity: light.living_room
       entities:
-        - light.lamp
-        - light.tv
-        - light.ceiling
+        - light.living_room_lamp
+        - light.living_room_tv
     - type: custom:fold-entity-row
       head:
         entity: light.study
       entities:
-        - light.desk
+        - light.study_desk
+        - light.study_shelf
 
 # Weather
 - type: weather-forecast

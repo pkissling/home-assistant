@@ -5,15 +5,21 @@
     platform: template
     value_template: >
       {{
-        state_attr('light.lightstrip', 'flowing') == True
+        state_attr('light.living_room_lamp', 'flowing') == True
           and
-        is_state('light.lightstrip', 'on')
+        is_state('light.living_room_lamp', 'on')
       }}
   condition:
     condition: time  # TODO find better condition!
     after: '18:00:00'
     before: '02:00:00'
   action:
+    - service: light.turn_on
+      entity_id: light.ambient
+      data:
+        brightness: 0
+        kelvin: 2200
+        transition: 600  # 10 min
     - service: media_player.volume_set
       entity_id: media_player.bedroom
       data:
@@ -61,7 +67,9 @@
     service: light.turn_on
     entity_id: light.ambient
     data:
-      effect: sunrise
+      brightness: 130
+      kelvin: 2200
+      transition: 1800  # 30 min
 
 - alias: Alarm - Morning Routine - News and Radio
   trigger:

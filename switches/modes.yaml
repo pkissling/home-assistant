@@ -27,6 +27,8 @@
           entity_id: input_boolean.home_office_mode
         - service: switch.turn_off
           entity_id: switch.plug_study_monitor
+        - service: light.turn_off
+          entity_id: light.study
       turn_off:
         - service: media_player.volume_mute
           entity_id: media_player.study

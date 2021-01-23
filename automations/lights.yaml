@@ -13,7 +13,9 @@
     - service: light.turn_on
       entity_id: light.ambient
       data:
-        effect: sunrise
+        brightness: 130
+        kelvin: 2200
+        transition: 1800  # 30 min
 
 - alias: Lights - Turn off after sunrise or 8 am
   trigger:
@@ -35,7 +37,9 @@
     - service: light.turn_on
       entity_id: light.ambient
       data:
-        effect: sunset
+        brightness: 0
+        kelvin: 2200
+        transition: 60  # 1 min
 
 - alias: Lights - Turn on when somebody came home
   trigger:
@@ -49,12 +53,11 @@
       after_offset: '-00:30:00'
   action:
     - service: light.turn_on
-      entity_id:
-        - light.living_room
-        - light.bedroom
+      entity_id: light.ambient
       data:
-        brightness: 255
-        rgb_color: [255, 162, 78]
+        brightness: 130
+        kelvin: 2200
+        transition: 10  # seconds
 
 - alias: Light - Turn off when sunlight
   trigger:

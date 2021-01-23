@@ -1,28 +1,7 @@
 ---
 
 devices:
-  192.168.0.10:
-    name: Lightstrip
   192.168.0.11:
     name: TV
-  192.168.0.12:
-    name: Ceiling
   192.168.0.13:
     name: Lamp
-
-custom_effects:
-  - name: sunrise
-    flow_params:
-      count: 1
-      action: stay
-      transitions:
-        - RGBTransition: [255, 162, 78, 50, 1]
-        - RGBTransition: [255, 162, 78, 900000, 100]
-
-  - name: sunset
-    flow_params:
-      count: 1
-      action: 'off'
-      transitions:
-        - RGBTransition: [255, 162, 78, 50, 100]
-        - RGBTransition: [255, 162, 78, 900000, 1]

@@ -10,21 +10,21 @@
 - platform: group
   name: ambient
   entities:
-    - light.lightstrip
-    - light.tv
-    - light.lamp
+    - light.bedroom_wardrobe
+    - light.living_room_lamp
+    - light.living_room_tv
+    - light.study_shelf
 
 - platform: group
   name: Living Room
   entities:
-    - light.tv
-    - light.lamp
-    # - light.ceiling
+    - light.living_room_lamp
+    - light.living_room_tv
 
 - platform: group
   name: Bedroom
   entities:
-    - light.lightstrip
+    - light.bedroom_wardrobe
 
 - platform: switch
   name: Desk
@@ -33,4 +33,5 @@
 - platform: group
   name: Study
   entities:
-    - light.desk
+    - light.study_desk
+    - light.study_shelf

@@ -401,3 +401,10 @@
   points_per_hour: 6
   update_interval: 30
   line_width: 2
+
+# Plugs
+- type: entities
+  show_header_toggle: false
+  entities:
+    - switch.plug_living_room_amplifier
+    - switch.plug_study_monitor

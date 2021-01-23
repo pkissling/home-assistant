@@ -1,0 +1,9 @@
+---
+
+switch.plug_living_room_amplifier:
+  icon: mdi:amplifier
+  friendly_name: Amplifier
+
+switch.plug_study_monitor:
+  icon: mdi:monitor
+  friendly_name: Monitor

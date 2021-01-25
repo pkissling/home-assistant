@@ -10,12 +10,9 @@
       entity_id: group.residents
       state: home
   action:
-    - service: light.turn_on
-      entity_id: light.ambient
-      data:
-        brightness: 130
-        kelvin: 2200
-        transition: 1800  # 30 min
+    service: script.light_ambient_turn_on
+    data:
+      transition: 1800  # 30 min
 
 - alias: Lights - Turn off after sunrise or 8 am
   trigger:
@@ -34,30 +31,24 @@
     - condition: time
       after: '08:00'
   action:
-    - service: light.turn_on
-      entity_id: light.ambient
-      data:
-        brightness: 0
-        kelvin: 2200
-        transition: 60  # 1 min
+    service: script.light_ambient_turn_off
+    data:
+      transition: 60  # 1 min
 
 - alias: Lights - Turn on when somebody came home
   trigger:
-    - platform: state
-      entity_id: group.residents
-      from: not_home
-      to: home
+    platform: state
+    entity_id: group.residents
+    from: not_home
+    to: home
   condition:
     - condition: sun
       after: sunset
       after_offset: '-00:30:00'
   action:
-    - service: light.turn_on
-      entity_id: light.ambient
-      data:
-        brightness: 130
-        kelvin: 2200
-        transition: 10  # seconds
+    service: script.light_ambient_turn_on
+    data:
+      transition: 10  # seconds
 
 - alias: Light - Turn off when sunlight
   trigger:
@@ -76,8 +67,9 @@
     - condition: time
       after: '08:00:00'
   action:
-    service: light.turn_off
-    entity_id: light.ambient
+    service: script.light_ambient_turn_off
+    data:
+      transition: 60  # 1 min
 
 - alias: Light Study - Turn on when home office mode on and dark
   trigger:

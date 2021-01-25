@@ -15,7 +15,7 @@
     entity_id: input_boolean.home_office_mode
     to: 'off'
     for:
-      minutes: 10
+      minutes: 2
   action:
     - service: switch.turn_off
       entity_id: switch.plug_study_monitor

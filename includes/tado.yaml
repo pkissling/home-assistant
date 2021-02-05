@@ -1,4 +1,0 @@
----
-
-username: !secret tado_username
-password: !secret tado_password

@@ -38,7 +38,6 @@ plant: !include includes/plants.yaml
 recorder: !include includes/recorder.yaml
 speedtestdotnet: !include includes/speedtestdotnet.yaml
 spotify: !include includes/spotify.yaml
-tado: !include includes/tado.yaml
 vacuum: !include includes/vacuum.yaml
 webostv: !include includes/webostv.yaml
 yeelight: !include includes/yeelight.yaml

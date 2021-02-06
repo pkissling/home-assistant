@@ -3,5 +3,5 @@
 - platform: template
   sensors:
     mqtt_broker_health:
-      value_template: "{{ not is_state('sensor.mqtt_broker_heartbeat', 'unavailable') }}"
+      value_template: "{{ not is_state('sensor.mqtt_broker_health', 'unavailable') }}"
       device_class: connectivity

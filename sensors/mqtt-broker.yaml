@@ -1,7 +1,6 @@
 ---
 
 - platform: mqtt
-  name: MQTT Broker Heartbeat
-  unique_id: mqtt_broker_heartbeat
-  state_topic: mqtt-broker/heartbeat
-  expire_after: 300  # seconds
+  name: MQTT Broker Health
+  unique_id: mqtt_broker_health
+  state_topic: mqtt-broker/health  # dummy queue

@@ -1,15 +1,5 @@
 ---
 
-- alias: MQTT Broker - Send heartbeat
-  trigger:
-    platform: time_pattern
-    minutes: '*'
-  action:
-    service: mqtt.publish
-    data:
-      topic: mqtt-broker/heartbeat
-      payload: "{{ now() }}"
-
 - alias: MQTT Broker - Send notification when offline
   trigger:
     platform: state

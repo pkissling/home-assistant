@@ -8,7 +8,6 @@ exclude:
   entity_globs:
     - sensor.*_uptime
   entities:
-    - automation.mqtt_broker_send_heartbeat
     - input_text.google_api_key
     - sensor.mqtt_broker_heartbeat
     - sensor.time

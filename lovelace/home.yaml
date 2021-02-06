@@ -60,14 +60,14 @@
     - type: horizontal-stack
       cards:
         - type: custom:button-card
-          entity: switch.remote_tv
+          entity: switch.living_room_tv
           icon: mdi:television
           color: var(--switch-checked-color)
           show_name: false
           styles:
             card:
               - height: 70px
-        - entity: switch.remote_chromecast
+        - entity: switch.living_room_chromecast
           color: var(--switch-checked-color)
           icon: mdi:cast
           type: custom:button-card
@@ -77,7 +77,7 @@
               - height: 70px
         - type: custom:button-card
           color: var(--switch-checked-color)
-          entity: switch.remote_speakers
+          entity: switch.living_room_speakers
           icon: mdi:cast-audio
           show_name: false
           styles:
@@ -85,7 +85,7 @@
               - height: 70px
         - type: custom:button-card
           color: var(--switch-checked-color)
-          entity: switch.remote_smart_tv
+          entity: switch.living_room_smart_tv
           icon: mdi:netflix
           show_name: false
           styles:

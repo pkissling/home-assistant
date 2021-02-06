@@ -11,7 +11,7 @@
     state: 'off'
   action:
     service: switch.turn_on
-    entity_id: switch.remote_speakers
+    entity_id: switch.living_room_speakers
 
 - alias: Remote - Turn on Chromecast when casting
   trigger:
@@ -33,7 +33,7 @@
       data:
         value: "{{ state_attr('remote.living_room', 'current_activity') }}"
     - service: switch.turn_on
-      entity_id: switch.remote_chromecast
+      entity_id: switch.living_room_chromecast
 
 - alias: Remote - Back to previous Activity when Chromecast off
   trigger:

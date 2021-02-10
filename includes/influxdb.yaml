@@ -43,6 +43,7 @@ include:
     - sensor.pi_hole_dns_unique_clients
 
     # Plugs
+    - sensor.plug_corridor
     - sensor.plug_living_room_amplifier
     - sensor.plug_study_monitor
 

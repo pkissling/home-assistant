@@ -11,3 +11,9 @@
   name: Plug Study Monitor
   state_topic: shellies/shellyplug-s-9D9424/relay/0/power
   unit_of_measurement: W
+
+- platform: mqtt
+  unique_id: plug_corridor
+  name: Plug Corridor
+  state_topic: shellies/shellyplug-s-B49BB4/relay/0/power
+  unit_of_measurement: W

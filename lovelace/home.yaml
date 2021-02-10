@@ -406,5 +406,6 @@
 - type: entities
   show_header_toggle: false
   entities:
+    - switch.plug_corridor
     - switch.plug_living_room_amplifier
     - switch.plug_study_monitor

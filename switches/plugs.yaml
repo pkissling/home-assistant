@@ -19,3 +19,13 @@
   payload_off: 'off'
   state_on: 'on'
   state_off: 'off'
+
+- platform: mqtt
+  unique_id: plug_corrdior
+  name: Plug Corridor
+  state_topic: shellies/shellyplug-s-B49BB4/relay/0
+  command_topic: shellies/shellyplug-s-B49BB4/relay/0/command
+  payload_on: 'on'
+  payload_off: 'off'
+  state_on: 'on'
+  state_off: 'off'

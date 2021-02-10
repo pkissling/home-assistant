@@ -40,7 +40,7 @@
         from: playing
         to: 'idle'
       continue_on_timeout: true
-      timeout: '0:01:00'
+      timeout: '0:02:00'
     - service: media_player.turn_off
       entity_id: media_player.bedroom
     - service: media_player.volume_set

@@ -9,6 +9,12 @@ views:
     cards:
       !include lovelace/home.yaml
 
+  # misc
+  - path: misc
+    icon: mdi:bolt
+    cards:
+      !include lovelace/misc.yaml
+
   # monitoring
   - path: monitoring
     icon: mdi:server-security

@@ -1,0 +1,59 @@
+---
+
+# Printer
+- type: entities
+  title: Printer
+  entities:
+    - entity: sensor.epson_et_2720_series_black_ink
+      name: Black
+    - entity: sensor.epson_et_2720_series_cyan_ink
+      name: Cyan
+    - entity: sensor.epson_et_2720_series_magenta_ink
+      name: Magenta
+    - entity: sensor.epson_et_2720_series_yellow_ink
+      name: Yellow
+
+# Plugs
+- type: entities
+  show_header_toggle: false
+  entities:
+    - switch.plug_corridor
+    - switch.plug_living_room_amplifier
+    - switch.plug_study_monitor
+
+# Lightlevel
+- type: custom:mini-graph-card
+  entities:
+    - sensor.motion_study_lightlevel
+  show:
+    name: off  # yamllint disable-line rule:truthy
+    points: false
+    state: true
+    icon: off  # yamllint disable-line rule:truthy
+  hours_to_show: 24
+  points_per_hour: 6
+  update_interval: 30
+  line_width: 2
+
+# Motion
+- type: custom:mini-graph-card
+  title: Desk
+  entities:
+    - binary_sensor.motion_study_desk
+  show:
+    name: off  # yamllint disable-line rule:truthy
+    points: false
+    labels: false
+    state: false
+    icon: off  # yamllint disable-line rule:truthy
+  hours_to_show: 0.33
+  points_per_hour: 60
+  update_interval: 30
+  aggregate_func: max
+  line_width: 2
+  smoothing: false
+  state_map:
+    - value: "off"
+      label: Clear
+    - value: "on"
+      label: Detected

@@ -46,7 +46,6 @@
 
 # Toggle Modes
 - type: entities
-  show_header_toggle: false
   entities:
     - switch.summer_mode
     - switch.guest_mode
@@ -208,7 +207,6 @@
   mode: vertical
   cards:
     - type: entities
-      show_header_toggle: false
       entities:
         - input_boolean.vacuum_daily_cleanup
         - entity: sensor.vacuum_battery

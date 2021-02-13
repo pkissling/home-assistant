@@ -17,6 +17,8 @@
     - service: script.light_ambient_turn_off
       data:
         transition: 600  # 10 min
+    - service: switch.turn_off
+      entity_id: switch.remote_off
     - service: media_player.volume_set
       entity_id: media_player.bedroom
       data:

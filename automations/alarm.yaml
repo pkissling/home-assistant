@@ -48,7 +48,7 @@
     - service: media_player.volume_set
       entity_id: media_player.bedroom
       data:
-        volume_level: 0.2
+        volume_level: 0.1
 
 - alias: Alarm - Morning Routine - Sunrise Lights
   trigger:
@@ -124,10 +124,6 @@
         to: 'off'
       continue_on_timeout: true
       timeout: '1:00:00'
-    - service: media_player.volume_set
-      entity_id: media_player.bedroom
-      data:
-        volume_level: 0.2
 
 - alias: Alarm - Toggle alarm when alarm needs adjustment due to workday
   trigger:

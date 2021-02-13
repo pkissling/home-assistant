@@ -653,7 +653,7 @@
     - service: climate.set_temperature
       entity_id: climate.study
       data:
-        temperature: 21
+        temperature: 22
 
 - alias: Thermostat Study - Turn off when home office mode off
   trigger:

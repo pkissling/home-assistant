@@ -163,14 +163,10 @@
           data:
             device: Pioneer-AV-Receiver
             command: PowerOff
+
         # Give plug time to update the sensor
         - delay:
             seconds: 5
-
-        # Debug
-        - service: notify.patrick
-          data:
-            message: 'Pioneer-AV-Receiver retry: PowerOff'
 
       until:
         condition: numeric_state
@@ -216,11 +212,6 @@
               {% else %}
                 InputTv
               {% endif %}
-
-        # Debug
-        - service: notify.patrick
-          data:
-            message: 'Pioneer-AV-Receiver retry: PowerOn'
 
       until:
         condition: numeric_state

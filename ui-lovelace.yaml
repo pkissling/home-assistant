@@ -11,7 +11,7 @@ views:
 
   # misc
   - path: misc
-    icon: mdi:bolt
+    icon: mdi:regex
     cards:
       !include lovelace/misc.yaml
 
@@ -32,3 +32,9 @@ views:
     icon: mdi:leaf
     cards:
       !include lovelace/plants.yaml
+
+  # dev
+  - path: dev
+    icon: mdi:bolt
+    cards:
+      !include lovelace/dev.yaml

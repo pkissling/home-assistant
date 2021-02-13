@@ -1,0 +1,10 @@
+---
+
+- type: custom:thermostat-bar-card
+  entities: 
+    - climate.bathroom
+    - climate.study
+    - climate.living_room
+    - climate.bedroom
+    - climate.kitchen
+    - climate.toilet

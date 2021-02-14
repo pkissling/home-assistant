@@ -283,7 +283,7 @@
 
 # Temperature
 - type: custom:thermostat-bar-card
-  entities: 
+  entities:
     - entity_id: climate.bathroom
       icon: mdi:shower
       window_sensor: binary_sensor.window_bathroom

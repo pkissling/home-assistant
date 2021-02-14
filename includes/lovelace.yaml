@@ -23,7 +23,9 @@ resources:
     type: module
   - url: /hacsfiles/stack-in-card/stack-in-card.js
     type: js
-
-  # dev
-  - url: 'http://192.168.0.36:5000/thermostat-bar-card.js'
+  - url: /local/thermostat-bar-card/thermostat-bar-card.js
     type: module
+
+  # # dev
+  # - url: 'http://192.168.0.36:5000/thermostat-bar-card.js'
+  #   type: module

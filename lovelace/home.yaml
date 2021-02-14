@@ -282,76 +282,26 @@
     - entity: input_datetime.wakeup_time
 
 # Temperature
-- type: custom:config-template-card
-  entities:
-    - climate.bathroom
-    - climate.study
-    - climate.living_room
-    - climate.bedroom
-    - climate.kitchen
-    - climate.toilet
-  card:
-    type: custom:bar-card
-    entities:
-      - entity: sensor.living_room_temperature
-        icon: mdi:sofa
-        target: "${states['climate.living_room'].state == 'auto' || states['climate.living_room'].state == 'heat' ? states['climate.living_room'].attributes.temperature : ''}"
-        color: "${states['climate.living_room'].state == 'auto' || states['climate.living_room'].state == 'heat' ? 'var(--primary-color)' : 'var(--light-primary-color)'}"
-        tap_action:
-          action: call-service
-          service: switch.toggle
-          service_data:
-            entity_id: switch.climate_living_room
-      - entity: sensor.kitchen_temperature
-        icon: mdi:stove
-        target: "${states['climate.kitchen'].state == 'auto' || states['climate.kitchen'].state == 'heat' ? states['climate.kitchen'].attributes.temperature : ''}"
-        color: "${states['climate.kitchen'].state == 'auto' || states['climate.kitchen'].state == 'heat' ? 'var(--primary-color)' : 'var(--light-primary-color)'}"
-        tap_action:
-          action: call-service
-          service: switch.toggle
-          service_data:
-            entity_id: switch.climate_kitchen
-      - entity: sensor.bathroom_temperature
-        icon: mdi:shower
-        target: "${states['climate.bathroom'].state == 'auto' || states['climate.bathroom'].state == 'heat' ? states['climate.bathroom'].attributes.temperature : ''}"
-        color: "${states['climate.bathroom'].state == 'auto' || states['climate.bathroom'].state == 'heat' ? 'var(--primary-color)' : 'var(--light-primary-color)'}"
-        tap_action:
-          action: call-service
-          service: switch.toggle
-          service_data:
-            entity_id: switch.climate_bathroom
-      - entity: sensor.toilet_temperature
-        icon: mdi:toilet
-        target: "${states['climate.toilet'].state == 'auto' || states['climate.toilet'].state == 'heat' ? states['climate.toilet'].attributes.temperature : ''}"
-        color: "${states['climate.toilet'].state == 'auto' || states['climate.toilet'].state == 'heat' ? 'var(--primary-color)' : 'var(--light-primary-color)'}"
-        tap_action:
-          action: call-service
-          service: switch.toggle
-          service_data:
-            entity_id: switch.climate_toilet
-      - entity: sensor.bedroom_temperature
-        icon: mdi:bed-king-outline
-        target: "${states['climate.bedroom'].state == 'auto' || states['climate.bedroom'].state == 'heat' ? states['climate.bedroom'].attributes.temperature : ''}"
-        color: "${states['climate.bedroom'].state == 'auto' || states['climate.bedroom'].state == 'heat' ? 'var(--primary-color)' : 'var(--light-primary-color)'}"
-        tap_action:
-          action: call-service
-          service: switch.toggle
-          service_data:
-            entity_id: switch.climate_bedroom
-      - entity: sensor.study_temperature
-        icon: mdi:desk-lamp
-        target: "${states['climate.study'].state == 'auto' || states['climate.study'].state == 'heat' ? states['climate.study'].attributes.temperature : ''}"
-        color: "${states['climate.study'].state == 'auto' || states['climate.study'].state == 'heat' ? 'var(--primary-color)' : 'var(--light-primary-color)'}"
-        tap_action:
-          action: call-service
-          service: switch.toggle
-          service_data:
-            entity_id: switch.climate_study
-    min: 15
-    max: 26
-    decimal: 1
-    positions:
-      name: off  # yamllint disable-line rule:truthy
+- type: custom:thermostat-bar-card
+  entities: 
+    - entity_id: climate.bathroom
+      icon: mdi:shower
+      window_sensor: binary_sensor.window_bathroom
+    - entity_id: climate.study
+      icon: mdi:desk-lamp
+      window_sensor: group.window_study
+    - entity_id: climate.living_room
+      icon: mdi:sofa
+      window_sensor: binary_sensor.window_living_room
+    - entity_id: climate.bedroom
+      icon: mdi:bed-king-outline
+      window_sensor: group.window_bedroom
+    - entity_id: climate.kitchen
+      icon: mdi:stove
+      window_sensor: binary_sensor.window_kitchen
+    - entity_id: climate.toilet
+      icon: mdi:toilet
+      window_sensor: binary_sensor.window_toilet
 
 # Calendar
 - type: custom:atomic-calendar-revive

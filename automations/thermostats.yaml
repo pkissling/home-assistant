@@ -4,7 +4,7 @@
 - alias: Thermostat Bedroom - Window opened
   trigger:
     platform: state
-    entity_id: group.window_bedroom
+    entity_id: binary_sensor.window_bedroom
     from: 'off'
     to: 'on'
     for:
@@ -26,7 +26,7 @@
 - alias: Thermostat Bedroom - Window closed
   trigger:
     platform: state
-    entity_id: group.window_bedroom
+    entity_id: binary_sensor.window_bedroom
     from: 'on'
     to: 'off'
     for:
@@ -48,7 +48,7 @@
 - alias: Thermostat Study - Window openend
   trigger:
     platform: state
-    entity_id: group.window_study
+    entity_id: binary_sensor.window_study
     from: 'off'
     to: 'on'
     for:
@@ -70,7 +70,7 @@
 - alias: Thermostat Study - Window closed
   trigger:
     platform: state
-    entity_id: group.window_study
+    entity_id: binary_sensor.window_study
     from: 'on'
     to: 'off'
     for:
@@ -92,7 +92,7 @@
 - alias: Thermostat Bathroom - Window openend
   trigger:
     platform: state
-    entity_id: group.window_bathroom
+    entity_id: binary_sensor.window_bathroom
     from: 'off'
     to: 'on'
     for:
@@ -114,7 +114,7 @@
 - alias: Thermostat Bathroom - Window closed
   trigger:
     platform: state
-    entity_id: group.window_bathroom
+    entity_id: binary_sensor.window_bathroom
     from: 'on'
     to: 'off'
     for:
@@ -135,12 +135,18 @@
 # Living Room
 - alias: Thermostat Living Room - Window openend
   trigger:
-    platform: state
-    entity_id: group.window_living_room_and_kitchen
-    from: 'off'
-    to: 'on'
-    for:
-      minutes: 1
+    - platform: state
+      entity_id: binary_sensor.window_kitchen
+      from: 'off'
+      to: 'on'
+      for:
+        minutes: 1
+    - platform: state
+      entity_id: binary_sensor.window_living_room
+      from: 'off'
+      to: 'on'
+      for:
+        minutes: 1
   condition:
     condition: state
     entity_id: binary_sensor.thermostat_living_room
@@ -157,12 +163,18 @@
 
 - alias: Thermostat Living Room - Window closed
   trigger:
-    platform: state
-    entity_id: group.window_living_room_and_kitchen
-    from: 'on'
-    to: 'off'
-    for:
-      minutes: 5
+    - platform: state
+      entity_id: binary_sensor.window_kitchen
+      from: 'on'
+      to: 'off'
+      for:
+        minutes: 5
+    - platform: state
+      entity_id: binary_sensor.window_living_room
+      from: 'on'
+      to: 'off'
+      for:
+        minutes: 5
   condition:
     condition: template
     value_template: "{{ not is_state('input_text.thermostat_old_hvac_living_room', 'unknown') }}"
@@ -179,12 +191,18 @@
 # Kitchen
 - alias: Thermostat Kitchen - Window openend
   trigger:
-    platform: state
-    entity_id: group.window_living_room_and_kitchen
-    from: 'off'
-    to: 'on'
-    for:
-      minutes: 1
+    - platform: state
+      entity_id: binary_sensor.window_kitchen
+      from: 'off'
+      to: 'on'
+      for:
+        minutes: 1
+    - platform: state
+      entity_id: binary_sensor.window_living_room
+      from: 'off'
+      to: 'on'
+      for:
+        minutes: 5
   condition:
     condition: state
     entity_id: binary_sensor.thermostat_kitchen
@@ -201,12 +219,18 @@
 
 - alias: Thermostat Kitchen - Window closed
   trigger:
-    platform: state
-    entity_id: group.window_living_room_and_kitchen
-    from: 'on'
-    to: 'off'
-    for:
-      minutes: 5
+    - platform: state
+      entity_id: binary_sensor.window_kitchen
+      from: 'on'
+      to: 'off'
+      for:
+        minutes: 5
+    - platform: state
+      entity_id: binary_sensor.window_living_room
+      from: 'on'
+      to: 'off'
+      for:
+        minutes: 5
   condition:
     condition: template
     value_template: "{{ not is_state('input_text.thermostat_old_hvac_kitchen', 'unknown') }}"
@@ -224,7 +248,7 @@
 - alias: Thermostat Toilet - Window openend
   trigger:
     platform: state
-    entity_id: group.window_toilet
+    entity_id: binary_sensor.window_toilet
     from: 'off'
     to: 'on'
   condition:
@@ -244,7 +268,7 @@
 - alias: Thermostat Toilet - Window closed
   trigger:
     platform: state
-    entity_id: group.window_toilet
+    entity_id: binary_sensor.window_toilet
     from: 'on'
     to: 'off'
     for:
@@ -508,7 +532,7 @@
       entity_id: binary_sensor.thermostat_living_room
       state: 'on'
     - condition: state
-      entity_id: group.window_living_room
+      entity_id: binary_sensor.window_living_room
       state: 'on'
   action:
     - service: input_text.set_value
@@ -529,7 +553,7 @@
       entity_id: binary_sensor.thermostat_bedroom
       state: 'on'
     - condition: state
-      entity_id: group.window_bedroom
+      entity_id: binary_sensor.window_bedroom
       state: 'on'
   action:
     - service: input_text.set_value
@@ -551,7 +575,7 @@
       entity_id: binary_sensor.thermostat_bathroom
       state: 'on'
     - condition: state
-      entity_id: group.window_bathroom
+      entity_id: binary_sensor.window_bathroom
       state: 'on'
   action:
     - service: input_text.set_value
@@ -573,7 +597,7 @@
       entity_id: binary_sensor.thermostat_study
       state: 'on'
     - condition: state
-      entity_id: group.window_study
+      entity_id: binary_sensor.window_study
       state: 'on'
   action:
     - service: input_text.set_value
@@ -616,7 +640,7 @@
       entity_id: binary_sensor.thermostat_toilet
       state: 'on'
     - condition: state
-      entity_id: group.window_toilet
+      entity_id: binary_sensor.window_toilet
       state: 'on'
   action:
     - service: input_text.set_value
@@ -641,7 +665,7 @@
       entity_id: group.residents
       state: 'home'
     - condition: state
-      entity_id: group.window_study
+      entity_id: binary_sensor.window_study
       state: 'off'
     - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
     - "{{ not is_state('climate.study', 'heat') }}"

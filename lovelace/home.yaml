@@ -242,12 +242,12 @@
 # Open Windows
 - type: entity-filter
   entities:
-    - group.window_study
-    - group.window_living_room
-    - group.window_kitchen
-    - group.window_bedroom
-    - group.window_toilet
-    - group.window_bathroom
+    - binary_sensor.window_study
+    - binary_sensor.window_living_room
+    - binary_sensor.window_kitchen
+    - binary_sensor.window_bedroom
+    - binary_sensor.window_toilet
+    - binary_sensor.window_bathroom
   state_filter:
     - 'on'
   card:
@@ -289,13 +289,13 @@
       window_sensor: binary_sensor.window_bathroom
     - entity_id: climate.study
       icon: mdi:desk-lamp
-      window_sensor: group.window_study
+      window_sensor: binary_sensor.window_study
     - entity_id: climate.living_room
       icon: mdi:sofa
       window_sensor: binary_sensor.window_living_room
     - entity_id: climate.bedroom
       icon: mdi:bed-king-outline
-      window_sensor: group.window_bedroom
+      window_sensor: binary_sensor.window_bedroom
     - entity_id: climate.kitchen
       icon: mdi:stove
       window_sensor: binary_sensor.window_kitchen

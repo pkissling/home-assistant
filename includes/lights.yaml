@@ -8,7 +8,7 @@
     - light.study
 
 - platform: group
-  name: ambient
+  name: Ambient
   entities:
     - light.bedroom_wardrobe
     - light.living_room_lamp

@@ -26,7 +26,7 @@ resources:
   - url: /local/thermostat-bar-card/thermostat-bar-card.js
     type: module
   # # dev
-  # - url: 'http://192.168.0.36:4999/thermostat-bar-card.js'
+  # - url: 'http://192.168.0.36:4999/thermostat-bar-card-dev.js'
   #   type: module
-  # - url: 'http://192.168.0.21:4999/thermostat-bar-card.js'
+  # - url: 'http://192.168.0.21:4999/thermostat-bar-card-dev.js'
   #   type: module

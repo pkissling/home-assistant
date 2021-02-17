@@ -38,8 +38,8 @@
 - type: custom:battery-state-card
   title: Motion Sensors
   entities:
-    - sensor.motion_study_battery_level
     - sensor.motion_study_desk_battery_level
+    - sensor.motion_study_shelf_battery_level
     - sensor.motion_corridor_left_battery_level
     - sensor.motion_corridor_right_battery_level
 

@@ -1,6 +1,0 @@
----
-
-motion_study_desk:
-  entities:
-    - binary_sensor.motion_study_desk
-    - binary_sensor.vibration_study_chair

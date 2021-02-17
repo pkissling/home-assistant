@@ -10,3 +10,11 @@
             or
           is_state('binary_sensor.motion_corridor_left', 'on')
         }}
+
+    motion_study:
+      value_template: >
+        {{
+          is_state('binary_sensor.motion_study_desk', 'on')
+            or
+          is_state('binary_sensor.motion_study_shelf', 'on')
+        }}

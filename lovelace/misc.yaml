@@ -42,7 +42,6 @@
   name: Study
   entities:
     - binary_sensor.motion_study
-    - binary_sensor.motion_study_desk
   show:
     points: false
     state: false

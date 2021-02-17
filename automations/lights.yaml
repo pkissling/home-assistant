@@ -120,6 +120,9 @@
     - condition: state
       entity_id: light.study_shelf
       state: 'on'
+    - condition: state
+      entity_id: script.light_ambient_turn_off
+      state: 'off'
     - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
     - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'returning') }}"
   action:
@@ -139,6 +142,12 @@
     - condition: state
       entity_id: light.study_shelf
       state: 'on'
+    - condition: state
+      entity_id: script.light_ambient_turn_off
+      state: 'off'
+    - condition: state
+      entity_id: script.light_ambient_turn_on
+      state: 'off'
   action:
     service: light.turn_on
     entity_id: light.study_shelf

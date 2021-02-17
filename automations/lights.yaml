@@ -71,7 +71,7 @@
     data:
       transition: 60  # 1 min
 
-- alias: Light Study - Turn on when home office mode on and dark
+- alias: Light Study Desk - Turn on when home office mode on and dark
   trigger:
     - platform: state
       entity_id: switch.home_office_mode
@@ -97,7 +97,7 @@
     service: switch.turn_on
     entity_id: switch.study_lamp
 
-- alias: Light Study - Turn off when home office mode off
+- alias: Light Study Desk - Turn off when home office mode off
   trigger:
     - platform: state
       entity_id: switch.home_office_mode

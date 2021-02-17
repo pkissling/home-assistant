@@ -15,19 +15,6 @@
     data:
       is_volume_muted: true
 
-- alias: Mode - Guest Mode - Keep lights off
-  trigger:
-    platform: state
-    entity_id: light.study
-    to: 'on'
-  condition:
-    - condition: state
-      entity_id: input_boolean.guest_mode
-      state: 'on'
-  action:
-    service: light.turn_off
-    entity_id: light.study
-
 - alias: Mode - Home Office Mode - Turn off
   trigger:
     - platform: state

@@ -66,6 +66,7 @@
     - service: script.light_ambient_turn_on
       data:
         transition: 1800  # 30 min
+    # Control wardrobe light independently of script
     - service: light.turn_on
       entity_id: light.bedroom_wardrobe
       data:

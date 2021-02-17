@@ -6,12 +6,6 @@ light_ambient_turn_on:
       description: Time in seconds until transition ends.
   sequence:
     - service: light.turn_on
-      entity_id: light.study_shelf
-      data:
-        kelvin: 2300
-        brightness: 50
-        transition: "{{ transition }}"
-    - service: light.turn_on
       entity_id: light.bedroom_wardrobe
       data:
         kelvin: 1000
@@ -23,17 +17,24 @@ light_ambient_turn_on:
         kelvin: 2300
         brightness: 200
         transition: "{{ transition }}"
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: switch.guest_mode
+              state: 'off'
+          sequence:
+            - service: light.turn_on
+              entity_id: light.study_shelf
+              data:
+                kelvin: 2300
+                brightness: 50
+                transition: "{{ transition }}"
 
 light_ambient_turn_off:
   fields:
     transition:
       description: Time in seconds until transition ends.
   sequence:
-    - service: light.turn_on
-      entity_id: light.study_shelf
-      data:
-        brightness: 0
-        transition: "{{ transition }}"
     - service: light.turn_on
       entity_id: light.bedroom_wardrobe
       data:
@@ -44,3 +45,14 @@ light_ambient_turn_off:
       data:
         brightness: 0
         transition: "{{ transition }}"
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: switch.guest_mode
+              state: 'off'
+          sequence:
+            - service: light.turn_on
+              entity_id: light.study_shelf
+              data:
+                brightness: 0
+                transition: "{{ transition }}"

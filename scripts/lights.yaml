@@ -9,7 +9,7 @@ light_ambient_turn_on:
       entity_id: light.study_shelf
       data:
         kelvin: 2300
-        brightness: 200
+        brightness: 50
         transition: "{{ transition }}"
     - service: light.turn_on
       entity_id: light.bedroom_wardrobe

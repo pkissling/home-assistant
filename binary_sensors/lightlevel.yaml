@@ -3,4 +3,4 @@
 - platform: template
   sensors:
     lightlevel_study_dark:
-      value_template: "{{ states('sensor.motion_study_shelf_lightlevel') | int < 250 }}"
+      value_template: "{{ states('sensor.motion_study_lightlevel') | int < 250 }}"

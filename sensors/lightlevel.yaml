@@ -12,3 +12,7 @@
           round(2)
         }}
       unit_of_measurement: lx
+
+    motion_study_lightlevel:
+      value_template: "{{ states('sensor.motion_study_shelf_lightlevel') }}"
+      unit_of_measurement: lx

@@ -21,7 +21,7 @@ include:
   entities:
     # Lightlevel
     - sensor.motion_corridor_lightlevel
-    - sensor.motion_study_shelf_lightlevel
+    - sensor.motion_study_lightlevel
 
     # Motion
     - binary_sensor.motion_corridor

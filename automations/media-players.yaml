@@ -50,26 +50,3 @@
   action:
     service: media_player.turn_off
     entity_id: all
-
-- alias: Media Player - Stop casting on Home Group when Patrick left
-  trigger:
-    platform: state
-    entity_id: person.patrick
-    to: not_home
-  condition:
-    - condition: state
-      entity_id: media_player.home_group
-      state: playing
-    - condition: state
-      entity_id: remote.living_room
-      attribute: current_activity
-      state: Speakers
-    - condition: state
-      entity_id: switch.home_office_mode
-      state: 'on'
-    - condition: state
-      entity_id: person.sandra
-      state: home
-  action:
-    service: media_player.turn_off
-    entity_id: all

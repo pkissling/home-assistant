@@ -134,7 +134,7 @@
     entity_id: binary_sensor.motion_study
     to: 'off'
     for:
-      minutes: 30
+      minutes: 15
   condition:
     - condition: state
       entity_id: light.study_shelf

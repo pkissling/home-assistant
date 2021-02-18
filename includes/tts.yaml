@@ -1,0 +1,4 @@
+---
+
+- platform: google_translate
+  base_url: !secret base_url

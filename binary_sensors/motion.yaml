@@ -4,6 +4,7 @@
   sensors:
 
     motion_corridor:
+      friendly_name: Corridor
       value_template: >
         {{
           is_state('binary_sensor.motion_corridor_right', 'on')
@@ -12,6 +13,7 @@
         }}
 
     motion_study:
+      friendly_name: Study
       value_template: >
         {{
           is_state('binary_sensor.motion_study_desk', 'on')

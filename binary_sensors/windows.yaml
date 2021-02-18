@@ -4,6 +4,7 @@
   sensors:
 
     window_study:
+      friendly_name: Window Study
       value_template: >
         {{
           is_state('binary_sensor.window_study_right_r', 'on')
@@ -16,6 +17,7 @@
         }}
 
     window_bedroom:
+      friendly_name: Window Bedroom
       value_template: >
         {{
           is_state('binary_sensor.window_bedroom_left', 'on')

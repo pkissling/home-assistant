@@ -2,9 +2,9 @@
 
 - alias: Lights - Turn on when sunset
   trigger:
-    - platform: sun
-      event: sunset
-      offset: '-00:30:00'
+    platform: state
+    entity_id: sun.sun
+    to: below_horizon
   condition:
     - condition: state
       entity_id: group.residents
@@ -16,18 +16,18 @@
 
 - alias: Lights - Turn off after sunrise or 8 am
   trigger:
-    - platform: sun
-      offset: '+00:30:00'
-      event: sunrise
+    - platform: state
+      entity_id: sun.sun
+      to: above_horizon
     - platform: time
       at: '08:00:00'
   condition:
     - condition: state
       entity_id: light.ambient
       state: 'on'
-    - condition: sun
-      after_offset: '+00:30:00'
-      after: sunrise
+    - condition: state
+      entity_id: sun.sun
+      state: above_horizon
     - condition: time
       after: '08:00'
   action:
@@ -42,9 +42,9 @@
     from: not_home
     to: home
   condition:
-    - condition: sun
-      after: sunset
-      after_offset: '-00:30:00'
+    condition: state
+    entity_id: sun.sun
+    state: below_horizon
   action:
     service: script.light_ambient_turn_on
     data:
@@ -58,12 +58,9 @@
     for:
       minutes: 30
   condition:
-    - condition: sun
-      before: sunset
-      before_offset: '-00:30:00'
-    - condition: sun
-      after: sunrise
-      after_offset: '00:30:00'
+    - condition: state
+      entity_id: sun.sun
+      state: above_horizon
     - condition: time
       after: '08:00:00'
   action:

@@ -1,4 +1,0 @@
----
-
-google_api_key:
-  initial: !secret google_api_key

@@ -1,0 +1,10 @@
+---
+
+window_all:
+  entities:
+    - binary_sensor.window_bathroom
+    - binary_sensor.window_living_room
+    - binary_sensor.window_study
+    - binary_sensor.window_bedroom
+    - binary_sensor.window_kitchen
+    - binary_sensor.window_toilet

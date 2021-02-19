@@ -1,7 +1,0 @@
----
-
-- platform: template
-  sensors:
-    # TODO only for debug
-    sun_elevation:
-      value_template: "{{ state_attr('sun.sun', 'elevation') }}"

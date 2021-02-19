@@ -66,12 +66,13 @@
             entity_id: media_player.bedroom
             data:
               message: >
-                Windows are still open in:
+                Windows are open in:
                 {{
                   expand('group.window_all')
                   | selectattr('state', 'eq', 'on')
                   | map(attribute='name')
-                  | join(', ')
+                  | join(',')
+                  | replace('Window', '')
                 }}
     - wait_for_trigger:
         platform: state

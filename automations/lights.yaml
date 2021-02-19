@@ -158,9 +158,14 @@
     entity_id: binary_sensor.motion_study
     to: 'on'
   condition:
-    - condition: state
-      entity_id: light.study_shelf
-      state: 'off'
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: light.study_shelf
+          state: 'off'
+        - condition: state
+          entity_id: script.light_ambient_turn_off
+          state: 'on'
     - condition: state
       entity_id: binary_sensor.sun
       state: 'off'

@@ -366,7 +366,10 @@ found at http://polymer.github.io/PATENTS.txt
     align-self: center;
     justify-content: center;
     position: relative;
-    width: 35px;
+
+    .fixed-width {
+      width: 35px;
+    }
   }
 
   thermostat-bar-card-control-icon + thermostat-bar-card-control-icon {
@@ -407,6 +410,7 @@ found at http://polymer.github.io/PATENTS.txt
     height: 100%;
     width: 2px;
   }
+
   thermostat-bar-card-backgroundbar {
     background: var(--bar-color);
     filter: brightness(0.5);
@@ -434,6 +438,7 @@ found at http://polymer.github.io/PATENTS.txt
   thermostat-bar-card-text {
     margin: 12px;
     margin-left: auto;
+    opacity: 0.7;
   }
 
   thermostat-bar-card-icon-indicator {
@@ -507,6 +512,7 @@ found at http://polymer.github.io/PATENTS.txt
             </thermostat-bar-card-flip>
           </thermostat-bar-card-control-icon>
           <thermostat-bar-card-control-icon
+            class="fixed-width"
             @action=${()=>this.toggleHvacMode(e)}
             .actionHandler=${Yt()}
           >

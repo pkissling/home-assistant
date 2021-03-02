@@ -14,6 +14,12 @@
     - sensor.window_study_right_r_battery_level
     - sensor.window_study_right_l_battery_level
 
+# Doors
+- type: custom:battery-state-card
+  title: Doors
+  entities:
+    - sensor.door_corridor_battery_level
+
 # Vacuum
 - type: custom:battery-state-card
   title: Vacuum

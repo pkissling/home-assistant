@@ -128,7 +128,7 @@
     data:
       brightness: 200
 
-- alias: Light Study Shelf - Decrease brightness when no motion for 30 minutes
+- alias: Light Study Shelf - Decrease brightness when no motion for 15 minutes
   trigger:
     platform: state
     entity_id: binary_sensor.motion_study

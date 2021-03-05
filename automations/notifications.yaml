@@ -195,7 +195,7 @@
 - alias: Notification - Expiring SSL Certificate
   trigger:
     platform: numeric_state
-    entity_id: sensor.cert_expiry_ha_days
+    entity_id: sensor.cert_expiry_days_ha
     below: 5
   action:
     service: notify.patrick

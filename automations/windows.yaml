@@ -39,7 +39,7 @@
       attribute: temperature
       below: 16
     - platform: state
-      entity_id: group.window_kitchen
+      entity_id: binary_sensor.window_kitchen
       to: 'on'
       for:
         minutes: 30
@@ -48,7 +48,7 @@
       entity_id: input_boolean.summer_mode
       state: 'off'
     - condition: state
-      entity_id: group.window_kitchen
+      entity_id: binary_sensor.window_kitchen
       state: 'on'
       for:
         minutes: 15

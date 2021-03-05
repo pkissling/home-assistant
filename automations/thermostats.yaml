@@ -619,7 +619,7 @@
       entity_id: binary_sensor.thermostat_kitchen
       state: 'on'
     - condition: state
-      entity_id: group.window_kitchen
+      entity_id: binary_sensor.window_kitchen
       state: 'on'
   action:
     - service: input_text.set_value

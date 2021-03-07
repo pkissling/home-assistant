@@ -14,6 +14,11 @@
     after: '18:00:00'
     before: '02:00:00'
   action:
+    - service: light.turn_on
+      entity_id: light.bedroom_wardrobe
+      data:
+        brightness: 50
+        transition: 120  # 2 min
     - service: switch.turn_off
       entity_id: switch.remote_off
     - service: media_player.volume_set
@@ -27,32 +32,6 @@
         to: 'off'
       continue_on_timeout: false
       timeout: '0:15:00'
-    - choose:
-        - conditions:
-            condition: state
-            entity_id: switch.alarm
-            state: 'on'
-          sequence:
-            service: tts.google_translate_say
-            entity_id: media_player.bedroom
-            data:
-              message: >
-                The alarm is set to
-                {{ state_attr('input_datetime.wakeup_time', 'hour') }}
-                {{ state_attr('input_datetime.wakeup_time', 'minute') }}.
-                Good night!
-      default:
-        service: tts.google_translate_say
-        entity_id: media_player.bedroom
-        data:
-          message: "No alarm set for tomorrow. Good night!"
-    - wait_for_trigger:
-        platform: state
-        entity_id: media_player.bedroom
-        from: playing
-        to: idle
-      continue_on_timeout: true
-      timeout: '0:02:00'
     - choose:
         - conditions:
             - condition: state
@@ -81,6 +60,32 @@
         to: 'idle'
       continue_on_timeout: true
       timeout: '0:02:00'
+    - choose:
+        - conditions:
+            condition: state
+            entity_id: switch.alarm
+            state: 'on'
+          sequence:
+            service: tts.google_translate_say
+            entity_id: media_player.bedroom
+            data:
+              message: >
+                The alarm is set to
+                {{ state_attr('input_datetime.wakeup_time', 'hour') }}
+                {{ state_attr('input_datetime.wakeup_time', 'minute') }}.
+                Good night!
+      default:
+        service: tts.google_translate_say
+        entity_id: media_player.bedroom
+        data:
+          message: "No alarm set for tomorrow. Good night!"
+    - wait_for_trigger:
+        platform: state
+        entity_id: media_player.bedroom
+        from: playing
+        to: idle
+      continue_on_timeout: true
+      timeout: '0:02:00'
     - service: media_player.turn_off
       entity_id: media_player.bedroom
     - service: media_player.volume_set
@@ -89,8 +94,7 @@
         volume_level: 0.15
     - service: script.light_ambient_turn_off
       data:
-        transition: 600  # 10 min
-
+        transition: 300  # 5 min
 
 - alias: Alarm - Morning Routine - Sunrise Lights
   trigger:

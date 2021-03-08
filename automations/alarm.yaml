@@ -41,25 +41,25 @@
               entity_id: input_boolean.summer_mode
               state: 'off'
           sequence:
-            service: tts.google_translate_say
-            entity_id: media_player.bedroom
-            data:
-              message: >
-                Windows are open in:
-                {{
-                  expand('group.window_all')
-                  | selectattr('state', 'eq', 'on')
-                  | map(attribute='name')
-                  | join(',')
-                  | replace('Window', '')
-                }}
-    - wait_for_trigger:
-        platform: state
-        entity_id: media_player.bedroom
-        from: playing
-        to: 'idle'
-      continue_on_timeout: true
-      timeout: '0:02:00'
+            - service: tts.google_translate_say
+              entity_id: media_player.bedroom
+              data:
+                message: >
+                  Windows are open in:
+                  {{
+                    expand('group.window_all')
+                    | selectattr('state', 'eq', 'on')
+                    | map(attribute='name')
+                    | join(',')
+                    | replace('Window', '')
+                  }}
+            - wait_for_trigger:
+                platform: state
+                entity_id: media_player.bedroom
+                from: playing
+                to: idle
+              continue_on_timeout: true
+              timeout: '0:02:00'
     - choose:
         - conditions:
             condition: state

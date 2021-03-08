@@ -169,11 +169,14 @@
     - condition: state
       entity_id: binary_sensor.sun
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
   action:
     - service: light.turn_on
       entity_id: light.study_shelf
       data:
-        brightness: 200
+        brightness: 100
     - wait_for_trigger:
         platform: state
         entity_id: binary_sensor.motion_study

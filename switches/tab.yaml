@@ -1,0 +1,18 @@
+---
+
+- platform: template
+  switches:
+
+    display_tab_corridor:
+      friendly_name: Display Tab
+      value_template: "{{ states('binary_sensor.wake_corridor_tab') }}"
+      turn_on:
+        service: mqtt.publish
+        data:
+          topic: wallpanel/corridor/command
+          payload: '{"wake":true}'
+      turn_off:
+        service: mqtt.publish
+        data:
+          topic: wallpanel/corridor/command
+          payload: '{"wake":false}'

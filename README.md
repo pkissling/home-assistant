@@ -46,6 +46,8 @@ My personal configuration for [Home Assistant](https://www.home-assistant.io) ru
 ### Plug
 * [Shelly Plug S](https://shelly.cloud/products/shelly-plug-s-smart-home-automation-device/)
 
+### Tablet
+* [Lenovo Smart Tab M10 FHD Plus](https://www.lenovo.com/de/de/tablets/android-tablets/lenovo-tab-series/Lenovo-TB-X606Smart-Tab/p/ZZITZTMST0X)
 ### TV
 * [LG OLED 69E9](https://www.lg.com/uk/tvs/lg-OLED65E9)
 

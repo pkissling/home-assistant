@@ -188,23 +188,3 @@
       data:
         transition: 60  # 1 min
         brightness: 0
-
-- alias: Light Corridor - Turn on if motion
-  trigger:
-    platform: state
-    entity_id: binary_sensor.motion_study
-    to: 'on'
-  action:
-    service: switch.turn_on
-    entity_id: switch.plug_corridor
-
-- alias: Light Corridor - Turn off if motion for 5 mins
-  trigger:
-    platform: state
-    entity_id: binary_sensor.motion_study
-    to: 'off'
-    for:
-      minutes: 5
-  action:
-    service: switch.turn_off
-    entity_id: switch.plug_corridor

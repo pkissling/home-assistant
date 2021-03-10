@@ -1,0 +1,33 @@
+---
+
+- platform: mqtt
+  name: Motion Corridor Tab
+  state_topic: wallpanel/corridor/sensor/motion
+  availability_topic: wallpanel/corridor/connection
+  payload_on: '{"value":true}'
+  payload_off: '{"value":false}'
+  device_class: motion
+
+- platform: mqtt
+  name: Wake Corridor Tab
+  state_topic: wallpanel/corridor/command
+  availability_topic: wallpanel/corridor/connection
+  payload_on: '{"wake":true}'
+  payload_off: '{"wake":false}'
+
+- platform: mqtt
+  name: Display Corridor Tab
+  state_topic: wallpanel/corridor/state
+  availability_topic: wallpanel/corridor/connection
+  payload_on: true
+  payload_off: false
+  value_template: "{{ value_json.screenOn }}"
+
+- platform: mqtt
+  name: Charging Corridor Tab
+  state_topic: wallpanel/corridor/sensor/battery
+  availability_topic: wallpanel/corridor/connection
+  value_template: "{{ value_json.charging }}"
+  payload_on: true
+  payload_off: false
+  device_class: battery_charging

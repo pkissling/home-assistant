@@ -194,3 +194,118 @@
       data:
         transition: 60  # 1 min
         brightness: 0
+
+- alias: Light - Corridor Sideboard - Increase brightness on motion
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_corridor
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: light.corridor_sideboard
+      state: 'on'
+    - condition: state
+      entity_id: script.light_ambient_turn_off
+      state: 'off'
+    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
+    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'returning') }}"
+  action:
+    service: light.turn_on
+    entity_id: light.corridor_sideboard
+    data:
+      brightness: 200
+
+- alias: Light - Corridor Sideboard - Decrease brightness when no motion for 5 minutes
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_corridor
+    to: 'off'
+    for:
+      minutes: 5
+  condition:
+    - condition: state
+      entity_id: light.corridor_sideboard
+      state: 'on'
+    - condition: state
+      entity_id: script.light_ambient_turn_off
+      state: 'off'
+    - condition: state
+      entity_id: script.light_ambient_turn_on
+      state: 'off'
+  action:
+    service: light.turn_on
+    entity_id: light.corridor_sideboard
+    data:
+      transition: 60  # 1 min
+      brightness: 50
+
+- alias: Light - Corridor Sideboard - Turn on for 5 mins if motion and dark
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_corridor
+    to: 'on'
+  condition:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: light.corridor_sideboard
+          state: 'off'
+        - condition: state
+          entity_id: script.light_ambient_turn_off
+          state: 'on'
+    - condition: state
+      entity_id: binary_sensor.sun
+      state: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: light.corridor_sideboard
+      data:
+        brightness: 100
+    - wait_for_trigger:
+        platform: state
+        entity_id: binary_sensor.motion_corridor
+        to: 'off'
+        for:
+          minutes: 5
+    - service: light.turn_on
+      entity_id: light.corridor_sideboar
+      data:
+        transition: 60  # 1 min
+        brightness: 0
+
+- alias: Light - Living Room - Turn on for 5 mins if motion and dark
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_corridor
+    to: 'on'
+  condition:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: light.living_room
+          state: 'off'
+        - condition: state
+          entity_id: script.light_ambient_turn_off
+          state: 'on'
+    - condition: state
+      entity_id: binary_sensor.sun
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+  action:
+    - service: light.turn_on
+      entity_id: light.living_room
+      data:
+        brightness: 100
+    - wait_for_trigger:
+        platform: state
+        entity_id: binary_sensor.motion_corridor
+        to: 'off'
+        for:
+          minutes: 5
+    - service: light.turn_on
+      entity_id: light.living_room
+      data:
+        transition: 60  # 1 min
+        brightness: 0

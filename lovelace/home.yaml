@@ -38,6 +38,11 @@
       entities:
         - light.study_desk
         - light.study_shelf
+    - type: custom:fold-entity-row
+      head:
+        entity: light.corridor
+      entities:
+        - light.corridor_sideboard
 
 # Weather
 - type: weather-forecast

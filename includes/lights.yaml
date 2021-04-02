@@ -11,6 +11,7 @@
   name: Ambient
   entities:
     - light.bedroom_wardrobe
+    - light.corridor_sideboard
     - light.living_room_lamp
     - light.living_room_tv
     - light.study_shelf
@@ -35,3 +36,8 @@
   entities:
     - light.study_desk
     - light.study_shelf
+
+- platform: group
+  name: Corridor
+  entities:
+    - light.corridor_sideboard

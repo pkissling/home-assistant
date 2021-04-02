@@ -39,7 +39,7 @@
 
 # Motion
 - type: custom:mini-graph-card
-  name: Study
+  name: Motion
   entities:
     - binary_sensor.motion_study
     - binary_sensor.motion_corridor
@@ -59,6 +59,23 @@
       label: Clear
     - value: "on"
       label: Detected
+
+# Electricity
+- type: custom:mini-graph-card
+  name: Electricy
+  entities:
+    - sensor.plug_kitchen_dishwasher
+    - sensor.plug_living_room_amplifier
+    - sensor.plug_study_monitor
+  show:
+    points: false
+    state: false
+    icon: false
+    labels: false
+  hours_to_show: 0.33
+  points_per_hour: 60
+  update_interval: 30
+  line_width: 2
 
 # Tab
 - type: entities

@@ -1,5 +1,9 @@
 ---
 
+switch.plug_kitchen_dishwasher:
+  icon: mdi:dishwasher
+  friendly_name: Dishwasher
+
 switch.plug_living_room_amplifier:
   icon: mdi:amplifier
   friendly_name: Amplifier

@@ -1,5 +1,12 @@
 ---
 
+
+- platform: mqtt
+  unique_id: plug_kitchen_dishwasher
+  name: Plug Kitchen Dishwasher
+  state_topic: shellies/shellyplug-s-B49BB4/relay/0/power
+  unit_of_measurement: W
+
 - platform: mqtt
   unique_id: plug_living_room_amplifier
   name: Plug Living Room Amplifier
@@ -10,10 +17,4 @@
   unique_id: plug_study_monitor
   name: Plug Study Monitor
   state_topic: shellies/shellyplug-s-9D9424/relay/0/power
-  unit_of_measurement: W
-
-- platform: mqtt
-  unique_id: plug_corridor
-  name: Plug Corridor
-  state_topic: shellies/shellyplug-s-B49BB4/relay/0/power
   unit_of_measurement: W

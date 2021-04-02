@@ -215,13 +215,13 @@
     data:
       brightness: 200
 
-- alias: Light - Corridor Sideboard - Decrease brightness when no motion for 5 minutes
+- alias: Light - Corridor Sideboard - Decrease brightness when no motion for 2 minutes
   trigger:
     platform: state
     entity_id: binary_sensor.motion_corridor
     to: 'off'
     for:
-      minutes: 5
+      minutes: 2
   condition:
     - condition: state
       entity_id: light.corridor_sideboard

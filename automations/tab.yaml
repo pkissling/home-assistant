@@ -5,10 +5,6 @@
     platform: state
     entity_id: binary_sensor.motion_corridor_tab
     to: 'on'
-  condition:
-    condition: state
-    entity_id: binary_sensor.dock_corridor_tab
-    state: 'on'
   action:
     service: switch.turn_on
     entity_id: switch.display_tab_corridor
@@ -20,10 +16,35 @@
     to: 'off'
     for:
       minutes: 3
-  condition:
-    condition: state
-    entity_id: binary_sensor.dock_corridor_tab
-    state: 'on'
   action:
     service: switch.turn_off
     entity_id: switch.display_tab_corridor
+
+- alias: Tab - Speak - Warn if leaving and window open
+  trigger:
+    platform: state
+    entity_id: binary_sensor.door_corridor
+    to: 'on'
+  condition:
+    # if there was motion in the last 5 mins
+    - condition: template
+      value_template: "{{ (as_timestamp(now()) - as_timestamp(states.binary_sensor.motion_corridor.last_updated)) < 300}}"
+    - condition: state
+      entity_id: input_boolean.summer_mode
+      state: 'off'
+    - condition: state
+      entity_id: group.window_all
+      state: 'on'
+  action:
+    service: mqtt.publish
+    data:
+      topic: wallpanel/corridor/command
+      payload: >
+        {% 
+          set open_windows =  expand('group.window_all')
+          | selectattr('state', 'eq', 'on')
+          | map(attribute='name')
+          | join(',')
+          | replace('Window', '') 
+        %}
+        {"speak":"Windows open in {{ open_windows }}"}

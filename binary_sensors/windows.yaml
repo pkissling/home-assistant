@@ -4,7 +4,6 @@
   sensors:
 
     window_bedroom:
-      icon_template: mdi:bed-king-outline
       friendly_name: Window Bedroom
       value_template: >
         {{
@@ -14,7 +13,6 @@
         }}
 
     window_study:
-      icon_template: mdi:desk-lamp
       friendly_name: Window Study
       value_template: >
         {{

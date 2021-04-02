@@ -28,7 +28,7 @@
   condition:
     # if there was motion in the last 5 mins
     - condition: template
-      value_template: "{{ (as_timestamp(now()) - as_timestamp(states.binary_sensor.motion_corridor.last_updated)) < 300}}"
+      value_template: "{{ (as_timestamp(now()) - as_timestamp(states.binary_sensor.motion_corridor.last_updated)) < 300 }}"
     - condition: state
       entity_id: input_boolean.summer_mode
       state: 'off'
@@ -40,11 +40,11 @@
     data:
       topic: wallpanel/corridor/command
       payload: >
-        {% 
+        {%
           set open_windows =  expand('group.window_all')
           | selectattr('state', 'eq', 'on')
           | map(attribute='name')
           | join(',')
-          | replace('Window', '') 
+          | replace('Window', '')
         %}
         {"speak":"Windows open in {{ open_windows }}"}

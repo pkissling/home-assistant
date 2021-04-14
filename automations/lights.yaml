@@ -155,7 +155,7 @@
       transition: 60  # 1 min
       brightness: 50
 
-- alias: Light - Study Shelf - Turn on for 2 mins if motion and dark
+- alias: Light - Study Shelf - Turn on for 5 mins if motion and dark
   trigger:
     platform: state
     entity_id: binary_sensor.motion_study
@@ -185,7 +185,7 @@
         entity_id: binary_sensor.motion_study
         to: 'off'
         for:
-          minutes: 2
+          minutes: 5
     - service: light.turn_on
       entity_id: light.study_shelf
       data:
@@ -233,11 +233,14 @@
       transition: 60  # 1 min
       brightness: 50
 
-- alias: Light - Corridor Sideboard - Turn on for 2 mins if motion and dark
+- alias: Light - Corridor Sideboard - Turn on for 5 mins if motion and dark
   trigger:
-    platform: state
-    entity_id: binary_sensor.motion_corridor
-    to: 'on'
+    - platform: state
+      entity_id: binary_sensor.motion_corridor
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.door_corridor
+      to: 'on'
   condition:
     - condition: or
       conditions:
@@ -260,14 +263,14 @@
         entity_id: binary_sensor.motion_corridor
         to: 'off'
         for:
-          minutes: 2
+          minutes: 5
     - service: light.turn_on
       entity_id: light.corridor_sideboard
       data:
         transition: 60  # 1 min
         brightness: 0
 
-- alias: Light - Living Room - Turn on for 2 mins if motion and dark
+- alias: Light - Living Room - Turn on for 5 mins if motion and dark
   trigger:
     platform: state
     entity_id: binary_sensor.motion_corridor
@@ -297,7 +300,7 @@
         entity_id: binary_sensor.motion_corridor
         to: 'off'
         for:
-          minutes: 2
+          minutes: 5
     - service: light.turn_on
       entity_id: light.living_room
       data:

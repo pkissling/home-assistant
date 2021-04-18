@@ -44,6 +44,40 @@
       entities:
         - light.corridor_sideboard
 
+# Quick actions
+- type: custom:stack-in-card
+  mode: vertical
+  cards:
+    - type: horizontal-stack
+      cards:
+        - type: custom:button-card
+          entity: script.good_night
+          color: var(--switch-checked-color)
+          name: Good Night
+          icon: mdi:weather-night
+          tap_action:
+            action: call-service
+            service: script.good_night
+          styles:
+            card:
+              - height: 70px
+        - type: custom:button-card
+          entity: script.good_morning
+          name: Good Morning
+          icon: mdi:weather-sunset-up
+          color: var(--switch-checked-color)
+          styles:
+            card:
+              - height: 70px
+        - type: custom:button-card
+          entity: script.im_leaving
+          name: I'm leaving
+          icon: mdi:exit-run
+          color: var(--switch-checked-color)
+          styles:
+            card:
+              - height: 70px
+
 # Weather
 - type: weather-forecast
   name: Weather

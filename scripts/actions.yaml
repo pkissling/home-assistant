@@ -1,0 +1,73 @@
+---
+
+good_night:
+  mode: restart
+  sequence:
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: group.window_all
+              state: 'on'
+            - condition: state
+              entity_id: input_boolean.summer_mode
+              state: 'off'
+            - condition: state
+              entity_id: switch.guest_mode
+              state: 'off'
+          sequence:
+            service: mqtt.publish
+            data:
+              topic: wallpanel/corridor/command
+              payload: >
+                {%
+                  set open_windows =  expand('group.window_all')
+                  | selectattr('state', 'eq', 'on')
+                  | map(attribute='name')
+                  | join(',')
+                  | replace('Window', '')
+                %}
+                {"speak":"Windows open in {{ open_windows }}"}
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: switch.alarm
+              state: 'on'
+            - condition: state
+              entity_id: switch.guest_mode
+              state: 'off'
+          sequence:
+            service: mqtt.publish
+            data:
+              topic: wallpanel/corridor/command
+              payload: >
+                {%
+                  set open_windows =  expand('group.window_all')
+                  | selectattr('state', 'eq', 'on')
+                  | map(attribute='name')
+                  | join(',')
+                  | replace('Window', '')
+                %}
+                {"speak":" The alarm is set to {{ state_attr('input_datetime.wakeup_time', 'hour') }} {{ state_attr('input_datetime.wakeup_time', 'minute') }}. Good night!"}
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: light.bedroom_wardrobe
+              state: 'off'
+          sequence:
+            - service: light.turn_on
+              entity_id: light.bedroom_wardrobe
+              data:
+                brightness: 20
+                transition: 10
+            - delay: 10
+    - service: script.light_ambient_turn_off
+      data:
+        transition: 120  # 2 min
+
+good_morning:
+  mode: restart
+  sequence: []
+
+im_leaving:
+  mode: restart
+  sequence: []

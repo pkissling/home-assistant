@@ -3,4 +3,4 @@
 - platform: template
   sensors:
     sun:
-      value_template: "{{ state_attr('sun.sun', 'elevation') > 5 }}"
+      value_template: "{{ state_attr('sun.sun', 'elevation') > 6 }}"

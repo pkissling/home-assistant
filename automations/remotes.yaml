@@ -133,12 +133,12 @@
         is_state('remote.living_room', 'off')
       }}
     for:
-      minutes: 1
+      hours: 2
   action:
     - service: notify.patrick
       data:
         title: Harmony
-        message: TV forced off as Harmony is off as well.
+        message: TV forced off after 2 hours as Harmony is off as well.
     - service: media_player.turn_off
       entity_id: media_player.lg_webos_smart_tv
 

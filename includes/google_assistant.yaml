@@ -7,6 +7,8 @@ service_account:
 report_state: true
 expose_by_default: false
 entity_config:
+  light.study_desk:
+    name: Desk
   switch.alarm:
     name: Home Assistant Alarm
   script.good_night_google_assistant:

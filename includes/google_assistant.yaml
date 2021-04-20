@@ -24,3 +24,6 @@ entity_config:
     name: Home Assistant Summer Mode
   switch.party_mode:
     name: Home Assistant Party Mode
+  switch.vacuum_start:
+    name: Vacuum Cleaner
+    room: Living Room

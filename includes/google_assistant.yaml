@@ -1,0 +1,23 @@
+---
+
+project_id: home-assistant-fec7d
+service_account:
+  private_key: !secret google_service_account_private_key
+  client_email: !secret google_service_account_client_email
+report_state: true
+expose_by_default: false
+entity_config:
+  switch.alarm:
+    name: Home Assistant Alarm
+  script.good_night_google_assistant:
+    name: Home Assistant Good Night Routine
+  script.good_morning:
+    name: Home Assistant Good Morning Routine
+  switch.guest_mode:
+    name: Home Assistant Guest Mode
+  switch.home_office_mode:
+    name: Home Assistant Home Office Mode
+  switch.summer_mode:
+    name: Home Assistant Summer Mode
+  switch.party_mode:
+    name: Home Assistant Party Mode

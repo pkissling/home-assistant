@@ -9,7 +9,6 @@ expose_by_default: false
 entity_config:
   light.study_desk:
     name: Desk
-    room: Study
   switch.alarm:
     name: Home Assistant Alarm
   script.good_night_google_assistant:
@@ -26,4 +25,3 @@ entity_config:
     name: Home Assistant Party Mode
   switch.vacuum_start:
     name: Vacuum Cleaner
-    room: Living Room

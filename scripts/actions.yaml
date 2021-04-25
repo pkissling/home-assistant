@@ -19,7 +19,7 @@ good_night_google_assistant:
     - service: media_player.volume_set
       entity_id: media_player.bedroom
       data:
-        volume_level: 0.3
+        volume_level: 0.4
     - wait_for_trigger:
         platform: state
         entity_id: media_player.bedroom
@@ -121,24 +121,31 @@ good_night:
     - choose:
         - conditions:
             - condition: state
-              entity_id: switch.alarm
-              state: 'on'
-            - condition: state
               entity_id: switch.guest_mode
               state: 'off'
           sequence:
-            service: mqtt.publish
-            data:
-              topic: wallpanel/corridor/command
-              payload: >
-                {%
-                  set open_windows =  expand('group.window_all')
-                  | selectattr('state', 'eq', 'on')
-                  | map(attribute='name')
-                  | join(',')
-                  | replace('Window', '')
-                %}
-                {"speak":" The alarm is set to {{ state_attr('input_datetime.wakeup_time', 'hour') }} {{ state_attr('input_datetime.wakeup_time', 'minute') }}. Good night!"}
+            - choose:
+                - conditions:
+                    - condition: state
+                      entity_id: switch.alarm
+                      state: 'on'
+                  sequence:
+                    service: mqtt.publish
+                    data:
+                      topic: wallpanel/corridor/command
+                      payload: >
+                        {
+                          "speak":" The alarm is set to
+                          {{ state_attr('input_datetime.wakeup_time', 'hour') }}
+                          {{ state_attr('input_datetime.wakeup_time', 'minute') }}.
+                          Good night!"
+                        }
+              default:
+                service: mqtt.publish
+                data:
+                  topic: wallpanel/corridor/command
+                  payload: >
+                    { "speak":" No alarm is set for tomorrow. Good night!" }
     - choose:
         - conditions:
             - condition: state

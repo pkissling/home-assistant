@@ -68,13 +68,6 @@
       data:
         media_content_id: http://nrj.de/muenchen
         media_content_type: music
-    - wait_for_trigger:
-        platform: state
-        entity_id: media_player.bedroom
-        from: playing
-        to: 'off'
-      continue_on_timeout: true
-      timeout: '1:00:00'
 
 - alias: Alarm - Toggle alarm when alarm needs adjustment due to workday
   trigger:

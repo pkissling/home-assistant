@@ -19,7 +19,7 @@ good_night_google_assistant:
     - service: media_player.volume_set
       entity_id: media_player.bedroom
       data:
-        volume_level: 0.4
+        volume_level: 0.3
     - wait_for_trigger:
         platform: state
         entity_id: media_player.bedroom

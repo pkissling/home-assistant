@@ -155,7 +155,7 @@ good_night:
             - service: light.turn_on
               entity_id: light.bedroom_wardrobe
               data:
-                brightness: 20
+                brightness: 10
                 transition: 10
             - delay: 10
     - service: script.light_ambient_turn_off

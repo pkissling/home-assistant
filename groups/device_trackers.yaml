@@ -1,6 +1,0 @@
----
-
-work_laptops:
-  entities:
-    - device_tracker.wifi_patrick_work_macbook
-    - device_tracker.wifi_sandra_work_laptop

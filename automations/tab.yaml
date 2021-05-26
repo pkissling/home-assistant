@@ -3,7 +3,7 @@
 - alias: Tab - Display - Turn on when motion
   trigger:
     platform: state
-    entity_id: binary_sensor.motion_corridor_tab
+    entity_id: binary_sensor.motion_corridor
     to: 'on'
   action:
     service: switch.turn_on
@@ -12,10 +12,10 @@
 - alias: Tab - Display - Turn off when no motion for 3 mins
   trigger:
     platform: state
-    entity_id: binary_sensor.motion_corridor_tab
+    entity_id: binary_sensor.motion_corridor
     to: 'off'
     for:
-      minutes: 3
+      minutes: 2
   action:
     service: switch.turn_off
     entity_id: switch.display_tab_corridor

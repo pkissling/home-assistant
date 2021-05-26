@@ -177,10 +177,18 @@ good_morning:
     # Wait some seconds until news is being read
     - delay: 30  # seconds
     - wait_for_trigger:
-        platform: state
-        entity_id: media_player.bedroom
-        from: playing
-        to: idle
+        - platform: state
+          entity_id: media_player.bedroom
+          from: playing
+          to: idle
+        - platform: state
+          entity_id: media_player.home_group
+          from: playing
+          to: idle
+        - platform: state
+          entity_id: media_player.bathroom
+          from: playing
+          to: idle
       continue_on_timeout: true
       timeout: '00:10:00'
     - service: media_player.volume_set

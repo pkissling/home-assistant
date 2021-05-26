@@ -197,9 +197,9 @@
 
 - alias: Light - Corridor Sideboard - Increase brightness on motion
   trigger:
-    - platform: state
-      entity_id: binary_sensor.motion_corridor
-      to: 'on'
+    platform: state
+    entity_id: binary_sensor.motion_corridor
+    to: 'on'
   condition:
     - condition: state
       entity_id: light.corridor_sideboard

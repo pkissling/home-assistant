@@ -178,7 +178,7 @@ good_morning:
     - delay: 30  # seconds
     - wait_for_trigger:
         platform: state
-        entity_id: media_player.home_group
+        entity_id: media_player.bedroom
         from: playing
         to: idle
       continue_on_timeout: true

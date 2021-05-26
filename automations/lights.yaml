@@ -241,12 +241,9 @@
 
 - alias: Light - Corridor Sideboard - Turn on for 5 mins if motion and dark
   trigger:
-    - platform: state
-      entity_id: binary_sensor.motion_corridor
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.door_corridor
-      to: 'on'
+    platform: state
+    entity_id: binary_sensor.motion_corridor
+    to: 'on'
   condition:
     - condition: or
       conditions:

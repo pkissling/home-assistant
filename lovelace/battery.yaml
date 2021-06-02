@@ -31,8 +31,6 @@
   title: Devices
   entities:
     - sensor.gm1913_battery_level
-    - sensor.patricks_macbook_pro_internal_battery_level
-    - sensor.patricks_ipad_battery_level
     - sensor.tab_battery_level
 
 # Plants

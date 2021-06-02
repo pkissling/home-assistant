@@ -10,7 +10,7 @@
         service: mqtt.publish
         data:
           topic: wallpanel/corridor/command
-          payload: '{"wake":true}'
+          payload: '{"wake":true,"wakeTime":3600}'
       turn_off:
         service: mqtt.publish
         data:

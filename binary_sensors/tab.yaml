@@ -12,7 +12,7 @@
   name: Wake Corridor Tab
   state_topic: wallpanel/corridor/command
   availability_topic: wallpanel/corridor/connection
-  payload_on: '{"wake":true}'
+  payload_on: '{"wake":true,"wakeTime":3600}'
   payload_off: '{"wake":false}'
 
 - platform: mqtt

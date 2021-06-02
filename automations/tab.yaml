@@ -9,7 +9,7 @@
     service: switch.turn_on
     entity_id: switch.display_tab_corridor
 
-- alias: Tab - Display - Turn off when no motion for 3 mins
+- alias: Tab - Display - Turn off when no motion for 2 mins
   trigger:
     platform: state
     entity_id: binary_sensor.motion_corridor
@@ -17,8 +17,12 @@
     for:
       minutes: 2
   action:
-    service: switch.turn_off
-    entity_id: switch.display_tab_corridor
+    - service: switch.turn_off
+      entity_id: switch.display_tab_corridor
+    - service: mqtt.publish
+      data:
+        topic: wallpanel/corridor/command
+        payload: '{"relaunch":true}'
 
 - alias: Tab - Speak - Warn if leaving and window open
   trigger:

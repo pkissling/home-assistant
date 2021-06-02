@@ -202,3 +202,16 @@
     data:
       title: SSL Certificate
       message: HA SSL certificate exipres in less than 5 days.
+
+- alias: Notification - Dishwasher running too long
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.plug_kitchen_dishwasher
+    above: 0
+    for:
+      hours: 2
+  action:
+    service: notify.patrick
+    data:
+      title: Dishwasher
+      message: Dishwasher has been running for more than 2 hours!

@@ -5,6 +5,7 @@ default_config:
 frontend:
   themes: !include_dir_merge_named themes
 homeassistant: !include includes/homeassistant.yaml
+http: !include includes/http.yaml
 logger: !include includes/logger.yaml
 lovelace: !include includes/lovelace.yaml
 media_extractor: !include includes/media_extractor.yaml
@@ -30,14 +31,11 @@ script: !include_dir_merge_named scripts
 device_tracker: !include includes/device_trackers.yaml
 google: !include includes/google.yaml
 google_assistant: !include includes/google_assistant.yaml
-glances: !include includes/glances.yaml
 influxdb: !include includes/influxdb.yaml
 light: !include includes/lights.yaml
 notify: !include includes/notify.yaml
-pi_hole: !include includes/pi_hole.yaml
 plant: !include includes/plants.yaml
 recorder: !include includes/recorder.yaml
-speedtestdotnet: !include includes/speedtestdotnet.yaml
 spotify: !include includes/spotify.yaml
 tts: !include includes/tts.yaml
 webostv: !include includes/webostv.yaml

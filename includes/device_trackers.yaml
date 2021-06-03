@@ -7,9 +7,3 @@
   home_id: !secret tado_home_id
   new_device_defaults:
     track_new_devices: false
-
-# Fritzbox
-- platform: fritz
-  host: fritz.box
-  new_device_defaults:
-    track_new_devices: false

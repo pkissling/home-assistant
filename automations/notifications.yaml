@@ -209,9 +209,9 @@
     entity_id: sensor.plug_kitchen_dishwasher
     above: 0
     for:
-      hours: 2
+      hours: 3
   action:
     service: notify.patrick
     data:
       title: Dishwasher
-      message: Dishwasher has been running for more than 2 hours!
+      message: Dishwasher has been running for more than 3 hours!

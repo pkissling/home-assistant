@@ -1,9 +1,0 @@
----
-
-
-sensor.musaceae_conductivity:
-  icon: mdi:emoticon-poop
-
-plant.musaceae:
-  icon: mdi:palm-tree
-  friendly_name: Musaceae 🍌🌴

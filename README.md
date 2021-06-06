@@ -50,10 +50,6 @@ My personal configuration for [Home Assistant](https://www.home-assistant.io) ru
 
 * [Aqara Motion Sensor](https://www.aqara.com/us/motion_sensor.html)
 
-### Plant Sensor
-
-* [Xiaomi Plant Sensor](https://wiki.fhem.de/wiki/Xiaomi_Flower_Sensor)
-
 ### Plug
 
 * [Shelly Plug S](https://shelly.cloud/products/shelly-plug-s-smart-home-automation-device/)

@@ -154,7 +154,7 @@
           controls: true
           power: true
         shortcuts:
-          columns: 3
+          columns: 2
           buttons:
             - type: service
               icon: mdi:volume-minus
@@ -177,13 +177,13 @@
               id: media_player.turn_off
               data:
                 entity_id: all
-            # - type: service
-            #   name: NRJ
-            #   id: media_player.play_media
-            #   data:
-            #     entity_id: media_player.home_group
-            #     media_content_id: http://nrj.de/muenchen
-            #     media_content_type: music
+            - type: service
+              name: Energy München
+              id: media_player.play_media
+              data:
+                entity_id: media_player.home_group
+                media_content_id: http://nrj.de/muenchen
+                media_content_type: music
 
       entities:
         - type: custom:mini-media-player

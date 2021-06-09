@@ -8,6 +8,8 @@
       entity_id: group.residents
       from: home
       to: not_home
+      for:
+        hours: 1
   condition:
     - condition: time
       after: '07:00:00'

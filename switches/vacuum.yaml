@@ -56,7 +56,7 @@
         service: xiaomi_miio.vacuum_goto
         data:
           entity_id: vacuum.xiaomi_vacuum_cleaner
-          x_coord: 16600
+          x_coord: 16400
           y_coord: 32500
       turn_off:
         service: vacuum.return_to_base

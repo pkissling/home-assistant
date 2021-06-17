@@ -341,14 +341,3 @@
     - entity_id: climate.toilet
       icon: mdi:toilet
       window_sensor: binary_sensor.window_toilet
-
-# Calendar
-- type: custom:atomic-calendar-revive
-  name: Calendar
-  entities:
-    - calendar.s_p
-    - calendar.holidays_in_germany
-  showWeekDay: true
-  showMonth: true
-  showLocation: false
-  showLoader: false

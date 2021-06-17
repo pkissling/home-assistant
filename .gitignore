@@ -15,7 +15,6 @@
 *.swp
 
 # Files
-google_calendars.yaml
 known_devices.yaml
 secrets.yaml
 

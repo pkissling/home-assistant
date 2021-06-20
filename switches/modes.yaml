@@ -34,6 +34,10 @@
           entity_id: media_player.study
           data:
             is_volume_muted: false
+        - service: media_player.volume_set
+          entity_id: media_player.study
+          data:
+            volume_level: 0.1
         - service: input_boolean.turn_off
           entity_id: input_boolean.guest_mode
 

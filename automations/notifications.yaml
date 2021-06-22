@@ -165,7 +165,7 @@
       {{
         is_state('device_tracker.tado_patrick_oneplus7pro', 'not_home')
           and
-        is_state('device_tracker.wifi_patrick_oneplus7pro', 'home')
+        is_state('device_tracker.patricks_oneplus', 'home')
       }}
     for:
       hours: 1
@@ -182,7 +182,7 @@
       {{
         is_state('device_tracker.tado_sandra_iphone', 'not_home')
           and
-        is_state('device_tracker.wifi_sandra_iphone', 'home')
+        is_state('device_tracker.iphonesandraprivate', 'home')
       }}
     for:
       hours: 1

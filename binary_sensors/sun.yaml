@@ -3,4 +3,4 @@
 - platform: template
   sensors:
     sun:
-      value_template: "{{ state_attr('sun.sun', 'elevation') > 6 }}"
+      value_template: "{{ states('sensor.motion_corridor_lightlevel') | int > 50 }}"

@@ -91,19 +91,19 @@
         entity_id: vacuum.xiaomi_vacuum_cleaner
         segments: >
           {% if states('input_select.vacuum_room_cleanup') == 'Living Room' %}
-            16
+            20
           {% elif states('input_select.vacuum_room_cleanup') == 'Kitchen' %}
-            17
+            21
           {% elif states('input_select.vacuum_room_cleanup') == 'Toilet' %}
-            4
+            17
           {% elif states('input_select.vacuum_room_cleanup') == 'Corridor' %}
-            19
+            16
           {% elif states('input_select.vacuum_room_cleanup') == 'Bedroom' %}
-            18
+            19
           {% elif states('input_select.vacuum_room_cleanup') == 'Study' %}
-            2
+            18
           {% elif states('input_select.vacuum_room_cleanup') == 'Bathroom' %}
-            5
+            1
           {% endif %}
     - wait_for_trigger:
         platform: state

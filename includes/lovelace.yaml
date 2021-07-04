@@ -19,6 +19,8 @@ resources:
     type: module
   - url: /hacsfiles/mini-media-player/mini-media-player-bundle.js
     type: module
+  - url: /hacsfiles/simple-clock-card/simple-clock-card.js
+    type: module
   - url: /hacsfiles/stack-in-card/stack-in-card.js
     type: js
   - url: /local/thermostat-bar-card/thermostat-bar-card.js

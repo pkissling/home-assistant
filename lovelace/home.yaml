@@ -1,5 +1,12 @@
 ---
 
+# Clock
+- type: custom:simple-clock-card
+  use_military: true
+  hide_seconds: true
+  font_size: 5rem
+  padding_size: 50px
+
 # HA update
 - type: conditional
   card:

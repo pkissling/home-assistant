@@ -11,7 +11,6 @@ My personal configuration for [Home Assistant](https://www.home-assistant.io) ru
 
 ## HACS Plugins
 
-* [atomic-calendar-revive](https://github.com/marksie1988/atomic-calendar-revive)
 * [bar-card](https://github.com/custom-cards/bar-card)
 * [button-card](https://github.com/custom-cards/button-card)
 * [config-template-card](https://github.com/iantrich/config-template-card)
@@ -19,6 +18,7 @@ My personal configuration for [Home Assistant](https://www.home-assistant.io) ru
 * [mini-graph-card](https://github.com/kalkih/mini-graph-card)
 * [mini-media-player](https://github.com/kalkih/mini-media-player)
 * [stack-in-card](https://github.com/custom-cards/stack-in-card)
+* [simple-clock-card](https://github.com/arjhun/Homeassistant-Lovelace-Cards/tree/master/simple-clock-card)
 
 ## Hardware
 

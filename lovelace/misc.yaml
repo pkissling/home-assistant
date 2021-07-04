@@ -80,7 +80,6 @@
 # Tab
 - type: entities
   entities:
-    - binary_sensor.motion_corridor
     - binary_sensor.motion_corridor_tab
     - binary_sensor.display_corridor_tab
     - switch.display_tab_corridor

@@ -2,20 +2,16 @@
 
 - platform: template
   sensors:
-    motion_corridor_lightlevel:
-      friendly_name: Corridor
-      value_template: >
-        {{
-          (
-            float(states.sensor.motion_corridor_left_lightlevel.state)
-            +
-            float(states.sensor.motion_corridor_right_lightlevel.state)
-          )
-          / 2 | round(2)
-        }}
-      unit_of_measurement: lx
-
     motion_study_lightlevel:
       friendly_name: Study
       value_template: "{{ states('sensor.motion_study_shelf_lightlevel') }}"
       unit_of_measurement: lx
+
+- platform: average
+  name: Motion Corridor Lightlevel
+  duration:
+    minutes: 20
+  precision: 0
+  entities:
+    - sensor.motion_corridor_left_lightlevel
+    - sensor.motion_corridor_right_lightlevel

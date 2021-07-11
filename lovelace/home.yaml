@@ -90,6 +90,12 @@
   name: Weather
   entity: weather.home
 
+# Departures
+- type: entities
+  entities:
+    - sensor.u6_garching
+    - sensor.s7_hohenkirchen
+
 # Toggle Modes
 - type: entities
   entities:

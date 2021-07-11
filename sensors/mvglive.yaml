@@ -1,0 +1,13 @@
+---
+
+- platform: mvglive
+  nextdeparture:
+    - station: Harras
+      name: S7 - Höhenkirchen
+      lines: [S7]
+      timeoffset: 10
+    - station: Harras
+      name: U6 - Garching
+      lines: [U6]
+      destinations: [Garching-Forschungszentrum]
+      timeoffset: 12

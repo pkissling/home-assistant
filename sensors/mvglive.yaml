@@ -5,6 +5,7 @@
     - station: Harras
       name: S7 - Höhenkirchen
       lines: [S7]
+      destinations: [Höhenkirchen-Siegertsbrunn]
       timeoffset: 10
       number: 3
     - station: Harras

@@ -1,0 +1,5 @@
+---
+
+persons_guest:
+  icon: mdi:account-plus
+  name: Manual Override

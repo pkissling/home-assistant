@@ -5,3 +5,4 @@ residents:
   entities:
     - person.patrick
     - person.sandra
+    - input_boolean.persons_guest

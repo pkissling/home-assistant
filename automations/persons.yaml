@@ -1,0 +1,48 @@
+---
+- alias: Residents - Left home
+  trigger:
+    - platform: state
+      entity_id: group.residents
+      from: home
+      to: not_home
+  action:
+    - service: light.turn_off
+      entity_id: light.all
+    - service: media_player.turn_off
+      entity_id: all
+    - service: remote.turn_off
+      entity_id: all
+
+- alias: Residents - Came home
+  trigger:
+    - platform: state
+      entity_id: group.residents
+      from: not_home
+      to: home
+  action:
+    - service: switch.turn_on
+      entity_id: switch.living_room_speakers
+    - service: media_player.play_media
+      entity_id: media_player.home_group
+      data:
+        media_content_id: http://nrj.de/muenchen
+        media_content_type: music
+
+- alias: Residents - Notify Resident Guest Mode still on
+  trigger:
+    - platform: time
+      at: '10:00:00'
+    - platform: state
+      entity_id: input_boolean.person_guest
+      to: 'on'
+      for:
+        hours: 4
+  condition:
+    condition: state
+    entity_id: input_boolean.person_guest
+    state: 'on'
+  action:
+    service: notify.patrick
+    data:
+      title: Residents - Guest Mode
+      message: Manual Resident Guest Mode is still on.

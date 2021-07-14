@@ -11,4 +11,3 @@ exclude:
     - input_text.google_api_key
     - sensor.mqtt_broker_heartbeat
     - sensor.time
-    - sensor.updater_text

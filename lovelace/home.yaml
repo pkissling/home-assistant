@@ -7,23 +7,23 @@
   font_size: 5rem
   padding_size: 50px
 
-# HA update
-- type: conditional
-  card:
-    type: custom:config-template-card
-    entities:
-      - sensor.updater_text
-    card:
-      type: button
-      name: "${states['sensor.updater_text'].state}"
-      tap_action:
-        action: call-service
-        service: switch.turn_on
-        service_data:
-          entity_id: switch.updater
-  conditions:
-    - entity: binary_sensor.updater
-      state: 'on'
+# # HA update
+# - type: conditional
+#   card:
+#     type: custom:config-template-card
+#     entities:
+#       - sensor.updater_text
+#     card:
+#       type: button
+#       name: "${states['sensor.updater_text'].state}"
+#       tap_action:
+#         action: call-service
+#         service: switch.turn_on
+#         service_data:
+#           entity_id: switch.updater
+#   conditions:
+#     - entity: binary_sensor.updater
+#       state: 'on'
 
 # Lights
 - type: entities

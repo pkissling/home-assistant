@@ -1,0 +1,7 @@
+---
+
+sensor.departure_s7:
+  icon: mdi:train
+
+sensor.departure_u6:
+  icon: mdi:subway

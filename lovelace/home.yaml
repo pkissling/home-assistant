@@ -93,8 +93,8 @@
 # Departures
 - type: entities
   entities:
-    - sensor.u6_garching
-    - sensor.s7_hohenkirchen
+    - sensor.departure_s7
+    - sensor.departure_u6
 
 # Toggle Modes
 - type: entities

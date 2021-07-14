@@ -1,0 +1,27 @@
+---
+
+- platform: deutsche_bahn
+  from: Harras, München
+  to: Hauptbahnhof, München
+  only_direct: true
+  offset: 600  # 10 mins
+
+- platform: deutsche_bahn
+  from: Harras, München
+  to: Sendlinger Tor, München
+  only_direct: true
+  offset: 720  # 12 mins
+
+- platform: template
+  sensors:
+
+    departure_s7:
+      friendly_name: S7 - Hauptbahnhof
+      value_template: >
+        {% set delay = state_attr('sensor.harras_munchen_to_hauptbahnhof_munchen', 'delay') %}
+        {{ state_attr('sensor.harras_munchen_to_hauptbahnhof_munchen', 'departure')}}{% if delay > 0 %} (+{{ delay }}){% endif %} & {{ state_attr('sensor.harras_munchen_to_hauptbahnhof_munchen', 'next') }}
+    departure_u6:
+      friendly_name: U6 - Sendlinger Tor
+      value_template: >
+        {% set delay = state_attr('sensor.harras_munchen_to_sendlinger_tor_munchen', 'delay') %}
+        {{ state_attr('sensor.harras_munchen_to_sendlinger_tor_munchen', 'departure')}}{% if delay > 0 %} (+{{ delay }}){% endif %} & {{ state_attr('sensor.harras_munchen_to_sendlinger_tor_munchen', 'next') }}

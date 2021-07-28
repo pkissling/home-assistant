@@ -59,7 +59,7 @@
       entities:
         - switch.pi_hole
         - binary_sensor.pi_hole_healthcheck
-        - binary_sensor.pihole_backup_cron
+        - binary_sensor.healthcheck_io_pihole_backup
         - sensor.pi_hole_uptime
 # HA
 - type: custom:stack-in-card
@@ -123,7 +123,7 @@
         - binary_sensor.mqtt_broker_health
         - binary_sensor.internet_health_check
         - binary_sensor.ib1903757824_connection_state
-        - binary_sensor.home_assistant_backup_cron
+        - binary_sensor.healthcheck_io_home_assistant_backup
         - sensor.home_assistant_uptime
 # Diskstation
 - type: custom:stack-in-card

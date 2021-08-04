@@ -4,7 +4,7 @@ api_version: 1
 ssl: false
 host: home-assistant
 port: 8086
-username: home-assistant
+username: homeassistant
 password: !secret influxdb_password
 database: homeassistant  # dashes not allowed
 measurement_attr: entity_id

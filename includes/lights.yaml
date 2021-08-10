@@ -36,6 +36,7 @@
   entities:
     - light.study_desk
     - light.study_shelf
+    - light.study_floor_lamp
 
 - platform: group
   name: Corridor

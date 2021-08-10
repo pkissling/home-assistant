@@ -1,0 +1,13 @@
+---
+
+- alias: Plant - Euonymus Japanicus - Connection Problem
+  trigger:
+    platform: state
+    entity_id: sensor.euonymus_japanicus_temperature
+    for: '24:00:00'
+    to: unavailable
+  action:
+    service: notify.patrick
+    data:
+      title: Plant
+      message: Euonymus Japanicus has a connection problem since 24 hours

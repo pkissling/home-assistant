@@ -1,0 +1,7 @@
+---
+
+- platform: miflora
+  mac: !secret euonymus_japanicus_mac
+  name: Euonymus Japanicus
+  force_update: true
+  median: 3

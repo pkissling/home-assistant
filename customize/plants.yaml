@@ -1,0 +1,9 @@
+---
+
+
+sensor.euonymus_japanicus_conductivity:
+  icon: mdi:emoticon-poop
+
+plant.euonymus_japanicus:
+  icon: mdi:palm-tree
+  friendly_name: Euonymus Japanicus

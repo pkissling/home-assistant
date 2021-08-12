@@ -17,6 +17,7 @@
 # Files
 known_devices.yaml
 secrets.yaml
+core
 
 # Folders
 deps/

@@ -155,6 +155,24 @@
       transition: 60  # 1 min
       brightness: 50
 
+- alias: Light - Study Floor Lamp - Turn off when no motion for 15 mins
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_study
+    to: 'off'
+    for:
+      minutes: 15
+  condition:
+    - condition: state
+      entity_id: light.study_floor_lamp
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+  action:
+    service: light.turn_off
+    entity_id: light.study_floor_lamp
+
 - alias: Light - Study Shelf - Turn on for 5 mins if motion and dark
   trigger:
     platform: state

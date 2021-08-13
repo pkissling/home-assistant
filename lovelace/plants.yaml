@@ -59,6 +59,8 @@
               color: var(--primary-color)
             - value: 45000
               color: '#d35400'
+          lower_bound: 0
+          upper_bound: 15000
 
         - type: custom:mini-graph-card
           entities:
@@ -73,3 +75,5 @@
               color: var(--primary-color)
             - value: 35
               color: '#d35400'
+          lower_bound: 0
+          upper_bound: 35

@@ -51,16 +51,10 @@
     service: media_player.turn_off
     entity_id: all
 
-- alias: Media Player - Spotify Start - Increase Volume
+- alias: Media Player - Kitchen - Increase Volume on Spotify playing
   trigger:
     platform: state
-    entity_id:
-      - media_player.kitchen
-      - media_player.living_room
-      - media_player.study
-      - media_player.bedroom
-      - media_player.bathroom
-      - media_player.balcony
+    entity_id: media_player.kitchen
     attribute: app_name
     to: Spotify
   action:
@@ -69,18 +63,112 @@
       entity_id: "{{ trigger.entity_id }}"
       volume_level: 0.3
 
-- alias: Media Player - Spotify End - Decrease Volume
+- alias: Media Player - Kitchen - Reset Volume
+  trigger:
+    - platform: state
+      entity_id: media_player.kitchen
+      to: 'off'
+      for:
+        seconds: 10
+    - platform: state
+      entity_id: media_player.kitchen
+      attribute: app_name
+      from: Spotify
+  action:
+    service: media_player.volume_set
+    data:
+      entity_id: "{{ trigger.entity_id }}"
+      volume_level: 0.1
+
+- alias: Media Player - Bathroom - Increase Volume on Spotify playing
   trigger:
     platform: state
-    entity_id:
-      - media_player.kitchen
-      - media_player.living_room
-      - media_player.study
-      - media_player.bedroom
-      - media_player.bathroom
-      - media_player.balcony
+    entity_id: media_player.bathroom
     attribute: app_name
-    from: Spotify
+    to: Spotify
+  action:
+    service: media_player.volume_set
+    data:
+      entity_id: "{{ trigger.entity_id }}"
+      volume_level: 0.3
+
+- alias: Media Player - Bathroom - Reset Volume
+  trigger:
+    - platform: state
+      entity_id: media_player.bathroom
+      to: 'off'
+      for:
+        seconds: 10
+    - platform: state
+      entity_id: media_player.bathroom
+      attribute: app_name
+      from: Spotify
+  action:
+    service: media_player.volume_set
+    data:
+      entity_id: "{{ trigger.entity_id }}"
+      volume_level: 0.15
+
+- alias: Media Player - Bedroom - Increase Volume on Spotify playing
+  trigger:
+    platform: state
+    entity_id: media_player.bedroom
+    attribute: app_name
+    to: Spotify
+  action:
+    service: media_player.volume_set
+    data:
+      entity_id: "{{ trigger.entity_id }}"
+      volume_level: 0.3
+
+- alias: Media Player - Bedroom - Reset Volume
+  trigger:
+    - platform: state
+      entity_id: media_player.bedroom
+      to: 'off'
+      for:
+        seconds: 10
+    - platform: state
+      entity_id: media_player.bedroom
+      attribute: app_name
+      from: Spotify
+  action:
+    service: media_player.volume_set
+    data:
+      entity_id: "{{ trigger.entity_id }}"
+      volume_level: 0.15
+
+- alias: Media Player - Study - Increase Volume on Spotify playing
+  trigger:
+    platform: state
+    entity_id: media_player.study
+    attribute: app_name
+    to: Spotify
+  condition:
+    condition: state
+    entity_id: switch.guest_mode
+    state: 'off'
+  action:
+    service: media_player.volume_set
+    data:
+      entity_id: "{{ trigger.entity_id }}"
+      volume_level: 0.3
+
+- alias: Media Player - Study - Reset Volume
+  trigger:
+    - platform: state
+      entity_id: media_player.study
+      to: 'off'
+      for:
+        seconds: 10
+    - platform: state
+      entity_id: media_player.study
+      attribute: app_name
+      from: Spotify
+  condition:
+    condition: state
+    entity_id: switch.guest_mode
+    state: 'off'
   action:
     service: media_player.volume_set
     data:

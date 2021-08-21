@@ -32,8 +32,7 @@
           entity_id: vacuum.xiaomi_vacuum_cleaner
 
     vacuum_dust_bin:
-      value_template: >
-        {{ is_state('vacuum.xiaomi_vacuum_cleaner', 'idle') }}
+      value_template: "{{ is_state('vacuum.xiaomi_vacuum_cleaner', 'idle') }}"
       turn_on:
         service: xiaomi_miio.vacuum_goto
         data:

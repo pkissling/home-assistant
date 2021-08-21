@@ -6,3 +6,11 @@
       value_template: "{{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'battery_level') }}"
       unit_of_measurement: '%'
       icon_template: "{{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'battery_icon') }}"
+
+    vacuum_next_emptying:
+      value_template: >
+        {% set last_emptying = states('input_text.vacuum_last_emptying') | int %}
+        {% set next_emptying = last_emptying + 500 %}
+        {% set current = state_attr('vacuum.xiaomi_vacuum_cleaner', 'total_cleaned_area') | int %}
+        {{ next_emptying - current }}
+      unit_of_measurement: m²

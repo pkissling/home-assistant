@@ -247,6 +247,7 @@
         - entity: sensor.vacuum_battery
           name: Battery
         - input_select.vacuum_room_cleanup
+        - sensor.vacuum_next_emptying
     - type: horizontal-stack
       cards:
         - type: custom:button-card

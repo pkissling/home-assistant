@@ -1,8 +1,5 @@
 ---
 
-- type: plant-status
-  entity: plant.euonymus_japanicus
-
 - type: custom:stack-in-card
   title: Euonymus Japanicus
   mode: vertical

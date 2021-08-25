@@ -77,3 +77,10 @@ include:
     - sensor.diskstation_etc_hostname_used_percent
     - sensor.diskstation_containers_active
     - sensor.diskstation_containers_cpu_used
+
+    # Plants
+    ## Euonymus Japanicus
+    - sensor.euonymus_japanicus_conductivity
+    - sensor.euonymus_japanicus_light_intensity
+    - sensor.euonymus_japanicus_moisture
+    - sensor.euonymus_japanicus_temperature

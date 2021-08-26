@@ -158,6 +158,20 @@ good_night:
                 brightness: 10
                 transition: 10
             - delay: 10
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: light.study_floor_lamp
+              state: 'on'
+            - condition: state
+              entity_id: switch.guest_mode
+              state: 'off'
+          sequence:
+            - service: light.turn_on
+              entity_id: light.study_floor_lamp
+              data:
+                brightness: 0
+                transition: 120  # 2 mins
     - service: script.light_ambient_turn_off
       data:
         transition: 120  # 2 min

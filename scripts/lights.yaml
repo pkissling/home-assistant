@@ -15,7 +15,7 @@ light_ambient_turn_on:
       entity_id: light.living_room
       data:
         kelvin: 2300
-        brightness: 200
+        brightness: 255
         transition: "{{ transition }}"
     - service: light.turn_on
       entity_id: light.corridor_sideboard

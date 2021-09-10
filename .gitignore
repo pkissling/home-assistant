@@ -12,6 +12,7 @@
 *.db-shm
 *.db-wal
 *.log
+*.log.*
 *.swp
 
 # Files

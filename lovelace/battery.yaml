@@ -30,7 +30,8 @@
 - type: custom:battery-state-card
   title: Devices
   entities:
-    - sensor.gm1913_battery_level
+    - sensor.patricks_iphone_battery_level
+    - sensor.iphone_von_sandra_battery_level
     - sensor.tab_battery_level
 
 # Plants

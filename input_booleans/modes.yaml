@@ -4,3 +4,6 @@ guest_mode:
 home_office_mode:
 party_mode:
 summer_mode:
+tv_mode:
+  name: TV Mode
+  icon: mdi:television

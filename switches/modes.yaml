@@ -1,8 +1,6 @@
 ---
-
 - platform: template
   switches:
-
     home_office_mode:
       friendly_name: Home Office Mode
       value_template: "{{ states('input_boolean.home_office_mode') }}"

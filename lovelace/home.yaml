@@ -86,6 +86,7 @@
     - switch.guest_mode
     - switch.home_office_mode
     - switch.party_mode
+    - input_boolean.tv_mode
 
 # TV Remote
 - type: custom:stack-in-card

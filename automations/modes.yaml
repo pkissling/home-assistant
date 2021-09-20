@@ -77,3 +77,77 @@
       data:
         entity_id: all
         hvac_mode: auto
+
+- alias: Mode - TV Mode - Turn on when watching TV
+  trigger:
+    - platform: state
+      entity_id: remote.living_room
+      attribute: current_activity
+      to: TV
+    - platform: state
+      entity_id: remote.living_room
+      attribute: current_activity
+      to: Smart TV
+  action:
+    service: input_boolean.turn_on
+    entity_id: input_boolean.tv_mode
+
+- alias: Mode - TV Mode - Turn off when finished watching TV
+  trigger:
+    - platform: state
+      entity_id: remote.living_room
+      attribute: current_activity
+      from: TV
+    - platform: state
+      entity_id: remote.living_room
+      attribute: current_activity
+      from: Smart TV
+  condition:
+    condition: state
+    entity_id: input_boolean.tv_mode
+    state: 'on'
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.tv_mode
+
+- alias: Mode - TV Mode - Dim lights when TV Mode on
+  trigger:
+    - platform: state
+      entity_id: input_boolean.tv_mode
+      to: 'on'
+  condition:
+    condition: state
+    entity_id: light.living_room
+    state: 'on'
+  action:
+    - service: input_text.set_value
+      entity_id: input_text.old_brightness_living_room
+      data:
+        value: "{{ state_attr('light.living_room', 'brightness') }}"
+    - service: light.turn_on
+      entity_id: light.living_room
+      data:
+        kelvin: 2300
+        brightness: 80
+        transition: 10
+
+- alias: Mode - TV Mode - Increase light brightness when TV Mode off
+  trigger:
+    - platform: state
+      entity_id: input_boolean.tv_mode
+      to: 'off'
+  condition:
+    - condition: state
+      entity_id: light.living_room
+      state: 'on'
+    - "{{ states('input_text.old_brightness_living_room') != '-' }}"
+  action:
+    - service: light.turn_on
+      entity_id: light.living_room
+      data:
+        brightness: "{{ states('input_text.old_brightness_living_room') }}"
+        transition: 10
+    - service: input_text.set_value
+      entity_id: input_text.old_brightness_living_room
+      data:
+        value: '-'

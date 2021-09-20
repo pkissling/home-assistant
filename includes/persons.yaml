@@ -3,8 +3,8 @@
 - name: Patrick
   id: 7aa7dc0964ff44c7b2ccc5be75d654bd
   device_trackers:
-    - device_tracker.patricks_oneplus
-    - device_tracker.tado_patrick_oneplus7pro
+    - device_tracker.patricks_iphone
+    - device_tracker.tado_patricks_iphone
 
 - name: Sandra
   id: 7aa7dc0964ff44c7b2ccc5be75d651bd

@@ -1,13 +1,6 @@
 ---
 
 - platform: group
-  name: All
-  entities:
-    - light.bedroom
-    - light.living_room
-    - light.study
-
-- platform: group
   name: Ambient
   entities:
     - light.bedroom_wardrobe

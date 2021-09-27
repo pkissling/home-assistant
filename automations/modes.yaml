@@ -88,6 +88,10 @@
       entity_id: remote.living_room
       attribute: current_activity
       to: Smart TV
+    - platform: state
+      entity_id: remote.living_room
+      attribute: current_activity
+      to: Chromecast
   action:
     service: input_boolean.turn_on
     entity_id: input_boolean.tv_mode
@@ -102,6 +106,10 @@
       entity_id: remote.living_room
       attribute: current_activity
       from: Smart TV
+    - platform: state
+      entity_id: remote.living_room
+      attribute: current_activity
+      from: Chromecast
   condition:
     condition: state
     entity_id: input_boolean.tv_mode

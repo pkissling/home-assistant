@@ -80,36 +80,30 @@
 
 - alias: Mode - TV Mode - Turn on when watching TV
   trigger:
-    - platform: state
-      entity_id: remote.living_room
-      attribute: current_activity
-      to: TV
-    - platform: state
-      entity_id: remote.living_room
-      attribute: current_activity
-      to: Smart TV
-    - platform: state
-      entity_id: remote.living_room
-      attribute: current_activity
-      to: Chromecast
+    - platform: template
+      value_template: >
+        {{
+          is_state_attr('remote.living_room', 'current_activity', 'TV')
+            or
+          is_state_attr('remote.living_room', 'current_activity', 'Chromecast')
+            or
+          is_state_attr('remote.living_room', 'current_activity', 'Smart TV')
+        }}
   action:
     service: input_boolean.turn_on
     entity_id: input_boolean.tv_mode
 
 - alias: Mode - TV Mode - Turn off when finished watching TV
   trigger:
-    - platform: state
-      entity_id: remote.living_room
-      attribute: current_activity
-      from: TV
-    - platform: state
-      entity_id: remote.living_room
-      attribute: current_activity
-      from: Smart TV
-    - platform: state
-      entity_id: remote.living_room
-      attribute: current_activity
-      from: Chromecast
+    - platform: template
+      value_template: >
+        {{
+          not is_state_attr('remote.living_room', 'current_activity', 'TV')
+            and
+          not is_state_attr('remote.living_room', 'current_activity', 'Chromecast')
+            and
+          not is_state_attr('remote.living_room', 'current_activity', 'Smart TV')
+        }}
   condition:
     condition: state
     entity_id: input_boolean.tv_mode

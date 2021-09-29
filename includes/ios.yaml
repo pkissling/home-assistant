@@ -1,0 +1,20 @@
+---
+
+actions:
+  - name: Good Night
+    label:
+      text: Good Night
+    icon:
+      icon: weather-night
+
+  - name: Play Radio
+    label:
+      text: Play Radio
+    icon:
+      icon: radio
+
+  - name: Start Vacuum
+    label:
+      text: Start Vacuum
+    icon:
+      icon: robot-vacuum

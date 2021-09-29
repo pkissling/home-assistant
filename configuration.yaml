@@ -31,6 +31,7 @@ script: !include_dir_merge_named scripts
 device_tracker: !include includes/device_trackers.yaml
 google_assistant: !include includes/google_assistant.yaml
 influxdb: !include includes/influxdb.yaml
+ios: !include includes/ios.yaml
 light: !include includes/lights.yaml
 notify: !include includes/notify.yaml
 plant: !include includes/plants.yaml

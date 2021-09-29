@@ -1,0 +1,34 @@
+---
+
+- alias: Actions - Good Night - Fired
+  trigger:
+    platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: Good Night
+  action:
+    service: script.turn_on
+    entity_id: script.good_night
+
+- alias: Actions - Play Radio - Fired
+  trigger:
+    platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: Play Radio
+  action:
+    service: media_player.play_media
+    entity_id: media_player.home_group
+    data:
+      media_content_id: http://nrj.de/muenchen
+      media_content_type: music
+
+- alias: Actions - Start Vacuum - Fired
+  trigger:
+    platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: Start Vacuum
+  action:
+    service: vacuum.start
+    entity_id: vacuum.xiaomi_vacuum_cleaner

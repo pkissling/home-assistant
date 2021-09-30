@@ -94,6 +94,8 @@ good_night_google_assistant:
 good_night:
   mode: restart
   sequence:
+    - service: switch.turn_off
+      entity_id: switch.remote_off
     - choose:
         - conditions:
             - condition: state
@@ -175,8 +177,6 @@ good_night:
     - service: script.light_ambient_turn_off
       data:
         transition: 120  # 2 min
-    - service: switch.turn_off
-      entity_id: switch.remote_off
 
 good_morning:
   mode: restart

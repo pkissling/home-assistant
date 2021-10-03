@@ -136,7 +136,7 @@
     service: switch.turn_on
     entity_id: switch.living_room_airplay
 
-- alias: Remote - Turn off Amplifer if still running
+- alias: Remote - Amplifier - Turn off if still running
   trigger:
     platform: state
     entity_id: remote.living_room
@@ -167,7 +167,7 @@
         entity_id: sensor.plug_living_room_amplifier
         below: 10
 
-- alias: Remote - Turn on Amplifer if not running
+- alias: Remote - Amplifier - Turn on if not running
   trigger:
     platform: state
     entity_id: remote.living_room
@@ -211,3 +211,18 @@
         condition: numeric_state
         entity_id: sensor.plug_living_room_amplifier
         above: 10
+
+- alias: Remote - TV - Turn off TV if still running
+  trigger:
+    platform: state
+    entity_id: remote.living_room
+    to: 'off'
+    for:
+      seconds: 10
+  condition:
+    condition: state
+    entity_id: media_player.lg_webos_smart_tv
+    state: 'on'
+  action:
+    service: media_player.turn_off
+    entity_id: media_player.lg_webos_smart_tv

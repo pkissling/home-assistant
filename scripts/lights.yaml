@@ -11,12 +11,29 @@ light_ambient_turn_on:
         kelvin: 1000
         brightness: 100
         transition: "{{ transition }}"
-    - service: light.turn_on
-      entity_id: light.living_room
-      data:
-        kelvin: 2300
-        brightness: 255
-        transition: "{{ transition }}"
+    - choose:
+        - conditions:
+            condition: state
+            entity_id: input_boolean.tv_mode
+            state: 'on'
+          sequence:
+            - service: light.turn_on
+              entity_id: light.living_room
+              data:
+                kelvin: 2300
+                brightness: 80
+                transition: "{{ transition }}"
+            - service: input_text.set_value
+              entity_id: input_text.old_brightness_living_room
+              data:
+                value: 255
+      default:
+        service: light.turn_on
+        entity_id: light.living_room
+        data:
+          kelvin: 2300
+          brightness: 255
+          transition: "{{ transition }}"
     - service: light.turn_on
       entity_id: light.corridor_sideboard
       data:

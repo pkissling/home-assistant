@@ -7,7 +7,7 @@
         {{
           states('sensor.motion_corridor_lightlevel') | int > 40
             or
-          '09:55' < states('sensor.time') < '15:55'
+          '08:55' < states('sensor.time') < '15:55'
         }}
       delay_on: 00:05:00
       delay_off: 00:05:00

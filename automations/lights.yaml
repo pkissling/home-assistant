@@ -123,6 +123,9 @@
     - condition: state
       entity_id: script.light_ambient_turn_off
       state: 'off'
+    - condition: state
+      entity_id: input_boolean.night_light
+      state: 'off'
     - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
     - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'returning') }}"
   action:
@@ -198,6 +201,8 @@
       entity_id: light.study_shelf
       data:
         brightness: 100
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.night_light
     - wait_for_trigger:
         platform: state
         entity_id: binary_sensor.motion_study
@@ -209,6 +214,11 @@
       data:
         transition: 60  # 1 min
         brightness: 0
+    - delay:
+        minutes: 1
+    - condition: state
+      entity_id: input_boolean.night_light
+      state: 'off'
 
 - alias: Light - Corridor Sideboard - Increase brightness on motion
   trigger:
@@ -221,6 +231,9 @@
       state: 'on'
     - condition: state
       entity_id: script.light_ambient_turn_off
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.night_light
       state: 'off'
     - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
     - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'returning') }}"
@@ -273,6 +286,8 @@
       entity_id: light.corridor_sideboard
       data:
         brightness: 50
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.night_light
     - wait_for_trigger:
         platform: state
         entity_id: binary_sensor.motion_corridor
@@ -284,6 +299,10 @@
       data:
         transition: 60  # 1 min
         brightness: 0
+    - delay:
+        minutes: 1
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.night_light
 
 - alias: Light - Living Room - Turn on for 5 mins if motion and dark
   trigger:
@@ -310,6 +329,8 @@
       entity_id: light.living_room
       data:
         brightness: 50
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.night_light
     - wait_for_trigger:
         platform: state
         entity_id: binary_sensor.motion_corridor
@@ -321,3 +342,7 @@
       data:
         transition: 60  # 1 min
         brightness: 0
+    - delay:
+        minutes: 1
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.night_light

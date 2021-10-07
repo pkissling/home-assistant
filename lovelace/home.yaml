@@ -129,7 +129,7 @@
         - type: custom:button-card
           color: var(--switch-checked-color)
           entity: switch.living_room_airplay
-          icon: mdi:apple-airplay
+          icon: mdi:cast-variant
           show_name: false
           styles:
             card:

@@ -131,7 +131,7 @@
       data:
         kelvin: 2300
         brightness: 80
-        transition: 10
+        transition: 60
 
 - alias: Mode - TV Mode - Increase light brightness when TV Mode off
   trigger:

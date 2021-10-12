@@ -193,4 +193,30 @@
       device: Pioneer-AV-Receiver
       command: VolumeUp
       num_repeats: 25
-
+# - alias: Media Player - Chromecast - Reset Volume
+#   trigger:
+#     platform: state
+#     entity_id: media_player.chromecast
+#     attribute: app_name
+#     from: Spotify
+#   condition:
+#     condition: state
+#     entity_id: remote.living_room
+#     attribute: current_activity
+#     state: Speakers
+#   action:
+#     - wait_for_trigger:
+#         platform: state
+#         entity_id: remote.living_room
+#         attribute: current_activity
+#         from: Speakers
+#       continue_on_timeout: false
+#       timeout: '00:00:30'
+#     - repeat:
+#         count: 25
+#         sequence:
+#           service: remote.send_command
+#           entity_id: remote.living_room
+#           data:
+#             device: Pioneer-AV-Receiver
+#             command: VolumeDown

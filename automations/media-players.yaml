@@ -174,3 +174,23 @@
     data:
       entity_id: "{{ trigger.entity_id }}"
       volume_level: 0.1
+
+- alias: Media Player - Chromecast - Increase Volume on Spotify playing
+  trigger:
+    platform: state
+    entity_id: remote.living_room
+    attribute: current_activity
+    to: Speakers
+  condition:
+    condition: state
+    entity_id: media_player.chromecast
+    attribute: app_name
+    state: Spotify
+  action:
+    service: remote.send_command
+    entity_id: remote.living_room
+    data:
+      device: Pioneer-AV-Receiver
+      command: VolumeUp
+      num_repeats: 25
+

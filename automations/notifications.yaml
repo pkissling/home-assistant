@@ -163,9 +163,9 @@
     platform: template
     value_template: >
       {{
-        is_state('device_tracker.tado_patrick_oneplus7pro', 'not_home')
-          and
-        is_state('device_tracker.patricks_oneplus', 'home')
+        states('device_tracker.tado_patricks_iphone')
+          !=
+        states('device_tracker.patricks_iphone')
       }}
     for:
       hours: 1
@@ -180,9 +180,9 @@
     platform: template
     value_template: >
       {{
-        is_state('device_tracker.tado_sandra_iphone', 'not_home')
-          and
-        is_state('device_tracker.iphonesandraprivate', 'home')
+        states('device_tracker.tado_sandra_iphone')
+          !=
+        states('device_tracker.iphonesandraprivate')
       }}
     for:
       hours: 1

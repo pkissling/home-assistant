@@ -3,9 +3,6 @@
 switch.guest_mode:
   icon: mdi:human-male-female
 
-switch.home_office_mode:
-  icon: mdi:laptop
-
 switch.party_mode:
   icon: mdi:party-popper
 

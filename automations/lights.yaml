@@ -71,7 +71,7 @@
 - alias: Light - Study Desk - Turn on when home office mode on and dark
   trigger:
     - platform: state
-      entity_id: switch.home_office_mode
+      entity_id: input_boolean.home_office_mode
       to: 'on'
     - platform: state
       entity_id: binary_sensor.lightlevel_study_dark
@@ -80,7 +80,7 @@
         minutes: 5
   condition:
     - condition: state
-      entity_id: switch.home_office_mode
+      entity_id: input_boolean.home_office_mode
       state: 'on'
     - condition: state
       entity_id: group.residents
@@ -97,7 +97,7 @@
 - alias: Light - Study Desk - Turn off when home office mode off
   trigger:
     - platform: state
-      entity_id: switch.home_office_mode
+      entity_id: input_boolean.home_office_mode
       to: 'off'
     - platform: state
       entity_id: binary_sensor.lightlevel_study_dark

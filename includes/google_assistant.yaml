@@ -7,6 +7,8 @@ service_account:
 report_state: true
 expose_by_default: false
 entity_config:
+  input_boolean.home_office_mode:
+    name: Home Assistant Home Office Mode
   light.study_desk:
     name: Desk
   switch.alarm:
@@ -17,8 +19,6 @@ entity_config:
     name: Home Assistant Good Morning Routine
   switch.guest_mode:
     name: Home Assistant Guest Mode
-  switch.home_office_mode:
-    name: Home Assistant Home Office Mode
   switch.summer_mode:
     name: Home Assistant Summer Mode
   switch.party_mode:

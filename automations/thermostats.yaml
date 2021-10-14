@@ -652,7 +652,7 @@
       data:
         hvac_mode: 'off'
 
-- alias: Thermostat Study - Turn on when motion
+- alias: Thermostat Study - Turn on when home office mode on
   trigger:
     platform: state
     entity_id: input_boolean.home_office_mode

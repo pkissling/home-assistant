@@ -1,9 +1,15 @@
 ---
 
 guest_mode:
+
 home_office_mode:
+  name: Home Office Mode
+  icon: mdi:laptop
+
 party_mode:
+
 summer_mode:
+
 tv_mode:
   name: TV Mode
   icon: mdi:television

@@ -178,45 +178,49 @@
 - alias: Media Player - Chromecast - Increase Volume on Spotify playing
   trigger:
     platform: state
-    entity_id: remote.living_room
-    attribute: current_activity
-    to: Speakers
-  condition:
-    condition: state
     entity_id: media_player.chromecast
     attribute: app_name
-    state: Spotify
+    to: Spotify
   action:
-    service: remote.send_command
-    entity_id: remote.living_room
-    data:
-      device: Pioneer-AV-Receiver
-      command: VolumeUp
-      num_repeats: 25
-# - alias: Media Player - Chromecast - Reset Volume
-#   trigger:
-#     platform: state
-#     entity_id: media_player.chromecast
-#     attribute: app_name
-#     from: Spotify
-#   condition:
-#     condition: state
-#     entity_id: remote.living_room
-#     attribute: current_activity
-#     state: Speakers
-#   action:
-#     - wait_for_trigger:
-#         platform: state
-#         entity_id: remote.living_room
-#         attribute: current_activity
-#         from: Speakers
-#       continue_on_timeout: false
-#       timeout: '00:00:30'
-#     - repeat:
-#         count: 25
-#         sequence:
-#           service: remote.send_command
-#           entity_id: remote.living_room
-#           data:
-#             device: Pioneer-AV-Receiver
-#             command: VolumeDown
+    - wait_for_trigger:
+        platform: template
+        value_template: >
+          {{
+            is_state_attr('remote.living_room', 'current_activity', 'Speakers')
+              or
+            is_state_attr('remote.living_room', 'current_activity', 'Chromecast')
+          }}
+      continue_on_timeout: false
+      timeout: '00:00:30'
+    - service: remote.send_command
+      entity_id: remote.living_room
+      data:
+        device: Pioneer-AV-Receiver
+        command: VolumeUp
+        num_repeats: 25
+
+- alias: Media Player - Chromecast - Reset Volume
+  trigger:
+    platform: state
+    entity_id: media_player.chromecast
+    attribute: app_name
+    from: Spotify
+  action:
+    - wait_for_trigger:
+        platform: template
+        value_template: >
+          {{
+            not is_state_attr('remote.living_room', 'current_activity', 'Speakers')
+              and
+            not is_state_attr('remote.living_room', 'current_activity', 'Chromecast')
+              and
+            not is_state('remote.living_room', 'off')
+          }}
+      continue_on_timeout: false
+      timeout: '00:00:30'
+    - service: remote.send_command
+      entity_id: remote.living_room
+      data:
+        device: Pioneer-AV-Receiver
+        command: VolumeDown
+        num_repeats: 25

@@ -214,11 +214,6 @@
       data:
         transition: 60  # 1 min
         brightness: 0
-    - delay:
-        minutes: 1
-    - condition: state
-      entity_id: input_boolean.night_light
-      state: 'off'
 
 - alias: Light - Corridor Sideboard - Increase brightness on motion
   trigger:
@@ -299,10 +294,6 @@
       data:
         transition: 60  # 1 min
         brightness: 0
-    - delay:
-        minutes: 1
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.night_light
 
 - alias: Light - Living Room - Turn on for 5 mins if motion and dark
   trigger:
@@ -342,7 +333,16 @@
       data:
         transition: 60  # 1 min
         brightness: 0
-    - delay:
-        minutes: 1
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.night_light
+
+- alias: Light - Night Light - Turn off after sunrise
+  trigger:
+    platform: state
+    entity_id: binary_sensor.sun
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: input_boolean.night_light
+    state: 'on'
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.night_light

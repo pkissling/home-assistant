@@ -109,11 +109,6 @@
       to: paused
       for:
         minutes: 5
-    - platform: state
-      entity_id: media_player.chromecast
-      to: idle
-      for:
-        minutes: 5
   condition:
     condition: state
     entity_id: remote.living_room

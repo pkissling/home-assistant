@@ -196,6 +196,8 @@
     - condition: state
       entity_id: input_boolean.guest_mode
       state: 'off'
+    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
+    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'returning') }}"
   action:
     - service: light.turn_on
       entity_id: light.study_shelf
@@ -276,6 +278,8 @@
     - condition: state
       entity_id: binary_sensor.sun
       state: 'off'
+    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
+    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'returning') }}"
   action:
     - service: light.turn_on
       entity_id: light.corridor_sideboard
@@ -315,6 +319,8 @@
     - condition: state
       entity_id: input_boolean.guest_mode
       state: 'off'
+    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
+    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'returning') }}"
   action:
     - service: light.turn_on
       entity_id: light.living_room

@@ -175,23 +175,6 @@
       title: Device Tracker
       message: Patrick's device tracker is out of sync
 
-- alias: Notification - Device Tracker not working for Sandra
-  trigger:
-    platform: template
-    value_template: >
-      {{
-        states('device_tracker.tado_sandra_iphone')
-          !=
-        states('device_tracker.iphonesandraprivate')
-      }}
-    for:
-      hours: 1
-  action:
-    service: notify.patrick
-    data:
-      title: Device Tracker
-      message: Sandra's device tracker is out of sync
-
 - alias: Notification - Expiring SSL Certificate
   trigger:
     platform: numeric_state

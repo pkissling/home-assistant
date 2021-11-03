@@ -93,7 +93,7 @@
     service: notify.patrick
     data:
       title: Thermostat
-      message: Thermostat in Bathroom was set to 'heat'.
+      message: Thermostat in Bathroom was set to {{ state_attr('climate.bathroom', 'temperature') }}°C.
 
 - alias: Notification - Thermostat Bedroom set to heat
   trigger:
@@ -108,7 +108,7 @@
     service: notify.patrick
     data:
       title: Thermostat
-      message: Thermostat in Bedroom was set to 'heat'.
+      message: Thermostat in Bedroom {{ state_attr('climate.bedroom', 'temperature') }}°C.
 
 - alias: Notification - Thermostat Study set to heat
   trigger:
@@ -126,7 +126,7 @@
     service: notify.patrick
     data:
       title: Thermostat
-      message: Thermostat in Study was set to 'heat'.
+      message: Thermostat in Study {{ state_attr('climate.study', 'temperature') }}°C.
 
 - alias: Notification - Thermostat Living Room set to heat
   trigger:
@@ -141,7 +141,7 @@
     service: notify.patrick
     data:
       title: Thermostat
-      message: Thermostat in Living Room was set to 'heat'.
+      message: Thermostat in Living Room was set to {{ state_attr('climate.living_room', 'temperature') }}°C.
 
 - alias: Notification - Thermostat Kitchen set to heat
   trigger:
@@ -156,7 +156,7 @@
     service: notify.patrick
     data:
       title: Thermostat
-      message: Thermostat in Kitchen was set to 'heat'.
+      message: Thermostat in Kitchen was set to {{ state_attr('climate.kitchen', 'temperature') }}°C.
 
 - alias: Notification - Device Tracker not working for Patrick
   trigger:

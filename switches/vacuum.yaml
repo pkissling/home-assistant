@@ -6,12 +6,19 @@
       value_template: "{{ is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
       turn_on:
         service: vacuum.start
-        data:
-          entity_id: vacuum.xiaomi_vacuum_cleaner
+        entity_id: vacuum.xiaomi_vacuum_cleaner
       turn_off:
         service: vacuum.pause
-        data:
-          entity_id: vacuum.xiaomi_vacuum_cleaner
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+
+    vacuum_pause:
+      value_template: "{{ is_state('vacuum.xiaomi_vacuum_cleaner', 'idle') }}"
+      turn_on:
+        service: vacuum.start_pause
+        entity_id: vacuum.xiaomi_vacuum_cleaner    
+      turn_off:
+        service: vacuum.start_pause
+        entity_id: vacuum.xiaomi_vacuum_cleaner
 
     vacuum_dock:
       value_template: >
@@ -24,22 +31,7 @@
         }}
       turn_on:
         service: vacuum.return_to_base
-        data:
-          entity_id: vacuum.xiaomi_vacuum_cleaner
+        entity_id: vacuum.xiaomi_vacuum_cleaner
       turn_off:
         service: vacuum.pause
-        data:
-          entity_id: vacuum.xiaomi_vacuum_cleaner
-
-    vacuum_dust_bin:
-      value_template: "{{ is_state('vacuum.xiaomi_vacuum_cleaner', 'idle') }}"
-      turn_on:
-        service: xiaomi_miio.vacuum_goto
-        data:
-          entity_id: vacuum.xiaomi_vacuum_cleaner
-          x_coord: 24500
-          y_coord: 32300
-      turn_off:
-        service: vacuum.return_to_base
-        data:
-          entity_id: vacuum.xiaomi_vacuum_cleaner
+        entity_id: vacuum.xiaomi_vacuum_cleaner

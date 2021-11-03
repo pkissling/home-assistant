@@ -116,18 +116,6 @@
       data:
         option: '-'
 
-- alias: Vacuum - Reset Sensor after emptying
-  trigger:
-    platform: state
-    entity_id: switch.vacuum_dust_bin
-    from: 'on'
-    to: 'off'
-  action:
-    service: input_text.set_value
-    entity_id: input_text.vacuum_last_emptying
-    data:
-      value: "{{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'total_cleaned_area') }}"
-
 - alias: Vacuum - Send to Trash Bin
   trigger:
     platform: numeric_state
@@ -142,8 +130,7 @@
       entity_id: sensor.vacuum_next_emptying
       below: 1
   action:
-    - service: switch.turn_on
-      entity_id: switch.vacuum_dust_bin
+    - service: script.vacuum_dust_bin
     - service: notify.patrick
       data:
         title: Roborock

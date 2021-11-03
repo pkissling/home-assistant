@@ -264,25 +264,22 @@
           color: var(--switch-checked-color)
           show_name: false
           entity: switch.vacuum_start
-          styles:
-            card:
-              - height: 40px
+        - type: custom:button-card
+          icon: mdi:pause
+          color: yellow
+          show_name: false
+          entity: switch.vacuum_pause
         - type: custom:button-card
           icon: mdi:home
           show_name: false
           entity: switch.vacuum_dock
           color: var(--switch-checked-color)
-          styles:
-            card:
-              - height: 40px
         - type: custom:button-card
           icon: mdi:trash-can
-          color: var(--switch-checked-color)
           show_name: false
-          entity: switch.vacuum_dust_bin
-          styles:
-            card:
-              - height: 40px
+          tap_action:
+            action: call-service
+            service: script.vacuum_dust_bin
 
 # Open Windows
 - type: entity-filter

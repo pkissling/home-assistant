@@ -1,4 +1,5 @@
 ---
+
 good_night_google_assistant:
   mode: restart
   # Dim bedroom light down, if on

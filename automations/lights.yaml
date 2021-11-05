@@ -14,22 +14,15 @@
     data:
       transition: 1800  # 30 min
 
-- alias: Lights - Ambient - Turn off after sunrise or 8 am
+- alias: Lights - Ambient - Turn off after sunrise
   trigger:
-    - platform: state
-      entity_id: binary_sensor.sun
-      to: 'on'
-    - platform: time
-      at: '08:00:00'
+    platform: state
+    entity_id: binary_sensor.sun
+    to: 'on'
   condition:
     - condition: state
       entity_id: light.ambient
       state: 'on'
-    - condition: state
-      entity_id: binary_sensor.sun
-      state: 'on'
-    - condition: time
-      after: '08:00'
   action:
     service: script.light_ambient_turn_off
     data:

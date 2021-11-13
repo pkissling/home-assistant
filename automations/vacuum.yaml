@@ -46,8 +46,8 @@
       title: Roborock
       message: >
         Roborock finished Cleanup:
-        {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'cleaned_area') }} m²,
-        {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'cleaning_time') }} minutes,
+        {{ states('sensor.xiaomi_vacuum_cleaner_last_clean_area') | int }} m²,
+        {{ (states('sensor.xiaomi_vacuum_cleaner_last_clean_duration') | float / 60) | round(0) }} minutes,
         Battery {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'battery_level') }} %
 
 - alias: Vacuum - Reset Daily Cleanup Boolean

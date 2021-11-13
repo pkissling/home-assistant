@@ -11,4 +11,4 @@ vacuum_dust_bin:
     - service: input_text.set_value
       entity_id: input_text.vacuum_last_emptying
       data:
-        value: "{{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'total_cleaned_area') }}"
+        value: "{{ states('sensor.xiaomi_vacuum_cleaner_total_clean_area') }}"

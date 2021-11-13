@@ -11,6 +11,6 @@
       value_template: >
         {% set last_emptying = states('input_text.vacuum_last_emptying') | int %}
         {% set next_emptying = last_emptying + 500 %}
-        {% set current = state_attr('vacuum.xiaomi_vacuum_cleaner', 'total_cleaned_area') | int %}
+        {% set current = states('sensor.xiaomi_vacuum_cleaner_total_clean_area') | int %}
         {{ next_emptying - current }}
       unit_of_measurement: m²

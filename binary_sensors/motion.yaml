@@ -12,8 +12,6 @@
           is_state('binary_sensor.motion_corridor_left', 'on')
             or
           is_state('binary_sensor.motion_corridor_tab', 'on')
-            or
-          is_state('binary_sensor.door_corridor', 'on')
         }}
 
     motion_study:

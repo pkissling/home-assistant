@@ -106,48 +106,14 @@
       to: 'on'
   condition:
     - condition: state
-      entity_id: light.study_shelf
-      state: 'on'
-    - condition: state
       entity_id: input_boolean.guest_mode
       state: 'off'
-    - condition: state
-      entity_id: script.light_ambient_turn_off
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.night_light
-      state: 'off'
-    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
-    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'returning') }}"
   action:
-    service: light.turn_on
-    entity_id: light.study_shelf
+    service: script.light_turn_on
     data:
-      brightness: 200
-
-- alias: Light - Study Shelf - Decrease brightness when no motion for 15 minutes
-  trigger:
-    platform: state
-    entity_id: binary_sensor.motion_study
-    to: 'off'
-    for:
-      minutes: 15
-  condition:
-    - condition: state
-      entity_id: light.study_shelf
-      state: 'on'
-    - condition: state
-      entity_id: input_boolean.guest_mode
-      state: 'off'
-    - condition: state
-      entity_id: script.light_ambient_turn_off
-      state: 'off'
-  action:
-    service: light.turn_on
-    entity_id: light.study_shelf
-    data:
-      transition: 60  # 1 min
-      brightness: 50
+      light_entity: light.study_shelf
+      motion_sensor_entity: binary_sensor.motion_study
+      dim_from_full_after_mins: 15
 
 - alias: Light - Study Floor Lamp - Turn off when no motion for 15 mins
   trigger:
@@ -167,176 +133,31 @@
     service: light.turn_off
     entity_id: light.study_floor_lamp
 
-- alias: Light - Study Shelf - Turn on for 5 mins if motion and dark
-  trigger:
-    platform: state
-    entity_id: binary_sensor.motion_study
-    to: 'on'
-  condition:
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: light.study_shelf
-          state: 'off'
-        - condition: state
-          entity_id: script.light_ambient_turn_off
-          state: 'on'
-    - condition: state
-      entity_id: binary_sensor.sun
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.guest_mode
-      state: 'off'
-    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
-    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'returning') }}"
-  action:
-    - service: light.turn_on
-      entity_id: light.study_shelf
-      data:
-        brightness: 100
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.night_light
-    - wait_for_trigger:
-        platform: state
-        entity_id: binary_sensor.motion_study
-        to: 'off'
-        for:
-          minutes: 5
-    - service: light.turn_on
-      entity_id: light.study_shelf
-      data:
-        transition: 60  # 1 min
-        brightness: 0
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.night_light
-
 - alias: Light - Corridor Sideboard - Increase brightness on motion
   trigger:
     platform: state
     entity_id: binary_sensor.motion_corridor
     to: 'on'
-  condition:
-    - condition: state
-      entity_id: light.corridor_sideboard
-      state: 'on'
-    - condition: state
-      entity_id: script.light_ambient_turn_off
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.night_light
-      state: 'off'
-    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
-    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'returning') }}"
   action:
-    service: light.turn_on
-    entity_id: light.corridor_sideboard
+    service: script.light_turn_on
     data:
-      brightness: 200
+      light_entity: light.corridor_sideboard
+      motion_sensor_entity: binary_sensor.motion_corridor
 
-- alias: Light - Corridor Sideboard - Decrease brightness when no motion for 2 minutes
-  trigger:
-    platform: state
-    entity_id: binary_sensor.motion_corridor
-    to: 'off'
-    for:
-      minutes: 2
-  condition:
-    - condition: state
-      entity_id: light.corridor_sideboard
-      state: 'on'
-    - condition: state
-      entity_id: script.light_ambient_turn_off
-      state: 'off'
-  action:
-    service: light.turn_on
-    entity_id: light.corridor_sideboard
-    data:
-      transition: 60  # 1 min
-      brightness: 50
-
-- alias: Light - Corridor Sideboard - Turn on for 5 mins if motion and dark
+- alias: Light - Living Room - Turn on night light
   trigger:
     platform: state
     entity_id: binary_sensor.motion_corridor
     to: 'on'
   condition:
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: light.corridor_sideboard
-          state: 'off'
-        - condition: state
-          entity_id: script.light_ambient_turn_off
-          state: 'on'
-    - condition: state
-      entity_id: binary_sensor.sun
-      state: 'off'
-    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
-    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'returning') }}"
+    condition: state
+    entity_id: light.living_room
+    state: 'off'
   action:
-    - service: light.turn_on
-      entity_id: light.corridor_sideboard
-      data:
-        brightness: 50
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.night_light
-    - wait_for_trigger:
-        platform: state
-        entity_id: binary_sensor.motion_corridor
-        to: 'off'
-        for:
-          minutes: 5
-    - service: light.turn_on
-      entity_id: light.corridor_sideboard
-      data:
-        transition: 60  # 1 min
-        brightness: 0
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.night_light
-
-- alias: Light - Living Room - Turn on for 5 mins if motion and dark
-  trigger:
-    platform: state
-    entity_id: binary_sensor.motion_corridor
-    to: 'on'
-  condition:
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: light.living_room
-          state: 'off'
-        - condition: state
-          entity_id: script.light_ambient_turn_off
-          state: 'on'
-    - condition: state
-      entity_id: binary_sensor.sun
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.guest_mode
-      state: 'off'
-    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
-    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'returning') }}"
-  action:
-    - service: light.turn_on
-      entity_id: light.living_room
-      data:
-        brightness: 50
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.night_light
-    - wait_for_trigger:
-        platform: state
-        entity_id: binary_sensor.motion_corridor
-        to: 'off'
-        for:
-          minutes: 5
-    - service: light.turn_on
-      entity_id: light.living_room
-      data:
-        transition: 60  # 1 min
-        brightness: 0
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.night_light
-
+    service: script.light_turn_on
+    data:
+      light_entity: light.living_room
+      motion_sensor_entity: binary_sensor.motion_corridor
 
 - alias: Light - Night Light - Turn off after sunrise
   trigger:

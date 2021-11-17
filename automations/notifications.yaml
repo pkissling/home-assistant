@@ -186,7 +186,7 @@
           states('device_tracker.iphonesandraprivate')
         )
           and
-        '09:00' < states('sensor.time') < '20:00'
+        '08:00' < states('sensor.time') < '20:00'
       }}
     for:
       hours: 1

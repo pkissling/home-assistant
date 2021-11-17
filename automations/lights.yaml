@@ -40,8 +40,6 @@
     state: 'off'
   action:
     service: script.light_ambient_turn_on
-    data:
-      transition: 10  # seconds
 
 - alias: Light - Ambient - Force off when sunlight
   trigger:

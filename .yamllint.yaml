@@ -8,6 +8,7 @@ rules:
 
 ignore: |
   .github/
+  known_devices.yaml
   custom_components/
   themes/
   www/

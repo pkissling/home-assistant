@@ -122,19 +122,19 @@ light_turn_on:
             - condition: state
               entity_id: input_boolean.night_light
               state: 'off'
-            sequence:
-                # turn lights to full brightness
-                - service: light.turn_on
-                  data:
-                    entity_id: "{{ light_entity }}"
-                    brightness: "{{ full_brightness }}"
-                - wait_template: "{{ is_state(motion_sensor_entity,'off') }}"
-                # TODO if motion sensor off for {{ dim_after_mins }} mins
-                - service: light.turn_on
-                  data:
-                    entity_id: "{{ light_entity }}"
-                    transition: 60  # 1 min
-                    brightness: "{{ dim_brightness }}"
+          sequence:
+            # turn lights to full brightness
+            - service: light.turn_on
+              data:
+                entity_id: "{{ light_entity }}"
+                brightness: "{{ full_brightness }}"
+            - wait_template: "{{ is_state(motion_sensor_entity,'off') }}"
+            # TODO if motion sensor off for {{ dim_after_mins }} mins
+            - service: light.turn_on
+              data:
+                entity_id: "{{ light_entity }}"
+                transition: 60  # 1 min
+                brightness: "{{ dim_brightness }}"
       # else
       default:
         # turn lights to low brightness

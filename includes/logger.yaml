@@ -1,3 +1,5 @@
 ---
 
 default: info
+logs:
+  fritzconnection: info  # workaround for https://github.com/home-assistant/core/issues/58653

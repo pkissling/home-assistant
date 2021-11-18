@@ -182,7 +182,7 @@ good_night:
 good_morning:
   mode: restart
   sequence:
-    - service: script.light_ambient_turn_on
+    - service: script.lights_ambient_turn_on
       data:
         transition: 10
     - service: media_player.volume_set

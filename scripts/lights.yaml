@@ -1,6 +1,6 @@
 ---
 
-light_ambient_turn_on:
+lights_ambient_turn_on:
   fields:
     transition:
       description: Time in seconds until transition ends.
@@ -96,7 +96,7 @@ light_ambient_turn_off:
     # keep script in state 'on' until script finished
     - delay: "{{ transition }}"
 
-light_turn_on:
+light_ambient_turn_on:
   variables:
     light_entity:
     motion_sensor_entity:
@@ -117,7 +117,7 @@ light_turn_on:
         - conditions:
             - "{{ is_state(light_entity, 'on') }}"
             - condition: state
-              entity_id: script.light_ambient_turn_off
+              entity_id: script.lights_ambient_turn_off
               state: 'off'
             - condition: state
               entity_id: input_boolean.night_light

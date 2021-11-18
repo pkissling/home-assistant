@@ -10,7 +10,7 @@
       entity_id: group.residents
       state: home
   action:
-    service: script.light_ambient_turn_on
+    service: script.lights_ambient_turn_on
     data:
       transition: 1800  # 30 min
 
@@ -39,7 +39,7 @@
     entity_id: binary_sensor.sun
     state: 'off'
   action:
-    service: script.light_ambient_turn_on
+    service: script.lights_ambient_turn_on
 
 - alias: Light - Ambient - Force off when sunlight
   trigger:
@@ -109,7 +109,7 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
   action:
-    service: script.light_turn_on
+    service: script.light_ambient_turn_on
     data:
       light_entity: light.study_shelf
       motion_sensor_entity: binary_sensor.motion_study
@@ -139,7 +139,7 @@
     entity_id: binary_sensor.motion_corridor
     to: 'on'
   action:
-    service: script.light_turn_on
+    service: script.light_ambient_turn_on
     data:
       light_entity: light.corridor_sideboard
       motion_sensor_entity: binary_sensor.motion_corridor
@@ -154,7 +154,7 @@
     entity_id: light.living_room
     state: 'off'
   action:
-    service: script.light_turn_on
+    service: script.light_ambient_turn_on
     data:
       light_entity: light.living_room
       motion_sensor_entity: binary_sensor.motion_corridor

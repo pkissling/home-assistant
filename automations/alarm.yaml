@@ -13,7 +13,7 @@
       entity_id: group.residents
       state: home
   action:
-    - service: script.light_ambient_turn_on
+    - service: script.lights_ambient_turn_on
       data:
         transition: 1800  # 30 min
     # Control wardrobe light independently of script

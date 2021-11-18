@@ -4,10 +4,14 @@
   sensors:
     sun:
       value_template: >
-        {{
-          states('sensor.motion_corridor_lightlevel') | int > 40
-            or
-          '08:55' < states('sensor.time') < '15:55'
-        }}
+        {% if not is_state('sensor.motion_corridor_lightlevel', 'unknown') %}
+          {{
+            states('sensor.motion_corridor_lightlevel') | int > 40
+              or
+            '08:55' < states('sensor.time') < '15:55'
+          }}
+        {% else %}
+          true
+        {% endif %}
       delay_on: 00:05:00
       delay_off: 00:05:00

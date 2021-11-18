@@ -100,7 +100,7 @@ light_ambient_turn_on:
     motion_sensor_entity:
     full_brightness: 200
     dim_brightness: 50
-    dim_after_mins: 5
+    dim_after_mins: 02
   mode: parallel
   sequence:
     - condition: and
@@ -127,11 +127,15 @@ light_ambient_turn_on:
                 entity_id: "{{ light_entity }}"
                 brightness: "{{ full_brightness }}"
             - wait_template: "{{ is_state(motion_sensor_entity,'off') }}"
-            # if motion sensor off for {{ dim_after_mins }} mins
+              timeout: '01:00:00'
+            - delay: "00:{{ dim_after_mins }}:00"
             # only dim light if its still on.
             - choose:
                 - conditions:
                     - "{{ is_state(light_entity, 'on') }}"
+                    - condition: state
+                      entity_id: script.lights_ambient_turn_off
+                      state: 'off'
                   sequence:
                     service: light.turn_on
                     data:
@@ -148,8 +152,8 @@ light_ambient_turn_on:
             entity_id: "{{ light_entity }}"
             brightness: "{{ dim_brightness }}"
         - wait_template: "{{ is_state(motion_sensor_entity,'off') }}"
-          # TODO if motion sensor off for 5 mins
-          timeout: '00:30:00'
+          timeout: '01:00:00'
+        - delay: '00:05:00'
         - service: light.turn_off
           data:
             entity_id: "{{ light_entity }}"

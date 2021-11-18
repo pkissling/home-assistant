@@ -161,16 +161,3 @@
     data:
       light_entity: light.living_room
       motion_sensor_entity: binary_sensor.motion_corridor
-
-- alias: Light - Night Light - Turn off after sunrise
-  trigger:
-    platform: state
-    entity_id: binary_sensor.sun
-    to: 'on'
-  condition:
-    condition: state
-    entity_id: input_boolean.night_light
-    state: 'on'
-  action:
-    service: input_boolean.turn_off
-    entity_id: input_boolean.night_light

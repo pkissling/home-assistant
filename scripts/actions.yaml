@@ -88,7 +88,7 @@ good_night_google_assistant:
       entity_id: media_player.bedroom
       data:
         volume_level: 0.15
-    - service: script.light_ambient_turn_off
+    - service: script.lights_ambient_turn_off
       data:
         transition: 300  # 5 min
 
@@ -175,7 +175,7 @@ good_night:
               data:
                 brightness: 0
                 transition: 120  # 2 mins
-    - service: script.light_ambient_turn_off
+    - service: script.lights_ambient_turn_off
       data:
         transition: 120  # 2 min
 

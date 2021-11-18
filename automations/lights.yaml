@@ -24,7 +24,7 @@
       entity_id: light.ambient
       state: 'on'
   action:
-    service: script.light_ambient_turn_off
+    service: script.lights_ambient_turn_off
     data:
       transition: 60  # 1 min
 
@@ -55,7 +55,7 @@
     - condition: time
       after: '08:00:00'
   action:
-    service: script.light_ambient_turn_off
+    service: script.lights_ambient_turn_off
     data:
       transition: 60  # 1 min
 

@@ -55,7 +55,7 @@ lights_ambient_turn_on:
               brightness: 50
               transition: "{{ transition }}"
 
-light_ambient_turn_off:
+lights_ambient_turn_off:
   fields:
     transition:
       description: Time in seconds until transition ends.
@@ -110,7 +110,7 @@ light_ambient_turn_on:
         - condition: state
           entity_id: binary_sensor.sun
           state: 'off'
-    # if light on and script.light_ambient_turn_off is off and no night light
+    # if light on and script.lights_ambient_turn_off is off and no night light
     - choose:
         - conditions:
             - "{{ is_state(light_entity, 'on') }}"

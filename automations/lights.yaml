@@ -150,9 +150,12 @@
     entity_id: binary_sensor.motion_corridor
     to: 'on'
   condition:
-    condition: state
-    entity_id: light.living_room
-    state: 'off'
+    - condition: state
+      entity_id: light.living_room
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
   action:
     service: script.light_ambient_turn_on
     data:

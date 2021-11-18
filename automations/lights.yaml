@@ -113,7 +113,7 @@
     data:
       light_entity: light.study_shelf
       motion_sensor_entity: binary_sensor.motion_study
-      dim_from_full_after_mins: 15
+      dim_after_mins: 15
 
 - alias: Light - Study Floor Lamp - Turn off when no motion for 15 mins
   trigger:

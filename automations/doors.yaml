@@ -22,3 +22,22 @@
       timeout: 01:00:00
     - service: input_boolean.turn_off
       entity_id: input_boolean.person_guest
+
+- alias: Door - Main Door - Turn on tab on door open
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.door_corridor
+      from: 'off'
+      to: 'on'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.display_tab_corridor
+    - wait_for_trigger:
+        platform: state
+        entity_id: binary_sensor.motion_corridor
+        to: 'off'
+        for:
+          minutes: 2
+      timeout: '00:05:00'
+    - service: switch.turn_off
+      entity_id: switch.display_tab_corridor

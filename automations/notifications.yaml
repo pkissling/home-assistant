@@ -1,11 +1,25 @@
 ---
 
-- alias: Notification - Summer Mode - Thermostat Kitchen on
+- alias: Notification - All - Summer Mode - Thermostat turned on
   trigger:
-    platform: state
-    entity_id: binary_sensor.thermostat_kitchen
-    from: 'off'
-    to: 'on'
+    - platform: state
+      entity_id: climate.kitchen
+      from: 'off'
+    - platform: state
+      entity_id: climate.living_room
+      from: 'off'
+    - platform: state
+      entity_id: climate.bedroom
+      from: 'off'
+    - platform: state
+      entity_id: climate.study
+      from: 'off'
+    - platform: state
+      entity_id: climate.toilet
+      from: 'off'
+    - platform: state
+      entity_id: climate.bathroom
+      from: 'off'
   condition:
     condition: state
     entity_id: input_boolean.summer_mode
@@ -14,77 +28,28 @@
     service: notify.patrick
     data:
       title: Thermostat
-      message: Thermostat in Kitchen turned on.
+      message: Thermostat in {{ trigger.to_state.name }} turned on.
 
-- alias: Notification - Summer Mode - Thermostat Living Room on
+- alias: Notification - All - Thermostat turned on
   trigger:
-    platform: state
-    entity_id: binary_sensor.thermostat_living_room
-    from: 'off'
-    to: 'on'
-  condition:
-    condition: state
-    entity_id: input_boolean.summer_mode
-    state: 'on'
-  action:
-    service: notify.patrick
-    data:
-      title: Thermostat
-      message: Thermostat in Living Room turned on.
-
-- alias: Notification - Summer Mode - Thermostat Study on
-  trigger:
-    platform: state
-    entity_id: binary_sensor.thermostat_study
-    from: 'off'
-    to: 'on'
-  condition:
-    condition: state
-    entity_id: input_boolean.summer_mode
-    state: 'on'
-  action:
-    service: notify.patrick
-    data:
-      title: Thermostat
-      message: Thermostat in Study turned on.
-
-- alias: Notification - Summer Mode - Thermostat Bedroom on
-  trigger:
-    platform: state
-    entity_id: binary_sensor.thermostat_bedroom
-    from: 'off'
-    to: 'on'
-  condition:
-    condition: state
-    entity_id: input_boolean.summer_mode
-    state: 'on'
-  action:
-    service: notify.patrick
-    data:
-      title: Thermostat
-      message: Thermostat in Bedroom turned on.
-
-- alias: Notification - Summer Mode - Thermostat Bathroom on
-  trigger:
-    platform: state
-    entity_id: binary_sensor.thermostat_bathroom
-    from: 'off'
-    to: 'on'
-  condition:
-    condition: state
-    entity_id: input_boolean.summer_mode
-    state: 'on'
-  action:
-    service: notify.patrick
-    data:
-      title: Thermostat
-      message: Thermostat in Bathroom turned on.
-
-- alias: Notification - Thermostat Bathroom set to heat
-  trigger:
-    platform: state
-    entity_id: climate.bathroom
-    to: heat
+    - platform: state
+      entity_id: climate.kitchen
+      to: heat
+    - platform: state
+      entity_id: climate.living_room
+      to: heat
+    - platform: state
+      entity_id: climate.bedroom
+      to: heat
+    - platform: state
+      entity_id: climate.study
+      to: heat
+    - platform: state
+      entity_id: climate.toilet
+      to: heat
+    - platform: state
+      entity_id: climate.bathroom
+      to: heat
   condition:
     condition: state
     entity_id: input_boolean.summer_mode
@@ -93,70 +58,7 @@
     service: notify.patrick
     data:
       title: Thermostat
-      message: Thermostat in Bathroom was set to {{ state_attr('climate.bathroom', 'temperature') }}°C.
-
-- alias: Notification - Thermostat Bedroom set to heat
-  trigger:
-    platform: state
-    entity_id: climate.bedroom
-    to: heat
-  condition:
-    condition: state
-    entity_id: input_boolean.summer_mode
-    state: 'off'
-  action:
-    service: notify.patrick
-    data:
-      title: Thermostat
-      message: Thermostat in Bedroom {{ state_attr('climate.bedroom', 'temperature') }}°C.
-
-- alias: Notification - Thermostat Study set to heat
-  trigger:
-    platform: state
-    entity_id: climate.study
-    to: heat
-  condition:
-    - condition: state
-      entity_id: input_boolean.summer_mode
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.thermostat_study_triggered_by_motion
-      state: 'off'
-  action:
-    service: notify.patrick
-    data:
-      title: Thermostat
-      message: Thermostat in Study {{ state_attr('climate.study', 'temperature') }}°C.
-
-- alias: Notification - Thermostat Living Room set to heat
-  trigger:
-    platform: state
-    entity_id: climate.living_room
-    to: heat
-  condition:
-    condition: state
-    entity_id: input_boolean.summer_mode
-    state: 'off'
-  action:
-    service: notify.patrick
-    data:
-      title: Thermostat
-      message: Thermostat in Living Room was set to {{ state_attr('climate.living_room', 'temperature') }}°C.
-
-- alias: Notification - Thermostat Kitchen set to heat
-  trigger:
-    platform: state
-    entity_id: climate.kitchen
-    to: heat
-  condition:
-    condition: state
-    entity_id: input_boolean.summer_mode
-    state: 'off'
-  action:
-    service: notify.patrick
-    data:
-      title: Thermostat
-      message: Thermostat in Kitchen was set to {{ state_attr('climate.kitchen', 'temperature') }}°C.
+      message: Thermostat in {{ trigger.to_state.name }} was set to {{ state_attr(trigger.entity_id, 'temperature') }}°C.
 
 - alias: Notification - Device Tracker not working for Patrick
   trigger:

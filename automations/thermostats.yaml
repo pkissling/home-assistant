@@ -1,7 +1,7 @@
 ---
 
 # Bedroom
-- alias: Thermostat Bedroom - Window opened
+- alias: Thermostat - Bedroom - Window opened
   trigger:
     platform: state
     entity_id: binary_sensor.window_bedroom
@@ -23,7 +23,7 @@
       data:
         hvac_mode: 'off'
 
-- alias: Thermostat Bedroom - Window closed
+- alias: Thermostat - Bedroom - Window closed
   trigger:
     platform: state
     entity_id: binary_sensor.window_bedroom
@@ -45,7 +45,7 @@
         value: unknown
 
 # Study
-- alias: Thermostat Study - Window openend
+- alias: Thermostat - Study - Window openend
   trigger:
     platform: state
     entity_id: binary_sensor.window_study
@@ -67,7 +67,7 @@
       data:
         hvac_mode: 'off'
 
-- alias: Thermostat Study - Window closed
+- alias: Thermostat - Study - Window closed
   trigger:
     platform: state
     entity_id: binary_sensor.window_study
@@ -89,7 +89,7 @@
         value: unknown
 
 # Bathroom
-- alias: Thermostat Bathroom - Window openend
+- alias: Thermostat - Bathroom - Window openend
   trigger:
     platform: state
     entity_id: binary_sensor.window_bathroom
@@ -111,7 +111,7 @@
       data:
         hvac_mode: 'off'
 
-- alias: Thermostat Bathroom - Window closed
+- alias: Thermostat - Bathroom - Window closed
   trigger:
     platform: state
     entity_id: binary_sensor.window_bathroom
@@ -133,7 +133,7 @@
         value: unknown
 
 # Living Room
-- alias: Thermostat Living Room - Window openend
+- alias: Thermostat - Living Room - Window openend
   trigger:
     - platform: state
       entity_id: binary_sensor.window_kitchen
@@ -161,7 +161,7 @@
       data:
         hvac_mode: 'off'
 
-- alias: Thermostat Living Room - Window closed
+- alias: Thermostat - Living Room - Window closed
   trigger:
     - platform: state
       entity_id: binary_sensor.window_kitchen
@@ -189,7 +189,7 @@
         value: unknown
 
 # Kitchen
-- alias: Thermostat Kitchen - Window openend
+- alias: Thermostat - Kitchen - Window openend
   trigger:
     - platform: state
       entity_id: binary_sensor.window_kitchen
@@ -217,7 +217,7 @@
       data:
         hvac_mode: 'off'
 
-- alias: Thermostat Kitchen - Window closed
+- alias: Thermostat - Kitchen - Window closed
   trigger:
     - platform: state
       entity_id: binary_sensor.window_kitchen
@@ -245,7 +245,7 @@
         value: unknown
 
 # Toilet
-- alias: Thermostat Toilet - Window openend
+- alias: Thermostat - Toilet - Window openend
   trigger:
     platform: state
     entity_id: binary_sensor.window_toilet
@@ -265,7 +265,7 @@
       data:
         hvac_mode: 'off'
 
-- alias: Thermostat Toilet - Window closed
+- alias: Thermostat - Toilet - Window closed
   trigger:
     platform: state
     entity_id: binary_sensor.window_toilet
@@ -286,14 +286,38 @@
       data:
         value: unknown
 
-- alias: Thermostat Kitchen - Summer Mode - Heating off after 4 hours
+- alias: Thermostat - All - Summer Mode - Heating off after 4 hours
   trigger:
-    platform: state
-    entity_id: binary_sensor.thermostat_kitchen
-    from: 'off'
-    to: 'on'
-    for:
-      hours: 4
+    - platform: state
+      entity_id: climate.kitchen
+      to: 'on'
+      for:
+        hours: 4
+    - platform: state
+      entity_id: climate.living_room
+      to: 'on'
+      for:
+        hours: 4
+    - platform: state
+      entity_id: climate.bedroom
+      to: 'on'
+      for:
+        hours: 4
+    - platform: state
+      entity_id: climate.study
+      to: 'on'
+      for:
+        hours: 4
+    - platform: state
+      entity_id: climate.bathroom
+      to: 'on'
+      for:
+        hours: 4
+    - platform: state
+      entity_id: climate.toilet
+      to: 'on'
+      for:
+        hours: 4
   condition:
     condition: state
     entity_id: input_boolean.summer_mode
@@ -302,117 +326,44 @@
     - service: notify.patrick
       data:
         title: Thermostat
-        message: Thermostat in Kitchen turned off after 4 hours.
-    - service: switch.turn_off
-      entity_id: switch.climate_kitchen
-
-- alias: Thermostat Living Room - Summer Mode - Heating off after 4 hours
-  trigger:
-    platform: state
-    entity_id: binary_sensor.thermostat_living_room
-    from: 'off'
-    to: 'on'
-    for:
-      hours: 4
-  condition:
-    condition: state
-    entity_id: input_boolean.summer_mode
-    state: 'on'
-  action:
-    - service: notify.patrick
+        message: Thermostat in {{ trigger.to_state.name }} turned off after 4 hours.
+    - service: climate.set_hvac_mode
       data:
-        title: Thermostat
-        message: Thermostat in Living Room turned off after 4 hours.
-    - service: switch.turn_off
-      entity_id: switch.climate_living_room
+        entity_id: "{{ trigger.entity_id }}"
+        hvac_mode: auto
 
-- alias: Thermostat Study - Summer Mode - Heating off after 4 hours
+- alias: Thermostat - All - Manual heating off after 4 hours
   trigger:
-    platform: state
-    entity_id: binary_sensor.thermostat_study
-    from: 'off'
-    to: 'on'
-    for:
-      hours: 4
-  condition:
-    condition: state
-    entity_id: input_boolean.summer_mode
-    state: 'on'
-  action:
-    - service: notify.patrick
-      data:
-        title: Thermostat
-        message: Thermostat in Study turned off after 4 hours.
-    - service: switch.turn_off
-      entity_id: switch.climate_study
-
-- alias: Thermostat Bathroom - Summer Mode - Heating off after 4 hours
-  trigger:
-    platform: state
-    entity_id: binary_sensor.thermostat_bathroom
-    from: 'off'
-    to: 'on'
-    for:
-      hours: 4
-  condition:
-    condition: state
-    entity_id: input_boolean.summer_mode
-    state: 'on'
-  action:
-    - service: notify.patrick
-      data:
-        title: Thermostat
-        message: Thermostat in Bathroom turned off after 4 hours.
-    - service: switch.turn_off
-      entity_id: switch.climate_bathroom
-
-- alias: Thermostat Bedroom - Summer Mode - Heating off after 4 hours
-  trigger:
-    platform: state
-    entity_id: binary_sensor.thermostat_bedroom
-    from: 'off'
-    to: 'on'
-    for:
-      hours: 4
-  condition:
-    condition: state
-    entity_id: input_boolean.summer_mode
-    state: 'on'
-  action:
-    - service: notify.patrick
-      data:
-        title: Thermostat
-        message: Thermostat in Bedroom turned off after 4 hours.
-    - service: switch.turn_off
-      entity_id: switch.climate_bedroom
-
-- alias: Thermostat Toilet - Summer Mode - Heating off after 4 hours
-  trigger:
-    platform: state
-    entity_id: binary_sensor.thermostat_toilet
-    from: 'off'
-    to: 'on'
-    for:
-      hours: 4
-  condition:
-    condition: state
-    entity_id: input_boolean.summer_mode
-    state: 'on'
-  action:
-    - service: notify.patrick
-      data:
-        title: Thermostat
-        message: Thermostat in Toilet turned off after 4 hours.
-    - service: switch.turn_off
-      entity_id: switch.climate_toilet
-
-- alias: Thermostat Kitchen - Manual heating off after 4 hours
-  trigger:
-    platform: state
-    entity_id: climate.kitchen
-    to: heat
-    for:
-      hours: 4
+    - platform: state
+      entity_id: climate.kitchen
+      to: heat
+      for:
+        hours: 4
+    - platform: state
+      entity_id: climate.living_room
+      to: heat
+      for:
+        hours: 4
+    - platform: state
+      entity_id: climate.bedroom
+      to: heat
+      for:
+        hours: 4
+    - platform: state
+      entity_id: climate.study
+      to: heat
+      for:
+        hours: 4
+    - platform: state
+      entity_id: climate.bathroom
+      to: heat
+      for:
+        hours: 4
+    - platform: state
+      entity_id: climate.toilet
+      to: heat
+      for:
+        hours: 4
   condition:
     condition: state
     entity_id: input_boolean.summer_mode
@@ -421,109 +372,13 @@
     - service: notify.patrick
       data:
         title: Thermostat
-        message: Manual heating in Kitchen turned off after 4 hours.
-    - service: switch.turn_on
-      entity_id: switch.climate_kitchen
-
-- alias: Thermostat Living Room - Manual heating off after 4 hours
-  trigger:
-    platform: state
-    entity_id: climate.living_room
-    to: heat
-    for:
-      hours: 4
-  condition:
-    condition: state
-    entity_id: input_boolean.summer_mode
-    state: 'off'
-  action:
-    - service: notify.patrick
+        message: Manual heating in {{ trigger.to_state.name }} turned off after 4 hours.
+    - service: climate.set_hvac_mode
       data:
-        title: Thermostat
-        message: Manual heating in Living Room turned off after 4 hours.
-    - service: switch.turn_on
-      entity_id: switch.climate_living_room
+        entity_id: "{{ trigger.entity_id}}"
+        hvac_mode: auto
 
-- alias: Thermostat Study - Manual heating off after 4 hours
-  trigger:
-    platform: state
-    entity_id: climate.study
-    to: heat
-    for:
-      hours: 4
-  condition:
-    - condition: state
-      entity_id: input_boolean.summer_mode
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.thermostat_study_triggered_by_motion
-      state: 'off'
-  action:
-    - service: notify.patrick
-      data:
-        title: Thermostat
-        message: Manual heating in Study turned off after 4 hours.
-    - service: switch.turn_on
-      entity_id: switch.climate_study
-
-- alias: Thermostat Bathroom - Manual heating off after 4 hours
-  trigger:
-    platform: state
-    entity_id: climate.bathroom
-    to: heat
-    for:
-      hours: 4
-  condition:
-    condition: state
-    entity_id: input_boolean.summer_mode
-    state: 'off'
-  action:
-    - service: notify.patrick
-      data:
-        title: Thermostat
-        message: Manual heating in Bathroom turned off after 4 hours.
-    - service: switch.turn_on
-      entity_id: switch.climate_bathroom
-
-- alias: Thermostat Bedroom - Manual heating off after 4 hours
-  trigger:
-    platform: state
-    entity_id: climate.bedroom
-    to: heat
-    for:
-      hours: 4
-  condition:
-    condition: state
-    entity_id: input_boolean.summer_mode
-    state: 'off'
-  action:
-    - service: notify.patrick
-      data:
-        title: Thermostat
-        message: Manual heating in Bedroom turned off after 4 hours.
-    - service: switch.turn_on
-      entity_id: switch.climate_bedroom
-
-- alias: Thermostat Toilet - Manual heating off after 4 hours
-  trigger:
-    platform: state
-    entity_id: climate.toilet
-    to: heat
-    for:
-      hours: 4
-  condition:
-    condition: state
-    entity_id: input_boolean.summer_mode
-    state: 'off'
-  action:
-    - service: notify.patrick
-      data:
-        title: Thermostat
-        message: Manual heating in Toilet turned off after 4 hours.
-    - service: switch.turn_on
-      entity_id: switch.climate_toilet
-
-- alias: Thermostat Living Room - Force off when window open
+- alias: Thermostat - Living Room - Force off when window open
   trigger:
     platform: time_pattern
     minutes: /5
@@ -544,7 +399,7 @@
       data:
         hvac_mode: 'off'
 
-- alias: Thermostat Bedroom - Force off when window open
+- alias: Thermostat - Bedroom - Force off when window open
   trigger:
     platform: time_pattern
     minutes: /5
@@ -566,7 +421,7 @@
         hvac_mode: 'off'
 
 
-- alias: Thermostat Bathroom - Force off when window open
+- alias: Thermostat - Bathroom - Force off when window open
   trigger:
     platform: time_pattern
     minutes: /5
@@ -588,7 +443,7 @@
         hvac_mode: 'off'
 
 
-- alias: Thermostat Study - Force off when window open
+- alias: Thermostat - Study - Force off when window open
   trigger:
     platform: time_pattern
     minutes: /5
@@ -610,7 +465,7 @@
         hvac_mode: 'off'
 
 
-- alias: Thermostat Kitchen - Force off when window open
+- alias: Thermostat - Kitchen - Force off when window open
   trigger:
     platform: time_pattern
     minutes: /5
@@ -631,7 +486,7 @@
       data:
         hvac_mode: 'off'
 
-- alias: Thermostat Toilet - Force off when window open
+- alias: Thermostat - Toilet - Force off when window open
   trigger:
     platform: time_pattern
     minutes: /5
@@ -652,7 +507,7 @@
       data:
         hvac_mode: 'off'
 
-- alias: Thermostat Study - Turn on when home office mode on
+- alias: Thermostat - Study - Turn on when home office mode on
   trigger:
     platform: state
     entity_id: input_boolean.home_office_mode
@@ -679,7 +534,7 @@
       data:
         temperature: 22
 
-- alias: Thermostat Study - Turn off when home office mode off
+- alias: Thermostat - Study - Turn off when home office mode off
   trigger:
     platform: state
     entity_id: input_boolean.home_office_mode

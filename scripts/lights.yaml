@@ -1,11 +1,8 @@
 ---
 
 lights_ambient_turn_on:
-  fields:
-    transition:
-      description: Time in seconds until transition ends.
-      required: 'false'
-      default: 0
+  variables:
+    transition: 0
   sequence:
     - service: light.turn_on
       entity_id: light.bedroom_wardrobe
@@ -56,9 +53,8 @@ lights_ambient_turn_on:
               transition: "{{ transition }}"
 
 lights_ambient_turn_off:
-  fields:
-    transition:
-      description: Time in seconds until transition ends.
+  variables:
+    transition: 0
   sequence:
     - service: light.turn_on
       entity_id: light.bedroom_wardrobe

@@ -124,7 +124,8 @@ light_ambient_turn_on:
                 brightness: "{{ full_brightness }}"
             - wait_template: "{{ is_state(motion_sensor_entity,'off') }}"
               timeout: '01:00:00'
-            - delay: "00:{{ dim_after_mins }}:00"
+            - delay:
+                minutes: "{{ dim_after_mins }}"
             # only dim light if its still on.
             - choose:
                 - conditions:

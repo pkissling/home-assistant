@@ -33,6 +33,18 @@
           entity_id: input_boolean.guest_mode
         - service: light.turn_off
           entity_id: light.study_floor_lamp
+        - choose:
+            - conditions:
+                - condition: state
+                  entity_id: binary_sensor.sun
+                  state: 'off'
+              sequence:
+                service: light.turn_on
+                entity_id: light.study_shelf
+                data:
+                  kelvin: 2300
+                  brightness: 50
+                  transition: 0
 
     party_mode:
       friendly_name: Party Mode

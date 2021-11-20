@@ -7,5 +7,5 @@
         {% if not is_state('sensor.motion_study_lightlevel', 'unknown') %}
           {{ states('sensor.motion_study_lightlevel') | int < 25 }}
         {% else %}
-          false
+          {{ is_state('sun.sun', 'below_horizon') }}
         {% endif %}

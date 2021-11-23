@@ -35,6 +35,7 @@ ios: !include includes/ios.yaml
 light: !include includes/lights.yaml
 notify: !include includes/notify.yaml
 plant: !include includes/plants.yaml
+pyscript: !include includes/pyscript.yaml
 recorder: !include includes/recorder.yaml
 spotify: !include includes/spotify.yaml
 tts: !include includes/tts.yaml

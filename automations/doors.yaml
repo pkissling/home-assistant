@@ -34,10 +34,10 @@
     entity_id: group.residents
     state: home
   action:
-    service: script.light_ambient_turn_on
+    service: pyscript.light_ambient_turn_on
     data:
-      light_entity: light.corridor_sideboard
-      motion_sensor_entity: binary_sensor.motion_corridor
+      light_entity_id: light.corridor_sideboard
+      motion_sensor_entity_id: binary_sensor.motion_corridor
 
 - alias: Door - Main Door - Turn on tab on door open
   trigger:

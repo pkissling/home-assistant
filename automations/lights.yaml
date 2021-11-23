@@ -109,10 +109,10 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
   action:
-    service: script.light_ambient_turn_on
+    service: pyscript.light_ambient_turn_on
     data:
-      light_entity: light.study_shelf
-      motion_sensor_entity: binary_sensor.motion_study
+      light_entity_id: light.study_shelf
+      motion_sensor_entity_id: binary_sensor.motion_study
       dim_after_mins: 15
 
 - alias: Light - Study Floor Lamp - Turn off when no motion for 15 mins
@@ -139,10 +139,10 @@
     entity_id: binary_sensor.motion_corridor
     to: 'on'
   action:
-    service: script.light_ambient_turn_on
+    service: pyscript.light_ambient_turn_on
     data:
-      light_entity: light.corridor_sideboard
-      motion_sensor_entity: binary_sensor.motion_corridor
+      light_entity_id: light.corridor_sideboard
+      motion_sensor_entity_id: binary_sensor.motion_corridor
 
 - alias: Light - Living Room - Turn on night light
   trigger:
@@ -157,10 +157,10 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
   action:
-    service: script.light_ambient_turn_on
+    service: pyscript.light_ambient_turn_on
     data:
-      light_entity: light.living_room
-      motion_sensor_entity: binary_sensor.motion_corridor
+      light_entity_id: light.living_room
+      motion_sensor_entity_id: binary_sensor.motion_corridor
 
 - alias: Light - Study Shelf - Turn on night light
   trigger:
@@ -175,7 +175,7 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
   action:
-    service: script.light_ambient_turn_on
+    service: pyscript.light_ambient_turn_on
     data:
-      light_entity: light.study_shelf
-      motion_sensor_entity: binary_sensor.motion_corridor
+      light_entity_id: light.study_shelf
+      motion_sensor_entity_id: binary_sensor.motion_corridor

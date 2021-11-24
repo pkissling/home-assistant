@@ -13,6 +13,15 @@
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.person_guest
+    - wait_for_trigger:
+        platform: state
+        entity_id: light.corridor_sideboard
+        to: 'on'
+      timeout: '00:00:05'
+    - service: pyscript.light_ambient_turn_on
+      data:
+        light_entity_id: light.corridor_sideboard
+        motion_sensor_entity_id: binary_sensor.motion_corridor
     - wait_template: >
         {{
           is_state('person.patrick', 'home')

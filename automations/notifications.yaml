@@ -1,6 +1,7 @@
 ---
 
 - alias: Notification - All - Summer Mode - Thermostat turned on
+  mode: parallel
   trigger:
     - platform: state
       entity_id: climate.kitchen
@@ -31,6 +32,7 @@
       message: Thermostat in {{ trigger.to_state.name }} turned on.
 
 - alias: Notification - All - Thermostat turned on
+  mode: parallel
   trigger:
     - platform: state
       entity_id: climate.kitchen

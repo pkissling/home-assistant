@@ -287,6 +287,7 @@
         value: unknown
 
 - alias: Thermostat - All - Summer Mode - Heating off after 4 hours
+  mode: parallel
   trigger:
     - platform: state
       entity_id: climate.kitchen
@@ -333,6 +334,7 @@
         hvac_mode: auto
 
 - alias: Thermostat - All - Manual heating off after 4 hours
+  mode: parallel
   trigger:
     - platform: state
       entity_id: climate.kitchen
@@ -549,6 +551,7 @@
       hvac_mode: auto
 
 - alias: Thermostat - All - Reduce temperature if too high
+  mode: parallel
   trigger:
     - platform: numeric_state
       entity_id: climate.kitchen

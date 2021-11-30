@@ -37,21 +37,33 @@
     - platform: state
       entity_id: climate.kitchen
       to: heat
+      for:
+        minutes: 1
     - platform: state
       entity_id: climate.living_room
       to: heat
+      for:
+        minutes: 1
     - platform: state
       entity_id: climate.bedroom
       to: heat
+      for:
+        minutes: 1
     - platform: state
       entity_id: climate.study
       to: heat
+      for:
+        minutes: 1
     - platform: state
       entity_id: climate.toilet
       to: heat
+      for:
+        minutes: 1
     - platform: state
       entity_id: climate.bathroom
       to: heat
+      for:
+        minutes: 1
   condition:
     condition: state
     entity_id: input_boolean.summer_mode

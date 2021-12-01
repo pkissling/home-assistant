@@ -51,6 +51,9 @@ lights_ambient_turn_on:
               kelvin: 2300
               brightness: 50
               transition: "{{ transition }}"
+    # keep script in state 'on' until script finished
+    - delay:
+        seconds: "{{ transition }}"
 
 lights_ambient_turn_off:
   variables:
@@ -88,4 +91,5 @@ lights_ambient_turn_off:
                 brightness: 0
                 transition: "{{ transition }}"
     # keep script in state 'on' until script finished
-    - delay: "{{ transition }}"
+    - delay:
+        seconds: "{{ transition }}"

@@ -64,8 +64,9 @@ def is_sun():
   return binary_sensor.sun == 'on'
 
 def needs_full_brightness(light_entity_id):
-  return (is_light_on(light_entity_id)
-    and input_boolean.night_light == 'off')
+  return (state.get('script.lights_ambient_turn_on') == 'on'
+    or (is_light_on(light_entity_id)
+      and input_boolean.night_light == 'off'))
 
 def is_light_on(light_entity_id):
   return (state.get(light_entity_id) == 'on'

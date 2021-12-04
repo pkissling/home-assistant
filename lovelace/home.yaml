@@ -120,14 +120,6 @@
               - height: 70px
         - type: custom:button-card
           color: var(--switch-checked-color)
-          entity: switch.living_room_smart_tv
-          icon: mdi:netflix
-          show_name: false
-          styles:
-            card:
-              - height: 70px
-        - type: custom:button-card
-          color: var(--switch-checked-color)
           entity: switch.living_room_airplay
           icon: mdi:cast-variant
           show_name: false

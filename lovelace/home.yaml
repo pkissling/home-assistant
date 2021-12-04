@@ -273,26 +273,6 @@
             action: call-service
             service: script.vacuum_dust_bin
 
-# Open Windows
-- type: entity-filter
-  entities:
-    - binary_sensor.window_study
-    - binary_sensor.window_living_room
-    - binary_sensor.window_kitchen
-    - binary_sensor.window_bedroom
-    - binary_sensor.window_toilet
-    - binary_sensor.window_bathroom
-  state_filter:
-    - 'on'
-  card:
-    type: glance
-    title: Open Windows
-    show_state: false
-    show_icon: true
-    show_name: false
-    columns: 2
-  show_empty: false
-
 # People at home
 - type: entities
   entities:

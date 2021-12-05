@@ -88,6 +88,8 @@
           is_state_attr('remote.living_room', 'current_activity', 'Chromecast')
             or
           is_state_attr('remote.living_room', 'current_activity', 'Smart TV')
+            or
+          is_state_attr('remote.living_room', 'current_activity', 'Airplay')
         }}
   action:
     service: input_boolean.turn_on
@@ -103,6 +105,8 @@
           not is_state_attr('remote.living_room', 'current_activity', 'Chromecast')
             and
           not is_state_attr('remote.living_room', 'current_activity', 'Smart TV')
+            and
+          not is_state_attr('remote.living_room', 'current_activity', 'Airplay')
         }}
   condition:
     condition: state

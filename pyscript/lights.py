@@ -2,7 +2,7 @@
 def light_ambient_turn_on(
   light_entity_id=None,
   motion_sensor_entity_id=None,
-  full_brightness=200,
+  full_brightness=255,
   dim_brightness=50,
   dim_after_mins=2):
 

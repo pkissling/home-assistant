@@ -509,47 +509,6 @@
       data:
         hvac_mode: 'off'
 
-- alias: Thermostat - Study - Turn on when home office mode on
-  trigger:
-    platform: state
-    entity_id: input_boolean.home_office_mode
-    to: 'on'
-  condition:
-    - condition: state
-      entity_id: input_boolean.summer_mode
-      state: 'off'
-    - condition: state
-      entity_id: group.residents
-      state: 'home'
-    - condition: state
-      entity_id: binary_sensor.window_study
-      state: 'off'
-    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
-    - "{{ not is_state('climate.study', 'heat') }}"
-  action:
-    service: climate.set_temperature
-    entity_id: climate.study
-    data:
-      temperature: 22
-
-- alias: Thermostat - Study - Turn off when home office mode off
-  trigger:
-    platform: state
-    entity_id: input_boolean.home_office_mode
-    to: 'off'
-  condition:
-    - condition: state
-      entity_id: input_boolean.summer_mode
-      state: 'off'
-    - condition: state
-      entity_id: climate.study
-      state: heat
-  action:
-    service: climate.set_hvac_mode
-    entity_id: climate.study
-    data:
-      hvac_mode: auto
-
 - alias: Thermostat - All - Reduce temperature if too high
   mode: parallel
   trigger:

@@ -308,12 +308,12 @@
     - entity_id: climate.living_room
       icon: mdi:sofa
       window_sensor: binary_sensor.window_living_room
-    - entity_id: climate.bedroom
-      icon: mdi:bed-king-outline
-      window_sensor: binary_sensor.window_bedroom
     - entity_id: climate.kitchen
       icon: mdi:stove
       window_sensor: binary_sensor.window_kitchen
+    - entity_id: climate.bedroom
+      icon: mdi:bed-king-outline
+      window_sensor: binary_sensor.window_bedroom
     - entity_id: climate.toilet
       icon: mdi:toilet
       window_sensor: binary_sensor.window_toilet

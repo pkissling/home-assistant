@@ -515,37 +515,37 @@
     - platform: numeric_state
       entity_id: climate.kitchen
       attribute: temperature
-      above: 23
+      above: 22.5
       for:
         minutes: 3
     - platform: numeric_state
       entity_id: climate.living_room
       attribute: temperature
-      above: 23
+      above: 22.5
       for:
         minutes: 3
     - platform: numeric_state
       entity_id: climate.bedroom
       attribute: temperature
-      above: 23
+      above: 22.5
       for:
         minutes: 3
     - platform: numeric_state
       entity_id: climate.study
       attribute: temperature
-      above: 23
+      above: 22.5
       for:
         minutes: 3
     - platform: numeric_state
       entity_id: climate.bathroom
       attribute: temperature
-      above: 23
+      above: 22.5
       for:
         minutes: 3
     - platform: numeric_state
       entity_id: climate.toilet
       attribute: temperature
-      above: 23
+      above: 22.5
       for:
         minutes: 3
   action:
@@ -553,8 +553,8 @@
       data:
         title: Thermostat
         # yamllint disable-line rule:line-length
-        message: "Reducing temperature in {{ trigger.to_state.name }} from {{ state_attr(trigger.entity_id, 'temperature') }} to 23.0°C."
+        message: "Reducing temperature in {{ trigger.to_state.name }} from {{ state_attr(trigger.entity_id, 'temperature') }} to 22.5°C."
     - service: climate.set_temperature
       data:
         entity_id: "{{ trigger.entity_id }}"
-        temperature: 23
+        temperature: 22.5

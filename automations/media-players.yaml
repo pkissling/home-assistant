@@ -224,3 +224,20 @@
         device: Pioneer-AV-Receiver
         command: VolumeDown
         num_repeats: 25
+
+- alias: Media Player - Bathroom - Turn off after 1,5 hours
+  trigger:
+    platform: state
+    entity_id: media_player.bathroom
+    to: playing
+    for:
+      minutes: 90
+  condition:
+    condition: not
+    conditions:
+      condition: state
+      entity_id: media_player.home_group
+      state: playing
+  action:
+    service: media_player.turn_off
+    entity_id: media_player.bathroom

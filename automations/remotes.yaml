@@ -1,6 +1,6 @@
 ---
 
-- alias: Remote - Turn on Speakers when Home Group is playing
+- alias: Remote - Turn on Chromecast when Home Group is playing
   trigger:
     platform: state
     entity_id: media_player.home_group
@@ -11,7 +11,7 @@
     state: 'off'
   action:
     service: switch.turn_on
-    entity_id: switch.living_room_speakers
+    entity_id: switch.living_room_chromecast
 
 - alias: Remote - Turn on Chromecast when casting
   trigger:
@@ -28,40 +28,10 @@
       entity_id: media_player.home_group
       state: 'off'
   action:
-    - service: input_text.set_value
-      entity_id: input_text.remote_previous_activity
-      data:
-        value: "{{ state_attr('remote.living_room', 'current_activity') }}"
-    - service: switch.turn_on
-      entity_id: switch.living_room_chromecast
+    service: switch.turn_on
+    entity_id: switch.living_room_chromecast
 
-- alias: Remote - Back to previous Activity when Chromecast off
-  trigger:
-    platform: state
-    entity_id: media_player.chromecast
-    to: 'off'
-  condition:
-    - >
-      {{
-        not is_state('input_text.remote_previous_activity', 'unknown')
-          and
-        not is_state('input_text.remote_previous_activity', 'PowerOff')
-      }}
-    - condition: state
-      entity_id: remote.living_room
-      attribute: current_activity
-      state: Chromecast
-  action:
-    - service: remote.turn_on
-      entity_id: remote.living_room
-      data:
-        activity: "{{ states('input_text.remote_previous_activity') }}"
-    - service: input_text.set_value
-      entity_id: input_text.remote_previous_activity
-      data:
-        value: unknown
-
-- alias: Remote - Turn off Speakers when Home Group stopped/paused casting for 30 seconds
+- alias: Remote - Turn off remote when Home Group stopped/paused casting for 30 seconds
   trigger:
     - platform: state
       entity_id: media_player.home_group
@@ -87,7 +57,7 @@
     condition: state
     entity_id: remote.living_room
     attribute: current_activity
-    state: Speakers
+    state: Chromecast
   action:
     service: remote.turn_off
     entity_id: remote.living_room
@@ -110,26 +80,18 @@
       for:
         minutes: 5
   condition:
-    condition: state
-    entity_id: remote.living_room
-    attribute: current_activity
-    state: Chromecast
+    - condition: state
+      entity_id: remote.living_room
+      attribute: current_activity
+      state: Chromecast
+    - condition: state
+      entity_id: media_player.lg_webos_smart_tv
+      state: 'on'
   action:
-    service: remote.turn_off
-    entity_id: remote.living_room
-
-- alias: Remote - Airplay - Turn on
-  trigger:
-    platform: state
-    entity_id: media_player.lg_webos_smart_tv
-    to: 'on'
-  condition:
-    condition: state
-    entity_id: remote.living_room
-    state: 'off'
-  action:
-    service: switch.turn_on
-    entity_id: switch.living_room_airplay
+    - service: remote.turn_off
+      entity_id: remote.living_room
+    - service: media_player.turn_off
+      entity_id: media_player.lg_webos_smart_tv
 
 - alias: Remote - Amplifier - Turn off if still running
   trigger:
@@ -152,11 +114,9 @@
           data:
             device: Pioneer-AV-Receiver
             command: PowerOff
-
         # Give plug time to update the sensor
         - delay:
             seconds: 5
-
       until:
         condition: numeric_state
         entity_id: sensor.plug_living_room_amplifier
@@ -183,41 +143,43 @@
           data:
             device: Pioneer-AV-Receiver
             command: PowerOn
-
         # Give amplifier time to start and get ready
         - delay:
             seconds: 10
-
         # Set correct input source
         - service: remote.send_command
           entity_id: remote.living_room
           data:
             device: Pioneer-AV-Receiver
             command: >
-              {% if state_attr('remote.living_room', 'current_activity') == 'Speakers' %}
-                InputHdmi1
-              {% elif state_attr('remote.living_room', 'current_activity') == 'Chromecast' %}
+              {% if state_attr('remote.living_room', 'current_activity') == 'Chromecast' %}
                 InputHdmi1
               {% else %}
                 InputTv
               {% endif %}
-
       until:
         condition: numeric_state
         entity_id: sensor.plug_living_room_amplifier
         above: 10
 
-- alias: Remote - TV - Turn off TV if still running
+- alias: Remote - TV - Turn Amplifier on if TV running
   trigger:
     platform: state
-    entity_id: remote.living_room
-    to: 'off'
-    for:
-      seconds: 10
+    entity_id: media_player.lg_webos_smart_tv
+    to: 'on'
   condition:
     condition: state
-    entity_id: media_player.lg_webos_smart_tv
-    state: 'on'
+    entity_id: remote.living_room
+    state: 'off'
   action:
-    service: media_player.turn_off
+    service: switch.turn_on
+    entity_id: switch.living_room_tv
+
+- alias: Remote - TV - Turn Amplifier off when TV off
+  trigger:
+    platform: state
     entity_id: media_player.lg_webos_smart_tv
+    to: 'off'
+  action:
+    service: remote.turn_off
+    entity_id: remote.living_room

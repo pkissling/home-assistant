@@ -111,22 +111,6 @@
             card:
               - height: 70px
         - type: custom:button-card
-          color: var(--switch-checked-color)
-          entity: switch.living_room_speakers
-          icon: mdi:cast-audio
-          show_name: false
-          styles:
-            card:
-              - height: 70px
-        - type: custom:button-card
-          color: var(--switch-checked-color)
-          entity: switch.living_room_airplay
-          icon: mdi:cast-variant
-          show_name: false
-          styles:
-            card:
-              - height: 70px
-        - type: custom:button-card
           color: '#ff8c8a'
           entity: switch.remote_off
           icon: mdi:power

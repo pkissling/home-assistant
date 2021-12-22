@@ -2,14 +2,9 @@
 
 - alias: Media Player - Stop casting on Home Group when TV on
   trigger:
-    - platform: state
-      entity_id: remote.living_room
-      attribute: current_activity
-      to: TV
-    - platform: state
-      entity_id: remote.living_room
-      attribute: current_activity
-      to: Smart TV
+    platform: state
+    entity_id: media_player.lg_webos_smart_tv
+    to: 'on'
   condition:
     condition: not
     conditions:
@@ -18,7 +13,7 @@
       state: 'off'
   action:
     service: media_player.turn_off
-    entity_id: all
+    entity_id: media_player.home_group
 
 - alias: Media Player - Chromecast Full Volume
   trigger:

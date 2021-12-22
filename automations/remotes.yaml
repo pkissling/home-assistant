@@ -31,37 +31,6 @@
     service: switch.turn_on
     entity_id: switch.living_room_chromecast
 
-- alias: Remote - Turn off remote when Home Group stopped/paused casting for 30 seconds
-  trigger:
-    - platform: state
-      entity_id: media_player.home_group
-      to: 'off'
-      for:
-        seconds: 30
-    - platform: state
-      entity_id: media_player.home_group
-      to: paused
-      for:
-        seconds: 30
-    - platform: state
-      entity_id: media_player.home_group
-      to: unavailable
-      for:
-        seconds: 30
-    - platform: state
-      entity_id: media_player.home_group
-      to: idle
-      for:
-        seconds: 30
-  condition:
-    condition: state
-    entity_id: remote.living_room
-    attribute: current_activity
-    state: Chromecast
-  action:
-    service: remote.turn_off
-    entity_id: remote.living_room
-
 - alias: Remote - Turn off TV when Chromecast stopped casting for 5 minutes
   trigger:
     - platform: state
@@ -162,15 +131,11 @@
         entity_id: sensor.plug_living_room_amplifier
         above: 10
 
-- alias: Remote - TV - Turn Amplifier on if TV running
+- alias: Remote - TV - Turn Amplifier on when TV running
   trigger:
     platform: state
     entity_id: media_player.lg_webos_smart_tv
     to: 'on'
-  condition:
-    condition: state
-    entity_id: remote.living_room
-    state: 'off'
   action:
     service: switch.turn_on
     entity_id: switch.living_room_tv

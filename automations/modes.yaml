@@ -80,34 +80,18 @@
 
 - alias: Mode - TV Mode - Turn on when watching TV
   trigger:
-    - platform: template
-      value_template: >
-        {{
-          is_state_attr('remote.living_room', 'current_activity', 'TV')
-            or
-          is_state_attr('remote.living_room', 'current_activity', 'Chromecast')
-            or
-          is_state_attr('remote.living_room', 'current_activity', 'Smart TV')
-            or
-          is_state_attr('remote.living_room', 'current_activity', 'Airplay')
-        }}
+    platform: state
+    entity_id: media_player.lg_webos_smart_tv
+    to: 'on'
   action:
     service: input_boolean.turn_on
     entity_id: input_boolean.tv_mode
 
 - alias: Mode - TV Mode - Turn off when finished watching TV
   trigger:
-    - platform: template
-      value_template: >
-        {{
-          not is_state_attr('remote.living_room', 'current_activity', 'TV')
-            and
-          not is_state_attr('remote.living_room', 'current_activity', 'Chromecast')
-            and
-          not is_state_attr('remote.living_room', 'current_activity', 'Smart TV')
-            and
-          not is_state_attr('remote.living_room', 'current_activity', 'Airplay')
-        }}
+    platform: state
+    entity_id: media_player.lg_webos_smart_tv
+    to: 'off'
   condition:
     condition: state
     entity_id: input_boolean.tv_mode

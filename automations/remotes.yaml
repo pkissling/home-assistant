@@ -13,55 +13,6 @@
     service: switch.turn_on
     entity_id: switch.living_room_chromecast
 
-- alias: Remote - Turn on Chromecast when casting
-  trigger:
-    platform: template
-    value_template: >
-      {{
-        not is_state('media_player.chromecast', 'unavailable')
-          and
-        not is_state('media_player.chromecast', 'off')
-      }}
-  condition:
-    - "{{ not is_state_attr('remote.living_room', 'current_activity', 'Chromecast') }}"
-    - condition: state
-      entity_id: media_player.home_group
-      state: 'off'
-  action:
-    service: switch.turn_on
-    entity_id: switch.living_room_chromecast
-
-- alias: Remote - Turn off TV when Chromecast stopped casting for 5 minutes
-  trigger:
-    - platform: state
-      entity_id: media_player.chromecast
-      to: 'off'
-      for:
-        minutes: 5
-    - platform: state
-      entity_id: media_player.chromecast
-      to: idle
-      for:
-        minutes: 5
-    - platform: state
-      entity_id: media_player.chromecast
-      to: paused
-      for:
-        minutes: 5
-  condition:
-    - condition: state
-      entity_id: remote.living_room
-      attribute: current_activity
-      state: Chromecast
-    - condition: state
-      entity_id: media_player.lg_webos_smart_tv
-      state: 'on'
-  action:
-    - service: remote.turn_off
-      entity_id: remote.living_room
-    - service: media_player.turn_off
-      entity_id: media_player.lg_webos_smart_tv
-
 - alias: Remote - Amplifier - Turn off if still running
   trigger:
     platform: state
@@ -148,3 +99,29 @@
   action:
     service: remote.turn_off
     entity_id: remote.living_room
+
+- alias: Remote - TV - Switch to Chromecast when HDMI2 selected
+  trigger:
+    platform: state
+    entity_id: media_player.lg_webos_smart_tv
+    attribute: source
+    to: Pioneer
+  action:
+    service: switch.turn_on
+    entity_id: switch.living_room_chromecast
+
+- alias: Remote - TV - Switch back to TV when HDMI2 not selected
+  trigger:
+    platform: state
+    entity_id: media_player.lg_webos_smart_tv
+    attribute: source
+    from: Pioneer
+  condition:
+    condition: not
+    conditions:
+      condition: state
+      entity_id: media_player.lg_webos_smart_tv
+      state: 'off'
+  action:
+    service: switch.turn_on
+    entity_id: switch.living_room_tv

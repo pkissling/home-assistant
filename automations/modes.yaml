@@ -117,7 +117,6 @@
     - service: light.turn_on
       entity_id: light.living_room
       data:
-        kelvin: 2300
         brightness: 80
         transition: 60
 

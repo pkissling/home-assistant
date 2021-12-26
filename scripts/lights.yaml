@@ -7,7 +7,6 @@ lights_ambient_turn_on:
     - service: light.turn_on
       entity_id: light.bedroom_wardrobe
       data:
-        kelvin: 1000
         brightness: 100
         transition: "{{ transition }}"
     - choose:
@@ -19,7 +18,6 @@ lights_ambient_turn_on:
             - service: light.turn_on
               entity_id: light.living_room
               data:
-                kelvin: 2300
                 brightness: 80
                 transition: "{{ transition }}"
             - service: input_text.set_value
@@ -30,13 +28,11 @@ lights_ambient_turn_on:
         service: light.turn_on
         entity_id: light.living_room
         data:
-          kelvin: 2300
           brightness: 255
           transition: "{{ transition }}"
     - service: light.turn_on
       entity_id: light.corridor_sideboard
       data:
-        kelvin: 2300
         brightness: 50
         transition: "{{ transition }}"
     - choose:
@@ -48,7 +44,6 @@ lights_ambient_turn_on:
             service: light.turn_on
             entity_id: light.study_shelf
             data:
-              kelvin: 2300
               brightness: 50
               transition: "{{ transition }}"
     # keep script in state 'on' until script finished

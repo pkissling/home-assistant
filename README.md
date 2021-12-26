@@ -43,7 +43,7 @@ My personal configuration for [Home Assistant](https://www.home-assistant.io) ru
 
 * [Philips Hue Bridge](https://www.philips-hue.com/en-us/p/hue-bridge/046677458478)
 * [Philips Hue Lightstrip Plus base V4](https://www.philips-hue.com/en-us/p/hue-white-and-color-ambiance-lightstrip-plus-base-v4-80-inch/046677555337)
-* [Yeelight Aurora Lightstrip Plus](https://www.yeelight.de/en/aurora-lightstrip-yeelight.html)
+* [Yeelight Aurora Lightstrip Plus](https://www.yeelight.de/aurora-lightstrip-plus.html)
 * [Yeelight LED Bulb 1S](https://www.yeelight.com/en_US/product/lemon2-color)
 
 ### Motion Sensors

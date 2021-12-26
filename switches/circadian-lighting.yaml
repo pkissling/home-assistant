@@ -5,11 +5,9 @@
     - light.living_room_lamp
     - light.living_room_tv
     - light.study_floor_lamp
-  lights_rgb:
+  lights_xy:
     - light.study_shelf
     - light.bedroom_wardrobe
     - light.corridor_sideboard
 
-  sleep_entity: light.bedroom_wardrobe
-  sleep_state: 'off'
-  sleep_brightness: 50
+  disable_brightness_adjust: true

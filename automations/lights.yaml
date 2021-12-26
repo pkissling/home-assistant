@@ -179,3 +179,18 @@
     data:
       light_entity_id: light.study_shelf
       motion_sensor_entity_id: binary_sensor.motion_corridor
+
+- alias: Light - Bedroom Wardrobe - Reset after 1 hour
+  trigger:
+    platform: numeric_state
+    entity_id: light.bedroom_wardrobe
+    attribute: brightness
+    above: 100
+    for:
+      hours: 1
+  action:
+    service: light.turn_on
+    entity_id: light.bedroom_wardrobe
+    data:
+      brightness: 100
+      transition: 60  # 1 minute

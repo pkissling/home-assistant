@@ -155,3 +155,22 @@
   action:
     service: switch.turn_on
     entity_id: switch.living_room_tv
+
+- alias: Remote - TV - Turn Amplifier on when TV running
+  trigger:
+    platform: state
+    entity_id: remote.living_room
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: remote.living_room
+    attribute: current_activity
+    state: 'TV'
+  action:
+    service: remote.send_command
+    entity_id: remote.living_room
+    data:
+      device: Pioneer-AV-Receiver
+      command: VolumeUp
+      num_repeats: 25

@@ -133,6 +133,24 @@
     service: light.turn_off
     entity_id: light.study_floor_lamp
 
+- alias: Light - Study Desk - Turn off when no motion for 15 mins
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_study
+    to: 'off'
+    for:
+      minutes: 15
+  condition:
+    - condition: state
+      entity_id: light.study_desk
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.home_office_mode
+      state: 'off'
+  action:
+    service: light.turn_off
+    entity_id: light.study_desk
+
 - alias: Light - Corridor Sideboard - Increase brightness on motion
   trigger:
     platform: state

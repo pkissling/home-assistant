@@ -515,37 +515,37 @@
     - platform: numeric_state
       entity_id: climate.kitchen
       attribute: temperature
-      above: 22.5
+      above: 23
       for:
         minutes: 3
     - platform: numeric_state
       entity_id: climate.living_room
       attribute: temperature
-      above: 22.5
+      above: 23
       for:
         minutes: 3
     - platform: numeric_state
       entity_id: climate.bedroom
       attribute: temperature
-      above: 22.5
+      above: 23
       for:
         minutes: 3
     - platform: numeric_state
       entity_id: climate.study
       attribute: temperature
-      above: 22.5
+      above: 23
       for:
         minutes: 3
     - platform: numeric_state
       entity_id: climate.bathroom
       attribute: temperature
-      above: 22.5
+      above: 23
       for:
         minutes: 3
     - platform: numeric_state
       entity_id: climate.toilet
       attribute: temperature
-      above: 22.5
+      above: 23
       for:
         minutes: 3
   action:

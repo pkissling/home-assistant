@@ -13,36 +13,6 @@
     service: switch.turn_on
     entity_id: switch.living_room_chromecast
 
-- alias: Remote - Turn off remote when Home Group stopped/paused casting for 30 seconds
-  trigger:
-    - platform: state
-      entity_id: media_player.home_group
-      to: 'off'
-      for:
-        seconds: 30
-    - platform: state
-      entity_id: media_player.home_group
-      to: paused
-      for:
-        seconds: 30
-    - platform: state
-      entity_id: media_player.home_group
-      to: unavailable
-      for:
-        seconds: 30
-    - platform: state
-      entity_id: media_player.home_group
-      to: idle
-      for:
-        seconds: 30
-  condition:
-    condition: state
-    entity_id: switch.living_room_chromecast
-    state: 'on'
-  action:
-    service: remote.turn_off
-    entity_id: remote.living_room
-
 - alias: Remote - Amplifier - Turn off if still running
   trigger:
     platform: state

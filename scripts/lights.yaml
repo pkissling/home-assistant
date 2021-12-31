@@ -54,6 +54,8 @@ lights_ambient_turn_off:
   variables:
     transition: 0
   sequence:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.disable_circadian_lighting
     - service: light.turn_off
       entity_id: light.bedroom_wardrobe
       data:
@@ -82,4 +84,6 @@ lights_ambient_turn_off:
                 transition: "{{ transition }}"
     # keep script in state 'on' until script finished
     - delay:
-        seconds: "{{ transition }}"
+        seconds: "{{ transition + 60 }}"
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.disable_circadian_lighting

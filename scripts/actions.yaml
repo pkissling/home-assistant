@@ -4,8 +4,6 @@ good_night_google_assistant:
   mode: restart
   # Dim bedroom light down, if on
   sequence:
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.disable_circadian_lighting
     - choose:
         - conditions:
             - condition: state
@@ -96,14 +94,10 @@ good_night_google_assistant:
       data:
         transition: 300  # 5 min
     - delay: 300  # 5 mins
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.disable_circadian_lighting
 
 good_night:
   mode: restart
   sequence:
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.disable_circadian_lighting
     - service: media_player.turn_off
       entity_id: media_player.lg_webos_smart_tv
     - service: switch.turn_off
@@ -189,8 +183,6 @@ good_night:
       data:
         transition: 120  # 2 min
     - delay: 120  # 2 mins
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.disable_circadian_lighting
 
 good_morning:
   mode: restart

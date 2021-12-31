@@ -144,3 +144,36 @@
       device: Pioneer-AV-Receiver
       command: VolumeUp
       num_repeats: 25
+
+- alias: Remote - Turn off remote when Home Group stopped/paused casting for 30 seconds
+  trigger:
+    - platform: state
+      entity_id: media_player.home_group
+      to: 'off'
+      for:
+        seconds: 30
+    - platform: state
+      entity_id: media_player.home_group
+      to: paused
+      for:
+        seconds: 30
+    - platform: state
+      entity_id: media_player.home_group
+      to: unavailable
+      for:
+        seconds: 30
+    - platform: state
+      entity_id: media_player.home_group
+      to: idle
+      for:
+        seconds: 30
+  condition:
+    - condition: state
+      entity_id: switch.living_room_chromecast
+      state: 'on'
+    - condition: state
+      entity_id: media_player.lg_webos_smart_tv
+      state: 'off'
+  action:
+    service: remote.turn_off
+    entity_id: remote.living_room

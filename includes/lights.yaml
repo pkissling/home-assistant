@@ -12,6 +12,7 @@
 - platform: group
   name: Living Room
   entities:
+    - light.living_room_couch
     - light.living_room_lamp
     - light.living_room_tv
 

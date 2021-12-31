@@ -20,6 +20,7 @@
         entity: light.living_room
       entities:
         - light.living_room_lamp
+        - light.living_room_couch
         - light.living_room_tv
     - type: custom:fold-entity-row
       head:
@@ -137,22 +138,6 @@
         shortcuts:
           columns: 2
           buttons:
-            - type: service
-              icon: mdi:volume-minus
-              id: remote.send_command
-              data:
-                entity_id: remote.living_room
-                device: Pioneer-AV-Receiver
-                command: VolumeDown
-                num_repeats: 10
-            - type: service
-              icon: mdi:volume-plus
-              id: remote.send_command
-              data:
-                entity_id: remote.living_room
-                device: Pioneer-AV-Receiver
-                command: VolumeUp
-                num_repeats: 10
             - type: service
               icon: mdi:power
               id: media_player.turn_off

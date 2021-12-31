@@ -54,20 +54,17 @@ lights_ambient_turn_off:
   variables:
     transition: 0
   sequence:
-    - service: light.turn_on
+    - service: light.turn_off
       entity_id: light.bedroom_wardrobe
       data:
-        brightness: 0
         transition: "{{ transition }}"
-    - service: light.turn_on
+    - service: light.turn_off
       entity_id: light.living_room
       data:
-        brightness: 0
         transition: "{{ transition }}"
-    - service: light.turn_on
+    - service: light.turn_off
       entity_id: light.corridor_sideboard
       data:
-        brightness: 0
         transition: "{{ transition }}"
     - choose:
         - conditions:
@@ -75,15 +72,13 @@ lights_ambient_turn_off:
             entity_id: switch.guest_mode
             state: 'off'
           sequence:
-            - service: light.turn_on
+            - service: light.turn_off
               entity_id: light.study_shelf
               data:
-                brightness: 0
                 transition: "{{ transition }}"
-            - service: light.turn_on
+            - service: light.turn_off
               entity_id: light.study_floor_lamp
               data:
-                brightness: 0
                 transition: "{{ transition }}"
     # keep script in state 'on' until script finished
     - delay:

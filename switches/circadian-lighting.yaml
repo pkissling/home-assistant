@@ -10,7 +10,6 @@
     - light.bedroom_wardrobe
     - light.corridor_sideboard
 
-  initial_transition: 0
   disable_brightness_adjust: true
-  disable_entity: light.bedroom_wardrobe
-  disable_state: 'off'
+  disable_entity: input_boolean.disable_circadian_lighting
+  disable_state: 'on'

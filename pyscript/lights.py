@@ -41,6 +41,9 @@ def light_ambient_turn_on(
       # turn on night light mode
       input_boolean.turn_on(entity_id='input_boolean.night_light')
 
+      # disable circadian lighting
+      input_boolean.turn_on(entity_id='input_boolean.disable_circadian_lighting')
+
       # turn on light with low brightness
       light.turn_on(entity_id=light_entity_id, brightness=dim_brightness)
 
@@ -53,9 +56,14 @@ def light_ambient_turn_on(
       # turn off lights
       light.turn_off(entity_id=light_entity_id, transition=60)
 
-      # turn off night light
+      # sleep until light off
       task.sleep(60)
+
+      # turn off night light
       input_boolean.turn_off(entity_id='input_boolean.night_light')
+
+      # turn on circadian lighting
+      input_boolean.turn_off(entity_id='input_boolean.disable_circadian_lighting')
 
     log.info(f"END light_ambient_turn_on: light_entity_id={light_entity_id}")
 

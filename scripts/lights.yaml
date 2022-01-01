@@ -1,6 +1,7 @@
 ---
 
 lights_ambient_turn_on:
+  mode: restart
   variables:
     transition: 0
   sequence:
@@ -51,6 +52,7 @@ lights_ambient_turn_on:
         seconds: "{{ transition }}"
 
 lights_ambient_turn_off:
+  mode: restart
   variables:
     transition: 0
   sequence:

@@ -130,20 +130,15 @@
   trigger:
     platform: state
     entity_id: remote.living_room
-    from: 'off'
-    to: 'on'
-  condition:
-    condition: state
-    entity_id: remote.living_room
     attribute: current_activity
-    state: 'TV'
+    to: 'TV'
   action:
     service: remote.send_command
     entity_id: remote.living_room
     data:
       device: Pioneer-AV-Receiver
       command: VolumeUp
-      num_repeats: 25
+      num_repeats: 35
 
 - alias: Remote - Turn off remote when Home Group stopped/paused casting for 30 seconds
   trigger:

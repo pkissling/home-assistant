@@ -5,6 +5,7 @@
   entities:
     - light.bedroom_wardrobe
     - light.corridor_sideboard
+    - light.living_room_couch
     - light.living_room_lamp
     - light.living_room_tv
     - light.study_shelf

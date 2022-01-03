@@ -13,9 +13,6 @@ mqtt: !include includes/mqtt.yaml
 person: !include includes/persons.yaml
 wake_on_lan:
 
-# hacs
-circadian_lighting:
-
 # Include files with lists
 automation: !include_dir_merge_list automations
 binary_sensor: !include_dir_merge_list binary_sensors
@@ -31,6 +28,7 @@ input_text: !include_dir_merge_named input_texts
 script: !include_dir_merge_named scripts
 
 # Include 'includes' dir yamls
+adaptive_lighting: !include includes/adaptive_lighting.yaml
 device_tracker: !include includes/device_trackers.yaml
 google_assistant: !include includes/google_assistant.yaml
 influxdb: !include includes/influxdb.yaml

@@ -57,15 +57,7 @@ lights_ambient_turn_off:
     transition: 0
   sequence:
     - service: light.turn_off
-      entity_id: light.bedroom_wardrobe
-      data:
-        transition: "{{ transition }}"
-    - service: light.turn_off
-      entity_id: light.living_room
-      data:
-        transition: "{{ transition }}"
-    - service: light.turn_off
-      entity_id: light.corridor_sideboard
+      entity_id: light.ambient
       data:
         transition: "{{ transition }}"
     - choose:
@@ -74,14 +66,11 @@ lights_ambient_turn_off:
             entity_id: switch.guest_mode
             state: 'off'
           sequence:
-            - service: light.turn_off
-              entity_id: light.study_shelf
-              data:
-                transition: "{{ transition }}"
-            - service: light.turn_off
-              entity_id: light.study_floor_lamp
-              data:
-                transition: "{{ transition }}"
+            # turn off floor lamp and desk
+            service: light.turn_off
+            entity_id: light.study
+            data:
+              transition: "{{ transition }}"
     # keep script in state 'on' until script finished
     - delay:
-        seconds: "{{ transition + 60 }}"
+        seconds: "{{ transition }}"

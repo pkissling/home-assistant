@@ -66,9 +66,8 @@ lights_ambient_turn_off:
             entity_id: switch.guest_mode
             state: 'off'
           sequence:
-            # turn off floor lamp and desk
             service: light.turn_off
-            entity_id: light.study
+            entity_id: light.study_floor_lamp
             data:
               transition: "{{ transition }}"
     # keep script in state 'on' until script finished

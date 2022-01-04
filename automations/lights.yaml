@@ -212,3 +212,45 @@
     data:
       brightness: 100
       transition: 60  # 1 minute
+
+- alias: Light - Study Shelf - Brighter when home office mode on
+  trigger:
+    - platform: state
+      entity_id: input_boolean.home_office_mode
+      to: 'on'
+    - platform: state
+      entity_id: light.study_shelf
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: light.study_shelf
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.home_office_mode
+      state: 'on'
+  action:
+    - service: adaptive_lighting.set_manual_control
+      entity_id: switch.adaptive_lighting_default
+      data:
+        lights: light.study_shelf
+        manual_control: true
+    - service: light.turn_on
+      entity_id: light.study_shelf
+      data:
+        color_temp: 300
+
+- alias: Light - Study Shelf - Adaptive light when home office mode off
+  trigger:
+    platform: state
+    entity_id: input_boolean.home_office_mode
+    to: 'off'
+  condition:
+    - condition: state
+      entity_id: light.study_shelf
+      state: 'on'
+  action:
+    service: adaptive_lighting.set_manual_control
+    entity_id: switch.adaptive_lighting_default
+    data:
+      lights: light.study_shelf
+      manual_control: false

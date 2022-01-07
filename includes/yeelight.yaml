@@ -1,9 +1,0 @@
----
-
-devices:
-  192.168.0.11:
-    name: TV
-  192.168.0.13:
-    name: Lamp
-  192.168.0.47:
-    name: Floor Lamp

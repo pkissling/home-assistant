@@ -1,3 +1,6 @@
+# global set of all entity_ids currently in night light mode
+night_light_entity_ids = set()
+
 @service
 def light_ambient_turn_on(
   light_entity_id=None,
@@ -38,8 +41,8 @@ def light_ambient_turn_on(
 
       log.info(f"Turn {light_entity_id} to low brightness")
 
-      # turn on night light mode
-      input_boolean.turn_on(entity_id='input_boolean.night_light')
+      # add night light marker
+      night_light_entity_ids.add(light_entity_id)
 
       # turn on light with low brightness
       light.turn_on(entity_id=light_entity_id, brightness=dim_brightness)
@@ -53,11 +56,11 @@ def light_ambient_turn_on(
       # turn off lights
       light.turn_off(entity_id=light_entity_id, transition=60)
 
-      # sleep until light off
+      # wait until light is off
       task.sleep(60)
 
-      # turn off night light
-      input_boolean.turn_off(entity_id='input_boolean.night_light')
+      # remove night light marker
+      night_light_entity_ids.remove(light_entity_id)
 
     log.info(f"END light_ambient_turn_on: light_entity_id={light_entity_id}")
 
@@ -68,7 +71,7 @@ def is_sun():
 def needs_full_brightness(light_entity_id):
   return (state.get('script.lights_ambient_turn_on') == 'on'
     or (is_light_on(light_entity_id)
-      and input_boolean.night_light == 'off'))
+      and light_entity_id not in night_light_entity_ids))
 
 def is_light_on(light_entity_id):
   return (state.get(light_entity_id) == 'on'

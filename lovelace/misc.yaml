@@ -76,6 +76,8 @@
   points_per_hour: 60
   update_interval: 30
   line_width: 2
+  lower_bound: 0
+  upper_bound: 100
 
 # Tab
 - type: entities

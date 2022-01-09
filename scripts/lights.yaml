@@ -22,15 +22,24 @@ lights_ambient_turn_on:
                 brightness: 80
                 transition: "{{ transition }}"
             - service: input_text.set_value
-              entity_id: input_text.old_brightness_living_room
+              entity_id: input_text.old_brightness_living_room_couch
               data:
                 value: 255
+            - service: input_text.set_value
+              entity_id: input_text.old_brightness_living_room_tv
+              data:
+                value: 180
       default:
-        service: light.turn_on
-        entity_id: light.living_room
-        data:
-          brightness: 255
-          transition: "{{ transition }}"
+        - service: light.turn_on
+          entity_id: light.living_room
+          data:
+            brightness: 255
+            transition: "{{ transition }}"
+        - service: light.turn_on
+          entity_id: light.living_room_tv
+          data:
+            brightness: 180
+            transition: "{{ transition }}"
     - service: light.turn_on
       entity_id: light.corridor_sideboard
       data:

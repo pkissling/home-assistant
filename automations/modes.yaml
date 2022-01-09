@@ -111,11 +111,20 @@
     state: 'on'
   action:
     - service: input_text.set_value
-      entity_id: input_text.old_brightness_living_room
+      entity_id: input_text.old_brightness_living_room_couch
       data:
-        value: "{{ state_attr('light.living_room', 'brightness') }}"
+        value: "{{ state_attr('light.living_room_couch', 'brightness') }}"
     - service: light.turn_on
       entity_id: light.living_room
+      data:
+        brightness: 80
+        transition: 60
+    - service: input_text.set_value
+      entity_id: input_text.old_brightness_living_room_tv
+      data:
+        value: "{{ state_attr('light.living_room_tv', 'brightness') }}"
+    - service: light.turn_on
+      entity_id: light.living_room_tv
       data:
         brightness: 80
         transition: 60
@@ -129,14 +138,24 @@
     - condition: state
       entity_id: light.living_room
       state: 'on'
-    - "{{ states('input_text.old_brightness_living_room') != '-' }}"
+    - "{{ states('input_text.old_brightness_living_room_couch') != '-' }}"
+    - "{{ states('input_text.old_brightness_living_room_tv') != '-' }}"
   action:
     - service: light.turn_on
       entity_id: light.living_room
       data:
-        brightness: "{{ states('input_text.old_brightness_living_room') }}"
+        brightness: "{{ states('input_text.old_brightness_living_room_couch') }}"
         transition: 10
     - service: input_text.set_value
-      entity_id: input_text.old_brightness_living_room
+      entity_id: input_text.old_brightness_living_room_couch
+      data:
+        value: '-'
+    - service: light.turn_on
+      entity_id: light.living_room_tv
+      data:
+        brightness: "{{ states('input_text.old_brightness_living_room_tv') }}"
+        transition: 10
+    - service: input_text.set_value
+      entity_id: input_text.old_brightness_living_room_tv
       data:
         value: '-'

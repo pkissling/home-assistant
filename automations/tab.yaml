@@ -23,6 +23,10 @@
       data:
         topic: wallpanel/corridor/command
         payload: '{"relaunch":true}'
+    - service: mqtt.publish
+      data:
+        topic: wallpanel/corridor/command
+        payload: '{"clearCache":true}'
 
 - alias: Tab - Speak - Warn if leaving and window open
   trigger:

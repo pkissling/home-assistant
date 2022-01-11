@@ -19,6 +19,12 @@
   action:
     - service: switch.turn_off
       entity_id: switch.display_tab_corridor
+    - wait_for_trigger:
+        platform: state
+        entity_id: binary_sensor.display_corridor_tab
+        to: 'off'
+      timeout: '00:02:00'
+      continue_on_timeout: false
     - service: mqtt.publish
       data:
         topic: wallpanel/corridor/command

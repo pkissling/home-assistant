@@ -1,6 +1,7 @@
 ---
 
 - platform: mqtt
+  object_id: motion_corridor_tab
   name: Motion Corridor Tab
   state_topic: wallpanel/corridor/sensor/motion
   availability_topic: wallpanel/corridor/connection
@@ -9,6 +10,7 @@
   device_class: motion
 
 - platform: mqtt
+  object_id: wake_corridor_tab
   name: Wake Corridor Tab
   state_topic: wallpanel/corridor/command
   availability_topic: wallpanel/corridor/connection
@@ -16,6 +18,7 @@
   payload_off: '{"wake":false}'
 
 - platform: mqtt
+  object_id: display_corridor_tab
   name: Display Corridor Tab
   state_topic: wallpanel/corridor/state
   availability_topic: wallpanel/corridor/connection
@@ -24,6 +27,7 @@
   value_template: "{{ value_json.screenOn }}"
 
 - platform: mqtt
+  object_id: charging_corridor_tab
   name: Charging Corridor Tab
   state_topic: wallpanel/corridor/sensor/battery
   availability_topic: wallpanel/corridor/connection

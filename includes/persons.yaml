@@ -12,3 +12,4 @@
   device_trackers:
     - device_tracker.iphonesandraprivate
     - device_tracker.sandrasplewatch
+    - device_tracker.tado_sandra_iphone

@@ -65,6 +65,10 @@ lights_ambient_turn_off:
   variables:
     transition: 0
   sequence:
+    - service: adaptive_lighting.set_manual_control
+      entity_id: switch.adaptive_lighting_default
+    - service: adaptive_lighting.set_manual_control
+      entity_id: switch.adaptive_lighting_living_room
     - service: light.turn_off
       entity_id: light.ambient
       data:
@@ -82,3 +86,12 @@ lights_ambient_turn_off:
     # keep script in state 'on' until script finished
     - delay:
         seconds: "{{ transition }}"
+    - wait_for_trigger:
+        platform: state
+        entity_id: light.ambient
+        to: 'on'
+      timeout:
+        seconds: 10
+      continue_on_timeout: false
+    - service: light.turn_off
+      entity_id: light.ambient

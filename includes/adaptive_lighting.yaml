@@ -1,17 +1,9 @@
 ---
 
-- name: bedroom
+- name: default
   lights:
     - light.bedroom_wardrobe
-  take_over_control: true
-
-- name: corridor
-  lights:
     - light.corridor_sideboard
-  take_over_control: true
-
-- name: study
-  lights:
     - light.study_floor_lamp
     - light.study_shelf
   take_over_control: true

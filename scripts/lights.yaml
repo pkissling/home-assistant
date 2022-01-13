@@ -28,7 +28,7 @@ lights_ambient_turn_on:
             - service: input_text.set_value
               entity_id: input_text.old_brightness_living_room_tv
               data:
-                value: 180
+                value: 130
       default:
         - service: light.turn_on
           entity_id: light.living_room

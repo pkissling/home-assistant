@@ -14,4 +14,4 @@
     - light.living_room_tv
     - light.living_room_lamp
   take_over_control: true
-  min_color_temp: 2200
+  min_color_temp: 2300

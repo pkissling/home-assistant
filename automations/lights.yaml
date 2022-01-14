@@ -233,7 +233,7 @@
       state: 'off'
   action:
     - service: adaptive_lighting.set_manual_control
-      entity_id: switch.adaptive_lighting_default
+      entity_id: switch.adaptive_lighting_study
       data:
         lights: light.study_shelf
         manual_control: true
@@ -253,7 +253,7 @@
       state: 'on'
   action:
     service: adaptive_lighting.set_manual_control
-    entity_id: switch.adaptive_lighting_default
+    entity_id: switch.adaptive_lighting_study
     data:
       lights: light.study_shelf
       manual_control: false

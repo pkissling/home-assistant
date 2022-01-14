@@ -4,8 +4,6 @@
   lights:
     - light.bedroom_wardrobe
     - light.corridor_sideboard
-    - light.study_floor_lamp
-    - light.study_shelf
   take_over_control: true
 
 - name: living_room
@@ -13,5 +11,12 @@
     - light.living_room_couch
     - light.living_room_tv
     - light.living_room_lamp
+  take_over_control: true
+  min_color_temp: 2300
+
+- name: study
+  lights:
+    - light.study_floor_lamp
+    - light.study_shelf
   take_over_control: true
   min_color_temp: 2300

@@ -8,7 +8,7 @@
           {{
             states('sensor.motion_corridor_lightlevel') | int > 40
               or
-            '08:55' < states('sensor.time') < '15:55'
+            '08:54' < states('sensor.time') < '15:54'
           }}
         {% else %}
           {{ is_state('sun.sun', 'above_horizon') }}

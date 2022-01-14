@@ -554,7 +554,6 @@
     - service: notify.patrick
       data:
         title: Thermostat
-        # yamllint disable-line rule:line-length
         message: "Reducing temperature in {{ trigger.to_state.name }} from {{ state_attr(trigger.entity_id, 'temperature') }} to 22.5°C."
     - service: climate.set_temperature
       data:

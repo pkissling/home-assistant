@@ -65,10 +65,6 @@ lights_ambient_turn_off:
   variables:
     transition: 0
   sequence:
-    - service: adaptive_lighting.set_manual_control
-      entity_id: switch.adaptive_lighting_default
-    - service: adaptive_lighting.set_manual_control
-      entity_id: switch.adaptive_lighting_living_room
     - service: light.turn_off
       entity_id: light.ambient
       data:

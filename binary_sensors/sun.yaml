@@ -4,7 +4,7 @@
   sensors:
     sun:
       value_template: >
-        {% if not is_state('sensor.motion_corridor_lightlevel', 'unknown') %}
+        {% if not is_state('sensor.motion_corridor_lightlevel', 'unknown') and not is_state('sensor.motion_corridor_lightlevel', 'unavailable') %}
           {{
             states('sensor.motion_corridor_lightlevel') | int > 40
               or

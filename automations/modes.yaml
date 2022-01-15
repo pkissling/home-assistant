@@ -159,3 +159,21 @@
       entity_id: input_text.old_brightness_living_room_tv
       data:
         value: '-'
+
+- alias: Mode - Guest Mode - Turn off daily vacuum when guest mode on
+  trigger:
+    platform: state
+    entity_id: input_boolean.guest_mode
+    to: 'on'
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.vacuum_daily_cleanup
+
+- alias: Mode - Guest Mode - Turn on daily vacuum when guest mode off
+  trigger:
+    platform: state
+    entity_id: input_boolean.guest_mode
+    to: 'off'
+  action:
+    service: input_boolean.turn_on
+    entity_id: input_boolean.vacuum_daily_cleanup

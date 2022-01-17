@@ -517,45 +517,41 @@
       attribute: temperature
       above: 22.5
       for:
-        minutes: 3
+        minutes: 1
     - platform: numeric_state
       entity_id: climate.living_room
       attribute: temperature
       above: 22.5
       for:
-        minutes: 3
+        minutes: 1
     - platform: numeric_state
       entity_id: climate.bedroom
       attribute: temperature
       above: 22.5
       for:
-        minutes: 3
+        minutes: 1
     - platform: numeric_state
       entity_id: climate.study
       attribute: temperature
       above: 22.5
       for:
-        minutes: 3
+        minutes: 1
     - platform: numeric_state
       entity_id: climate.bathroom
       attribute: temperature
       above: 22.5
       for:
-        minutes: 3
+        minutes: 1
     - platform: numeric_state
       entity_id: climate.toilet
       attribute: temperature
       above: 22.5
       for:
-        minutes: 3
+        minutes: 1
   condition:
     - "{{ is_state(trigger.entity_id, 'heat') }}"
   action:
-    - service: notify.patrick
-      data:
-        title: Thermostat
-        message: "Reducing temperature in {{ trigger.to_state.name }} from {{ state_attr(trigger.entity_id, 'temperature') }} to 22.5°C."
-    - service: climate.set_temperature
-      data:
-        entity_id: "{{ trigger.entity_id }}"
-        temperature: 22.5
+    service: climate.set_temperature
+    data:
+      entity_id: "{{ trigger.entity_id }}"
+      temperature: 22.5

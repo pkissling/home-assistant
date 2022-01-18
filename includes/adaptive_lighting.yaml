@@ -1,10 +1,17 @@
 ---
 
-- name: default
+- name: bedroom
   lights:
     - light.bedroom_wardrobe
+  take_over_control: true
+  sleep_transition: 60
+
+- name: corridor
+  lights:
     - light.corridor_sideboard
   take_over_control: true
+  min_color_temp: 2300
+  sleep_transition: 60
 
 - name: living_room
   lights:
@@ -13,6 +20,7 @@
     - light.living_room_lamp
   take_over_control: true
   min_color_temp: 2300
+  sleep_transition: 60
 
 - name: study
   lights:
@@ -20,3 +28,4 @@
     - light.study_shelf
   take_over_control: true
   min_color_temp: 2300
+  sleep_transition: 60

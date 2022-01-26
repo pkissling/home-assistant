@@ -65,6 +65,12 @@ lights_ambient_turn_off:
   variables:
     transition: 0
   sequence:
+    - service: switch.turn_off
+      entity_id:
+        - switch.adaptive_lighting_bedroom
+        - switch.adaptive_lighting_corridor
+        - switch.adaptive_lighting_living_room
+        - switch.adaptive_lighting_study
     - service: light.turn_off
       entity_id: light.ambient
       data:
@@ -85,9 +91,14 @@ lights_ambient_turn_off:
     - wait_for_trigger:
         platform: state
         entity_id: light.ambient
-        to: 'on'
+        to: 'off'
       timeout:
-        seconds: 10
-      continue_on_timeout: false
+        minutes: 10
     - service: light.turn_off
       entity_id: light.ambient
+    - service: switch.turn_on
+      entity_id:
+        - switch.adaptive_lighting_bedroom
+        - switch.adaptive_lighting_corridor
+        - switch.adaptive_lighting_living_room
+        - switch.adaptive_lighting_study

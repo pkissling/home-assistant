@@ -30,8 +30,8 @@ def light_ambient_turn_on(
         # sleep for x mins before turning off lights
         task.sleep(dim_after_mins * 60)
 
-        # dim light iff its still on.
-        if is_light_on(light_entity_id):
+        # dim light if required.
+        if adjust_light(light_entity_id):
             light.turn_on(entity_id=light_entity_id, transition=60, brightness=dim_brightness)
 
     else:
@@ -80,3 +80,6 @@ def is_light_on(light_entity_id):
 def is_vacuum_running():
    return (vacuum.xiaomi_vacuum_cleaner == 'cleaning'
     or vacuum.xiaomi_vacuum_cleaner == 'returning')
+
+def adjust_light(light_entity_id):
+    return (is_light_on(light_entity_id) and state.get('script.lights_ambient_turn_on') == 'off')

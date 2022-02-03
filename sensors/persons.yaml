@@ -4,9 +4,4 @@
   sensors:
     person_guest:
       friendly_name: Guest
-      value_template: >
-        {% if is_state('input_boolean.person_guest', 'on') %}
-          home
-        {% else %}
-          not_home
-        {% endif %}
+      value_template: "{{ is_state('input_boolean.person_guest', 'on') | iif('home', 'not_home') }}"

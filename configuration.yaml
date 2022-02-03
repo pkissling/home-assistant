@@ -40,4 +40,3 @@ pyscript: !include includes/pyscript.yaml
 recorder: !include includes/recorder.yaml
 spotify: !include includes/spotify.yaml
 tts: !include includes/tts.yaml
-webostv: !include includes/webostv.yaml

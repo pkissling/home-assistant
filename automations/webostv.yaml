@@ -1,0 +1,11 @@
+---
+
+
+- alias: Web OS TV - Daily cleanup when Residents not home
+  trigger:
+    - platform: webostv.turn_on
+      entity_id: media_player.lg_webos_smart_tv
+  action:
+    - service: wake_on_lan.send_magic_packet
+      data:
+        mac: !secret webostv_mac

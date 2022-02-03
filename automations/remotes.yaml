@@ -71,12 +71,7 @@
           entity_id: remote.living_room
           data:
             device: Pioneer-AV-Receiver
-            command: >
-              {% if state_attr('remote.living_room', 'current_activity') == 'Chromecast' %}
-                InputHdmi1
-              {% else %}
-                InputTv
-              {% endif %}
+            command: "{{ state_attr('remote.living_room', 'current_activity') == 'Chromecast' | iif('InputHdmi1', 'InputTv') }}"
       until:
         condition: numeric_state
         entity_id: sensor.plug_living_room_amplifier

@@ -17,6 +17,8 @@ good_night_google_assistant:
                 transition: 120  # 2 min
     - service: media_player.turn_off
       entity_id: media_player.lg_webos_smart_tv
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.home_office_mode
     - service: switch.turn_off
       entity_id: switch.remote_off
     - service: media_player.volume_set
@@ -100,6 +102,8 @@ good_night:
   sequence:
     - service: media_player.turn_off
       entity_id: media_player.lg_webos_smart_tv
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.home_office_mode
     - service: switch.turn_off
       entity_id: switch.remote_off
     - choose:

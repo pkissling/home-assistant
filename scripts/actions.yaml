@@ -28,8 +28,8 @@ good_night_google_assistant:
     - wait_for_trigger:
         platform: state
         entity_id: media_player.bedroom
-        from: playing
-        to: 'off'
+        attribute: app_name
+        to: Backdrop
       continue_on_timeout: false
       timeout: '0:15:00'
     - choose:

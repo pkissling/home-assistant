@@ -41,6 +41,8 @@
     - condition: state
       entity_id: group.residents
       state: home
+    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
+    - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'returning') }}"
   action:
     service: input_boolean.turn_on
     entity_id: input_boolean.home_office_mode

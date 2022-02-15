@@ -10,7 +10,7 @@
 - platform: average
   name: Motion Corridor Lightlevel
   duration:
-    minutes: 20
+    minutes: 5
   precision: 0
   entities:
     - sensor.motion_corridor_left_lightlevel

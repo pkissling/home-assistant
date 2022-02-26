@@ -13,6 +13,12 @@
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.person_guest
+    - service: notify.patrick
+      data:
+        title: Device Tracker
+        message: >
+          Device Tracker might be out of sync.
+          Door opened without resident home.
     - wait_for_trigger:
         platform: state
         entity_id: light.corridor_sideboard

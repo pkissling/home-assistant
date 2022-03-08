@@ -6,15 +6,14 @@
       value_template: >
         {% if is_number(states('sensor.motion_corridor_lightlevel')) %}
           {{
-            '09:00' <= states('sensor.time')
+            is_state('sensor.season', 'winter') | iif('09:00', '08:00') <= states('sensor.time')
               and
             (
               states('sensor.motion_corridor_lightlevel') | int > 40
                 or
-              states('sensor.time') < '15:55'
+              states('sensor.time') < is_state('sensor.season', 'winter') | iif('16:00', '17:00')
             )
           }}
         {% else %}
           {{ is_state('sun.sun', 'above_horizon') }}
         {% endif %}
-      delay_off: 00:05:00

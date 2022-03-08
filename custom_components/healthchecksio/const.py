@@ -2,7 +2,7 @@
 # Base component constants
 DOMAIN = "healthchecksio"
 DOMAIN_DATA = f"{DOMAIN}_data"
-INTEGRATION_VERSION = "21.11.1"
+INTEGRATION_VERSION = "22.2.0"
 PLATFORMS = ["binary_sensor"]
 REQUIRED_FILES = [
     ".translations/en.json",

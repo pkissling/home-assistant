@@ -9,7 +9,7 @@
             is_state('sensor.season', 'winter') | iif('09:00', '08:00') <= states('sensor.time')
               and
             (
-              states('sensor.motion_corridor_lightlevel') | int > 40
+              states('sensor.motion_corridor_lightlevel') | int > 60
                 or
               states('sensor.time') < is_state('sensor.season', 'winter') | iif('16:00', '17:00')
             )

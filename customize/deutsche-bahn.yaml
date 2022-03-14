@@ -1,7 +1,10 @@
 ---
 
-sensor.departure_s7:
+sensor.departure_s7_to_hauptbahnhof:
   icon: mdi:train
 
-sensor.departure_u6:
+sensor.departure_u6_to_sendlinger_tor:
+  icon: mdi:subway
+
+sensor.departure_s7_to_marienplatz:
   icon: mdi:subway

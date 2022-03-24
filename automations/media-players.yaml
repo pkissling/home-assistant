@@ -55,7 +55,7 @@
   action:
     service: media_player.volume_set
     data:
-      entity_id: "{{ trigger.entity_id }}"
+      entity_id: media_player.kitchen
       volume_level: 0.3
 
 - alias: Media Player - Kitchen - Reset Volume
@@ -72,7 +72,7 @@
   action:
     service: media_player.volume_set
     data:
-      entity_id: "{{ trigger.entity_id }}"
+      entity_id: media_player.kitchen
       volume_level: 0.1
 
 - alias: Media Player - Bathroom - Increase Volume on Spotify playing
@@ -84,7 +84,7 @@
   action:
     service: media_player.volume_set
     data:
-      entity_id: "{{ trigger.entity_id }}"
+      entity_id: media_player.bathroom
       volume_level: 0.3
 
 - alias: Media Player - Bathroom - Reset Volume
@@ -101,7 +101,7 @@
   action:
     service: media_player.volume_set
     data:
-      entity_id: "{{ trigger.entity_id }}"
+      entity_id: media_player.bathroom
       volume_level: 0.15
 
 - alias: Media Player - Bedroom - Increase Volume on Spotify playing
@@ -113,7 +113,7 @@
   action:
     service: media_player.volume_set
     data:
-      entity_id: "{{ trigger.entity_id }}"
+      entity_id: media_player.bedroom
       volume_level: 0.3
 
 - alias: Media Player - Bedroom - Reset Volume
@@ -130,7 +130,7 @@
   action:
     service: media_player.volume_set
     data:
-      entity_id: "{{ trigger.entity_id }}"
+      entity_id: media_player.bedroom
       volume_level: 0.15
 
 - alias: Media Player - Study - Increase Volume on Spotify playing
@@ -146,7 +146,7 @@
   action:
     service: media_player.volume_set
     data:
-      entity_id: "{{ trigger.entity_id }}"
+      entity_id: media_player.study
       volume_level: 0.3
 
 - alias: Media Player - Study - Reset Volume
@@ -167,7 +167,7 @@
   action:
     service: media_player.volume_set
     data:
-      entity_id: "{{ trigger.entity_id }}"
+      entity_id: media_player.study
       volume_level: 0.1
 
 - alias: Media Player - Chromecast - Increase Volume on Spotify playing

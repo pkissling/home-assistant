@@ -162,6 +162,19 @@
       data:
         value: '-'
 
+- alias: Mode - TV Mode - Turn off when light off
+  trigger:
+    - platform: state
+      entity_id: light.living_room
+      to: 'off'
+  condition:
+    - condition: state
+      entity_id: input_boolean.tv_mode
+      state: 'on'
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.tv_mode
+
 - alias: Mode - Guest Mode - Turn off daily vacuum when guest mode on
   trigger:
     platform: state

@@ -133,7 +133,7 @@
     data:
       device: Pioneer-AV-Receiver
       command: VolumeUp
-      num_repeats: 35
+      num_repeats: 45
 
 - alias: Remote - Turn off remote when Home Group stopped/paused casting for 30 seconds
   trigger:

@@ -77,6 +77,10 @@ My personal configuration for [Home Assistant](https://www.home-assistant.io) ru
 
 * [Aqara Door and Window Sensor](https://www.aqara.com/us/door_and_window_sensor.html)
 
+### Remote Controls
+
+* [Aqara Cube](https://www.aqara.com/us/cube.html)
+
 ## UI
 
 UI heavily influenced by [@basnijholt](https://github.com/basnijholt/home-assistant-config)

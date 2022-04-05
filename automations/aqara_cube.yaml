@@ -1,0 +1,107 @@
+---
+
+- alias: Aqara Cube - Living Room light off
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: mi_magic_cube
+  condition:
+    - "{{ 5000 <= trigger.event.data.event <= 5999 }}"
+  action:
+    - service: tts.google_translate_say
+      entity_id: media_player.living_room
+      data:
+        message: Lights off
+    - service: light.turn_off
+      entity_id: light.living_room
+
+- alias: Aqara Cube - Turn on light
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: mi_magic_cube
+  condition:
+    - "{{ 2000 <= trigger.event.data.event <= 2999 }}"
+    - condition: state
+      entity_id: light.living_room
+      state: 'off'
+  action:
+    - service: tts.google_translate_say
+      entity_id: media_player.living_room
+      data:
+        message: Lights on
+    - service: light.turn_on
+      entity_id: light.living_room
+      # TODO set brightness
+
+- alias: Aqara Cube - Toggle TV Mode
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: mi_magic_cube
+  condition:
+    - "{{ 2000 <= trigger.event.data.event <= 2999 }}"
+    - condition: state
+      entity_id: light.living_room
+      state: 'on'
+  action:
+    - service: tts.google_translate_say
+      entity_id: media_player.living_room
+      data:
+        message: Toggle TV Mode
+    - service: input_boolean.toggle
+      entity_id: input_boolean.tv_mode
+
+- alias: Aqara Cube - Radio off
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: mi_magic_cube
+  condition:
+    - "{{ 4000 <= trigger.event.data.event <= 4999 }}"
+  action:
+    - service: tts.google_translate_say
+      entity_id: media_player.living_room
+      data:
+        message: Radio off
+    - service: media_player.turn_off
+      entity_id: all
+
+- alias: Aqara Cube - Radio on
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: mi_magic_cube
+  condition:
+    - "{{ 3000 <= trigger.event.data.event <= 3999 }}"
+  action:
+    - service: tts.google_translate_say
+      entity_id: media_player.living_room
+      data:
+        message: Radio on
+    - service: media_player.play_media
+      entity_id: media_player.home_group
+      data:
+        media_content_id: http://nrj.de/muenchen
+        media_content_type: music
+
+- alias: Aqara Cube - TV off
+  trigger:
+    platform: event
+    event_type: deconz_event
+    event_data:
+      id: mi_magic_cube
+  condition:
+    - "{{ 1000 <= trigger.event.data.event <= 1999 }}"
+  action:
+    - service: tts.google_translate_say
+      entity_id: media_player.living_room
+      data:
+        message: TV off
+    - service: media_player.turn_off
+      entity_id: media_player.lg_webos_smart_tv

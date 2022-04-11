@@ -84,8 +84,8 @@
     - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
     - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'returning') }}"
   action:
-    service: switch.turn_on
-    entity_id: switch.study_lamp
+    service: light.turn_on
+    entity_id: light.study_desk
 
 - alias: Light - Study Desk - Turn off when home office mode off
   trigger:
@@ -98,8 +98,8 @@
       for:
         minutes: 30
   action:
-    service: switch.turn_off
-    entity_id: switch.study_lamp
+    service: light.turn_off
+    entity_id: light.study_desk
 
 - alias: Light - Study Shelf - Increase brightness on motion
   trigger:
@@ -251,11 +251,11 @@
     to: 'off'
   condition:
     - condition: state
-      entity_id: light.study_shelf
+      entity_id: light.study
       state: 'on'
   action:
     service: adaptive_lighting.set_manual_control
     entity_id: switch.adaptive_lighting_study
     data:
-      lights: light.study_shelf
+      lights: light.study
       manual_control: false

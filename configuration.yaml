@@ -9,7 +9,6 @@ http: !include includes/http.yaml
 logger: !include includes/logger.yaml
 lovelace: !include includes/lovelace.yaml
 media_extractor: !include includes/media_extractor.yaml
-mqtt: !include includes/mqtt.yaml
 person: !include includes/persons.yaml
 wake_on_lan:
 

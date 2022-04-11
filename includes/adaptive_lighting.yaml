@@ -26,6 +26,7 @@
   lights:
     - light.study_floor_lamp
     - light.study_shelf
+    - light.study_desk
   take_over_control: true
   min_color_temp: 2300
   sleep_transition: 60

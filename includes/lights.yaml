@@ -22,10 +22,6 @@
   entities:
     - light.bedroom_wardrobe
 
-- platform: switch
-  name: Desk
-  entity_id: switch.study_lamp
-
 - platform: group
   name: Study
   entities:

@@ -1,6 +1,0 @@
----
-
-broker: home-assistant
-client_id: home-assistant
-username: !secret mytt_username
-password: !secret mytt_password

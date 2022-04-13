@@ -24,21 +24,18 @@
     departure_s7_to_hauptbahnhof:
       friendly_name: S7 - Hauptbahnhof
       value_template: >
-        {% set departure = strptime(state_attr('sensor.harras_munchen_to_hauptbahnhof_munchen', 'departure'), '%H:%M') %}
-        {% set delay =  state_attr('sensor.harras_munchen_to_hauptbahnhof_munchen', 'delay') %}
-        {% set departure_with_delay = (departure + timedelta(minutes=delay)).strftime('%H:%M') %}
-        {{ departure_with_delay }} & {{ state_attr('sensor.harras_munchen_to_hauptbahnhof_munchen', 'next') }}
+        {% set departure = state_attr('sensor.harras_munchen_to_hauptbahnhof_munchen', 'departure') %}
+        {% set delay = state_attr('sensor.harras_munchen_to_hauptbahnhof_munchen', 'delay') %}
+        {{ departure }} (+{{ delay }}) & {{ state_attr('sensor.harras_munchen_to_hauptbahnhof_munchen', 'next') }}
     departure_u6_to_sendlinger_tor:
       friendly_name: U6 - Sendlinger Tor
       value_template: >
-        {% set departure = strptime(state_attr('sensor.harras_munchen_to_sendlinger_tor_munchen', 'departure'), '%H:%M') %}
-        {% set delay =  state_attr('sensor.harras_munchen_to_sendlinger_tor_munchen', 'delay') %}
-        {% set departure_with_delay = (departure + timedelta(minutes=delay)).strftime('%H:%M') %}
-        {{ departure_with_delay }} & {{ state_attr('sensor.harras_munchen_to_sendlinger_tor_munchen', 'next') }}
+        {% set departure = state_attr('sensor.harras_munchen_to_sendlinger_tor_munchen', 'departure') %}
+        {% set delay = state_attr('sensor.harras_munchen_to_sendlinger_tor_munchen', 'delay') %}
+        {{ departure }} (+{{ delay }}) & {{ state_attr('sensor.harras_munchen_to_sendlinger_tor_munchen', 'next') }}
     departure_s7_to_marienplatz:
       friendly_name: S7 - Marienplatz
       value_template: >
-        {% set departure = strptime(state_attr('sensor.harras_munchen_to_marienplatz_munchen', 'departure'), '%H:%M') %}
-        {% set delay =  state_attr('sensor.harras_munchen_to_marienplatz_munchen', 'delay') %}
-        {% set departure_with_delay = (departure + timedelta(minutes=delay)).strftime('%H:%M') %}
-        {{ departure_with_delay }} & {{ state_attr('sensor.harras_munchen_to_marienplatz_munchen', 'next') }}
+        {% set departure = state_attr('sensor.harras_munchen_to_marienplatz_munchen', 'departure') %}
+        {% set delay = state_attr('sensor.harras_munchen_to_marienplatz_munchen', 'delay') %}
+        {{ departure }} (+{{ delay }}) & {{ state_attr('sensor.harras_munchen_to_marienplatz_munchen', 'next') }}

@@ -1,0 +1,172 @@
+---
+
+# Temp
+- platform: mqtt
+  name: pi_hole_cpu_thermal_1_temperature
+  state_topic: glances/pihole/sensors/cpu_thermal_1/value
+  unit_of_measurement: '°C'
+  icon: mdi:thermometer
+- platform: mqtt
+  name: home_assistant_cpu_thermal_1_temperature
+  state_topic: glances/home-assistant/sensors/cpu_thermal_1/value
+  unit_of_measurement: '°C'
+  icon: mdi:thermometer
+- platform: mqtt
+  name: diskstation_physical_id_0_temperature
+  state_topic: glances/diskstation/sensors/Physical_id_0/value
+  unit_of_measurement: '°C'
+  icon: mdi:thermometer
+
+# Memory
+- platform: mqtt
+  name: pi_hole_ram_used_percent
+  state_topic: glances/pihole/mem/percent
+  unit_of_measurement: '%'
+  icon: mdi:memory
+- platform: mqtt
+  name: home_assistant_ram_used_percent
+  state_topic: glances/home-assistant/mem/percent
+  unit_of_measurement: '%'
+  icon: mdi:memory
+- platform: mqtt
+  name: diskstation_ram_used_percent
+  state_topic: glances/diskstation/mem/percent
+  unit_of_measurement: '%'
+  icon: mdi:memory
+
+# CPU usage
+- platform: mqtt
+  name: pi_hole_cpu_used
+  state_topic: glances/pihole/cpu/total
+  unit_of_measurement: '%'
+  icon: mdi:cpu-32-bit
+- platform: mqtt
+  name: home_assistant_cpu_used
+  state_topic: glances/home-assistant/cpu/total
+  unit_of_measurement: '%'
+  icon: mdi:cpu-32-bit
+- platform: mqtt
+  name: diskstation_cpu_used
+  state_topic: glances/diskstation/cpu/total
+  unit_of_measurement: '%'
+  icon: mdi:cpu-32-bit
+
+# CPU load
+- platform: mqtt
+  name: pi_hole_cpu_load
+  state_topic: glances/pihole/load/min15
+  icon: mdi:cpu-32-bit
+- platform: mqtt
+  name: home_assistant_cpu_load
+  state_topic: glances/home-assistant/load/min15
+  icon: mdi:cpu-32-bit
+- platform: mqtt
+  name: diskstation_cpu_load
+  state_topic: glances/diskstation/load/min15
+  icon: mdi:cpu-32-bit
+
+# Disk space
+- platform: mqtt
+  name: pi_hole_etc_hostname_used_percent
+  state_topic: glances/pihole/fs/_etc_hostname/percent
+  unit_of_measurement: '%'
+  icon: mdi:harddisk
+- platform: mqtt
+  name: home_assistant_etc_hostname_used_percent
+  state_topic: glances/home-assistant/fs/_etc_hostname/percent
+  unit_of_measurement: '%'
+  icon: mdi:harddisk
+- platform: mqtt
+  name: diskstation_etc_hostname_used_percent
+  state_topic: glances/diskstation/fs/_etc_hostname/percent
+  unit_of_measurement: '%'
+  icon: mdi:harddisk
+
+# Disk space
+- platform: mqtt
+  name: pi_hole_uptime
+  state_topic: glances/pihole/uptime/seconds
+  icon: mdi:clock
+  value_template: >
+    {%- set uptime = value | int / 60 | round -%}
+    {%- set sep = ', ' -%}
+    {%- set TIME_MAP = {
+        'week': (uptime / 10080) % 10080,
+        'day': (uptime / 1440) % 7,
+        'hour': (uptime / 60) % 24,
+        'minute': (uptime % 60)
+      } -%}
+
+    {%- for unit, duration in TIME_MAP.items() if duration >= 1 -%}
+      {%- if not loop.first -%}
+        {{ sep }}
+      {%- endif -%}
+
+      {{ (duration | string).split('.')[0] }} {{ unit }}
+
+      {%- if duration >= 2 -%}
+        s
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if uptime < 1 -%}
+      just now
+    {%- endif -%}
+- platform: mqtt
+  name: home_assistant_uptime
+  state_topic: glances/home-assistant/uptime/seconds
+  icon: mdi:clock
+  value_template: >
+    {%- set uptime = value | int / 60 | round -%}
+    {%- set sep = ', ' -%}
+    {%- set TIME_MAP = {
+        'week': (uptime / 10080) % 10080,
+        'day': (uptime / 1440) % 7,
+        'hour': (uptime / 60) % 24,
+        'minute': (uptime % 60)
+      } -%}
+
+    {%- for unit, duration in TIME_MAP.items() if duration >= 1 -%}
+      {%- if not loop.first -%}
+        {{ sep }}
+      {%- endif -%}
+
+      {{ (duration | string).split('.')[0] }} {{ unit }}
+
+      {%- if duration >= 2 -%}
+        s
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if uptime < 1 -%}
+      just now
+    {%- endif -%}
+- platform: mqtt
+  name: diskstation_uptime
+  state_topic: glances/diskstation/uptime/seconds
+  icon: mdi:clock
+  value_template: >
+    {%- set uptime = value | int / 60 | round -%}
+    {%- set sep = ', ' -%}
+    {%- set TIME_MAP = {
+        'week': (uptime / 10080) % 10080,
+        'day': (uptime / 1440) % 7,
+        'hour': (uptime / 60) % 24,
+        'minute': (uptime % 60)
+      } -%}
+
+    {%- for unit, duration in TIME_MAP.items() if duration >= 1 -%}
+      {%- if not loop.first -%}
+        {{ sep }}
+      {%- endif -%}
+
+      {{ (duration | string).split('.')[0] }} {{ unit }}
+
+      {%- if duration >= 2 -%}
+        s
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if uptime < 1 -%}
+      just now
+    {%- endif -%}

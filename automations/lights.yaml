@@ -66,11 +66,15 @@
     - platform: state
       entity_id: input_boolean.home_office_mode
       to: 'on'
+      variables:
+        transition: 0
     - platform: state
       entity_id: binary_sensor.lightlevel_study_dark
       to: 'on'
       for:
         minutes: 5
+      variables:
+        transition: 60
   condition:
     - condition: state
       entity_id: input_boolean.home_office_mode
@@ -84,22 +88,39 @@
     - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
     - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'returning') }}"
   action:
-    service: light.turn_on
-    entity_id: light.study_desk
+    - service: adaptive_lighting.set_manual_control
+      entity_id: switch.adaptive_lighting_study
+      data:
+        lights: light.study_desk
+        manual_control: true
+    - service: light.turn_on
+      entity_id: light.study_desk
+      data:
+        transition: "{{ transition }}"
+        brightness: 255
+        color_temp: 300
 
 - alias: Light - Study Desk - Turn off when home office mode off
   trigger:
     - platform: state
       entity_id: input_boolean.home_office_mode
       to: 'off'
+      variables:
+        transition: 0
     - platform: state
       entity_id: binary_sensor.lightlevel_study_dark
       to: 'off'
       for:
         minutes: 30
+      variables:
+        transition: 60
   action:
-    service: light.turn_off
-    entity_id: light.study_desk
+    - delay:
+        seconds: 1
+    - service: light.turn_off
+      entity_id: light.study_desk
+      data:
+        transition: "{{ transition }}"
 
 - alias: Light - Study Shelf - Increase brightness on motion
   trigger:

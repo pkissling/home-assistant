@@ -1,7 +1,0 @@
----
-
-- platform: rest
-  resource: http://diskstation:61208/api/3/uptime
-  name: Diskstation Uptime
-  value_template: '{{ value_json }}'
-  scan_interval: 60

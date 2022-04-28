@@ -1,7 +1,0 @@
----
-
-- platform: rest
-  resource: http://localhost:61208/api/3/uptime
-  name: Home-Assistant Uptime
-  value_template: '{{ value_json }}'
-  scan_interval: 60

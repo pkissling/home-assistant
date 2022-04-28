@@ -1,7 +1,0 @@
----
-
-- platform: rest
-  resource: http://pihole:61208/api/3/uptime
-  name: Pi-hole Uptime
-  value_template: '{{ value_json }}'
-  scan_interval: 60

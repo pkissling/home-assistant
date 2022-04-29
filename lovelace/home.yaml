@@ -151,6 +151,20 @@
                 entity_id: media_player.home_group
                 media_content_id: http://nrj.de/muenchen
                 media_content_type: music
+            - type: service
+              name: Unplugged
+              id: media_player.play_media
+              data:
+                entity_id: media_player.home_group
+                media_content_id: https://stream.regenbogen.de/unplugged/aac-128/tunein
+                media_content_type: music
+            - type: service
+              name: BR Puls
+              id: media_player.play_media
+              data:
+                entity_id: media_player.home_group
+                media_content_id: https://dispatcher.rndfnk.com/br/puls/live/aac/low
+                media_content_type: music
 
       entities:
         - type: custom:mini-media-player

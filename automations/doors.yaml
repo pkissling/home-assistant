@@ -55,6 +55,7 @@
       motion_sensor_entity_id: binary_sensor.motion_corridor
 
 - alias: Door - Main Door - Turn on tab on door open
+  mode: restart
   trigger:
     - platform: state
       entity_id: binary_sensor.door_corridor

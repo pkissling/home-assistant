@@ -23,7 +23,7 @@
     - service: media_player.play_media
       entity_id: media_player.home_group
       data:
-        media_content_id: http://nrj.de/muenchen
+        media_content_id: https://dispatcher.rndfnk.com/br/puls/live/aac/low
         media_content_type: music
 
 - alias: Residents - Notify Resident Guest Mode still on

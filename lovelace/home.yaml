@@ -35,6 +35,49 @@
       entities:
         - light.corridor_sideboard
 
+# Volume
+- type: custom:stack-in-card
+  mode: vertical
+  cards:
+    - type: horizontal-stack
+      cards:
+        - type: entities
+          entities:
+            - type: custom:mini-media-player
+              entity: media_player.home_group
+              group: true
+              info: scroll
+              hide:
+                volume: true
+                progress: true
+                name: true
+                controls: true
+                power: true
+            - input_number.volume_offset
+    - type: horizontal-stack
+      cards:
+        - type: custom:button-card
+          entity: switch.radio_unplugged
+          icon: mdi:guitar-acoustic
+          color: var(--switch-checked-color)
+          styles:
+            card:
+              - height: 60px
+        - type: custom:button-card
+          entity: switch.radio_nrj
+          icon: mdi:city
+          color: var(--switch-checked-color)
+          styles:
+            card:
+              - height: 60px
+        - type: custom:button-card
+          entity: switch.radio_puls
+          icon: mdi:pulse
+          color: var(--switch-checked-color)
+          styles:
+            card:
+              - height: 60px
+
 # Quick actions
 - type: custom:stack-in-card
   mode: vertical
@@ -120,107 +163,6 @@
           styles:
             card:
               - height: 70px
-
-# Music Control
-- type: entities
-  entities:
-    - type: custom:fold-entity-row
-      head:
-        type: custom:mini-media-player
-        entity: media_player.home_group
-        group: true
-        info: scroll
-        hide:
-          volume: true
-          progress: true
-          name: true
-          controls: true
-          power: true
-        shortcuts:
-          columns: 2
-          buttons:
-            - type: service
-              icon: mdi:power
-              id: media_player.turn_off
-              data:
-                entity_id: all
-            - type: service
-              name: Energy München
-              id: media_player.play_media
-              data:
-                entity_id: media_player.home_group
-                media_content_id: http://nrj.de/muenchen
-                media_content_type: music
-            - type: service
-              name: Unplugged
-              id: media_player.play_media
-              data:
-                entity_id: media_player.home_group
-                media_content_id: https://stream.regenbogen.de/unplugged/aac-128/tunein
-                media_content_type: music
-            - type: service
-              name: BR Puls
-              id: media_player.play_media
-              data:
-                entity_id: media_player.home_group
-                media_content_id: https://dispatcher.rndfnk.com/br/puls/live/aac/low
-                media_content_type: music
-
-      entities:
-        - type: custom:mini-media-player
-          entity: media_player.chromecast
-          group: true
-          hide:
-            controls: true
-            source: true
-            progress: true
-            info: true
-            power: true
-        - type: custom:mini-media-player
-          entity: media_player.kitchen
-          group: true
-          hide:
-            controls: true
-            source: true
-            progress: true
-            info: true
-            power: true
-        - type: custom:mini-media-player
-          entity: media_player.study
-          group: true
-          hide:
-            controls: true
-            source: true
-            progress: true
-            info: true
-            power: true
-        - type: custom:mini-media-player
-          entity: media_player.bathroom
-          group: true
-          hide:
-            controls: true
-            source: true
-            progress: true
-            info: true
-            power: true
-        - type: custom:mini-media-player
-          entity: media_player.bedroom
-          group: true
-          hide:
-            controls: true
-            source: true
-            progress: true
-            info: true
-            power: true
-        - type: custom:mini-media-player
-          entity: media_player.balcony
-          group: true
-          hide:
-            controls: true
-            source: true
-            progress: true
-            info: true
-            power: true
 
 # Vacuum
 - type: custom:stack-in-card

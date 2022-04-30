@@ -17,11 +17,8 @@
     event_data:
       actionName: Play Radio
   action:
-    service: media_player.play_media
-    entity_id: media_player.home_group
-    data:
-      media_content_id: https://dispatcher.rndfnk.com/br/puls/live/aac/low
-      media_content_type: music
+    service: switch.turn_on
+    entity_id: switch.radio_puls
 
 - alias: Actions - Start Vacuum - Fired
   trigger:

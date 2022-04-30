@@ -21,8 +21,9 @@ switch: !include_dir_merge_list switches
 # Include files with dictionaries
 group: !include_dir_merge_named groups
 input_boolean: !include_dir_merge_named input_booleans
-input_select: !include_dir_merge_named input_selects
 input_datetime: !include_dir_merge_named input_datetimes
+input_number: !include_dir_merge_named input_numbers
+input_select: !include_dir_merge_named input_selects
 input_text: !include_dir_merge_named input_texts
 script: !include_dir_merge_named scripts
 

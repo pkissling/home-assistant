@@ -67,7 +67,7 @@
       entity_id: input_boolean.home_office_mode
       to: 'on'
       variables:
-        transition: 0
+        transition: 5
     - platform: state
       entity_id: binary_sensor.lightlevel_study_dark
       to: 'on'
@@ -88,11 +88,8 @@
     - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
     - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'returning') }}"
   action:
-    - service: adaptive_lighting.set_manual_control
+    - service: switch.turn_off
       entity_id: switch.adaptive_lighting_study
-      data:
-        lights: light.study_desk
-        manual_control: true
     - service: light.turn_on
       entity_id: light.study_desk
       data:
@@ -106,7 +103,7 @@
       entity_id: input_boolean.home_office_mode
       to: 'off'
       variables:
-        transition: 0
+        transition: 5
     - platform: state
       entity_id: binary_sensor.lightlevel_study_dark
       to: 'off'
@@ -255,17 +252,14 @@
       entity_id: script.lights_ambient_turn_off
       state: 'off'
   action:
-    - service: adaptive_lighting.set_manual_control
+    - service: switch.turn_off
       entity_id: switch.adaptive_lighting_study
-      data:
-        lights: light.study_shelf
-        manual_control: true
     - service: light.turn_on
       entity_id: light.study_shelf
       data:
         color_temp: 300
 
-- alias: Light - Study Shelf - Adaptive light when home office mode off
+- alias: Light - Study Shelf - Adaptive light on when home office mode off
   trigger:
     platform: state
     entity_id: input_boolean.home_office_mode
@@ -275,8 +269,5 @@
       entity_id: light.study
       state: 'on'
   action:
-    service: adaptive_lighting.set_manual_control
+    service: switch.turn_on
     entity_id: switch.adaptive_lighting_study
-    data:
-      lights: light.study
-      manual_control: false

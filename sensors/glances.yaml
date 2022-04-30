@@ -64,18 +64,21 @@
 - platform: mqtt
   name: pi_hole_cpu_load
   state_topic: glances/pihole/load
-  value_template: "{{ value_json.min5 }}"
+  value_template: "{{ value_json.min5 | float }}"
   icon: mdi:cpu-32-bit
+  unit_of_measurement: ""
 - platform: mqtt
   name: home_assistant_cpu_load
   state_topic: glances/home-assistant/load
-  value_template: "{{ value_json.min5 }}"
+  value_template: "{{ value_json.min5 | float }}"
+  unit_of_measurement: ""
   icon: mdi:cpu-32-bit
 - platform: mqtt
   name: diskstation_cpu_load
   state_topic: glances/diskstation/load
-  value_template: "{{ value_json.min5 }}"
+  value_template: "{{ value_json.min5 | float }}"
   icon: mdi:cpu-32-bit
+  unit_of_measurement: ""
 
 # Disk space
 - platform: mqtt

@@ -39,21 +39,24 @@
 - type: custom:stack-in-card
   mode: vertical
   cards:
-    - type: horizontal-stack
-      cards:
-        - type: entities
-          entities:
-            - type: custom:mini-media-player
-              entity: media_player.home_group
-              group: true
-              info: scroll
-              hide:
-                volume: true
-                progress: true
-                name: true
-                controls: true
-                power: true
-            - input_number.volume_offset
+    - type: conditional
+      conditions:
+        - entity: media_player.home_group
+          state_not: 'off'
+      card:
+        type: entities
+        entities:
+          - type: custom:mini-media-player
+            entity: media_player.home_group
+            group: true
+            info: scroll
+            toggle_power: false
+            hide:
+              volume: true
+              progress: true
+    - type: entities
+      entities:
+        - input_number.volume_offset
     - type: horizontal-stack
       cards:
         - type: custom:button-card

@@ -21,4 +21,6 @@
           is_state('binary_sensor.motion_study_desk', 'on')
             or
           is_state('binary_sensor.motion_study_shelf', 'on')
+            or
+          is_state('binary_sensor.motion_study_ceiling', 'on')
         }}

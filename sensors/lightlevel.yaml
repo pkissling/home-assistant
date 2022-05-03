@@ -1,11 +1,14 @@
 ---
 
-- platform: template
-  sensors:
-    motion_study_lightlevel:
-      friendly_name: Study
-      value_template: "{{ states('sensor.motion_study_shelf_lightlevel') }}"
-      unit_of_measurement: lx
+
+- platform: average
+  name: Motion Study Lightlevel
+  duration:
+    minutes: 5
+  precision: 0
+  entities:
+    - sensor.motion_study_ceiling_lightlevel
+    - sensor.motion_study_shelf_lightlevel
 
 - platform: average
   name: Motion Corridor Lightlevel

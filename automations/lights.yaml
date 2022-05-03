@@ -88,8 +88,11 @@
     - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
     - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'returning') }}"
   action:
-    - service: switch.turn_off
+    - service: adaptive_lighting.set_manual_control
       entity_id: switch.adaptive_lighting_study
+      data:
+        lights: light.study
+        manual_control: true
     - service: light.turn_on
       entity_id: light.study_desk
       data:
@@ -252,8 +255,11 @@
       entity_id: script.lights_ambient_turn_off
       state: 'off'
   action:
-    - service: switch.turn_off
+    - service: adaptive_lighting.set_manual_control
       entity_id: switch.adaptive_lighting_study
+      data:
+        lights: light.study
+        manual_control: true
     - service: light.turn_on
       entity_id: light.study_shelf
       data:
@@ -269,5 +275,8 @@
       entity_id: light.study
       state: 'on'
   action:
-    service: switch.turn_on
+    service: adaptive_lighting.set_manual_control
     entity_id: switch.adaptive_lighting_study
+    data:
+      lights: light.study
+      manual_control: false

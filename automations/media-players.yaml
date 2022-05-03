@@ -60,13 +60,6 @@
       entity_id: sensor.volume_bedroom
     - platform: state
       entity_id: sensor.volume_study
-  condition:
-    condition: template
-    value_template: >
-      {% set target = trigger.entity_id[14:] %}
-      {% set current_vol = states.media_player[target].attributes.volume_level | default(0) | round(2) %}
-      {% set target_vol = trigger.to_state.state %}
-      {{ current_vol != target_vol }}
   action:
     service: media_player.volume_set
     data:

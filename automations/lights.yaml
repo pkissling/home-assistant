@@ -271,12 +271,32 @@
     entity_id: input_boolean.home_office_mode
     to: 'off'
   condition:
-    - condition: state
-      entity_id: light.study
-      state: 'on'
+    condition: state
+    entity_id: light.study
+    state: 'on'
   action:
     service: adaptive_lighting.set_manual_control
     entity_id: switch.adaptive_lighting_study
     data:
       lights: light.study
       manual_control: false
+
+- alias: Light - Ambient - Turn off when no motion in Study for two hours
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_corridor
+    to: 'off'
+    for:
+      hours: 2
+  condition:
+    - condition: state
+      entity_id: light.bedroom
+      state: 'off'
+    - condition: state
+      entity_id: light.ambient
+      state: 'on'
+  action:
+    service: light.turn_off
+    entity_id: light.ambient
+    data:
+      transition: 60

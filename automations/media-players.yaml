@@ -47,21 +47,68 @@
     service: media_player.turn_off
     entity_id: media_player.bathroom
 
-- alias: Media Player - Adjust volume on slider change
-  mode: parallel
+- alias: Media Player - Kitchen - Adjust volume on slider change
+  mode: restart
   trigger:
-    - platform: state
-      entity_id: sensor.volume_kitchen
-    - platform: state
-      entity_id: sensor.volume_bathroom
-    - platform: state
-      entity_id: sensor.volume_chromecast
-    - platform: state
-      entity_id: sensor.volume_bedroom
-    - platform: state
-      entity_id: sensor.volume_study
+    platform: state
+    entity_id: sensor.volume_kitchen
   action:
     service: media_player.volume_set
+    entity_id: media_player.kitchen
     data:
-      entity_id: '{{ "media_player." + trigger.entity_id[14:] }}'
+      volume_level: "{{ trigger.to_state.state }}"
+
+- alias: Media Player - Bathroom - Adjust volume on slider change
+  mode: restart
+  trigger:
+    platform: state
+    entity_id: sensor.volume_bathroom
+  action:
+    service: media_player.volume_set
+    entity_id: media_player.bathroom
+    data:
+      volume_level: "{{ trigger.to_state.state }}"
+
+- alias: Media Player - Living Room - Adjust volume on slider change
+  mode: restart
+  trigger:
+    platform: state
+    entity_id: sensor.volume_living_room
+  action:
+    service: media_player.volume_set
+    entity_id: media_player.living_room
+    data:
+      volume_level: "{{ trigger.to_state.state }}"
+
+- alias: Media Player - Bedroom - Adjust volume on slider change
+  mode: restart
+  trigger:
+    platform: state
+    entity_id: sensor.volume_bedroom
+  action:
+    service: media_player.volume_set
+    entity_id: media_player.bedroom
+    data:
+      volume_level: "{{ trigger.to_state.state }}"
+
+- alias: Media Player - Study - Adjust volume on slider change
+  mode: restart
+  trigger:
+    platform: state
+    entity_id: sensor.volume_study
+  action:
+    service: media_player.volume_set
+    entity_id: media_player.study
+    data:
+      volume_level: "{{ trigger.to_state.state }}"
+
+- alias: Media Player - Chromecast - Adjust volume on slider change
+  mode: restart
+  trigger:
+    platform: state
+    entity_id: sensor.volume_chromecast
+  action:
+    service: media_player.volume_set
+    entity_id: media_player.chromecast
+    data:
       volume_level: "{{ trigger.to_state.state }}"

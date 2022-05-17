@@ -24,7 +24,6 @@ good_night_google_assistant:
     - wait_for_trigger:
         platform: state
         entity_id: media_player.bedroom
-        from: playing
         to: 'off'
       continue_on_timeout: false
       timeout: '0:15:00'
@@ -52,10 +51,9 @@ good_night_google_assistant:
             - wait_for_trigger:
                 platform: state
                 entity_id: media_player.bedroom
-                from: playing
-                to: idle
+                to: 'idle'
               continue_on_timeout: true
-              timeout: '0:02:00'
+              timeout: '0:00:20'
     - choose:
         - conditions:
             condition: state
@@ -81,7 +79,7 @@ good_night_google_assistant:
         from: playing
         to: idle
       continue_on_timeout: true
-      timeout: '0:02:00'
+      timeout: '0:00:20'
     - service: media_player.turn_off
       entity_id: media_player.bedroom
     - service: script.lights_ambient_turn_off
@@ -191,15 +189,12 @@ good_morning:
     - wait_for_trigger:
         - platform: state
           entity_id: media_player.bedroom
-          from: playing
           to: idle
         - platform: state
           entity_id: media_player.home_group
-          from: playing
           to: idle
         - platform: state
           entity_id: media_player.bathroom
-          from: playing
           to: idle
       continue_on_timeout: true
       timeout: '00:10:00'

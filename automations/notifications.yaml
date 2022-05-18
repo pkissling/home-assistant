@@ -103,31 +103,6 @@
       title: Device Tracker
       message: Patrick's device tracker is out of sync
 
-- alias: Notification - Device Tracker not working for Sandra
-  trigger:
-    platform: template
-    value_template: >
-      {{
-        (
-          states('device_tracker.tado_sandra_iphone')
-            !=
-          states('device_tracker.iphonesandraprivate')
-        )
-          and
-        '08:00' < states('sensor.time') < '20:00'
-      }}
-    for:
-      hours: 1
-  action:
-    - service: notify.patrick
-      data:
-        title: Device Tracker
-        message: Sandra's device tracker is out of sync
-    - service: notify.sandra
-      data:
-        title: Device Tracker
-        message: Bitte Tado App öffnen
-
 - alias: Notification - Expiring SSL Certificate
   trigger:
     platform: numeric_state

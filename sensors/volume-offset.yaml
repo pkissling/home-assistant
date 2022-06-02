@@ -14,7 +14,7 @@
           {{ default_volume + 0.15 }}
         {% elif is_state_attr('media_player.kitchen', 'media_content_id', 'https://stream.regenbogen.de/unplugged/aac-128/tunein') %}
           {{ default_volume }}
-        {% elif is_state_attr('media_player.kitchen', 'media_content_id', 'http://nrj.de/muenchen') %}
+        {% elif is_state_attr('media_player.kitchen', 'media_content_id', 'https://nrj.de/muenchen') %}
           {{ default_volume }}
         {% elif is_state_attr('media_player.kitchen', 'app_name', 'Spotify') %}
           {{ default_volume + 0.2 }}
@@ -37,7 +37,7 @@
           {{ default_volume + 0.15 }}
         {% elif is_state_attr('media_player.bathroom', 'media_content_id', 'https://stream.regenbogen.de/unplugged/aac-128/tunein') %}
           {{ default_volume }}
-        {% elif is_state_attr('media_player.bathroom', 'media_content_id', 'http://nrj.de/muenchen') %}
+        {% elif is_state_attr('media_player.bathroom', 'media_content_id', 'https://nrj.de/muenchen') %}
           {{ default_volume }}
         {% elif is_state_attr('media_player.bathroom', 'app_name', 'Spotify') %}
           {{ default_volume + 0.2 }}
@@ -60,7 +60,7 @@
           {{ default_volume - 0.05 }}
         {% elif is_state_attr('media_player.bedroom', 'media_content_id', 'https://stream.regenbogen.de/unplugged/aac-128/tunein') %}
           {{ default_volume - 0.20 }}
-        {% elif is_state_attr('media_player.bedroom', 'media_content_id', 'http://nrj.de/muenchen') %}
+        {% elif is_state_attr('media_player.bedroom', 'media_content_id', 'https://nrj.de/muenchen') %}
           {{ default_volume - 0.2 }}
         {% elif is_state_attr('media_player.bedroom', 'app_name', 'Spotify') %}
           {{ default_volume }}
@@ -83,7 +83,7 @@
           {{ default_volume + 0.15 }}
         {% elif is_state_attr('media_player.living_room', 'media_content_id', 'https://stream.regenbogen.de/unplugged/aac-128/tunein') %}
           {{ default_volume }}
-        {% elif is_state_attr('media_player.living_room', 'media_content_id', 'http://nrj.de/muenchen') %}
+        {% elif is_state_attr('media_player.living_room', 'media_content_id', 'https://nrj.de/muenchen') %}
           {{ default_volume }}
         {% elif is_state_attr('media_player.living_room', 'app_name', 'Spotify') %}
           {{ default_volume + 0.2 }}
@@ -108,7 +108,7 @@
           {{ default_volume + 0.15 }}
         {% elif is_state_attr('media_player.study', 'media_content_id', 'https://stream.regenbogen.de/unplugged/aac-128/tunein') %}
           {{ default_volume }}
-        {% elif is_state_attr('media_player.study', 'media_content_id', 'http://nrj.de/muenchen') %}
+        {% elif is_state_attr('media_player.study', 'media_content_id', 'https://nrj.de/muenchen') %}
           {{ default_volume }}
         {% elif is_state_attr('media_player.study', 'app_name', 'Spotify') %}
           {{ default_volume + 0.2 }}
@@ -131,7 +131,7 @@
           {{ default_volume + 0.2 }}
         {% elif is_state_attr('media_player.chromecast', 'media_content_id', 'https://stream.regenbogen.de/unplugged/aac-128/tunein') %}
           {{ default_volume }}
-        {% elif is_state_attr('media_player.chromecast', 'media_content_id', 'http://nrj.de/muenchen') %}
+        {% elif is_state_attr('media_player.chromecast', 'media_content_id', 'https://nrj.de/muenchen') %}
           {{ default_volume }}
         {% elif is_state_attr('media_player.chromecast', 'app_name', 'Spotify') %}
           {{ default_volume + 0.2 }}

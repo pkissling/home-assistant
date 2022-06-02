@@ -17,12 +17,12 @@
 
     radio_nrj:
       friendly_name: NRJ
-      value_template: "{{ is_state_attr('media_player.home_group', 'media_content_id', 'http://nrj.de/muenchen') }}"
+      value_template: "{{ is_state_attr('media_player.home_group', 'media_content_id', 'https://nrj.de/muenchen') }}"
       turn_on:
         service: media_player.play_media
         entity_id: media_player.home_group
         data:
-          media_content_id: http://nrj.de/muenchen
+          media_content_id: https://nrj.de/muenchen
           media_content_type: music
       turn_off:
         service: media_player.turn_off

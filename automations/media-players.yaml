@@ -1,6 +1,6 @@
 ---
 
-- alias: Media Player - Stop casting on Home Group when TV on
+- alias: Media Player - Stop casting on All Speakers when TV on
   trigger:
     platform: state
     entity_id: media_player.lg_webos_smart_tv
@@ -9,13 +9,13 @@
     condition: not
     conditions:
       condition: state
-      entity_id: media_player.home_group
+      entity_id: media_player.all_speakers
       state: 'off'
   action:
     service: media_player.turn_off
-    entity_id: media_player.home_group
+    entity_id: media_player.all_speakers
 
-- alias: Media Player - Stop casting on Home Group when TV off
+- alias: Media Player - Stop casting on All Speakers when TV off
   trigger:
     platform: state
     entity_id: remote.living_room
@@ -24,7 +24,7 @@
     condition: not
     conditions:
       condition: state
-      entity_id: media_player.home_group
+      entity_id: media_player.all_speakers
       state: 'off'
   action:
     service: media_player.turn_off
@@ -41,7 +41,7 @@
     condition: not
     conditions:
       condition: state
-      entity_id: media_player.home_group
+      entity_id: media_player.all_speakers
       state: playing
   action:
     service: media_player.turn_off

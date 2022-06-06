@@ -191,7 +191,7 @@ good_morning:
           entity_id: media_player.bedroom
           to: idle
         - platform: state
-          entity_id: media_player.home_group
+          entity_id: media_player.all_speakers
           to: idle
         - platform: state
           entity_id: media_player.bathroom

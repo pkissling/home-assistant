@@ -4,39 +4,39 @@
   switches:
     radio_unplugged:
       friendly_name: Unplugged
-      value_template: "{{ is_state_attr('media_player.home_group', 'media_content_id', 'https://stream.regenbogen.de/unplugged/aac-128/tunein') }}"
+      value_template: "{{ is_state_attr('media_player.all_speakers', 'media_content_id', 'https://stream.regenbogen.de/unplugged/aac-128/tunein') }}"
       turn_on:
         service: media_player.play_media
-        entity_id: media_player.home_group
+        entity_id: media_player.all_speakers
         data:
           media_content_id: https://stream.regenbogen.de/unplugged/aac-128/tunein
           media_content_type: music
       turn_off:
         service: media_player.turn_off
-        entity_id: media_player.home_group
+        entity_id: media_player.all_speakers
 
     radio_nrj:
       friendly_name: NRJ
-      value_template: "{{ is_state_attr('media_player.home_group', 'media_content_id', 'https://nrj.de/muenchen') }}"
+      value_template: "{{ is_state_attr('media_player.all_speakers', 'media_content_id', 'https://nrj.de/muenchen') }}"
       turn_on:
         service: media_player.play_media
-        entity_id: media_player.home_group
+        entity_id: media_player.all_speakers
         data:
           media_content_id: https://nrj.de/muenchen
           media_content_type: music
       turn_off:
         service: media_player.turn_off
-        entity_id: media_player.home_group
+        entity_id: media_player.all_speakers
 
     radio_puls:
       friendly_name: Puls
-      value_template: "{{ is_state_attr('media_player.home_group', 'media_content_id', 'https://dispatcher.rndfnk.com/br/puls/live/aac/low') }}"
+      value_template: "{{ is_state_attr('media_player.all_speakers', 'media_content_id', 'https://dispatcher.rndfnk.com/br/puls/live/aac/low') }}"
       turn_on:
         service: media_player.play_media
-        entity_id: media_player.home_group
+        entity_id: media_player.all_speakers
         data:
           media_content_id: https://dispatcher.rndfnk.com/br/puls/live/aac/low
           media_content_type: music
       turn_off:
         service: media_player.turn_off
-        entity_id: media_player.home_group
+        entity_id: media_player.all_speakers

@@ -41,13 +41,13 @@
   cards:
     - type: conditional
       conditions:
-        - entity: media_player.home_group
+        - entity: media_player.all_speakers
           state_not: 'off'
       card:
         type: entities
         entities:
           - type: custom:mini-media-player
-            entity: media_player.home_group
+            entity: media_player.all_speakers
             group: true
             info: scroll
             toggle_power: false

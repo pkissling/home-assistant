@@ -1,9 +1,9 @@
 ---
 
-- alias: Remote - Turn on Chromecast when Home Group is playing
+- alias: Remote - Turn on Chromecast when All Speakers is playing
   trigger:
     platform: state
-    entity_id: media_player.home_group
+    entity_id: media_player.all_speakers
     to: playing
   condition:
     condition: state
@@ -121,25 +121,25 @@
     service: switch.turn_on
     entity_id: switch.living_room_tv
 
-- alias: Remote - Turn off remote when Home Group stopped/paused casting for 30 seconds
+- alias: Remote - Turn off remote when All Speakers stopped/paused casting for 30 seconds
   trigger:
     - platform: state
-      entity_id: media_player.home_group
+      entity_id: media_player.all_speakers
       to: 'off'
       for:
         seconds: 30
     - platform: state
-      entity_id: media_player.home_group
+      entity_id: media_player.all_speakers
       to: paused
       for:
         seconds: 30
     - platform: state
-      entity_id: media_player.home_group
+      entity_id: media_player.all_speakers
       to: unavailable
       for:
         seconds: 30
     - platform: state
-      entity_id: media_player.home_group
+      entity_id: media_player.all_speakers
       to: idle
       for:
         seconds: 30

@@ -1,6 +1,5 @@
 ---
 
-- platform: mqtt
-  name: MQTT Broker Health
+- name: MQTT Broker Health
   unique_id: mqtt_broker_health
   state_topic: mqtt-broker/health  # dummy queue

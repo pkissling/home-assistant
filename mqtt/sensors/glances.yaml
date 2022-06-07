@@ -1,108 +1,92 @@
 ---
 
 # Temp
-- platform: mqtt
-  name: pi_hole_cpu_thermal_1_temperature
+- name: pi_hole_cpu_thermal_1_temperature
   state_topic: glances/pihole/sensors
   value_template: "{{ value_json['cpu_thermal 1'].value }}"
   unit_of_measurement: '°C'
   icon: mdi:thermometer
-- platform: mqtt
-  name: home_assistant_cpu_thermal_1_temperature
+- name: home_assistant_cpu_thermal_1_temperature
   state_topic: glances/home-assistant/sensors
   value_template: "{{ value_json['cpu_thermal 1'].value }}"
   unit_of_measurement: '°C'
   icon: mdi:thermometer
-- platform: mqtt
-  name: diskstation_physical_id_0_temperature
+- name: diskstation_physical_id_0_temperature
   state_topic: glances/diskstation/sensors
   value_template: "{{ value_json['Physical id 0'].value }}"
   unit_of_measurement: '°C'
   icon: mdi:thermometer
 
 # Memory
-- platform: mqtt
-  name: pi_hole_ram_used_percent
+- name: pi_hole_ram_used_percent
   state_topic: glances/pihole/mem
   value_template: "{{ value_json.percent }}"
   unit_of_measurement: '%'
   icon: mdi:memory
-- platform: mqtt
-  name: home_assistant_ram_used_percent
+- name: home_assistant_ram_used_percent
   state_topic: glances/home-assistant/mem
   value_template: "{{ value_json.percent }}"
   unit_of_measurement: '%'
   icon: mdi:memory
-- platform: mqtt
-  name: diskstation_ram_used_percent
+- name: diskstation_ram_used_percent
   state_topic: glances/diskstation/mem
   value_template: "{{ value_json.percent }}"
   unit_of_measurement: '%'
   icon: mdi:memory
 
 # CPU usage
-- platform: mqtt
-  name: pi_hole_cpu_used
+- name: pi_hole_cpu_used
   state_topic: glances/pihole/cpu
   value_template: "{{ value_json.total }}"
   unit_of_measurement: '%'
   icon: mdi:cpu-32-bit
-- platform: mqtt
-  name: home_assistant_cpu_used
+- name: home_assistant_cpu_used
   state_topic: glances/home-assistant/cpu
   value_template: "{{ value_json.total }}"
   unit_of_measurement: '%'
   icon: mdi:cpu-32-bit
-- platform: mqtt
-  name: diskstation_cpu_used
+- name: diskstation_cpu_used
   state_topic: glances/diskstation/cpu
   value_template: "{{ value_json.total }}"
   unit_of_measurement: '%'
   icon: mdi:cpu-32-bit
 
 # CPU load
-- platform: mqtt
-  name: pi_hole_cpu_load
+- name: pi_hole_cpu_load
   state_topic: glances/pihole/load
   value_template: "{{ value_json.min5 | float }}"
   icon: mdi:cpu-32-bit
   unit_of_measurement: ""
-- platform: mqtt
-  name: home_assistant_cpu_load
+- name: home_assistant_cpu_load
   state_topic: glances/home-assistant/load
   value_template: "{{ value_json.min5 | float }}"
   unit_of_measurement: ""
   icon: mdi:cpu-32-bit
-- platform: mqtt
-  name: diskstation_cpu_load
+- name: diskstation_cpu_load
   state_topic: glances/diskstation/load
   value_template: "{{ value_json.min5 | float }}"
   icon: mdi:cpu-32-bit
   unit_of_measurement: ""
 
 # Disk space
-- platform: mqtt
-  name: pi_hole_etc_hostname_used_percent
+- name: pi_hole_etc_hostname_used_percent
   state_topic: glances/pihole/fs
   value_template: "{{ value_json['/etc/hostname'].percent }}"
   unit_of_measurement: '%'
   icon: mdi:harddisk
-- platform: mqtt
-  name: home_assistant_etc_hostname_used_percent
+- name: home_assistant_etc_hostname_used_percent
   state_topic: glances/home-assistant/fs
   value_template: "{{ value_json['/etc/hostname'].percent }}"
   unit_of_measurement: '%'
   icon: mdi:harddisk
-- platform: mqtt
-  name: diskstation_etc_hostname_used_percent
+- name: diskstation_etc_hostname_used_percent
   state_topic: glances/diskstation/fs
   value_template: "{{ value_json['/etc/hostname'].percent }}"
   unit_of_measurement: '%'
   icon: mdi:harddisk
 
 # Disk space
-- platform: mqtt
-  name: pi_hole_uptime
+- name: pi_hole_uptime
   state_topic: glances/pihole/uptime
   icon: mdi:clock
   value_template: >
@@ -130,8 +114,7 @@
     {%- if uptime < 1 -%}
       just now
     {%- endif -%}
-- platform: mqtt
-  name: home_assistant_uptime
+- name: home_assistant_uptime
   state_topic: glances/home-assistant/uptime
   icon: mdi:clock
   value_template: >
@@ -159,8 +142,7 @@
     {%- if uptime < 1 -%}
       just now
     {%- endif -%}
-- platform: mqtt
-  name: diskstation_uptime
+- name: diskstation_uptime
   state_topic: glances/diskstation/uptime
   icon: mdi:clock
   value_template: >

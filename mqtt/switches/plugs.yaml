@@ -1,8 +1,7 @@
 ---
 
-- platform: mqtt
+- name: Plug Living Room Amplifier
   unique_id: plug_living_room_amplifier
-  name: Plug Living Room Amplifier
   state_topic: shellies/shellyplug-s-9A3C76/relay/0
   command_topic: shellies/shellyplug-s-9A3C76/relay/0/command
   payload_on: 'on'
@@ -10,9 +9,8 @@
   state_on: 'on'
   state_off: 'off'
 
-- platform: mqtt
+- name: Plug Study Monitor
   unique_id: plug_study_monitor
-  name: Plug Study Monitor
   state_topic: shellies/shellyplug-s-9D9424/relay/0
   command_topic: shellies/shellyplug-s-9D9424/relay/0/command
   payload_on: 'on'
@@ -20,9 +18,8 @@
   state_on: 'on'
   state_off: 'off'
 
-- platform: mqtt
+- name: Plug Kitchen Dishwasher
   unique_id: plug_kitchen_dishwasher
-  name: Plug Kitchen Dishwasher
   state_topic: shellies/shellyplug-s-B49BB4/relay/0
   command_topic: shellies/shellyplug-s-B49BB4/relay/0/command
   payload_on: 'on'

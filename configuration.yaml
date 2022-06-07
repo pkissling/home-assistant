@@ -34,9 +34,9 @@ google_assistant: !include includes/google_assistant.yaml
 influxdb: !include includes/influxdb.yaml
 ios: !include includes/ios.yaml
 light: !include includes/lights.yaml
+mqtt: !include mqtt/mqtt.yaml
 notify: !include includes/notify.yaml
 plant: !include includes/plants.yaml
 pyscript: !include includes/pyscript.yaml
 recorder: !include includes/recorder.yaml
-spotify: !include includes/spotify.yaml
 tts: !include includes/tts.yaml

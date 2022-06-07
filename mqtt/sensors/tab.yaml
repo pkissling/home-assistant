@@ -1,7 +1,6 @@
 ---
 
-- platform: mqtt
-  name: Tab Battery Level
+- name: Tab Battery Level
   state_topic: wallpanel/corridor/sensor/battery
   availability_topic: wallpanel/corridor/connection
   unit_of_measurement: '%'

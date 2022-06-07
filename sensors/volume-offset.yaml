@@ -5,7 +5,7 @@
 
     volume_kitchen:
       value_template: >
-        {% set volume = states('sensor.volume_kitchen_without_offset') | float + states('input_number.volume_offset') | int / 100 | float %}
+        {% set volume = states('sensor.volume_kitchen_without_offset') | float(default=0) + states('input_number.volume_offset') | int / 100 | float %}
         {{ 0 if volume < 0 else volume }}
     volume_kitchen_without_offset:
       value_template: >
@@ -28,7 +28,7 @@
 
     volume_bathroom:
       value_template: >
-        {% set volume = states('sensor.volume_bathroom_without_offset') | float + states('input_number.volume_offset') | int / 100 | float %}
+        {% set volume = states('sensor.volume_bathroom_without_offset') | float(default=0) + states('input_number.volume_offset') | int / 100 | float %}
         {{ 0 if volume < 0 else volume }}
     volume_bathroom_without_offset:
       value_template: >
@@ -51,7 +51,7 @@
 
     volume_bedroom:
       value_template: >
-        {% set volume = states('sensor.volume_bedroom_without_offset') | float + states('input_number.volume_offset') | int / 100 | float %}
+        {% set volume = states('sensor.volume_bedroom_without_offset') | float(default=0) + states('input_number.volume_offset') | int / 100 | float %}
         {{ 0 if volume < 0 else volume }}
     volume_bedroom_without_offset:
       value_template: >
@@ -74,7 +74,7 @@
 
     volume_living_room:
       value_template: >
-        {% set volume = states('sensor.volume_living_room_without_offset') | float + states('input_number.volume_offset') | int / 100 | float %}
+        {% set volume = states('sensor.volume_living_room_without_offset') | float(default=0) + states('input_number.volume_offset') | int / 100 | float %}
         {{ 0 if volume < 0 else volume }}
     volume_living_room_without_offset:
       value_template: >
@@ -97,7 +97,7 @@
 
     volume_study:
       value_template: >
-        {% set volume = states('sensor.volume_study_without_offset') | float + states('input_number.volume_offset') | int / 100 | float %}
+        {% set volume = states('sensor.volume_study_without_offset') | float(default=0) + states('input_number.volume_offset') | int / 100 | float %}
         {{ 0 if volume < 0 else volume }}
     volume_study_without_offset:
       value_template: >
@@ -122,7 +122,7 @@
 
     volume_chromecast:
       value_template: >
-        {% set volume = states('sensor.volume_chromecast_without_offset') | float + states('input_number.volume_offset') | int / 100 | float %}
+        {% set volume = states('sensor.volume_chromecast_without_offset') | float(default=0) + states('input_number.volume_offset') | int / 100 | float %}
         {{ 0 if volume < 0 else volume }}
     volume_chromecast_without_offset:
       value_template: >

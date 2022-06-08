@@ -113,3 +113,20 @@
     data:
       title: SSL Certificate
       message: HA SSL certificate exipres in less than 5 days.
+
+- alias: Notification - Monitor not in sync with Home Office mode
+  trigger:
+    platform: template
+    value_template: >
+      {{
+        states('input_boolean.home_office_mode')
+          !=
+        states('switch.plug_study_monitor')
+      }}
+    for:
+      minutes: 5
+  action:
+    service: notify.patrick
+    data:
+      title: Device Tracker
+      message: Monitor is not in sync with Home Office mode

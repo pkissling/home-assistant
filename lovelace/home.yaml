@@ -127,6 +127,28 @@
     - sensor.departure_s7_to_marienplatz
     - sensor.departure_u6_to_sendlinger_tor
 
+# Temperature
+- type: custom:thermostat-bar-card
+  entities:
+    - entity_id: climate.bathroom
+      icon: mdi:shower
+      window_sensor: binary_sensor.window_bathroom
+    - entity_id: climate.study
+      icon: mdi:desk-lamp
+      window_sensor: binary_sensor.window_study
+    - entity_id: climate.living_room
+      icon: mdi:sofa
+      window_sensor: binary_sensor.window_living_room
+    - entity_id: climate.kitchen
+      icon: mdi:stove
+      window_sensor: binary_sensor.window_kitchen
+    - entity_id: climate.toilet
+      icon: mdi:toilet
+      window_sensor: binary_sensor.window_toilet
+    - entity_id: climate.bedroom
+      icon: mdi:bed-king-outline
+      window_sensor: binary_sensor.window_bedroom
+
 # Toggle Modes
 - type: entities
   entities:
@@ -224,25 +246,3 @@
       head:
         entity: switch.alarm
     - entity: input_datetime.wakeup_time
-
-# Temperature
-- type: custom:thermostat-bar-card
-  entities:
-    - entity_id: climate.bathroom
-      icon: mdi:shower
-      window_sensor: binary_sensor.window_bathroom
-    - entity_id: climate.study
-      icon: mdi:desk-lamp
-      window_sensor: binary_sensor.window_study
-    - entity_id: climate.living_room
-      icon: mdi:sofa
-      window_sensor: binary_sensor.window_living_room
-    - entity_id: climate.kitchen
-      icon: mdi:stove
-      window_sensor: binary_sensor.window_kitchen
-    - entity_id: climate.toilet
-      icon: mdi:toilet
-      window_sensor: binary_sensor.window_toilet
-    - entity_id: climate.bedroom
-      icon: mdi:bed-king-outline
-      window_sensor: binary_sensor.window_bedroom

@@ -50,12 +50,6 @@
     - sensor.motion_corridor_left_battery_level
     - sensor.motion_corridor_right_battery_level
 
-# Vibration
-- type: custom:battery-state-card
-  title: Vibration
-  entities:
-    - sensor.vibration_study_chair_battery_level
-
 # Thermostats
 - type: entities
   title: Thermostats

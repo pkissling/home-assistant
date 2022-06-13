@@ -69,10 +69,6 @@ My personal configuration for [Home Assistant](https://www.home-assistant.io) ru
 
 * [Roborock S50](https://en.roborock.com/pages/robot-vacuum-cleaner)
 
-### Vibration Sensors
-
-* [Aqara Vibration Sensor](https://www.aqara.com/us/vibration_sensor.html)
-
 ### Window Sensors
 
 * [Aqara Door and Window Sensor](https://www.aqara.com/us/door_and_window_sensor.html)

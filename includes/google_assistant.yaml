@@ -1,6 +1,6 @@
 ---
 
-project_id: home-assistant-fec7d
+project_id: home-assistant-c375e
 service_account:
   private_key: !secret google_service_account_private_key
   client_email: !secret google_service_account_client_email

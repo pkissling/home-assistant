@@ -124,7 +124,6 @@
 - type: entities
   entities:
     - sensor.departure_s7_to_hauptbahnhof
-    - sensor.departure_s7_to_marienplatz
     - sensor.departure_u6_to_sendlinger_tor
 
 # Temperature

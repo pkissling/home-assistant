@@ -12,12 +12,6 @@
   only_direct: true
   offset: 720  # 12 mins
 
-- platform: deutsche_bahn
-  from: Harras, München
-  to: Marienplatz, München
-  only_direct: true
-  offset: 600  # 10 mins
-
 - platform: template
   sensors:
 
@@ -33,9 +27,3 @@
         {% set departure = state_attr('sensor.harras_munchen_to_sendlinger_tor_munchen', 'departure') %}
         {% set delay = state_attr('sensor.harras_munchen_to_sendlinger_tor_munchen', 'delay') %}
         {{ departure }} (+{{ delay }}) & {{ state_attr('sensor.harras_munchen_to_sendlinger_tor_munchen', 'next') }}
-    departure_s7_to_marienplatz:
-      friendly_name: S7 - Marienplatz
-      value_template: >
-        {% set departure = state_attr('sensor.harras_munchen_to_marienplatz_munchen', 'departure') %}
-        {% set delay = state_attr('sensor.harras_munchen_to_marienplatz_munchen', 'delay') %}
-        {{ departure }} (+{{ delay }}) & {{ state_attr('sensor.harras_munchen_to_marienplatz_munchen', 'next') }}

@@ -43,16 +43,19 @@ from music_assistant.models.player import (
     PlayerState,
     get_child_players,
     get_group_volume,
+    set_group_volume,
 )
 
 from .const import (
     ATTR_SOURCE_ENTITY_ID,
-    ATV_DOMAIN,
+    BLACKLIST_DOMAINS,
     CONF_PLAYER_ENTITIES,
     DEFAULT_NAME,
     DLNA_DOMAIN,
     DOMAIN,
     ESPHOME_DOMAIN,
+    GROUP_DOMAIN,
+    KODI_DOMAIN,
     SLIMPROTO_DOMAIN,
     SLIMPROTO_EVENT,
     SONOS_DOMAIN,
@@ -63,9 +66,6 @@ LOGGER = logging.getLogger(__name__)
 OFF_STATES = (STATE_OFF, STATE_UNAVAILABLE, STATE_STANDBY)
 CAST_DOMAIN = "cast"
 CAST_MULTIZONE_MANAGER_KEY = "cast_multizone_manager"
-
-
-GROUP_DOMAIN = "group"
 
 
 STATE_MAPPING = {
@@ -118,6 +118,13 @@ class HassPlayer(Player):
         if reg_entry := self.entity.registry_entry:
             return reg_entry.name or self.entity.name
         return self.entity_id
+
+    @property
+    def is_group(self) -> bool:
+        """Return bool if this player is a grouped player (playergroup)."""
+        if self.entity.group_members:
+            return True
+        return self._attr_is_group
 
     @property
     def support_power(self) -> bool:
@@ -257,8 +264,6 @@ class HassPlayer(Player):
             await self.power(True)
         LOGGER.debug("[%s] play_url: %s", self.entity_id, url)
         self._attr_current_url = url
-        if self.use_mute_as_power:
-            await self.volume_mute(False)
         await self.entity.async_play_media(
             MEDIA_TYPE_MUSIC,
             url,
@@ -312,13 +317,22 @@ class HassPlayer(Player):
     async def volume_set(self, volume_level: int) -> None:
         """Send volume level (0..100) command to player."""
         LOGGER.debug("[%s] volume_set: %s", self.entity_id, volume_level)
-        if self.entity.support_volume_set:
+        if self.is_group:
+            await set_group_volume(self, volume_level)
+        elif self.entity.support_volume_set:
             await self.entity.async_set_volume_level(volume_level / 100)
 
     async def volume_mute(self, muted: bool) -> None:
         """Send volume mute command to player."""
-        # for players that do not support mute, we fake mute with volume
-        if not bool(self.entity.supported_features & SUPPORT_VOLUME_MUTE):
+        supports_mute = bool(self.entity.supported_features & SUPPORT_VOLUME_MUTE)
+        if not supports_mute and self.is_group:
+            # mute not supported but group player = redirect to childs
+            await asyncio.gather(
+                *[x.volume_mute() for x in get_child_players(self, True)]
+            )
+            return
+        if not supports_mute:
+            # for players that do not support mute, we fake mute with volume
             await super().volume_mute(muted)
             return
         await self.entity.async_mute_volume(muted)
@@ -450,11 +464,20 @@ class ESPHomePlayer(HassPlayer):
         self._attr_elapsed_time = 0
 
 
-class ATVPlayer(HassPlayer):
-    """Representation of Hass player from ATV/Airplay integration."""
+class KodiPlayer(HassPlayer):
+    """Representation of Hass player from Kodi integration."""
 
-    _attr_supported_content_types: Tuple[ContentType] = (ContentType.MP3,)
-    _attr_supported_sample_rates: Tuple[int] = (44100, 48000)
+    async def play_url(self, url: str) -> None:
+        """Play the specified url on the player."""
+        if not self.powered:
+            await self.power(True)
+        LOGGER.debug("[%s] play_url: %s", self.entity_id, url)
+
+        if self.state in (PlayerState.PLAYING, PlayerState.PAUSED):
+            await self.stop()
+        self._attr_current_url = url
+        # pylint: disable=protected-access
+        await self.entity._kodi.play_item({"file": url})
 
 
 class CastPlayer(HassPlayer):
@@ -535,6 +558,12 @@ class SonosPlayer(HassPlayer):
     """Representation of Hass player from Sonos integration."""
 
     _attr_supported_sample_rates: Tuple[int] = (44100, 48000)
+    _attr_supported_content_types: Tuple[ContentType] = (
+        ContentType.FLAC,
+        ContentType.MP3,
+        ContentType.OGG,
+        ContentType.WAV,
+    )
     _sonos_paused: bool = False
 
     def __init__(self, *args, **kwargs) -> None:
@@ -585,6 +614,7 @@ class SonosPlayer(HassPlayer):
 
         def _play_url():
             soco = self.entity.coordinator.soco
+            ext = url.split(".")[-1]
             meta = (
                 '<DIDL-Lite xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:upnp="urn:schemas-upnp-org:metadata-1-0/upnp/" xmlns="urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/" xmlns:dlna="urn:schemas-dlna-org:metadata-1-0/">'
                 '<item id="1" parentID="0" restricted="1">'
@@ -594,11 +624,12 @@ class SonosPlayer(HassPlayer):
                 "<upnp:channelName>Music Assistant</upnp:channelName>"
                 "<upnp:channelNr>0</upnp:channelNr>"
                 "<upnp:class>object.item.audioItem.audioBroadcast</upnp:class>"
-                f'<res protocolInfo="http-get:*:audio/flac:DLNA.ORG_OP=00;DLNA.ORG_CI=0;DLNA.ORG_FLAGS=0d500000000000000000000000000000">{url}</res>'
+                f'<res protocolInfo="http-get:*:audio/{ext}:DLNA.ORG_OP=00;DLNA.ORG_CI=0;DLNA.ORG_FLAGS=0d500000000000000000000000000000">{url}</res>'
                 "</item>"
                 "</DIDL-Lite>"
             )
-            soco.play_uri(url, meta=meta, force_radio=False)
+            # sonos only supports ICY metadata for mp3 streams...
+            soco.play_uri(url, meta=meta, force_radio=ext == "mp3")
 
         await self.hass.loop.run_in_executor(None, _play_url)
         await self.poll_sonos(True)
@@ -609,7 +640,6 @@ class SonosPlayer(HassPlayer):
         def poll_sonos():
             if self.entity.speaker.is_coordinator:
                 self.entity.media.poll_media()
-                LOGGER.debug("poll sonos")
 
         if force is None:
             force = (
@@ -632,9 +662,8 @@ class DlnaPlayer(HassPlayer):
 
     async def play_url(self, url: str) -> None:
         """Play the specified url on the player."""
-        self._attr_powered = True
-        if self.use_mute_as_power:
-            await self.volume_mute(False)
+        if not self.powered:
+            await self.power(True)
         # pylint: disable=protected-access
         device = self.entity._device
 
@@ -655,6 +684,7 @@ class DlnaPlayer(HassPlayer):
             await self.entity.async_media_stop()
 
         # Queue media
+        self._attr_current_url = url
         await device.async_set_transport_uri(
             url, "Streaming from Music Assistant", didl_metadata
         )
@@ -789,13 +819,13 @@ class HassGroupPlayer(HassPlayer):
 
 
 PLAYER_MAPPING = {
-    ATV_DOMAIN: ATVPlayer,
     CAST_DOMAIN: CastPlayer,
     DLNA_DOMAIN: DlnaPlayer,
     SLIMPROTO_DOMAIN: SlimprotoPlayer,
     ESPHOME_DOMAIN: ESPHomePlayer,
     SONOS_DOMAIN: SonosPlayer,
     GROUP_DOMAIN: HassGroupPlayer,
+    KODI_DOMAIN: KodiPlayer,
 }
 
 
@@ -820,13 +850,19 @@ async def async_register_player_control(
     entry_platform = entity.platform.platform_name
     if entry_platform == DOMAIN:
         # this is already a Music assistant player
-        return
+        return None
+    if entry_platform in BLACKLIST_DOMAINS:
+        return None
 
     # load player specific mapping or generic one
-    player_cls = PLAYER_MAPPING.get(entry_platform, HassPlayer)
-    player = player_cls(hass, entity_id)
-    await mass.players.register_player(player)
-    return player
+    try:
+        player_cls = PLAYER_MAPPING.get(entry_platform, HassPlayer)
+        player = player_cls(hass, entity_id)
+        await mass.players.register_player(player)
+        return player
+    except Exception as err:  # pylint: disable=broad-except
+        LOGGER.error("Error while registering player %s", entity_id, exc_info=err)
+        return None
 
 
 async def async_register_player_controls(

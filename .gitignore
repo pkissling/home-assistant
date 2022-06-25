@@ -28,3 +28,6 @@ tts/
 # Python cache
 __pycache__
 *.pyc
+
+# Music Assistant
+music_assistant.db-journal

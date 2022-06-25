@@ -19,5 +19,3 @@ entity_config:
     name: Radio NRJ
   switch.radio_unplugged:
     name: Radio Unplugged
-  switch.vacuum_start:
-    name: Vacuum Cleaner

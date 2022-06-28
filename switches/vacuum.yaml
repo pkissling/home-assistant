@@ -13,7 +13,7 @@
         entity_id: vacuum.xiaomi_vacuum_cleaner
 
     vacuum_pause:
-      value_template: "{{ is_state('vacuum.xiaomi_vacuum_cleaner', 'idle') }}"
+      value_template: "{{ is_state('vacuum.xiaomi_vacuum_cleaner', 'paused') }}"
       turn_on:
         service: vacuum.pause
         entity_id: vacuum.xiaomi_vacuum_cleaner

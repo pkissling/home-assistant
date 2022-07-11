@@ -30,11 +30,12 @@ CONF_MUTE_POWER_PLAYERS = "mute_power_players"
 
 ATTR_SOURCE_ENTITY_ID = "source_entity_id"
 ATTR_IS_GROUP = "is_group"
-ATTR_GROUP_CHILDS = "group_childs"
+ATTR_GROUP_MEMBERS = "group_members"
 ATTR_GROUP_PARENTS = "group_parents"
 ATTR_ACTIVE_QUEUE = "active_queue"
 ATTR_QUEUE_ITEMS = "items_in_queue"
-
+ATTR_QUEUE_INDEX = "queue_index"
+ATTR_GROUP_LEADER = "group_leader"
 
 SLIMPROTO_DOMAIN = "slimproto"
 SLIMPROTO_EVENT = "slimproto_event"
@@ -45,5 +46,6 @@ DLNA_DOMAIN = "dlna_dmr"
 ATV_DOMAIN = "apple_tv"
 KODI_DOMAIN = "kodi"
 GROUP_DOMAIN = "group"
+ALEXA_DOMAIN = "alexa_media"
 
-BLACKLIST_DOMAINS = (ATV_DOMAIN,)
+BLACKLIST_DOMAINS = (ATV_DOMAIN, ALEXA_DOMAIN)

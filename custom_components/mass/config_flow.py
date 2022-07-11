@@ -93,8 +93,8 @@ def get_players_schema(hass: HomeAssistant, cur_conf: dict) -> vol.Schema:
         entity: MediaPlayerEntity = entity_comp.get_entity(entity_id)
         if (
             not entity
-            or entity.platform.domain == DOMAIN
-            or entity.platform.domain in BLACKLIST_DOMAINS
+            or entity.platform.platform_name == DOMAIN
+            or entity.platform.platform_name in BLACKLIST_DOMAINS
         ):
             exclude_entities.append(entity_id)
             continue

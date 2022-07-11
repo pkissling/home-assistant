@@ -902,6 +902,8 @@ class QueueCommand(str, Enum):
     MOVE_DOWN = "move_down"
     MOVE_NEXT = "move_next"
     DELETE = "delete"
+    GROUP_VOLUME = "group_volume"
+    GROUP_POWER = "group_power"
 
 
 @websocket_api.websocket_command(
@@ -962,6 +964,10 @@ async def websocket_playerqueue_command(
             await player_queue.clear()
         elif msg[COMMAND] == QueueCommand.DELETE:
             await player_queue.delete_item(msg[COMMAND_ARG])
+        elif msg[COMMAND] == QueueCommand.GROUP_POWER:
+            await player_queue.player.set_group_power(msg[COMMAND_ARG])
+        elif msg[COMMAND] == QueueCommand.GROUP_VOLUME:
+            await player_queue.player.set_group_volume(int(msg[COMMAND_ARG]))
 
         connection.send_result(
             msg[ID],

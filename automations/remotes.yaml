@@ -143,6 +143,11 @@
       to: idle
       for:
         seconds: 30
+    - platform: state
+      entity_id: media_player.all_speakers
+      to: buffering
+      for:
+        minutes: 5
   condition:
     - condition: state
       entity_id: switch.living_room_chromecast

@@ -30,7 +30,7 @@
     service: media_player.turn_off
     entity_id: all
 
-- alias: Media Player - Bathroom - Turn off after 1,5 hours
+- alias: Media Player - Bathroom - Turn off after 1 hour
   trigger:
     platform: state
     entity_id: media_player.bathroom
@@ -46,23 +46,6 @@
   action:
     service: media_player.turn_off
     entity_id: media_player.bathroom
-
-- alias: Media Player - Bedroom - Turn off after 1,5 hours
-  trigger:
-    platform: state
-    entity_id: media_player.bedroom
-    to: playing
-    for:
-      minutes: 60
-  condition:
-    condition: not
-    conditions:
-      condition: state
-      entity_id: media_player.all_speakers
-      state: playing
-  action:
-    service: media_player.turn_off
-    entity_id: media_player.bedroom
 
 - alias: Media Player - Bathroom - Turn off after 1,5 hours
   trigger:

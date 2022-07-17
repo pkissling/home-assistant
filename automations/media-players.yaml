@@ -171,3 +171,16 @@
     entity_id: media_player.chromecast
     data:
       volume_level: "{{ states('sensor.volume_chromecast') }}"
+
+- alias: Media Player - All Speakers - Reset volume offset when off for 30 seconds
+  trigger:
+    platform: state
+    entity_id: media_player.all_speakers
+    to: 'off'
+    for:
+      seconds: 30
+  action:
+    service: input_number.set_value
+    entity_id: input_number.volume_offset
+    data:
+      value: 0

@@ -4,8 +4,9 @@
   object_id: motion_corridor_tab
   state_topic: wallpanel/corridor/sensor/motion
   availability_topic: wallpanel/corridor/connection
-  payload_on: '{"value":true}'
-  payload_off: '{"value":false}'
+  value_template: "{{ value_json.value }}"
+  payload_on: true
+  payload_off: false
   device_class: motion
 
 - name: Wake Corridor Tab

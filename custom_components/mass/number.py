@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from homeassistant.components.number import NumberEntity, NumberEntityDescription
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import TIME_SECONDS
+from homeassistant.const import PERCENTAGE, SIGNAL_STRENGTH_DECIBELS, TIME_SECONDS
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
@@ -33,6 +33,7 @@ async def async_setup_entry(
             [
                 CrossfadeDurationEntity(mass, event.data),
                 VolumeNormalizationTargetEntity(mass, event.data),
+                AnnounceVolumeEntity(mass, event.data),
             ]
         )
 
@@ -55,19 +56,19 @@ class CrossfadeDurationEntity(MassBaseEntity, NumberEntity):
         key="crossfade_duration",
         icon="mdi:camera-timer",
         entity_category=EntityCategory.CONFIG,
-        unit_of_measurement=TIME_SECONDS,
+        native_unit_of_measurement=TIME_SECONDS,
         name="Crossfade duration",
-        max_value=10,
-        min_value=0,
-        step=1,
+        native_max_value=10,
+        native_min_value=0,
+        native_step=1,
     )
 
     @property
-    def value(self) -> bool:
+    def native_value(self) -> int:
         """Return current value."""
         return self.queue.settings.crossfade_duration
 
-    async def async_set_value(self, value: float) -> None:
+    async def async_set_native_value(self, value: float) -> None:
         """Set new value."""
         self.queue.settings.crossfade_duration = int(value)
 
@@ -79,18 +80,43 @@ class VolumeNormalizationTargetEntity(MassBaseEntity, NumberEntity):
         key="volume_normalization_target",
         icon="mdi:chart-bar",
         entity_category=EntityCategory.CONFIG,
-        unit_of_measurement=TIME_SECONDS,
+        native_unit_of_measurement=SIGNAL_STRENGTH_DECIBELS,
         name="Volume normalization target",
-        max_value=0,
-        min_value=-40,
-        step=1,
+        native_max_value=0,
+        native_min_value=-40,
+        native_step=1,
+        entity_registry_enabled_default=False,
     )
 
     @property
-    def value(self) -> bool:
+    def native_value(self) -> float:
         """Return current value."""
         return self.queue.settings.volume_normalization_target
 
-    async def async_set_value(self, value: float) -> None:
+    async def async_set_native_value(self, value: float) -> None:
         """Set new value."""
         self.queue.settings.volume_normalization_target = value
+
+
+class AnnounceVolumeEntity(MassBaseEntity, NumberEntity):
+    """Representation of a number entity to set the announce volume."""
+
+    entity_description = NumberEntityDescription(
+        key="announce_volume_increase",
+        icon="mdi:camera-timer",
+        entity_category=EntityCategory.CONFIG,
+        native_unit_of_measurement=PERCENTAGE,
+        name="Announcements Volume increase (relative)",
+        native_max_value=100,
+        native_min_value=0,
+        native_step=1,
+    )
+
+    @property
+    def native_value(self) -> int:
+        """Return current value."""
+        return self.queue.settings.announce_volume_increase
+
+    async def async_set_native_value(self, value: float) -> None:
+        """Set new value."""
+        self.queue.settings.announce_volume_increase = int(value)

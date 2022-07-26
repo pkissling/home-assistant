@@ -34,6 +34,9 @@ from .const import (
     CONF_SPOTIFY_USERNAME,
     CONF_TUNEIN_ENABLED,
     CONF_TUNEIN_USERNAME,
+    CONF_YTMUSIC_ENABLED,
+    CONF_YTMUSIC_PASSWORD,
+    CONF_YTMUSIC_USERNAME,
     DOMAIN,
     DOMAIN_EVENT,
 )
@@ -44,7 +47,7 @@ from .websockets import async_register_websockets
 
 LOGGER = logging.getLogger(__name__)
 
-PLATFORMS = ("media_player", "switch", "number")
+PLATFORMS = ("media_player", "switch", "number", "select")
 FORWARD_EVENTS = (
     EventType.QUEUE_ADDED,
     EventType.QUEUE_UPDATED,
@@ -125,6 +128,14 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
             MusicProviderConfig(
                 ProviderType.FILESYSTEM_LOCAL,
                 path=conf.get(CONF_FILE_DIRECTORY),
+            )
+        )
+    if conf.get(CONF_YTMUSIC_ENABLED):
+        providers.append(
+            MusicProviderConfig(
+                ProviderType.YTMUSIC,
+                username=conf.get(CONF_YTMUSIC_USERNAME),
+                password=conf.get(CONF_YTMUSIC_PASSWORD),
             )
         )
     stream_ip = get_local_ip_from_internal_url(hass)

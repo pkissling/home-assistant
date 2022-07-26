@@ -5,32 +5,44 @@
   trigger:
     - platform: state
       entity_id: climate.kitchen
-      from: 'off'
+      to:
+        - auto
+        - heat
       for:
         minutes: 1
     - platform: state
       entity_id: climate.living_room
-      from: 'off'
+      to:
+        - auto
+        - heat
       for:
         minutes: 1
     - platform: state
       entity_id: climate.bedroom
-      from: 'off'
+      to:
+        - auto
+        - heat
       for:
         minutes: 1
     - platform: state
       entity_id: climate.study
-      from: 'off'
+      to:
+        - auto
+        - heat
       for:
         minutes: 1
     - platform: state
       entity_id: climate.toilet
-      from: 'off'
+      to:
+        - auto
+        - heat
       for:
         minutes: 1
     - platform: state
       entity_id: climate.bathroom
-      from: 'off'
+      to:
+        - auto
+        - heat
       for:
         minutes: 1
   condition:

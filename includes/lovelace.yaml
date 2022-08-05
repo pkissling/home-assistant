@@ -11,6 +11,8 @@ resources:
     type: module
   - url: /hacsfiles/config-template-card/config-template-card.js
     type: module
+  - url: /hacsfiles/home-assistant-sun-card/home-assistant-sun-card.js
+    type: module
   - url: /hacsfiles/lovelace-card-mod/card-mod.js
     type: module
   - url: /hacsfiles/lovelace-fold-entity-row/fold-entity-row.js

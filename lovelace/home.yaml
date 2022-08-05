@@ -246,3 +246,8 @@
       head:
         entity: switch.alarm
     - entity: input_datetime.wakeup_time
+
+# Sun card
+- type: custom:sun-card
+  darkMode: true
+  timeFormat: 24h

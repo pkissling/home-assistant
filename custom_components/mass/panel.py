@@ -39,7 +39,7 @@ async def async_register_panel(hass: HomeAssistant, title: str) -> Callable:
 
     # register index page
     index_path = os.path.join(panel_dir, "index.html")
-    hass.http.register_static_path(LIB_URL_BASE, index_path)
+    hass.http.register_static_path(LIB_URL_BASE, index_path, cache_headers=False)
     hass.http.register_redirect(LIB_URL_BASE[:-1], LIB_URL_BASE)
     hass.http.register_view(MassImageView())
     hass.http.register_view(MassPlaylistView())

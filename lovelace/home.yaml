@@ -54,66 +54,44 @@
             hide:
               volume: true
               progress: true
-    - type: entities
-      entities:
-        - input_number.volume_offset
+    - type: conditional
+      conditions:
+        - entity: media_player.all_speakers
+          state_not: 'off'
+      card:
+        type: entities
+        entities:
+          - input_number.volume_offset
     - type: horizontal-stack
       cards:
-        - type: custom:button-card
-          entity: switch.radio_unplugged
-          icon: mdi:guitar-acoustic
-          color: var(--switch-checked-color)
-          styles:
-            card:
-              - height: 60px
-        - type: custom:button-card
-          entity: switch.radio_nrj
-          icon: mdi:city
-          color: var(--switch-checked-color)
-          styles:
-            card:
-              - height: 60px
-        - type: custom:button-card
-          entity: switch.radio_puls
-          icon: mdi:pulse
-          color: var(--switch-checked-color)
-          styles:
-            card:
-              - height: 60px
+        - type: custom:paper-buttons-row
+          base_config:
+            layout: icon_name
+          buttons:
+            - icon: mdi:guitar-acoustic
+              entity: switch.radio_unplugged
+            - icon: mdi:city
+              entity: switch.radio_nrj
+            - icon: mdi:pulse
+              entity: switch.radio_puls
 
-# Quick actions
 - type: custom:stack-in-card
-  mode: vertical
   cards:
-    - type: horizontal-stack
-      cards:
-        - type: custom:button-card
-          entity: script.good_night
-          color: var(--switch-checked-color)
-          name: Good Night
-          icon: mdi:weather-night
-          tap_action:
-            action: call-service
-            service: script.good_night
-          styles:
-            card:
-              - height: 70px
-        - type: custom:button-card
-          entity: script.good_morning
-          name: Good Morning
-          icon: mdi:weather-sunset-up
-          color: var(--switch-checked-color)
-          styles:
-            card:
-              - height: 70px
-        - type: custom:button-card
-          entity: script.im_leaving
-          name: I'm leaving
-          icon: mdi:exit-run
-          color: var(--switch-checked-color)
-          styles:
-            card:
-              - height: 70px
+    - type: custom:paper-buttons-row
+      base_config:
+        layout: icon_name
+      buttons:
+        - icon: mdi:television
+          entity: switch.living_room_tv
+          name: TV
+        - icon: mdi:cast
+          entity: switch.living_room_chromecast
+          name: Chromecast
+        - icon: mdi:power
+          entity: switch.remote_off
+          state: 'on'
+          name: 'Off'
+
 
 # Weather
 - type: custom:weather-card
@@ -158,36 +136,21 @@
     - switch.party_mode
     - input_boolean.tv_mode
 
-# TV Remote
 - type: custom:stack-in-card
-  mode: vertical
   cards:
-    - type: horizontal-stack
-      cards:
-        - type: custom:button-card
-          entity: switch.living_room_tv
-          icon: mdi:television
-          color: var(--switch-checked-color)
-          show_name: false
-          styles:
-            card:
-              - height: 70px
-        - entity: switch.living_room_chromecast
-          color: var(--switch-checked-color)
-          icon: mdi:cast
-          type: custom:button-card
-          show_name: false
-          styles:
-            card:
-              - height: 70px
-        - type: custom:button-card
-          color: '#ff8c8a'
-          entity: switch.remote_off
-          icon: mdi:power
-          show_name: false
-          styles:
-            card:
-              - height: 70px
+    - type: custom:paper-buttons-row
+      base_config:
+        layout: icon_name
+      buttons:
+        - icon: mdi:weather-night
+          entity: script.good_night
+          name: Good Night
+        - icon: mdi:weather-sunset-up
+          entity: script.good_morning
+          name: Good Morning
+        - icon: mdi:exit-run
+          entity: script.im_leaving
+          name: I'm leaving
 
 # Vacuum
 - type: custom:stack-in-card
@@ -202,27 +165,20 @@
         - sensor.vacuum_next_emptying
     - type: horizontal-stack
       cards:
-        - type: custom:button-card
-          icon: mdi:play
-          color: var(--switch-checked-color)
-          show_name: false
-          entity: switch.vacuum_start
-        - type: custom:button-card
-          icon: mdi:pause
-          color: yellow
-          show_name: false
-          entity: switch.vacuum_pause
-        - type: custom:button-card
-          icon: mdi:home
-          show_name: false
-          entity: switch.vacuum_dock
-          color: var(--switch-checked-color)
-        - type: custom:button-card
-          icon: mdi:trash-can
-          show_name: false
-          tap_action:
-            action: call-service
-            service: script.vacuum_dust_bin
+        - type: custom:paper-buttons-row
+          buttons:
+            - icon: mdi:play
+              entity: switch.vacuum_start
+              name: false
+            - icon: mdi:pause
+              entity: switch.vacuum_pause
+              name: false
+            - icon: mdi:home
+              entity: switch.vacuum_dock
+              name: false
+            - icon: mdi:trash-can
+              entity: script.vacuum_dust_bin
+              name: false
 
 # People at home
 - type: entities

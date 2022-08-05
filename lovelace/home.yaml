@@ -116,9 +116,10 @@
               - height: 70px
 
 # Weather
-- type: weather-forecast
-  name: Weather
+- type: custom:weather-card
   entity: weather.home
+  details: false
+  number_of_forecasts: 5
 
 # Departures
 - type: entities

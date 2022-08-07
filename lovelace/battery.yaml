@@ -34,12 +34,6 @@
     - sensor.iphone_von_sandra_battery_level
     - sensor.tab_battery_level
 
-# Plants
-- type: custom:battery-state-card
-  title: Plants
-  entities:
-    - sensor.euonymus_japanicus_battery
-
 # Motion Sensors
 - type: custom:battery-state-card
   title: Motion Sensors

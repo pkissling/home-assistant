@@ -35,6 +35,17 @@
       entities:
         - light.corridor_sideboard
 
+# Sun card
+- type: custom:sun-card
+  darkMode: true
+  timeFormat: 24h
+
+# Weather
+- type: custom:weather-card
+  entity: weather.home
+  details: false
+  number_of_forecasts: 5
+
 # Volume
 - type: custom:stack-in-card
   mode: vertical
@@ -91,13 +102,6 @@
           entity: switch.remote_off
           state: 'on'
           name: 'Off'
-
-
-# Weather
-- type: custom:weather-card
-  entity: weather.home
-  details: false
-  number_of_forecasts: 5
 
 # Departures
 - type: entities
@@ -202,8 +206,3 @@
       head:
         entity: switch.alarm
     - entity: input_datetime.wakeup_time
-
-# Sun card
-- type: custom:sun-card
-  darkMode: true
-  timeFormat: 24h

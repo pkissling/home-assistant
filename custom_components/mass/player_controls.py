@@ -599,7 +599,7 @@ class CastPlayer(HassPlayer):
                 },
                 {
                     "opt_itemId": "control/next",
-                    "autoplay": False,
+                    "autoplay": True,
                     "media": {
                         "contentId": self.mass.streams.get_control_url(
                             self.player_id, "next"

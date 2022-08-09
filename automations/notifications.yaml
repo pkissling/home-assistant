@@ -105,7 +105,11 @@
       {{
         states('device_tracker.tado_patricks_iphone')
           !=
-        states('device_tracker.patricks_iphone')
+        states('device_tracker.router_patricks_iphone')
+          !=
+        states('device_tracker.icloud_patricks_iphone')
+          !=
+        states('device_tracker.icloud_patricks_apple_watch')
       }}
     for:
       hours: 1
@@ -114,6 +118,25 @@
     data:
       title: Device Tracker
       message: Patrick's device tracker is out of sync
+
+- alias: Notification - Device Tracker not working for Sandra
+  trigger:
+    platform: template
+    value_template: >
+      {{
+        states('device_tracker.router_iphone_von_sandra')
+          !=
+        states('device_tracker.icloud_iphone_von_sandra')
+          !=
+        states('device_tracker.icloud_sandras_apple_watch')
+      }}
+    for:
+      hours: 1
+  action:
+    service: notify.patrick
+    data:
+      title: Device Tracker
+      message: Sandra's device tracker is out of sync
 
 - alias: Notification - Expiring SSL Certificate
   trigger:

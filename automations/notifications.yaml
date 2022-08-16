@@ -126,7 +126,7 @@
       {{
         states('device_tracker.router_iphone_von_sandra')
           !=
-        states('device_tracker.icloud_iphone_von_sandra')
+        states('device_tracker.icloud_sandras_iphone')
           !=
         states('device_tracker.icloud_sandras_apple_watch')
       }}

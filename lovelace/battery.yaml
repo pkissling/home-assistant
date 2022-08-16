@@ -33,7 +33,7 @@
     - sensor.icloud_patricks_iphone_battery_state
     - sensor.icloud_patricks_apple_watch_battery_state
     - sensor.icloud_patricks_macbook_pro_battery_state
-    - sensor.icloud_iphone_von_sandra_battery_state
+    - sensor.icloud_sandras_iphone_battery_state
     - sensor.icloud_sandras_apple_watch_battery_state
     - sensor.tab_battery_level
 

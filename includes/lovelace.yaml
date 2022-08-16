@@ -17,13 +17,11 @@ resources:
     type: module
   - url: /hacsfiles/mini-media-player/mini-media-player-bundle.js
     type: module
-  - url: /hacsfiles/simple-clock-card/simple-clock-card.js
-    type: module
   - url: /hacsfiles/stack-in-card/stack-in-card.js
     type: js
-  - url: /hacsfiles/weather-card/weather-card.js
-    type: module
   - url: /local/thermostat-bar-card/thermostat-bar-card.js
+    type: module
+  - url: 'http://192.168.0.3:5000/clock-weather-card.js'
     type: module
   # # dev
   # - url: 'http://192.168.0.21:4999/thermostat-bar-card.js'

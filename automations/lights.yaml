@@ -281,7 +281,7 @@
       lights: light.study
       manual_control: false
 
-- alias: Light - Ambient - Turn off when no motion in Study for two hours
+- alias: Light - Ambient - Turn off when no motion in Corridor for two hours
   trigger:
     platform: state
     entity_id: binary_sensor.motion_corridor

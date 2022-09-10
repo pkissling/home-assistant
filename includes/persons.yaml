@@ -4,13 +4,13 @@
   id: 7aa7dc0964ff44c7b2ccc5be75d654bd
   device_trackers:
     - device_tracker.router_patricks_iphone
-    - device_tracker.icloud_patricks_iphone
-    - device_tracker.icloud_patricks_apple_watch
+    - device_tracker.patricks_iphone
+    - device_tracker.patricks_apple_watch
     - device_tracker.tado_patricks_iphone
 
 - name: Sandra
   id: 7aa7dc0964ff44c7b2ccc5be75d651bd
   device_trackers:
     - device_tracker.router_iphone_von_sandra
-    - device_tracker.icloud_sandras_iphone
-    - device_tracker.icloud_sandras_apple_watch
+    - device_tracker.sandras_iphone
+    - device_tracker.sandras_apple_watch

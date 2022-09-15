@@ -20,22 +20,12 @@
   entities:
     - sensor.door_corridor_battery_level
 
-# Vacuum
-- type: custom:battery-state-card
-  title: Vacuum
-  entities:
-    - sensor.vacuum_battery
-
 # Devices
 - type: custom:battery-state-card
   title: Devices
   entities:
-    - sensor.patricks_iphone_battery_state_2
-    - sensor.patricks_apple_watch_battery_state
-    - sensor.patricks_macbook_pro_battery_state
-    - sensor.sandras_iphone_battery_state
-    - sensor.sandras_apple_watch_battery_state
     - sensor.tab_battery_level
+    - sensor.vacuum_battery
 
 # Motion Sensors
 - type: custom:battery-state-card

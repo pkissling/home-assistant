@@ -106,10 +106,6 @@
         states('device_tracker.tado_patricks_iphone')
           !=
         states('device_tracker.router_patricks_iphone')
-          !=
-        states('device_tracker.patricks_iphone')
-          !=
-        states('device_tracker.patricks_apple_watch')
       }}
     for:
       hours: 1
@@ -125,10 +121,6 @@
     value_template: >
       {{
         states('device_tracker.router_iphone_von_sandra')
-          !=
-        states('device_tracker.sandras_iphone')
-          !=
-        states('device_tracker.sandras_apple_watch')
       }}
     for:
       hours: 1

@@ -3,13 +3,13 @@
 - platform: group
   name: all
   services:
-    - service: mobile_app_patricks_iphone
+    - service: mobile_app_iphone
     - service: mobile_app_iphone_von_sandra
 
 - platform: group
   name: patrick
   services:
-    - service: mobile_app_patricks_iphone
+    - service: mobile_app_iphone
 
 - platform: group
   name: sandra

@@ -3,7 +3,6 @@
 # Clock / weather
 - type: custom:clock-weather-card
   entity: weather.home
-  sun_entity: sun.sun
   locale: de
 
 # Lights

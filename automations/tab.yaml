@@ -17,12 +17,23 @@
     for:
       minutes: 2
   action:
+    # reload wallpanel on default page
     - service: mqtt.publish
       data:
         topic: wallpanel/corridor/command
-        payload: '{ "relaunch": true, "clearCache": true }'
+        payload: '{ "relaunch": true }'
     - service: switch.turn_off
       entity_id: switch.display_tab_corridor
+
+- alias: Tab - Display - Clear tab cache every day
+  trigger:
+    platform: time_pattern
+    hours: 0
+  action:
+    service: mqtt.publish
+    data:
+      topic: wallpanel/corridor/command
+      payload: '{ "clearCache": true }'
 
 - alias: Tab - Speak - Warn if leaving and window open
   trigger:

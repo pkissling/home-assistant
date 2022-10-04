@@ -31,3 +31,6 @@ __pycache__
 
 # Music Assistant
 music_assistant.db-journal
+
+# local HACS plugins
+www/clock-weather-card.js

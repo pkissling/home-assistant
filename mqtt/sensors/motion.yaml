@@ -1,0 +1,70 @@
+---
+
+- name: Corridor Right
+  object_id: motion_corridor_right_battery_level
+  state_topic: zigbee2mqtt/0x00158d00063ddace
+  availability_topic: zigbee2mqtt/0x00158d00063ddace/availability
+  value_template: "{{ value_json.battery }}"
+  device_class: battery
+  unit_of_measurement: '%'
+- name: Corridor Right
+  object_id: motion_corridor_right_lightlevel
+  state_topic: zigbee2mqtt/0x00158d00063ddace
+  availability_topic: zigbee2mqtt/0x00158d00063ddace/availability
+  value_template: "{{ value_json.illuminance }}"
+  device_class: illuminance
+  unit_of_measurement: lx
+
+- name: Corridor Left
+  object_id: motion_corridor_left_battery_level
+  state_topic: zigbee2mqtt/0x00158d00045d9b0b
+  availability_topic: zigbee2mqtt/0x00158d00045d9b0b/availability
+  value_template: "{{ value_json.battery }}"
+  device_class: battery
+  unit_of_measurement: '%'
+- name: Corridor Left
+  object_id: motion_corridor_left_lightlevel
+  state_topic: zigbee2mqtt/0x00158d00045d9b0b
+  availability_topic: zigbee2mqtt/0x00158d00045d9b0b/availability
+  value_template: "{{ value_json.illuminance }}"
+  device_class: illuminance
+  unit_of_measurement: lx
+
+- name: Study Shelf
+  object_id: motion_study_shelf_battery_level
+  state_topic: zigbee2mqtt/0x00158d000421cdbe
+  availability_topic: zigbee2mqtt/0x00158d000421cdbe/availability
+  value_template: "{{ value_json.battery }}"
+  device_class: battery
+  unit_of_measurement: '%'
+- name: Study Shelf
+  object_id: motion_study_shelf_lightlevel
+  state_topic: zigbee2mqtt/0x00158d000421cdbe
+  availability_topic: zigbee2mqtt/0x00158d000421cdbe/availability
+  value_template: "{{ value_json.illuminance }}"
+  device_class: illuminance
+  unit_of_measurement: lx
+
+- name: Study Desk
+  object_id: motion_study_desk_battery_level
+  state_topic: zigbee2mqtt/0x00158d00062fb289
+  availability_topic: zigbee2mqtt/0x00158d00062fb289/availability
+  value_template: "{{ value_json.battery }}"
+  device_class: battery
+  unit_of_measurement: '%'
+# Motion Study Desk has no illuminance sensor
+
+- name: Study Ceiling
+  object_id: motion_study_ceiling_battery_level
+  state_topic: zigbee2mqtt/0x00158d0007e3fcde
+  availability_topic: zigbee2mqtt/0x00158d0007e3fcde/availability
+  value_template: "{{ value_json.battery }}"
+  device_class: battery
+  unit_of_measurement: '%'
+- name: Study Ceiling
+  object_id: motion_study_ceiling_lightlevel
+  state_topic: zigbee2mqtt/0x00158d0007e3fcde
+  availability_topic: zigbee2mqtt/0x00158d0007e3fcde/availability
+  value_template: "{{ value_json.illuminance }}"
+  device_class: illuminance
+  unit_of_measurement: lx

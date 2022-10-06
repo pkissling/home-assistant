@@ -1,0 +1,46 @@
+---
+
+- name: Corridor Right
+  object_id: motion_corridor_right
+  state_topic: zigbee2mqtt/0x00158d00063ddace
+  availability_topic: zigbee2mqtt/0x00158d00063ddace/availability
+  value_template: "{{ value_json.occupancy }}"
+  payload_on: true
+  payload_off: false
+  device_class: motion
+
+- name: Corridor Left
+  object_id: motion_corridor_left
+  state_topic: zigbee2mqtt/0x00158d00045d9b0b
+  availability_topic: zigbee2mqtt/0x00158d00045d9b0b/availability
+  value_template: "{{ value_json.occupancy }}"
+  payload_on: true
+  payload_off: false
+  device_class: motion
+
+- name: Study Desk
+  object_id: motion_study_desk
+  state_topic: zigbee2mqtt/0x00158d00062fb289
+  availability_topic: zigbee2mqtt/0x00158d00062fb289/availability
+  value_template: "{{ value_json.occupancy }}"
+  payload_on: true
+  payload_off: false
+  device_class: motion
+
+- name: Study Shelf
+  object_id: motion_study_shelf
+  state_topic: zigbee2mqtt/0x00158d000421cdbe
+  availability_topic: zigbee2mqtt/0x00158d000421cdbe/availability
+  value_template: "{{ value_json.occupancy }}"
+  payload_on: true
+  payload_off: false
+  device_class: motion
+
+- name: Study Ceiling
+  object_id: motion_study_ceiling
+  state_topic: zigbee2mqtt/0x00158d0007e3fcde
+  availability_topic: zigbee2mqtt/0x00158d0007e3fcde/availability
+  value_template: "{{ value_json.occupancy }}"
+  payload_on: true
+  payload_off: false
+  device_class: motion

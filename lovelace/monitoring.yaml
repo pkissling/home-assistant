@@ -127,6 +127,7 @@
       entities:
         - sensor.cert_expiry_days_ha
         - binary_sensor.mqtt_broker_health
+        - binary_sensor.zigbee2mqtt_availability
         - binary_sensor.internet_health_check
         - binary_sensor.ib1903757824_connection_state
         - binary_sensor.healthcheck_io_home_assistant_backup

@@ -87,3 +87,4 @@
     - switch.display_tab_corridor
     - sensor.tab_battery_level
     - binary_sensor.charging_corridor_tab
+    - script.tab_purge_cache

@@ -1,0 +1,11 @@
+---
+
+tab_purge_cache:
+  alias: Purge cache
+  icon: mdi:spray-bottle
+  mode: restart
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: wallpanel/corridor/command
+        payload: '{ "clearCache": true, "relaunch": true }'

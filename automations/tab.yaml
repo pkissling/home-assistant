@@ -22,6 +22,8 @@
       data:
         topic: wallpanel/corridor/command
         payload: '{ "relaunch": true }'
+    - delay:
+        seconds: 5
     - service: switch.turn_off
       entity_id: switch.display_tab_corridor
 

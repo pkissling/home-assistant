@@ -1,7 +1,7 @@
 ---
 
 name: validate Home-Assistant configuration
-on: [ push ]  # yamllint disable-line rule:truthy
+on: [push]  # yamllint disable-line rule:truthy
 
 jobs:
 
@@ -10,8 +10,10 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - name: Move dummy secrets file
-        run: mv secrets_dummy.yaml secrets.yaml
+      - name: Create dummy files
+        run: |
+          mv secrets_dummy.yaml secrets.yaml
+          touch lovelace/clock_weather_card.yaml
 
       - name: Home Assistant Version
         uses: "docker://homeassistant/home-assistant:stable"
@@ -30,8 +32,10 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - name: Move dummy secrets file
-        run: mv secrets_dummy.yaml secrets.yaml
+      - name: Create dummy files
+        run: |
+          mv secrets_dummy.yaml secrets.yaml
+          touch lovelace/clock_weather_card.yaml
 
       - name: Home Assistant Version
         uses: "docker://homeassistant/home-assistant:beta"
@@ -50,8 +54,10 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - name: Move dummy secrets file
-        run: mv secrets_dummy.yaml secrets.yaml
+      - name: Create dummy files
+        run: |
+          mv secrets_dummy.yaml secrets.yaml
+          touch lovelace/clock_weather_card.yaml
 
       - name: Home Assistant Version
         uses: "docker://homeassistant/home-assistant:dev"

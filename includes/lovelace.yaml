@@ -19,6 +19,8 @@ resources:
     type: module
   - url: /hacsfiles/stack-in-card/stack-in-card.js
     type: js
+  - url: /hacsfiles/vacuum-card/vacuum-card.js
+    type: module
   - url: /local/thermostat-bar-card/thermostat-bar-card.js
     type: module
   - !include ../lovelace/clock_weather_card.yaml

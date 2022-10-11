@@ -2,8 +2,7 @@
 
 # Core config
 default_config:
-frontend:
-  themes: !include_dir_merge_named themes
+frontend: !include includes/frontend.yaml
 homeassistant: !include includes/homeassistant.yaml
 http: !include includes/http.yaml
 logger: !include includes/logger.yaml
@@ -23,7 +22,6 @@ group: !include_dir_merge_named groups
 input_boolean: !include_dir_merge_named input_booleans
 input_datetime: !include_dir_merge_named input_datetimes
 input_number: !include_dir_merge_named input_numbers
-input_select: !include_dir_merge_named input_selects
 input_text: !include_dir_merge_named input_texts
 script: !include_dir_merge_named scripts
 

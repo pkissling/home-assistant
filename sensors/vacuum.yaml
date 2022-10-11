@@ -14,3 +14,27 @@
         {% set current = states('sensor.xiaomi_vacuum_cleaner_total_clean_area') | int %}
         {{ next_emptying - current }}
       unit_of_measurement: m²
+
+    vacuum_filter_left:
+      value_template: "{{ (states('sensor.xiaomi_vacuum_cleaner_filter_left') | float(0) / 3600) | round(0) }}"
+      unit_of_measurement: h
+
+    vacuum_side_brush_left:
+      value_template: "{{ (states('sensor.xiaomi_vacuum_cleaner_side_brush_left') | float(0) / 3600) | round(0) }}"
+      unit_of_measurement: h
+
+    vacuum_main_brush_left:
+      value_template: "{{ (states('sensor.xiaomi_vacuum_cleaner_main_brush_left') | float(0) / 3600) | round(0) }}"
+      unit_of_measurement: h
+
+    vacuum_sensor_dirty_left:
+      value_template: "{{ (states('sensor.xiaomi_vacuum_cleaner_sensor_dirty_left') | float(0) / 3600) | round(0) }}"
+      unit_of_measurement: h
+
+    vacuum_current_clean_duration:
+      value_template: "{{ (states('sensor.xiaomi_vacuum_cleaner_current_clean_duration') | float(0) / 60) | round(0) }}"
+      unit_of_measurement: m
+
+    vacuum_current_clean_area:
+      value_template: "{{ states('sensor.xiaomi_vacuum_cleaner_current_clean_area') | round(0) }}"
+      unit_of_measurement: m

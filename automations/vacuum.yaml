@@ -81,41 +81,6 @@
       message: >
         Roborock Error: {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.error }}
 
-- alias: Vacuum - Start room cleaup on input select
-  trigger:
-    platform: state
-    entity_id: input_select.vacuum_room_cleanup
-  action:
-    - service: xiaomi_miio.vacuum_clean_segment
-      data:
-        entity_id: vacuum.xiaomi_vacuum_cleaner
-        segments: >
-          {% if states('input_select.vacuum_room_cleanup') == 'Living Room' %}
-            20
-          {% elif states('input_select.vacuum_room_cleanup') == 'Kitchen' %}
-            21
-          {% elif states('input_select.vacuum_room_cleanup') == 'Toilet' %}
-            17
-          {% elif states('input_select.vacuum_room_cleanup') == 'Corridor' %}
-            16
-          {% elif states('input_select.vacuum_room_cleanup') == 'Bedroom' %}
-            19
-          {% elif states('input_select.vacuum_room_cleanup') == 'Study' %}
-            18
-          {% elif states('input_select.vacuum_room_cleanup') == 'Bathroom' %}
-            1
-          {% endif %}
-    - wait_for_trigger:
-        platform: state
-        entity_id: vacuum.xiaomi_vacuum_cleaner
-        from: cleaning
-      continue_on_timeout: true
-      timeout: '00:30:00'
-    - service: input_select.select_option
-      entity_id: input_select.vacuum_room_cleanup
-      data:
-        option: '-'
-
 - alias: Vacuum - Send to Trash Bin
   trigger:
     platform: numeric_state

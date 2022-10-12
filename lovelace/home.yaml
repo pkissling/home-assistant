@@ -5,148 +5,6 @@
   entity: weather.home
   locale: de
 
-# Lights
-- type: entities
-  entities:
-    - type: custom:fold-entity-row
-      head:
-        entity: light.bedroom
-      entities:
-        - light.bedroom_wardrobe
-    - type: custom:fold-entity-row
-      head:
-        entity: light.living_room
-      entities:
-        - light.living_room_lamp
-        - light.living_room_couch
-        - light.living_room_tv
-    - type: custom:fold-entity-row
-      head:
-        entity: light.study
-      entities:
-        - light.study_desk
-        - light.study_shelf
-        - light.study_floor_lamp
-    - type: custom:fold-entity-row
-      head:
-        entity: light.corridor
-      entities:
-        - light.corridor_sideboard
-
-# Sun card
-- type: custom:sun-card
-  darkMode: true
-  timeFormat: 24h
-
-# Volume
-- type: custom:stack-in-card
-  mode: vertical
-  cards:
-    - type: conditional
-      conditions:
-        - entity: media_player.all_speakers
-          state_not: 'off'
-      card:
-        type: entities
-        entities:
-          - type: custom:mini-media-player
-            entity: media_player.all_speakers
-            group: true
-            info: scroll
-            toggle_power: false
-            hide:
-              volume: true
-              progress: true
-    - type: conditional
-      conditions:
-        - entity: media_player.all_speakers
-          state_not: 'off'
-      card:
-        type: entities
-        entities:
-          - input_number.volume_offset
-    - type: custom:paper-buttons-row
-      base_config:
-        layout: icon_name
-      buttons:
-        - icon: mdi:guitar-acoustic
-          entity: switch.radio_unplugged
-        - icon: mdi:city
-          entity: switch.radio_nrj
-        - icon: mdi:pulse
-          entity: switch.radio_puls
-
-- type: custom:stack-in-card
-  cards:
-    - type: custom:paper-buttons-row
-      base_config:
-        layout: icon_name
-      buttons:
-        - icon: mdi:television
-          entity: switch.living_room_tv
-          name: TV
-        - icon: mdi:cast
-          entity: switch.living_room_chromecast
-          name: Chromecast
-        - icon: mdi:power
-          entity: switch.remote_off
-          state: 'on'
-          name: 'Off'
-
-# Departures
-- type: entities
-  entities:
-    - sensor.departure_s7_to_hauptbahnhof
-    - sensor.departure_u6_to_sendlinger_tor
-
-# Temperature
-- type: custom:thermostat-bar-card
-  entities:
-    - entity_id: climate.bathroom
-      icon: mdi:shower
-      window_sensor: binary_sensor.window_bathroom
-    - entity_id: climate.study
-      icon: mdi:desk-lamp
-      window_sensor: binary_sensor.window_study
-    - entity_id: climate.living_room
-      icon: mdi:sofa
-      window_sensor: binary_sensor.window_living_room
-    - entity_id: climate.kitchen
-      icon: mdi:stove
-      window_sensor: binary_sensor.window_kitchen
-    - entity_id: climate.toilet
-      icon: mdi:toilet
-      window_sensor: binary_sensor.window_toilet
-    - entity_id: climate.bedroom
-      icon: mdi:bed-king-outline
-      window_sensor: binary_sensor.window_bedroom
-
-# Toggle Modes
-- type: entities
-  entities:
-    - switch.summer_mode
-    - switch.guest_mode
-    - input_boolean.home_office_mode
-    - switch.party_mode
-    - input_boolean.tv_mode
-    - input_boolean.vacuum_daily_cleanup
-
-- type: custom:stack-in-card
-  cards:
-    - type: custom:paper-buttons-row
-      base_config:
-        layout: icon_name
-      buttons:
-        - icon: mdi:weather-night
-          entity: script.good_night
-          name: Good Night
-        - icon: mdi:weather-sunset-up
-          entity: script.good_morning
-          name: Good Morning
-        - icon: mdi:exit-run
-          entity: script.im_leaving
-          name: I'm leaving
-
 # Vacuum
 - type: custom:vacuum-card
   entity: vacuum.xiaomi_vacuum_cleaner
@@ -156,6 +14,7 @@
       --vc-toolbar-background: none;
     }
   show_name: false
+  compact_view: true
   stats:
     default:
       - entity_id: sensor.vacuum_filter_left
@@ -163,10 +22,10 @@
         subtitle: Filter
       - entity_id: sensor.vacuum_side_brush_left
         unit: h
-        subtitle: Side brush
+        subtitle: Brush
       - entity_id: sensor.vacuum_main_brush_left
         unit: h
-        subtitle: Main brush
+        subtitle: Roller
       - entity_id: sensor.vacuum_sensor_dirty_left
         unit: h
         subtitle: Sensors
@@ -227,12 +86,93 @@
       icon: mdi:trash-can
       service: script.vacuum_dust_bin
 
-# People at home
+
+# Departures
 - type: entities
   entities:
-    - person.patrick
-    - person.sandra
-    - input_boolean.person_guest
+    - sensor.departure_s7_to_hauptbahnhof
+    - sensor.departure_u6_to_sendlinger_tor
+
+# Sun card
+- type: custom:sun-card
+  darkMode: true
+  timeFormat: 24h
+
+# Toggle Modes
+- type: entities
+  entities:
+    - switch.summer_mode
+    - switch.guest_mode
+    - input_boolean.home_office_mode
+    - switch.party_mode
+    - input_boolean.tv_mode
+    - input_boolean.vacuum_daily_cleanup
+
+# Media
+- type: entities
+  entities:
+    - type: custom:mini-media-player
+      entity: media_player.all_speakers
+      group: hide
+      info: scroll
+      toggle_power: false
+      hide:
+        volume: true
+        progress: true
+    - input_number.volume_offset
+    - type: custom:paper-buttons-row
+      base_config:
+        layout: icon_name
+      buttons:
+        - icon: mdi:guitar-acoustic
+          entity: switch.radio_unplugged
+        - icon: mdi:city
+          entity: switch.radio_nrj
+        - icon: mdi:pulse
+          entity: switch.radio_puls
+    - type: custom:paper-buttons-row
+      base_config:
+        layout: icon_name
+      buttons:
+        - icon: mdi:television
+          entity: switch.living_room_tv
+          name: TV
+        - icon: mdi:cast
+          entity: switch.living_room_chromecast
+          name: Chromecast
+        - icon: mdi:power
+          entity: switch.remote_off
+          state: 'on'
+          name: 'Off'
+
+
+# Lights
+- type: entities
+  entities:
+    - type: custom:fold-entity-row
+      head:
+        entity: light.bedroom
+      entities:
+        - light.bedroom_wardrobe
+    - type: custom:fold-entity-row
+      head:
+        entity: light.living_room
+      entities:
+        - light.living_room_lamp
+        - light.living_room_couch
+        - light.living_room_tv
+    - type: custom:fold-entity-row
+      head:
+        entity: light.study
+      entities:
+        - light.study_desk
+        - light.study_shelf
+        - light.study_floor_lamp
+    - type: custom:fold-entity-row
+      head:
+        entity: light.corridor
+      entities:
+        - light.corridor_sideboard
 
 # Alarm Clock
 - type: entities
@@ -249,3 +189,49 @@
       head:
         entity: switch.alarm
     - entity: input_datetime.wakeup_time
+
+# Temperature
+- type: custom:thermostat-bar-card
+  entities:
+    - entity_id: climate.bathroom
+      icon: mdi:shower
+      window_sensor: binary_sensor.window_bathroom
+    - entity_id: climate.study
+      icon: mdi:desk-lamp
+      window_sensor: binary_sensor.window_study
+    - entity_id: climate.living_room
+      icon: mdi:sofa
+      window_sensor: binary_sensor.window_living_room
+    - entity_id: climate.kitchen
+      icon: mdi:stove
+      window_sensor: binary_sensor.window_kitchen
+    - entity_id: climate.toilet
+      icon: mdi:toilet
+      window_sensor: binary_sensor.window_toilet
+    - entity_id: climate.bedroom
+      icon: mdi:bed-king-outline
+      window_sensor: binary_sensor.window_bedroom
+
+# Actions
+- type: entities
+  entities:
+    - type: custom:paper-buttons-row
+      base_config:
+        layout: icon_name
+      buttons:
+        - icon: mdi:weather-night
+          entity: script.good_night
+          name: Good Night
+        - icon: mdi:weather-sunset-up
+          entity: script.good_morning
+          name: Good Morning
+        - icon: mdi:exit-run
+          entity: script.im_leaving
+          name: I'm leaving
+
+# People at home
+- type: entities
+  entities:
+    - person.patrick
+    - person.sandra
+    - input_boolean.person_guest

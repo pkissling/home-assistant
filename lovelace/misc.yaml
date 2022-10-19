@@ -88,3 +88,9 @@
     - sensor.tab_battery_level
     - binary_sensor.charging_corridor_tab
     - script.tab_purge_cache
+
+# Github
+- type: entities
+  entities:
+    - type: custom:github-entity-row
+      repo: pkissling/clock-weather-card

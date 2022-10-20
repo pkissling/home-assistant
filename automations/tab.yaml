@@ -17,15 +17,8 @@
     for:
       minutes: 2
   action:
-    # reload wallpanel on default page
-    - service: mqtt.publish
-      data:
-        topic: wallpanel/corridor/command
-        payload: '{ "relaunch": true }'
-    - delay:
-        seconds: 5
-    - service: switch.turn_off
-      entity_id: switch.display_tab_corridor
+    service: switch.turn_off
+    entity_id: switch.display_tab_corridor
 
 - alias: Tab - Speak - Warn if leaving and window open
   trigger:

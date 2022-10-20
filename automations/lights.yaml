@@ -229,6 +229,9 @@
     above: 100
     for:
       minutes: 45
+  condition:
+    condition: time
+    after: '12:00:00'
   action:
     service: light.turn_on
     entity_id: light.bedroom_wardrobe

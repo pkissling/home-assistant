@@ -134,7 +134,7 @@
         {% elif is_state_attr('media_player.chromecast', 'media_content_id', 'https://nrj.de/muenchen') %}
           {{ default_volume }}
         {% elif is_state_attr('media_player.chromecast', 'app_name', 'Spotify') or is_state_attr('media_player.chromecast', 'media_title', ' Streaming from Music Assistant') %}
-          {{ default_volume + 0.3 }}
+          {{ default_volume + 0.35 }}
         {% elif 'google_translate' in (state_attr('media_player.chromecast', 'media_content_id') or []) %}
           {{ default_volume + 0.2 }}
         {% elif is_state_attr('media_player.chromecast', 'app_name', 'Google News') %}

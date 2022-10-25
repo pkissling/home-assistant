@@ -15,4 +15,4 @@
         service: mqtt.publish
         data:
           topic: wallpanel/corridor/command
-          payload: '{"wake":false, "relaunch": true}'
+          payload: '{"wake":false}'

@@ -4,14 +4,28 @@
   sensors:
     sun:
       value_template: >
+        {% set actual_sunrise_time = (as_timestamp(state_attr('sun.sun' , 'next_rising')) + (60 * 60)) | timestamp_custom('%H:%M') %}
+        {% if actual_sunrise_time < '08:00' %}
+          {% set sunrise_time = '08:00' %}
+        {% else %}
+          {% set sunrise_time = actual_sunrise_time %}
+        {% endif %}
+
+        {% set actual_sunset_time = (as_timestamp(state_attr('sun.sun' , 'next_setting')) - (60 * 60)) | timestamp_custom('%H:%M') %}
+        {% if actual_sunset_time > '17:00' %}
+          {% set sunset_time = '17:00' %}
+        {% else %}
+          {% set sunset_time = actual_sunset_time %}
+        {% endif %}
+
         {% if is_number(states('sensor.motion_corridor_lightlevel')) %}
           {{
-            is_state('sensor.season', 'winter') | iif('09:00', '08:00') <= states('sensor.time')
+            sunrise_time <= states('sensor.time')
               and
             (
               states('sensor.motion_corridor_lightlevel') | int > 50
                 or
-              states('sensor.time') < is_state('sensor.season', 'winter') | iif('16:00', '17:00')
+              states('sensor.time') < sunset_time
             )
           }}
         {% else %}

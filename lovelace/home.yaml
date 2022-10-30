@@ -3,6 +3,7 @@
 # Clock / weather
 - type: custom:clock-weather-card
   entity: weather.home
+  date_pattern: dd.MM.yyyy
 
 # Vacuum
 - type: custom:vacuum-card

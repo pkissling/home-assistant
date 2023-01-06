@@ -1,6 +1,6 @@
 # My Home Assistant Configuration
 
-![yamllint](https://github.com/pkissling/home-assistant/workflows/lint/badge.svg)
+![yamllint](https://github.com/pkissling/home-assistant/actions/workflows/yamllint.yml/badge.svg)
 ![validate Home-Assistant configuration](https://github.com/pkissling/home-assistant/workflows/validate%20Home-Assistant%20configuration/badge.svg)
 [![valid links](https://github.com/pkissling/home-assistant/actions/workflows/link-validator.yml/badge.svg)](https://github.com/pkissling/home-assistant/actions/workflows/link-validator.yml)
 

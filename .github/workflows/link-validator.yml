@@ -11,9 +11,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
       - name: Set up Ruby 2.6
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.6.x
+          ruby-version: 2.6
       - name: Install Awesome Bot
         run: gem install awesome_bot
       - name: Run Awesome Bot

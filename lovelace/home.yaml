@@ -121,6 +121,8 @@
         progress: true
     - input_number.volume_offset
     - type: custom:paper-buttons-row
+      styles:
+        "--pbs-button-color": "--var(primary-text-color)"
       base_config:
         layout: icon_name
       buttons:
@@ -131,6 +133,8 @@
         - icon: mdi:pulse
           entity: switch.radio_puls
     - type: custom:paper-buttons-row
+      styles:
+        "--pbs-button-color": "--var(primary-text-color)"
       base_config:
         layout: icon_name
       buttons:
@@ -142,7 +146,6 @@
           name: Chromecast
         - icon: mdi:power
           entity: switch.remote_off
-          state: 'on'
           name: 'Off'
 
 
@@ -216,6 +219,8 @@
 - type: entities
   entities:
     - type: custom:paper-buttons-row
+      styles:
+        "--pbs-button-color": "--var(primary-text-color)"
       base_config:
         layout: icon_name
       buttons:

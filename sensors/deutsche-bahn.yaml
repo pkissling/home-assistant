@@ -1,16 +1,5 @@
 ---
 
-- platform: deutsche_bahn
-  from: Harras, München
-  to: Hauptbahnhof, München
-  only_direct: true
-  offset: 600  # 10 mins
-
-- platform: deutsche_bahn
-  from: Harras, München
-  to: Sendlinger Tor, München
-  only_direct: true
-  offset: 720  # 12 mins
 
 - platform: template
   sensors:

@@ -4,7 +4,7 @@
   name: all
   services:
     - service: mobile_app_patricks_iphone
-    - service: mobile_app_iphone_von_sandra
+    - service: mobile_app_sandras_iphone
 
 - platform: group
   name: patrick
@@ -14,4 +14,4 @@
 - platform: group
   name: sandra
   services:
-    - service: mobile_app_iphone_von_sandra
+    - service: mobile_app_sandras_iphone

@@ -10,3 +10,4 @@
   id: 7aa7dc0964ff44c7b2ccc5be75d651bd
   device_trackers:
     - device_tracker.router_sandras_iphone
+    - device_tracker.tado_sandras_iphone

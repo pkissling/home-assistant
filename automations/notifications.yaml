@@ -120,15 +120,21 @@
     platform: template
     value_template: >
       {{
-        states('device_tracker.router_iphone_von_sandra')
+        states('device_tracker.tado_sandras_iphone')
+          !=
+        states('device_tracker.router_sandras_iphone')
       }}
     for:
       hours: 1
   action:
-    service: notify.patrick
-    data:
-      title: Device Tracker
-      message: Sandra's device tracker is out of sync
+    - service: notify.patrick
+      data:
+        title: Device Tracker
+        message: Sandra's device tracker is out of sync
+    - service: notify.sandra
+      data:
+        title: Bitte Tado App öffnen
+        message: ❤️
 
 - alias: Notification - Expiring SSL Certificate
   trigger:

@@ -2,10 +2,10 @@
 
 - platform: ping
   name: pi_hole_ping
-  host: pihole
+  host: localhost
 
 - platform: command_line
   name: pi_hole_healthcheck
   device_class: connectivity
-  command: 'nslookup -timeout=1 -retry=3 google.com pihole > /dev/null && echo ON || echo OFF'
+  command: 'nslookup -timeout=1 -retry=3 google.com localhost > /dev/null && echo ON || echo OFF'
   scan_interval: 10  # seconds

@@ -2,7 +2,7 @@
 
 api_version: 1
 ssl: false
-host: home-assistant
+host: localhost
 port: 8086
 username: homeassistant
 password: !secret influxdb_password

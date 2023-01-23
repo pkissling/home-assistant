@@ -1,5 +1,5 @@
 ---
 
-sensor.home_assistant_uptime:
+sensor.home_server_uptime:
   friendly_name: Uptime
   icon: mdi:clock-check-outline

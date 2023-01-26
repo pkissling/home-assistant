@@ -1,0 +1,10 @@
+- platform: rest
+  resource: http://localhost:8000/v1/openvpn/status
+  name: OpenVPN Status
+  device_class: connectivity
+  value_template: >
+    {% if value_json.status == 'running' %}
+      ON
+    {% else %}
+      OFF
+    {% endif %}

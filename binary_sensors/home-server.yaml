@@ -1,3 +1,5 @@
+---
+
 - platform: rest
   resource: http://localhost:8000/v1/openvpn/status
   name: OpenVPN Status

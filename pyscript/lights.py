@@ -53,11 +53,11 @@ def light_ambient_turn_on(
       # sleep for 5 mins before turning off lights
       task.sleep(5 * 60)
 
-      # turn off lights
-      light.turn_off(entity_id=light_entity_id, transition=60)
-
-      # wait until light is off
-      task.sleep(60)
+      if brightness_is_unchanged(light_entity_id, dim_brightness):
+        # turn off lights
+        light.turn_off(entity_id=light_entity_id, transition=60)
+        # wait until light is off
+        task.sleep(60)
 
       # remove night light marker
       night_light_entity_ids.remove(light_entity_id)
@@ -83,3 +83,8 @@ def is_vacuum_running():
 
 def adjust_light(light_entity_id):
     return (is_light_on(light_entity_id) and state.get('script.lights_ambient_turn_on') == 'off')
+
+def brightness_is_unchanged(light_entity_id, dim_brightness):
+  log.info(f"brightness={state.get(light_entity_id)['brightness']}")
+  log.info(f"dim_brightness={dim_brightness}")
+  return state.get(light_entity_id)['brightness'] == dim_brightness

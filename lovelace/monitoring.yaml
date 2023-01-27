@@ -1,140 +1,101 @@
 ---
 
-# home-server
+# Temp
+- type: custom:mini-graph-card
+  name: Temperature
+  entities:
+    - sensor.diskstation_physical_id_0_temperature
+    - sensor.home_server_cpu_thermal_1_temperature
+  lower_bound: 30
+  upper_bound: 80
+  decimals: 0
+  show:
+    points: false
+    labels: false
+    legend: false
+
+# RAM
+- type: custom:mini-graph-card
+  name: RAM
+  entities:
+    - sensor.diskstation_ram_used_percent
+    - sensor.home_server_ram_used_percent
+  lower_bound: 0
+  upper_bound: 100
+  decimals: 1
+  show:
+    points: false
+    labels: false
+    legend: false
+
+# CPU usage
+- type: custom:mini-graph-card
+  name: CPU Usage
+  entities:
+    - sensor.home_server_cpu_used
+    - sensor.diskstation_cpu_used
+  lower_bound: 0
+  upper_bound: 100
+  decimals: 1
+  show:
+    points: false
+    labels: false
+    legend: false
+
+# CPU load
+- type: custom:mini-graph-card
+  name: CPU Load
+  entities:
+    - sensor.home_server_cpu_load
+    - sensor.diskstation_cpu_load
+  lower_bound: 0
+  upper_bound: 2
+  decimals: 2
+  show:
+    points: false
+    labels: false
+    legend: false
+  color_thresholds:
+    - value: 1.00
+      color: var(--primary-color)
+    - value: 1.01
+      color: '#d35400'
+
+# Storage
 - type: custom:stack-in-card
+  title: Storage
   mode: vertical
-  title: home-server
   cards:
-    - type: horizontal-stack
-      cards:
-        - type: custom:mini-graph-card
-          entities:
-            - sensor.home_server_cpu_thermal_1_temperature
-          lower_bound: 30
-          upper_bound: 80
-          decimals: 0
-          show:
-            points: false
-            labels: false
-            name: false
-        - type: custom:mini-graph-card
-          entities:
-            - sensor.home_server_ram_used_percent
-          lower_bound: 0
-          upper_bound: 100
-          decimals: 1
-          show:
-            points: false
-            labels: false
-            name: false
-    - type: horizontal-stack
-      cards:
-        - type: custom:mini-graph-card
-          entities:
-            - sensor.home_server_cpu_used
-          lower_bound: 0
-          upper_bound: 100
-          decimals: 1
-          show:
-            points: false
-            labels: false
-            name: false
-        - type: custom:mini-graph-card
-          entities:
-            - sensor.home_server_cpu_load
-          lower_bound: 0
-          upper_bound: 2
-          decimals: 2
-          show:
-            graph: bar
-            points: false
-            labels: false
-            name: false
-          color_thresholds:
-            - value: 1.00
-              color: var(--primary-color)
-            - value: 1.01
-              color: '#d35400'
     - type: custom:bar-card
       entity: sensor.home_server_etc_hostname_used_percent
       positions:
         name: off  # yamllint disable-line rule:truthy
-    - type: entities
-      entities:
-        - sensor.home_server_uptime
-
-# Diskstation
-- type: custom:stack-in-card
-  title: diskstation
-  mode: vertical
-  cards:
-    - type: horizontal-stack
-      cards:
-        - type: custom:mini-graph-card
-          entities:
-            - sensor.diskstation_physical_id_0_temperature
-          lower_bound: 30
-          upper_bound: 80
-          show:
-            points: false
-            labels: false
-            name: false
-            legend: false
-        - type: custom:mini-graph-card
-          entities:
-            - sensor.diskstation_ram_used_percent
-          lower_bound: 0
-          upper_bound: 100
-          decimals: 1
-          show:
-            points: false
-            labels: false
-            name: false
-    - type: horizontal-stack
-      cards:
-        - type: custom:mini-graph-card
-          entities:
-            - sensor.diskstation_cpu_used
-          lower_bound: 0
-          upper_bound: 100
-          decimals: 1
-          show:
-            points: false
-            labels: false
-            name: false
-        - type: custom:mini-graph-card
-          entities:
-            - sensor.diskstation_cpu_load
-          lower_bound: 0
-          upper_bound: 2
-          decimals: 2
-          show:
-            graph: bar
-            points: false
-            labels: false
-            name: false
-          color_thresholds:
-            - value: 1.00
-              color: var(--primary-color)
-            - value: 1.01
-              color: '#d35400'
     - type: custom:bar-card
       entity: sensor.diskstation_etc_hostname_used_percent
       positions:
         name: off  # yamllint disable-line rule:truthy
-    - type: entities
-      entities:
-        - binary_sensor.diskstation_ping
-        - sensor.diskstation_uptime
+
+# home-server
+- type: entities
+  title: Home-Server
+  entities:
+    - sensor.home_server_uptime
+    - sensor.cert_expiry_days_ha
+    - binary_sensor.internet_health_check
+    - binary_sensor.healthcheck_io_home_server_backup
+
+    # home-server
+- type: entities
+  title: Diskstation
+  entities:
+    - sensor.diskstation_uptime
+    - binary_sensor.diskstation_ping
 
 # Connectivity
 - type: entities
   title: Connectivity
   entities:
-    - sensor.cert_expiry_days_ha
     - binary_sensor.mqtt_broker_health
     - binary_sensor.zigbee2mqtt_availability
-    - binary_sensor.internet_health_check
     - binary_sensor.ib1903757824_connection_state
-    - binary_sensor.healthcheck_io_home_server_backup
     - binary_sensor.openvpn_status

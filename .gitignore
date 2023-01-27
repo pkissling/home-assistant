@@ -34,3 +34,6 @@ music_assistant.db-journal
 
 # local HACS plugins
 lovelace/clock_weather_card.yaml
+
+# own HACS plugin
+www/community/clock-weather-card/*

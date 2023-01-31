@@ -68,7 +68,7 @@
     - type: custom:mini-graph-card
       name: Diskstation
       entities:
-         - sensor.diskstation_cpu_used
+        - sensor.diskstation_cpu_used
       lower_bound: 0
       upper_bound: 100
       decimals: 1
@@ -99,7 +99,7 @@
     - type: custom:mini-graph-card
       name: Diskstation
       entities:
-         - sensor.diskstation_cpu_load
+        - sensor.diskstation_cpu_load
       lower_bound: 0
       upper_bound: 2
       decimals: 2

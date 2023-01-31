@@ -1,0 +1,13 @@
+---
+
+symbols:
+  - ^DJI
+  - ^IXIC
+  - ^GSPC
+  - ^GDAXI
+  - ETH-USD
+  - BTC-USD
+scan_interval:
+  minutes: 1
+show_trending_icon: true
+decimal_places: 0

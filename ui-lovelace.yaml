@@ -26,3 +26,9 @@ views:
     icon: mdi:battery
     cards:
       !include lovelace/battery.yaml
+
+  # stocks
+  - path: stocks
+    icon: mdi:finance
+    cards:
+      !include lovelace/stocks.yaml

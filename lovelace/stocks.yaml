@@ -1,0 +1,61 @@
+---
+
+# DAX
+- type: custom:mini-graph-card
+  entities:
+    - sensor.yahoofinance_gdaxi
+  graph: line
+  hour24: true
+  name: Dax - Last 24hrs
+  show:
+    extrema: true
+
+# NASDAQ
+- type: custom:mini-graph-card
+  entities:
+    - sensor.yahoofinance_ixic
+  graph: line
+  hour24: true
+  name: Dax - Last 24hrs
+  show:
+    extrema: true
+
+# S&P500
+- type: custom:mini-graph-card
+  entities:
+    - sensor.yahoofinance_gspc
+  graph: line
+  hour24: true
+  name: S&P500 - Last 24hrs
+  show:
+    extrema: true
+
+# Dow Jones
+- type: custom:mini-graph-card
+  entities:
+    - sensor.yahoofinance_dji
+  graph: line
+  hour24: true
+  name: Dow Jones - Last 24hrs
+  show:
+    extrema: true
+
+# Ethereum
+- type: custom:mini-graph-card
+  entities:
+    - sensor.yahoofinance_eth_usd
+  graph: line
+  hour24: true
+  name: Ethereum - Last 24hrs
+  show:
+    extrema: true
+
+# Bitcoin
+- type: custom:mini-graph-card
+  entities:
+    - sensor.yahoofinance_btc_usd
+  graph: line
+  hour24: true
+  name: Bitcoin - Last 24hrs
+  show:
+    extrema: true

@@ -37,3 +37,4 @@ notify: !include includes/notify.yaml
 pyscript: !include includes/pyscript.yaml
 recorder: !include includes/recorder.yaml
 tts: !include includes/tts.yaml
+yahoofinance: !include includes/yahoo_finance.yaml

@@ -53,18 +53,12 @@ include:
     - input_boolean.home_office_mode
 
     # Monitoring
-    ## Pihole
-    - sensor.pi_hole_cpu_load
-    - sensor.pi_hole_cpu_used
-    - sensor.pi_hole_cpu_thermal_1_temperature
-    - sensor.pi_hole_ram_used_percent
-    - sensor.pi_hole_etc_hostname_used_percent
-    ## HA
-    - sensor.home_assistant_cpu_load
-    - sensor.home_assistant_cpu_used
-    - sensor.home_assistant_cpu_thermal_1_temperature
-    - sensor.home_assistant_ram_used_percent
-    - sensor.home_assistant_etc_hostname_used_percent
+    ## Home-Server
+    - sensor.home_server_cpu_load
+    - sensor.home_server_cpu_used
+    - sensor.home_server_cpu_thermal_1_temperature
+    - sensor.home_server_ram_used_percent
+    - sensor.home_server_etc_hostname_used_percent
     ## Diskstation
     - sensor.diskstation_cpu_load
     - sensor.diskstation_cpu_used

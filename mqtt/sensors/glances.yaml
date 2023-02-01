@@ -3,7 +3,7 @@
 # Temp
 - name: home_server_cpu_thermal_1_temperature
   state_topic: glances/home-server/sensors
-  value_template: "{{ value_json.Composite.value }}"
+  value_template: "{{ value_json['Sensor 2'].value }}"
   unit_of_measurement: '°C'
   icon: mdi:thermometer
 - name: diskstation_physical_id_0_temperature

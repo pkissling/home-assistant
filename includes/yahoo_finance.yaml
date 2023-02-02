@@ -7,7 +7,8 @@ symbols:
   - ^GDAXI
   - ETH-USD
   - BTC-USD
+  - EURUSD=X
 scan_interval:
   minutes: 1
 show_trending_icon: true
-decimal_places: 0
+decimal_places: -1

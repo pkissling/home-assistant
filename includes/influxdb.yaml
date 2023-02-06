@@ -56,7 +56,7 @@ include:
     ## Home-Server
     - sensor.home_server_cpu_load
     - sensor.home_server_cpu_used
-    - sensor.home_server_cpu_thermal_1_temperature
+    - sensor.home_server_cpu_composite_temperature
     - sensor.home_server_ram_used_percent
     - sensor.home_server_etc_hostname_used_percent
     ## Diskstation

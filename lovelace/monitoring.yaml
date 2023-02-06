@@ -7,7 +7,7 @@
     - type: custom:mini-graph-card
       name: Home-Server
       entities:
-        - sensor.home_server_cpu_thermal_1_temperature
+        - sensor.home_server_cpu_composite_temperature
       lower_bound: 20
       upper_bound: 60
       decimals: 0

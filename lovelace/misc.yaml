@@ -20,6 +20,7 @@
     - switch.plug_kitchen_dishwasher
     - switch.plug_living_room_amplifier
     - switch.plug_study_monitor
+    - switch.plug_living_room_home_server
 
 # Lightlevel
 - type: custom:mini-graph-card
@@ -67,6 +68,7 @@
     - sensor.plug_kitchen_dishwasher
     - sensor.plug_living_room_amplifier
     - sensor.plug_study_monitor
+    - sensor.plug_living_room_home_server
   show:
     points: false
     state: false

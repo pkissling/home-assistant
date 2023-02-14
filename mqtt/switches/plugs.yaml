@@ -26,3 +26,12 @@
   payload_off: 'off'
   state_on: 'on'
   state_off: 'off'
+
+- name: Plug Living Room home-server
+  unique_id: plug_living_room_home_server
+  state_topic: shellies/shellyplug-s-083A8DC32F08/relay/0
+  command_topic: shellies/shellyplug-s-083A8DC32F08/relay/0/command
+  payload_on: 'on'
+  payload_off: 'off'
+  state_on: 'on'
+  state_off: 'off'

@@ -8,6 +8,16 @@ switch.plug_living_room_amplifier:
   icon: mdi:amplifier
   friendly_name: Amplifier
 
+switch.plug_living_room_home_server:
+  icon: mdi:server
+  friendly_name: home-server
+
+sensor.plug_living_room_home_server_average:
+  icon: mdi:meter-electric
+
+sensor.plug_living_room_home_server:
+  icon: mdi:power-plug
+
 switch.plug_study_monitor:
   icon: mdi:monitor
   friendly_name: Monitor

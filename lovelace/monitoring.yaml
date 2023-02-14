@@ -135,6 +135,10 @@
     - sensor.cert_expiry_days_ha
     - binary_sensor.internet_health_check
     - binary_sensor.healthcheck_io_home_server_backup
+    - entity: sensor.plug_living_room_home_server
+      name: Current Power Consumption
+    - entity: sensor.plug_living_room_home_server_average
+      name: Average Power Consumption
 
     # home-server
 - type: entities

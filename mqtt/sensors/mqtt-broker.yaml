@@ -3,3 +3,8 @@
 - name: MQTT Broker Health
   unique_id: mqtt_broker_health
   state_topic: mqtt-broker/health  # dummy queue
+
+- name: Mosquitto Messages Sent (1min)
+  unique_id: mosquitto_messages_sent_1min
+  state_topic: $SYS/broker/load/messages/received/1min
+  unit_of_measurement: Messages

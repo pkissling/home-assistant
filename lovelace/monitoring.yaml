@@ -166,3 +166,5 @@
       show:
         points: false
         labels: false
+      aggregate_func: last
+      points_per_hour: 60

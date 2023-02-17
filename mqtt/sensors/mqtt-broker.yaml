@@ -6,5 +6,10 @@
 
 - name: Mosquitto Messages Sent (1min)
   unique_id: mosquitto_messages_sent_1min
+  state_topic: $SYS/broker/load/messages/sent/1min
+  unit_of_measurement: Messages
+
+- name: Mosquitto Messages Received (1min)
+  unique_id: mosquitto_messages_received_1min
   state_topic: $SYS/broker/load/messages/received/1min
   unit_of_measurement: Messages

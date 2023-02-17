@@ -162,9 +162,14 @@
   cards:
     - type: custom:mini-graph-card
       entities:
-        - sensor.mosquitto_messages_sent_1min
+        - entity: sensor.mosquitto_messages_sent_1min
+          name: Sent
+        - entity: sensor.mosquitto_messages_received_1min
+          name: Received
       show:
         points: false
         labels: false
-      aggregate_func: last
+        name: false
+        icon: false
       points_per_hour: 60
+      smooting: false

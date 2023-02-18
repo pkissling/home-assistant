@@ -1,7 +1,7 @@
 ---
 
 - platform: rest
-  resource: http://localhost:8000/v1/openvpn/status
+  resource: http://localhost:8001/v1/openvpn/status
   name: OpenVPN Status
   device_class: connectivity
   value_template: >

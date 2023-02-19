@@ -25,7 +25,7 @@ resources:
     type: module
   - url: /local/thermostat-bar-card/thermostat-bar-card.js
     type: module
-  - !include ../lovelace/clock_weather_card.yaml
+  - !include ../clock_weather_card.yaml
   # dev
   # - url: 'http://192.168.0.21:4999/thermostat-bar-card.js'
   #   type: module

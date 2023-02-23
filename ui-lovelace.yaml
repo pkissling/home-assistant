@@ -92,7 +92,7 @@ views:
 
 
       # Departures
-      - type: entities
+      - type: glance
         entities:
           - sensor.departure_s7_to_hauptbahnhof
           - sensor.departure_u6_to_sendlinger_tor

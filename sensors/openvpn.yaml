@@ -1,0 +1,13 @@
+---
+
+- platform: rest
+  resource: http://localhost:8001/v1/publicip/ip
+  name: OpenVPN Location
+  icon: mdi:map-marker-radius
+  value_template: "{{ value_json.country }}, {{ value_json.city }}"
+
+- platform: rest
+  resource: http://localhost:8002/v1/publicip/ip
+  name: OpenVPN HTTP Proxy Location
+  icon: mdi:map-marker-radius
+  value_template: "{{ value_json.country }}, {{ value_json.city }}"

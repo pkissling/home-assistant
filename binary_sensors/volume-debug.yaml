@@ -1,0 +1,22 @@
+---
+
+- platform: template
+  sensors:
+
+    volume_study:
+      value_template: "{{ state_attr('media_player.study', 'volume_level') | float(0) | round(2) == states('sensor.volume_study') | float(0) | round(2) }}"
+
+    volume_living_room:
+      value_template: "{{ state_attr('media_player.living_room', 'volume_level') | float(0) | round(2) == states('sensor.volume_living_room') | float(0) | round(2) }}"
+
+    volume_chromecast:
+      value_template: "{{ state_attr('media_player.chromecast', 'volume_level') | float(0) | round(2) == states('sensor.volume_chromecast') | float(0) | round(2) }}"
+
+    volume_kitchen:
+      value_template: "{{ state_attr('media_player.kitchen', 'volume_level') | float(0) | round(2) == states('sensor.volume_kitchen') | float(0) | round(2) }}"
+
+    volume_bedroom:
+      value_template: "{{ state_attr('media_player.bedroom', 'volume_level') | float(0) | round(2) == states('sensor.volume_bedroom') | float(0) | round(2) }}"
+
+    volume_bathroom:
+      value_template: "{{ state_attr('media_player.bathroom', 'volume_level') | float(0) | round(2) == states('sensor.volume_bathroom') | float(0) | round(2) }}"

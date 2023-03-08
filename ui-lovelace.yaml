@@ -8,6 +8,7 @@ views:
       - type: custom:clock-weather-card
         entity: weather.home
         date_pattern: dd.MM.yyyy
+        forecast_days: 6
 
       # Vacuum
       - type: custom:vacuum-card

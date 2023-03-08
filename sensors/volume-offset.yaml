@@ -19,7 +19,7 @@
         {% elif is_state_attr('media_player.kitchen', 'media_content_id', 'https://nrj.de/muenchen') %}
           {{ default_volume }}
         {% elif is_state_attr('media_player.kitchen', 'app_name', 'Spotify') or is_state_attr('media_player.kitchen', 'media_title', 'Streaming from Music Assistant') %}
-          {{ default_volume + 0.15 }}
+          {{ default_volume + 0.05 }}
         {% elif 'google_translate' in (state_attr('media_player.kitchen', 'media_content_id') or []) %}
           {{ default_volume + 0.25 }}
         {% elif is_state_attr('media_player.kitchen', 'app_name', 'Google News') %}
@@ -44,7 +44,7 @@
         {% elif is_state_attr('media_player.bathroom', 'media_content_id', 'https://nrj.de/muenchen') %}
           {{ default_volume }}
         {% elif is_state_attr('media_player.bathroom', 'app_name', 'Spotify') or is_state_attr('media_player.bathroom', 'media_title', 'Streaming from Music Assistant') %}
-          {{ default_volume + 0.15 }}
+          {{ default_volume + 0.05 }}
         {% elif 'google_translate' in (state_attr('media_player.bathroom', 'media_content_id') or []) %}
           {{ default_volume + 0.25 }}
         {% elif is_state_attr('media_player.bathroom', 'app_name', 'Google News') %}
@@ -69,7 +69,7 @@
         {% elif is_state_attr('media_player.bedroom', 'media_content_id', 'https://nrj.de/muenchen') %}
           {{ default_volume - 0.2 }}
         {% elif is_state_attr('media_player.bedroom', 'app_name', 'Spotify') or is_state_attr('media_player.bedroom', 'media_title', 'Streaming from Music Assistant') %}
-          {{ default_volume - 0.1 }}
+          {{ default_volume - 0.05 }}
         {% elif 'google_translate' in (state_attr('media_player.bedroom', 'media_content_id') or []) %}
           {{ default_volume }}
         {% elif is_state_attr('media_player.bedroom', 'app_name', 'Google News') %}
@@ -94,7 +94,7 @@
         {% elif is_state_attr('media_player.living_room', 'media_content_id', 'https://nrj.de/muenchen') %}
           {{ default_volume }}
         {% elif is_state_attr('media_player.living_room', 'app_name', 'Spotify') or is_state_attr('media_player.living_room', 'media_title', 'Streaming from Music Assistant') %}
-          {{ default_volume + 0.15 }}
+          {{ default_volume + 0.05 }}
         {% elif 'google_translate' in (state_attr('media_player.living_room', 'media_content_id') or []) %}
           {{ default_volume + 0.25 }}
         {% elif is_state_attr('media_player.living_room', 'app_name', 'Google News') %}
@@ -121,7 +121,7 @@
         {% elif is_state_attr('media_player.study', 'media_content_id', 'https://nrj.de/muenchen') %}
           {{ default_volume }}
         {% elif is_state_attr('media_player.study', 'app_name', 'Spotify') or is_state_attr('media_player.study', 'media_title', 'Streaming from Music Assistant') %}
-          {{ default_volume + 0.15 }}
+          {{ default_volume + 0.05 }}
         {% elif 'google_translate' in (state_attr('media_player.study', 'media_content_id') or []) %}
           {{ default_volume + 0.25 }}
         {% elif is_state_attr('media_player.study', 'app_name', 'Google News') %}
@@ -146,7 +146,7 @@
         {% elif is_state_attr('media_player.chromecast', 'media_content_id', 'https://nrj.de/muenchen') %}
           {{ default_volume }}
         {% elif is_state_attr('media_player.chromecast', 'app_name', 'Spotify') or is_state_attr('media_player.chromecast', 'media_title', 'Streaming from Music Assistant') %}
-          {{ default_volume + 0.2 }}
+          {{ default_volume + 0.1 }}
         {% elif 'google_translate' in (state_attr('media_player.chromecast', 'media_content_id') or []) %}
           {{ default_volume + 0.2 }}
         {% elif is_state_attr('media_player.chromecast', 'app_name', 'Google News') %}

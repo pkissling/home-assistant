@@ -10,14 +10,3 @@
     {% else %}
       OFF
     {% endif %}
-
-- platform: rest
-  resource: http://localhost:8002/v1/openvpn/status
-  name: OpenVPN HTTP Proxy Status
-  device_class: connectivity
-  value_template: >
-    {% if value_json.status == 'running' %}
-      ON
-    {% else %}
-      OFF
-    {% endif %}

@@ -3,7 +3,6 @@
 - name: Study Left L
   object_id: window_study_left_l
   state_topic: zigbee2mqtt/0x00158d0004606e72
-  availability_topic: zigbee2mqtt/0x00158d0004606e72/availability
   value_template: "{{ value_json.contact }}"
   payload_on: false
   payload_off: true
@@ -12,7 +11,6 @@
 - name: Study Left R
   object_id: window_study_left_r
   state_topic: zigbee2mqtt/0x00158d00045c843a
-  availability_topic: zigbee2mqtt/0x00158d00045c843a/availability
   value_template: "{{ value_json.contact }}"
   payload_on: false
   payload_off: true
@@ -21,7 +19,6 @@
 - name: Study Right L
   object_id: window_study_right_l
   state_topic: zigbee2mqtt/0x00158d0004606ddb
-  availability_topic: zigbee2mqtt/0x00158d0004606ddb/availability
   value_template: "{{ value_json.contact }}"
   payload_on: false
   payload_off: true
@@ -30,7 +27,6 @@
 - name: Study Right R
   object_id: window_study_right_r
   state_topic: zigbee2mqtt/0x00158d0004234723
-  availability_topic: zigbee2mqtt/0x00158d0004234723/availability
   value_template: "{{ value_json.contact }}"
   payload_on: false
   payload_off: true
@@ -39,7 +35,6 @@
 - name: Bathroom
   object_id: window_bathroom
   state_topic: zigbee2mqtt/0x00158d0004606f09
-  availability_topic: zigbee2mqtt/0x00158d0004606f09/availability
   value_template: "{{ value_json.contact }}"
   payload_on: false
   payload_off: true
@@ -48,7 +43,6 @@
 - name: Bedroom Left
   object_id: window_bedroom_left
   state_topic: zigbee2mqtt/0x00158d00040aaaa0
-  availability_topic: zigbee2mqtt/0x00158d00040aaaa0/availability
   value_template: "{{ value_json.contact }}"
   payload_on: false
   payload_off: true
@@ -57,7 +51,6 @@
 - name: Bedroom Right
   object_id: window_bedroom_right
   state_topic: zigbee2mqtt/0x00158d0004606e54
-  availability_topic: zigbee2mqtt/0x00158d0004606e54/availability
   value_template: "{{ value_json.contact }}"
   payload_on: false
   payload_off: true
@@ -66,7 +59,6 @@
 - name: Living Room
   object_id: window_living_room
   state_topic: zigbee2mqtt/0x00158d0004285c3c
-  availability_topic: zigbee2mqtt/0x00158d0004285c3c/availability
   value_template: "{{ value_json.contact }}"
   payload_on: false
   payload_off: true
@@ -75,7 +67,6 @@
 - name: Kitchen
   object_id: window_kitchen
   state_topic: zigbee2mqtt/0x00158d00045c14b5
-  availability_topic: zigbee2mqtt/0x00158d00045c14b5/availability
   value_template: "{{ value_json.contact }}"
   payload_on: false
   payload_off: true
@@ -84,7 +75,6 @@
 - name: Toilet
   object_id: window_toilet
   state_topic: zigbee2mqtt/0x00158d00045d5997
-  availability_topic: zigbee2mqtt/0x00158d00045d5997/availability
   value_template: "{{ value_json.contact }}"
   payload_on: false
   payload_off: true

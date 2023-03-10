@@ -3,7 +3,6 @@
 - name: Corridor
   object_id: door_corridor
   state_topic: zigbee2mqtt/0x00158d00065a41c9
-  availability_topic: zigbee2mqtt/0x00158d00065a41c9/availability
   value_template: "{{ value_json.contact }}"
   payload_on: false
   payload_off: true

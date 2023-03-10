@@ -3,7 +3,6 @@
 - name: Motion Corridor Tab
   object_id: motion_corridor_tab
   state_topic: wallpanel/corridor/sensor/motion
-  availability_topic: wallpanel/corridor/connection
   value_template: "{{ value_json.value }}"
   payload_on: true
   payload_off: false
@@ -12,14 +11,12 @@
 - name: Wake Corridor Tab
   object_id: wake_corridor_tab
   state_topic: wallpanel/corridor/command
-  availability_topic: wallpanel/corridor/connection
   payload_on: '{"wake":true,"wakeTime":3600}'
   payload_off: '{"wake":false}'
 
 - name: Display Corridor Tab
   object_id: display_corridor_tab
   state_topic: wallpanel/corridor/state
-  availability_topic: wallpanel/corridor/connection
   payload_on: true
   payload_off: false
   value_template: "{{ value_json.screenOn }}"
@@ -27,7 +24,6 @@
 - name: Charging Corridor Tab
   object_id: charging_corridor_tab
   state_topic: wallpanel/corridor/sensor/battery
-  availability_topic: wallpanel/corridor/connection
   value_template: "{{ value_json.charging }}"
   payload_on: true
   payload_off: false

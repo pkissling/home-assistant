@@ -3,7 +3,6 @@
 - name: Window Study Left L
   object_id: window_study_left_l_battery_level
   state_topic: zigbee2mqtt/0x00158d0004606e72
-  availability_topic: zigbee2mqtt/0x00158d0004606e72/availability
   value_template: "{{ value_json.battery }}"
   device_class: battery
   unit_of_measurement: '%'
@@ -11,7 +10,6 @@
 - name: Window Study Right L
   object_id: window_study_right_l_battery_level
   state_topic: zigbee2mqtt/0x00158d0004606ddb
-  availability_topic: zigbee2mqtt/0x00158d0004606ddb/availability
   value_template: "{{ value_json.battery }}"
   device_class: battery
   unit_of_measurement: '%'
@@ -19,7 +17,6 @@
 - name: Window Study Right R
   object_id: window_study_right_r_battery_level
   state_topic: zigbee2mqtt/0x00158d0004234723
-  availability_topic: zigbee2mqtt/0x00158d0004234723/availability
   value_template: "{{ value_json.battery }}"
   device_class: battery
   unit_of_measurement: '%'
@@ -27,7 +24,6 @@
 - name: Window Study Left R
   object_id: window_study_left_r_battery_level
   state_topic: zigbee2mqtt/0x00158d00045c843a
-  availability_topic: zigbee2mqtt/0x00158d00045c843a/availability
   value_template: "{{ value_json.battery }}"
   device_class: battery
   unit_of_measurement: '%'
@@ -35,7 +31,6 @@
 - name: Window Bathroom
   object_id: window_bathroom_battery_level
   state_topic: zigbee2mqtt/0x00158d0004606f09
-  availability_topic: zigbee2mqtt/0x00158d0004606f09/availability
   value_template: "{{ value_json.battery }}"
   device_class: battery
   unit_of_measurement: '%'
@@ -43,7 +38,6 @@
 - name: Window Bedroom Left
   object_id: window_bedroom_left_battery_level
   state_topic: zigbee2mqtt/0x00158d00040aaaa0
-  availability_topic: zigbee2mqtt/0x00158d00040aaaa0/availability
   value_template: "{{ value_json.battery }}"
   device_class: battery
   unit_of_measurement: '%'
@@ -51,7 +45,6 @@
 - name: Window Bedroom Right
   object_id: window_bedroom_right_battery_level
   state_topic: zigbee2mqtt/0x00158d0004606e54
-  availability_topic: zigbee2mqtt/0x00158d0004606e54/availability
   value_template: "{{ value_json.battery }}"
   device_class: battery
   unit_of_measurement: '%'
@@ -59,7 +52,6 @@
 - name: Window Living Room
   object_id: window_living_room_battery_level
   state_topic: zigbee2mqtt/0x00158d0004285c3c
-  availability_topic: zigbee2mqtt/0x00158d0004285c3c/availability
   value_template: "{{ value_json.battery }}"
   device_class: battery
   unit_of_measurement: '%'
@@ -67,7 +59,6 @@
 - name: Window Kitchen
   object_id: window_kitchen_battery_level
   state_topic: zigbee2mqtt/0x00158d00045c14b5
-  availability_topic: zigbee2mqtt/0x00158d00045c14b5/availability
   value_template: "{{ value_json.battery }}"
   device_class: battery
   unit_of_measurement: '%'
@@ -75,7 +66,6 @@
 - name: Window Toilet
   object_id: window_toilet_battery_level
   state_topic: zigbee2mqtt/0x00158d00045d5997
-  availability_topic: zigbee2mqtt/0x00158d00045d5997/availability
   value_template: "{{ value_json.battery }}"
   device_class: battery
   unit_of_measurement: '%'

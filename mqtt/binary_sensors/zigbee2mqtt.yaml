@@ -3,7 +3,6 @@
 - name: zigbee2mqtt
   object_id: zigbee2mqtt_availability
   state_topic: zigbee2mqtt/bridge/state
-  availability_topic: zigbee2mqtt/bridge/state
   payload_on: online
   payload_off: offline
   device_class: connectivity

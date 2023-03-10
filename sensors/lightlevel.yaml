@@ -1,20 +1,16 @@
 ---
 
 
-- platform: average
+- platform: min_max
   name: Motion Study Lightlevel
-  duration:
-    minutes: 5
-  precision: 0
-  entities:
+  type: mean
+  entity_ids:
     - sensor.motion_study_ceiling_lightlevel
     - sensor.motion_study_shelf_lightlevel
 
-- platform: average
+- platform: min_max
   name: Motion Corridor Lightlevel
-  duration:
-    minutes: 5
-  precision: 0
-  entities:
+  type: mean
+  entity_ids:
     - sensor.motion_corridor_left_lightlevel
     - sensor.motion_corridor_right_lightlevel

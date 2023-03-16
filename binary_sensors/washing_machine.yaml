@@ -1,0 +1,9 @@
+---
+
+- platform: template
+
+  sensors:
+    bathroom_washing_machine_running:
+      value_template: "{{ states('binary_sensor.bathroom_washing_machine') }}"
+      delay_on: 00:05:00
+      delay_off: 00:05:00

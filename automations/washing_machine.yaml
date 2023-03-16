@@ -1,0 +1,18 @@
+---
+
+- alias: Washing Machine - Notify when finished
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: binary_sensor.bathroom_washing_machine_running
+    from: 'on'
+    to: 'off'
+  action:
+    - service: notify.google_assistant_sdk
+      data:
+        message: Washing machine finished
+    - delay:
+        seconds: 10
+    - service: media_player.media_play_pause
+      data:
+        entity_id: all

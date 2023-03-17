@@ -6,3 +6,10 @@
   state_characteristic: average_linear
   max_age:
     hours: 24
+
+- platform: statistics
+  name: Plug Average
+  entity_id: sensor.plug
+  state_characteristic: average_linear
+  max_age:
+    hours: 24

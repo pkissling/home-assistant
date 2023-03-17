@@ -35,3 +35,12 @@
   payload_off: 'off'
   state_on: 'on'
   state_off: 'off'
+
+- name: Plug
+  unique_id: plug
+  state_topic: shellies/shellyplug-s-083A8DC33096/relay/0
+  command_topic: shellies/shellyplug-s-083A8DC33096/relay/0/command
+  payload_on: 'on'
+  payload_off: 'off'
+  state_on: 'on'
+  state_off: 'off'

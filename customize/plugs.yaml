@@ -1,5 +1,9 @@
 ---
 
+switch.plug:
+  icon: mdi:power-plug
+  friendly_name: Plug
+
 switch.plug_kitchen_dishwasher:
   icon: mdi:dishwasher
   friendly_name: Dishwasher

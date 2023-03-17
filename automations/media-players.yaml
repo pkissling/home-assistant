@@ -47,7 +47,7 @@
     service: media_player.turn_off
     entity_id: media_player.bathroom
 
-- alias: Media Player - Adjust volume on slider change
+- alias: Media Player - Adjust volume
   mode: parallel
   max: 20
   trigger:
@@ -59,10 +59,16 @@
       - sensor.volume_living_room
       - sensor.volume_study
       - sensor.volume_chromecast
+      - sensor.media_player_kitchen
+      - sensor.media_player_bathroom
+      - sensor.media_player_bedroom
+      - sensor.media_player_living_room
+      - sensor.media_player_study
+      - sensor.media_player_chromecast
   action:
     service: pyscript.adjust_volume
     data:
-      volume_sensor_entity_id: '{{ trigger.entity_id }}'
+      volume_sensor_entity_id: '{{ trigger.entity_id.replace("media_player.", "sensor.volume_") }}'
       media_player_entity_id: '{{ trigger.entity_id.replace("sensor.volume_", "media_player.") }}'
 
 - alias: Media Player - All Speakers - Reset volume offset when off for 30 seconds

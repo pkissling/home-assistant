@@ -52,7 +52,6 @@ good_night_google_assistant:
                 platform: state
                 entity_id: media_player.bedroom
                 to: 'idle'
-              continue_on_timeout: true
               timeout: '0:00:20'
     - choose:
         - conditions:
@@ -78,7 +77,6 @@ good_night_google_assistant:
         entity_id: media_player.bedroom
         from: playing
         to: idle
-      continue_on_timeout: true
       timeout: '0:00:20'
     - service: media_player.turn_off
       entity_id: media_player.bedroom
@@ -196,7 +194,6 @@ good_morning:
         - platform: state
           entity_id: media_player.bathroom
           to: idle
-      continue_on_timeout: true
       timeout: '00:10:00'
     - service: media_player.turn_off
       entity_id: all

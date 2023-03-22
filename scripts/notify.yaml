@@ -1,0 +1,17 @@
+---
+
+notify:
+  variables:
+    message: ''
+  sequence:
+    - service: notify.google_assistant_sdk
+      data:
+        message: "{{ message }}"
+    - wait_for_trigger:
+        platform: template
+        value_template: "{{ is_state('media_player.all_speakers', 'paused') }}"
+      timeout: '00:00:05'
+      continue_on_timeout: false
+    - service: media_player.media_play_pause
+      data:
+        entity_id: media_player.all_speakers

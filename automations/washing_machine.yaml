@@ -8,11 +8,6 @@
     from: 'on'
     to: 'off'
   action:
-    - service: notify.google_assistant_sdk
-      data:
-        message: Washing machine finished
-    - delay:
-        seconds: 10
-    - service: media_player.media_play_pause
-      data:
-        entity_id: all
+    service: script.notify
+    data:
+      message: Washing machine finished

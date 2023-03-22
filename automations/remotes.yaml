@@ -130,11 +130,6 @@
         seconds: 30
     - platform: state
       entity_id: media_player.all_speakers
-      to: paused
-      for:
-        seconds: 30
-    - platform: state
-      entity_id: media_player.all_speakers
       to: unavailable
       for:
         seconds: 30
@@ -146,6 +141,11 @@
     - platform: state
       entity_id: media_player.all_speakers
       to: buffering
+      for:
+        minutes: 5
+    - platform: state
+      entity_id: media_player.all_speakers
+      to: paused
       for:
         minutes: 5
   condition:

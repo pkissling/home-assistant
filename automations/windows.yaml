@@ -25,12 +25,18 @@
       attribute: temperature
       below: 16
   action:
-    service: notify.patrick
-    data:
-      title: Living Room window open
-      message: >
-        Window in Living Room is still open. You might want to close it.
-        Current temperature: {{ state_attr('climate.living_room', 'temperature') }} °C
+    - service: notify.patrick
+      data:
+        title: Living Room window open
+        message: >
+          Window in Living Room is still open. You might want to close it.
+          Current temperature: {{ state_attr('climate.living_room', 'temperature') }} °C
+    - service: script.notify
+      data:
+        message: >
+          Window in Living Room is still open. You might want to close it.
+          Current temperature: {{ state_attr('climate.living_room', 'temperature') }} °C
+
 
 - alias: Windows - Kitchen - Notify window still open
   trigger:
@@ -57,14 +63,19 @@
       attribute: temperature
       below: 16
   action:
-    service: notify.patrick
-    data:
-      title: Kitchen window open
-      message: >
-        Window in Kitchen is still open. You might want to close it.
-        Current temperature: {{ state_attr('climate.kitchen', 'temperature') }} °C
+    - service: notify.patrick
+      data:
+        title: Kitchen window open
+        message: >
+          Window in Kitchen is still open. You might want to close it.
+          Current temperature: {{ state_attr('climate.kitchen', 'temperature') }} °C
+    - service: script.notify
+      data:
+        message: >
+          Window in Kitchen is still open. You might want to close it.
+          Current temperature: {{ state_attr('climate.kitchen', 'temperature') }} °C
 
-- alias: Windows - Bedroon - Notify window still open
+- alias: Windows - Bedroom - Notify window still open
   trigger:
     - platform: numeric_state
       entity_id: climate.bedroom
@@ -89,12 +100,17 @@
       attribute: temperature
       below: 16
   action:
-    service: notify.patrick
-    data:
-      title: Bedroom window open
-      message: >
-        Window in Bedroom is still open. You might want to close it.
-        Current temperature: {{ state_attr('climate.bedroom', 'temperature') }} °C
+    - service: notify.patrick
+      data:
+        title: Bedroom window open
+        message: >
+          Window in Bedroom is still open. You might want to close it.
+          Current temperature: {{ state_attr('climate.bedroom', 'temperature') }} °C
+    - service: script.notify
+      data:
+        message: >
+          Window in Bedroom is still open. You might want to close it.
+          Current temperature: {{ state_attr('climate.bedroom', 'temperature') }} °C
 
 - alias: Windows - Study - Notify window still open
   trigger:
@@ -121,12 +137,17 @@
       attribute: temperature
       below: 16
   action:
-    service: notify.patrick
-    data:
-      title: Study window open
-      message: >
-        Window in Study is still open. You might want to close it.
-        Current temperature: {{ state_attr('climate.study', 'temperature') }} °C
+    - service: notify.patrick
+      data:
+        title: Study window open
+        message: >
+          Window in Study is still open. You might want to close it.
+          Current temperature: {{ state_attr('climate.study', 'temperature') }} °C
+    - service: script.notify
+      data:
+        message: >
+          Window in Study is still open. You might want to close it.
+          Current temperature: {{ state_attr('climate.study', 'temperature') }} °C
 
 - alias: Windows - Bathroom - Notify window still open
   trigger:
@@ -153,9 +174,14 @@
       attribute: temperature
       below: 16
   action:
-    service: notify.patrick
-    data:
-      title: Bathroom window open
-      message: >
-        Window in Bathroom is still open. You might want to close it.
-        Current temperature: {{ state_attr('climate.bathroom', 'temperature') }} °C
+    - service: notify.patrick
+      data:
+        title: Bathroom window open
+        message: >
+          Window in Bathroom is still open. You might want to close it.
+          Current temperature: {{ state_attr('climate.bathroom', 'temperature') }} °C
+    - service: script.notify
+      data:
+        message: >
+          Window in Bathroom is still open. You might want to close it.
+          Current temperature: {{ state_attr('climate.bathroom', 'temperature') }} °C

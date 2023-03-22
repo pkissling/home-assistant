@@ -1,0 +1,8 @@
+---
+
+- name: Home Office Mode
+  object_id: button_study_home_office_mode
+  state_topic: zigbee2mqtt/0x2c1165fffe68cb8a
+  value_template: "{{ value_json.action }}"
+  payload_on: single
+  payload_off: double

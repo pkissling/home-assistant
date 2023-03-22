@@ -1,5 +1,8 @@
 ---
 
+sensor.plug:
+  icon: mdi:power-plug
+
 switch.plug:
   icon: mdi:power-plug
   friendly_name: Plug

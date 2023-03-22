@@ -1,0 +1,8 @@
+---
+
+- name: Washing Machine
+  object_id: bathroom_washing_machine_battery_level
+  state_topic: zigbee2mqtt/0x00158d000482feaf
+  value_template: "{{ value_json.battery }}"
+  device_class: battery
+  unit_of_measurement: '%'

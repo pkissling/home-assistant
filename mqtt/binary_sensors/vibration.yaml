@@ -1,0 +1,8 @@
+---
+
+- name: Washing Machine
+  object_id: vibration_bathroom_washing_machine
+  state_topic: zigbee2mqtt/0x00158d000482feaf
+  value_template: "{{ value_json.vibration }}"
+  payload_on: 'True'
+  payload_off: 'False'

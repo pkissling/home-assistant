@@ -86,4 +86,6 @@ def adjust_light(light_entity_id):
     return (is_light_on(light_entity_id) and state.get('script.lights_ambient_turn_on') == 'off')
 
 def brightness_is_unchanged(light_entity_id, dim_brightness):
+  if not state.get(light_entity_id).brightness:
+    return false
   return state.get(light_entity_id).brightness == dim_brightness

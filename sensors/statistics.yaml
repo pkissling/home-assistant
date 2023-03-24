@@ -2,14 +2,14 @@
 
 - platform: statistics
   name: Plug Living Room Home Server Average
-  entity_id: sensor.plug_living_room_home_server
+  entity_id: sensor.home_server_energy
   state_characteristic: average_linear
   max_age:
     hours: 24
 
 - platform: statistics
   name: Plug Average
-  entity_id: sensor.plug
+  entity_id: sensor.plug_energy
   state_characteristic: average_linear
   max_age:
     hours: 24

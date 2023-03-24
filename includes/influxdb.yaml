@@ -45,11 +45,11 @@ include:
     - sensor.pi_hole_dns_unique_clients
 
     # Plugs
-    - sensor.plug
-    - sensor.plug_kitchen_dishwasher
-    - sensor.plug_living_room_amplifier
-    - sensor.plug_study_monitor
-    - sensor.plug_living_room_home_server
+    - sensor.plug_energy
+    - sensor.dishwasher_energy
+    - sensor.amplifier_energy
+    - sensor.monitor_energy
+    - sensor.home_server_energy
 
     # Modes
     - input_boolean.home_office_mode

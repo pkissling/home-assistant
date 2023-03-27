@@ -3,7 +3,7 @@
 - alias: Dishwasher - Notification - Dishwasher running too long
   trigger:
     platform: numeric_state
-    entity_id: sensor.plug_kitchen_dishwasher
+    entity_id: sensor.dishwasher_power
     above: 0
     for:
       hours: 3
@@ -16,13 +16,13 @@
 - alias: Dishwasher - Switch - Force off after 4 hours
   trigger:
     platform: numeric_state
-    entity_id: sensor.plug_kitchen_dishwasher
+    entity_id: sensor.dishwasher_power
     above: 0
     for:
       hours: 4
   action:
     - service: switch.turn_off
-      entity_id: switch.plug_kitchen_dishwasher
+      entity_id: switch.dishwasher
     - service: notify.all
       data:
         title: Dishwasher

@@ -3,24 +3,24 @@
 - platform: template
   sensors:
 
-    motion_corridor:
+    motion_corridor_occupancy:
       friendly_name: Corridor
       value_template: >
         {{
-          is_state('binary_sensor.motion_corridor_right', 'on')
+          is_state('binary_sensor.motion_corridor_right_occupancy', 'on')
             or
-          is_state('binary_sensor.motion_corridor_left', 'on')
+          is_state('binary_sensor.motion_corridor_left_occupancy', 'on')
             or
-          is_state('binary_sensor.motion_corridor_tab', 'on')
+          is_state('binary_sensor.motion_corridor_tab_occupancy', 'on')
         }}
 
-    motion_study:
+    motion_study_occupancy:
       friendly_name: Study
       value_template: >
         {{
-          is_state('binary_sensor.motion_study_desk', 'on')
+          is_state('binary_sensor.motion_study_desk_occupancy', 'on')
             or
-          is_state('binary_sensor.motion_study_shelf', 'on')
+          is_state('binary_sensor.motion_study_shelf_occupancy', 'on')
             or
-          is_state('binary_sensor.motion_study_ceiling', 'on')
+          is_state('binary_sensor.motion_study_ceiling_occupancy', 'on')
         }}

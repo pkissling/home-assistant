@@ -1,8 +1,0 @@
----
-
-- name: Home Office Mode Button
-  object_id: button_study_home_office_mode_battery_level
-  state_topic: zigbee2mqtt/0x2c1165fffe68cb8a
-  value_template: "{{ value_json.battery }}"
-  device_class: battery
-  unit_of_measurement: '%'

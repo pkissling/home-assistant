@@ -20,12 +20,12 @@ include:
 
   entities:
     # Lightlevel
-    - sensor.motion_corridor_lightlevel
-    - sensor.motion_study_lightlevel
+    - sensor.motion_corridor_illuminance_lux
+    - sensor.motion_study_illuminance_lux
 
     # Motion
-    - binary_sensor.motion_corridor
-    - binary_sensor.motion_study
+    - binary_sensor.motion_corridor_occupancy
+    - binary_sensor.motion_study_occupancy
 
     # SSL
     - sensor.cert_expiry_days_ha
@@ -45,11 +45,11 @@ include:
     - sensor.pi_hole_dns_unique_clients
 
     # Plugs
-    - sensor.plug_energy
-    - sensor.dishwasher_energy
-    - sensor.amplifier_energy
-    - sensor.monitor_energy
-    - sensor.home_server_energy
+    - sensor.plug_power
+    - sensor.dishwasher_power
+    - sensor.amplifier_power
+    - sensor.monitor_power
+    - sensor.home_server_power
 
     # Modes
     - input_boolean.home_office_mode

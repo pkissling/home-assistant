@@ -4,7 +4,7 @@
 - alias: Thermostat - Bedroom - Window opened
   trigger:
     platform: state
-    entity_id: binary_sensor.window_bedroom
+    entity_id: binary_sensor.window_bedroom_contact
     from: 'off'
     to: 'on'
     for:
@@ -26,7 +26,7 @@
 - alias: Thermostat - Bedroom - Window closed
   trigger:
     platform: state
-    entity_id: binary_sensor.window_bedroom
+    entity_id: binary_sensor.window_bedroom_contact
     from: 'on'
     to: 'off'
     for:
@@ -48,7 +48,7 @@
 - alias: Thermostat - Study - Window openend
   trigger:
     platform: state
-    entity_id: binary_sensor.window_study
+    entity_id: binary_sensor.window_study_contact
     from: 'off'
     to: 'on'
     for:
@@ -70,7 +70,7 @@
 - alias: Thermostat - Study - Window closed
   trigger:
     platform: state
-    entity_id: binary_sensor.window_study
+    entity_id: binary_sensor.window_study_contact
     from: 'on'
     to: 'off'
     for:
@@ -92,7 +92,7 @@
 - alias: Thermostat - Bathroom - Window openend
   trigger:
     platform: state
-    entity_id: binary_sensor.window_bathroom
+    entity_id: binary_sensor.window_bathroom_contact
     from: 'off'
     to: 'on'
     for:
@@ -114,7 +114,7 @@
 - alias: Thermostat - Bathroom - Window closed
   trigger:
     platform: state
-    entity_id: binary_sensor.window_bathroom
+    entity_id: binary_sensor.window_bathroom_contact
     from: 'on'
     to: 'off'
     for:
@@ -136,13 +136,13 @@
 - alias: Thermostat - Living Room - Window openend
   trigger:
     - platform: state
-      entity_id: binary_sensor.window_kitchen
+      entity_id: binary_sensor.window_kitchen_contact
       from: 'off'
       to: 'on'
       for:
         minutes: 1
     - platform: state
-      entity_id: binary_sensor.window_living_room
+      entity_id: binary_sensor.window_living_room_contact
       from: 'off'
       to: 'on'
       for:
@@ -164,13 +164,13 @@
 - alias: Thermostat - Living Room - Window closed
   trigger:
     - platform: state
-      entity_id: binary_sensor.window_kitchen
+      entity_id: binary_sensor.window_kitchen_contact
       from: 'on'
       to: 'off'
       for:
         minutes: 5
     - platform: state
-      entity_id: binary_sensor.window_living_room
+      entity_id: binary_sensor.window_living_room_contact
       from: 'on'
       to: 'off'
       for:
@@ -192,13 +192,13 @@
 - alias: Thermostat - Kitchen - Window openend
   trigger:
     - platform: state
-      entity_id: binary_sensor.window_kitchen
+      entity_id: binary_sensor.window_kitchen_contact
       from: 'off'
       to: 'on'
       for:
         minutes: 1
     - platform: state
-      entity_id: binary_sensor.window_living_room
+      entity_id: binary_sensor.window_living_room_contact
       from: 'off'
       to: 'on'
       for:
@@ -220,13 +220,13 @@
 - alias: Thermostat - Kitchen - Window closed
   trigger:
     - platform: state
-      entity_id: binary_sensor.window_kitchen
+      entity_id: binary_sensor.window_kitchen_contact
       from: 'on'
       to: 'off'
       for:
         minutes: 5
     - platform: state
-      entity_id: binary_sensor.window_living_room
+      entity_id: binary_sensor.window_living_room_contact
       from: 'on'
       to: 'off'
       for:
@@ -248,7 +248,7 @@
 - alias: Thermostat - Toilet - Window openend
   trigger:
     platform: state
-    entity_id: binary_sensor.window_toilet
+    entity_id: binary_sensor.window_toilet_contact
     from: 'off'
     to: 'on'
   condition:
@@ -268,7 +268,7 @@
 - alias: Thermostat - Toilet - Window closed
   trigger:
     platform: state
-    entity_id: binary_sensor.window_toilet
+    entity_id: binary_sensor.window_toilet_contact
     from: 'on'
     to: 'off'
     for:
@@ -389,7 +389,7 @@
       entity_id: binary_sensor.thermostat_living_room
       state: 'on'
     - condition: state
-      entity_id: binary_sensor.window_living_room
+      entity_id: binary_sensor.window_living_room_contact
       state: 'on'
   action:
     - service: input_text.set_value
@@ -410,7 +410,7 @@
       entity_id: binary_sensor.thermostat_bedroom
       state: 'on'
     - condition: state
-      entity_id: binary_sensor.window_bedroom
+      entity_id: binary_sensor.window_bedroom_contact
       state: 'on'
   action:
     - service: input_text.set_value
@@ -432,7 +432,7 @@
       entity_id: binary_sensor.thermostat_bathroom
       state: 'on'
     - condition: state
-      entity_id: binary_sensor.window_bathroom
+      entity_id: binary_sensor.window_bathroom_contact
       state: 'on'
   action:
     - service: input_text.set_value
@@ -454,7 +454,7 @@
       entity_id: binary_sensor.thermostat_study
       state: 'on'
     - condition: state
-      entity_id: binary_sensor.window_study
+      entity_id: binary_sensor.window_study_contact
       state: 'on'
   action:
     - service: input_text.set_value
@@ -476,7 +476,7 @@
       entity_id: binary_sensor.thermostat_kitchen
       state: 'on'
     - condition: state
-      entity_id: binary_sensor.window_kitchen
+      entity_id: binary_sensor.window_kitchen_contact
       state: 'on'
   action:
     - service: input_text.set_value
@@ -497,7 +497,7 @@
       entity_id: binary_sensor.thermostat_toilet
       state: 'on'
     - condition: state
-      entity_id: binary_sensor.window_toilet
+      entity_id: binary_sensor.window_toilet_contact
       state: 'on'
   action:
     - service: input_text.set_value

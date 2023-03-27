@@ -154,7 +154,7 @@
       {{
         states('input_boolean.home_office_mode')
           !=
-        states('switch.plug_study_monitor')
+        states('switch.monitor')
       }}
     for:
       minutes: 5

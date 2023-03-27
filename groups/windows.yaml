@@ -2,9 +2,9 @@
 
 window_all:
   entities:
-    - binary_sensor.window_bathroom
-    - binary_sensor.window_living_room
-    - binary_sensor.window_study
-    - binary_sensor.window_bedroom
-    - binary_sensor.window_kitchen
-    - binary_sensor.window_toilet
+    - binary_sensor.window_bathroom_contact
+    - binary_sensor.window_living_room_contact
+    - binary_sensor.window_study_contact
+    - binary_sensor.window_bedroom_contact
+    - binary_sensor.window_kitchen_contact
+    - binary_sensor.window_toilet_contact

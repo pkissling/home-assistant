@@ -1,8 +1,0 @@
----
-
-- name: Door Corridor
-  object_id: door_corridor_battery_level
-  state_topic: zigbee2mqtt/0x00158d00065a41c9
-  value_template: "{{ value_json.battery }}"
-  device_class: battery
-  unit_of_measurement: '%'

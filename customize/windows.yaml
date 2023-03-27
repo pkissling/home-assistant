@@ -1,19 +1,19 @@
 ---
 
-binary_sensor.window_bathroom:
+binary_sensor.window_bathroom_contact:
   icon: mdi:shower
 
-binary_sensor.window_living_room:
+binary_sensor.window_living_room_contact:
   icon: mdi:sofa
 
-binary_sensor.window_study:
+binary_sensor.window_study_contact:
   icon: mdi:desk-lamp
 
-binary_sensor.window_bedroom:
+binary_sensor.window_bedroom_contact:
   icon: mdi:bed-king-outline
 
-binary_sensor.window_kitchen:
+binary_sensor.window_kitchen_contact:
   icon: mdi:stove
 
-binary_sensor.window_toilet:
+binary_sensor.window_toilet_contact:
   icon: mdi:toilet

@@ -3,24 +3,24 @@
 - platform: template
   sensors:
 
-    window_bedroom:
+    window_bedroom_contact:
       friendly_name: Window Bedroom
       value_template: >
         {{
-          is_state('binary_sensor.window_bedroom_left', 'on')
+          is_state('binary_sensor.window_bedroom_left_contact', 'on')
             or
-          is_state('binary_sensor.window_bedroom_right', 'on')
+          is_state('binary_sensor.window_bedroom_right_contact', 'on')
         }}
 
-    window_study:
+    window_study_contact:
       friendly_name: Window Study
       value_template: >
         {{
-          is_state('binary_sensor.window_study_right_r', 'on')
+          is_state('binary_sensor.window_study_right_r_contact', 'on')
             or
-          is_state('binary_sensor.window_study_right_l', 'on')
+          is_state('binary_sensor.window_study_right_l_contact', 'on')
             or
-          is_state('binary_sensor.window_study_left_r', 'on')
+          is_state('binary_sensor.window_study_left_r_contact', 'on')
             or
-          is_state('binary_sensor.window_study_left_l', 'on')
+          is_state('binary_sensor.window_study_left_l_contact', 'on')
         }}

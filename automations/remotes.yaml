@@ -22,7 +22,7 @@
       seconds: 10
   condition:
     condition: numeric_state
-    entity_id: sensor.plug_living_room_amplifier
+    entity_id: sensor.amplifier_power
     above: 10
   mode: queued
   action:
@@ -39,7 +39,7 @@
             seconds: 5
       until:
         condition: numeric_state
-        entity_id: sensor.plug_living_room_amplifier
+        entity_id: sensor.amplifier_power
         below: 10
 
 - alias: Remote - Amplifier - Turn on if not running
@@ -51,7 +51,7 @@
       seconds: 10
   condition:
     condition: numeric_state
-    entity_id: sensor.plug_living_room_amplifier
+    entity_id: sensor.amplifier_power
     below: 10
   mode: queued
   action:
@@ -74,7 +74,7 @@
             command: "{{ state_attr('remote.living_room', 'current_activity') == 'Chromecast' | iif('InputHdmi1', 'InputTv') }}"
       until:
         condition: numeric_state
-        entity_id: sensor.plug_living_room_amplifier
+        entity_id: sensor.amplifier_power
         above: 10
 
 - alias: Remote - TV - Turn Amplifier on when TV running

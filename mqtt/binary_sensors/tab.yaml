@@ -1,7 +1,7 @@
 ---
 
-- name: Motion Corridor Tab
-  object_id: motion_corridor_tab
+- name: Motion Corridor Tab Occupancy
+  object_id: motion_corridor_tab_occupancy
   state_topic: wallpanel/corridor/sensor/motion
   value_template: "{{ value_json.value }}"
   payload_on: true

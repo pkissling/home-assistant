@@ -3,7 +3,7 @@
 - alias: Tab - Display - Turn on when motion
   trigger:
     platform: state
-    entity_id: binary_sensor.motion_corridor
+    entity_id: binary_sensor.motion_corridor_occupancy
     to: 'on'
   action:
     service: switch.turn_on
@@ -12,7 +12,7 @@
 - alias: Tab - Display - Turn off when no motion for 2 mins
   trigger:
     platform: state
-    entity_id: binary_sensor.motion_corridor
+    entity_id: binary_sensor.motion_corridor_occupancy
     to: 'off'
     for:
       minutes: 2
@@ -23,12 +23,12 @@
 - alias: Tab - Speak - Warn if leaving and window open
   trigger:
     platform: state
-    entity_id: binary_sensor.door_corridor
+    entity_id: binary_sensor.door_corridor_contact
     to: 'on'
   condition:
     # if there was motion in the last 5 mins
     - condition: template
-      value_template: "{{ (as_timestamp(now()) - as_timestamp(states.binary_sensor.motion_corridor.last_updated)) < 300 }}"
+      value_template: "{{ (as_timestamp(now()) - as_timestamp(states.binary_sensor.motion_corridor_occupancy.last_updated)) < 300 }}"
     - condition: state
       entity_id: input_boolean.summer_mode
       state: 'off'

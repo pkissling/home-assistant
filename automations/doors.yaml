@@ -3,7 +3,7 @@
 - alias: Door - Main Door - Enable guest mode if resident not home
   trigger:
     - platform: state
-      entity_id: binary_sensor.door_corridor
+      entity_id: binary_sensor.door_corridor_contact
       from: 'off'
       to: 'on'
   condition:
@@ -21,7 +21,7 @@
     - service: pyscript.light_ambient_turn_on
       data:
         light_entity_id: light.corridor_sideboard
-        motion_sensor_entity_id: binary_sensor.motion_corridor
+        motion_sensor_entity_id: binary_sensor.motion_corridor_occupancy
     - wait_template: >
         {{
           is_state('person.patrick', 'home')
@@ -35,7 +35,7 @@
 - alias: Door - Main Door - Turn on lights if resident is home
   trigger:
     - platform: state
-      entity_id: binary_sensor.door_corridor
+      entity_id: binary_sensor.motion_corridor_occupancy
       from: 'off'
       to: 'on'
   condition:
@@ -46,13 +46,13 @@
     service: pyscript.light_ambient_turn_on
     data:
       light_entity_id: light.corridor_sideboard
-      motion_sensor_entity_id: binary_sensor.motion_corridor
+      motion_sensor_entity_id: binary_sensor.motion_corridor_occupancy
 
 - alias: Door - Main Door - Turn on tab on door open
   mode: restart
   trigger:
     - platform: state
-      entity_id: binary_sensor.door_corridor
+      entity_id: binary_sensor.motion_corridor_occupancy
       from: 'off'
       to: 'on'
   action:
@@ -60,7 +60,7 @@
       entity_id: switch.display_tab_corridor
     - wait_for_trigger:
         platform: state
-        entity_id: binary_sensor.motion_corridor
+        entity_id: binary_sensor.motion_corridor_occupancy
         to: 'off'
         for:
           minutes: 2

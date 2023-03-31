@@ -12,3 +12,30 @@
     data:
       title: MQTT Broker
       message: MQTT Broker is offline
+
+- alias: Zigbee2mqtt - Restart if device is unavailable
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_corridor_left_occupancy
+    to: unavailable
+    for:
+      minutes: 1
+  action:
+    - service: mqtt.publish
+      data:
+        topic: zigbee2mqtt/bridge/request/restart
+        qos: 1
+    - service: notify.patrick
+      data:
+        title: MQTT is unavailable
+        message: Restarting zigbee2mqtt
+    - wait_for_trigger:
+        platform: state
+        entity_id: binary_sensor.motion_corridor_left_occupancy
+        from: 'unavailable'
+      continue_on_timeout: false
+      timeout: '0:01:00'
+    - service: notify.patrick
+      data:
+        title: MQTT is available again
+        message: After restarting zigbee2mqtt

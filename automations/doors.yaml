@@ -52,7 +52,7 @@
   mode: restart
   trigger:
     - platform: state
-      entity_id: binary_sensor.motion_corridor_occupancy
+      entity_id: binary_sensor.binary_sensor.door_corridor_contact
       from: 'off'
       to: 'on'
   action:

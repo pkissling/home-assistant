@@ -1,0 +1,347 @@
+---
+
+- platform: rest
+  name: Parqet Auth Patrick
+  resource: 'https://kxjrjcvxdyehwmolbjib.supabase.co/auth/v1/token?grant_type=password'
+  scan_interval: 300
+  method: POST
+  headers:
+    Content-Type: "application/json;charset=UTF-8"
+    apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0NDA2OTg4NiwiZXhwIjoxOTU5NjQ1ODg2fQ.uKWmTelFEpT6So2QIeA8NSsT0O4NWMr8qHfEeTppVbA"
+  payload: !secret parqet_auth_patrick
+  json_attributes:
+    - access_token
+  value_template: "OK"
+
+- platform: rest
+  name: Parqet Auth Sandra
+  resource: 'https://kxjrjcvxdyehwmolbjib.supabase.co/auth/v1/token?grant_type=password'
+  scan_interval: 300
+  method: POST
+  headers:
+    Content-Type: "application/json;charset=UTF-8"
+    apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0NDA2OTg4NiwiZXhwIjoxOTU5NjQ1ODg2fQ.uKWmTelFEpT6So2QIeA8NSsT0O4NWMr8qHfEeTppVbA"
+  payload: !secret parqet_auth_sandra
+  json_attributes:
+    - access_token
+  value_template: "OK"
+
+- platform: rest
+  name: Parqet API Patrick
+  resource: 'https://api.parqet.com/v1/portfolios/266318594456945162/charts/allocation'
+  scan_interval: 300
+  headers:
+    Authorization: >
+      Bearer {{ state_attr('sensor.parqet_auth_patrick', 'access_token') }}
+  json_attributes:
+    - assetDimensions
+  value_template: "OK"
+
+- platform: rest
+  name: Parqet API Sandra
+  resource: 'https://api.parqet.com/v1/portfolios/616c32ab490af660c8e1bdeb/charts/allocation'
+  scan_interval: 300
+  headers:
+    Authorization: >
+      Bearer {{ state_attr('sensor.parqet_auth_sandra', 'access_token') }}
+  json_attributes:
+    - assetDimensions
+  value_template: "OK"
+
+- platform: rest
+  name: Parqet API Patrick Returns 1w
+  resource: 'https://api.parqet.com/v1/portfolios/266318594456945162?timeframe=1w'
+  scan_interval: 300
+  headers:
+    Authorization: >
+      Bearer {{ state_attr('sensor.parqet_auth_patrick', 'access_token') }}
+  json_attributes_path: "$.performance"
+  json_attributes:
+    - gainGross
+    - gainNet
+    - returnGross
+    - returnNet
+  value_template: "OK"
+
+- platform: rest
+  name: Parqet API Patrick Returns 1d
+  resource: 'https://api.parqet.com/v1/portfolios/266318594456945162?timeframe=1d'
+  scan_interval: 300
+  headers:
+    Authorization: >
+      Bearer {{ state_attr('sensor.parqet_auth_patrick', 'access_token') }}
+  json_attributes_path: "$.performance"
+  json_attributes:
+    - gainGross
+    - gainNet
+    - returnGross
+    - returnNet
+  value_template: "OK"
+
+- platform: rest
+  name: Parqet API Patrick Returns 1y
+  resource: 'https://api.parqet.com/v1/portfolios/266318594456945162?timeframe=1y'
+  scan_interval: 300
+  headers:
+    Authorization: >
+      Bearer {{ state_attr('sensor.parqet_auth_patrick', 'access_token') }}
+  json_attributes_path: "$.performance"
+  json_attributes:
+    - gainGross
+    - gainNet
+    - returnGross
+    - returnNet
+  value_template: "OK"
+
+- platform: rest
+  name: Parqet API Patrick Returns 1m
+  resource: 'https://api.parqet.com/v1/portfolios/266318594456945162?timeframe=1m'
+  scan_interval: 300
+  headers:
+    Authorization: >
+      Bearer {{ state_attr('sensor.parqet_auth_patrick', 'access_token') }}
+  json_attributes_path: "$.performance"
+  json_attributes:
+    - gainGross
+    - gainNet
+    - returnGross
+    - returnNet
+  value_template: "OK"
+
+- platform: rest
+  name: Parqet API Patrick Returns since start
+  resource: 'https://api.parqet.com/v1/portfolios/266318594456945162?fallbackToPreferredTimeframe=true'
+  scan_interval: 300
+  headers:
+    Authorization: >
+      Bearer {{ state_attr('sensor.parqet_auth_patrick', 'access_token') }}
+  json_attributes_path: "$.performance"
+  json_attributes:
+    - gainGross
+    - gainNet
+    - returnGross
+    - returnNet
+  value_template: "OK"
+
+- platform: rest
+  name: Parqet API Sandra Returns 1w
+  resource: 'https://api.parqet.com/v1/portfolios/616c32ab490af660c8e1bdeb?timeframe=1w'
+  scan_interval: 300
+  headers:
+    Authorization: >
+      Bearer {{ state_attr('sensor.parqet_auth_sandra', 'access_token') }}
+  json_attributes_path: "$.performance"
+  json_attributes:
+    - gainGross
+    - gainNet
+    - returnGross
+    - returnNet
+  value_template: "OK"
+
+- platform: rest
+  name: Parqet API Sandra Returns 1d
+  resource: 'https://api.parqet.com/v1/portfolios/616c32ab490af660c8e1bdeb?timeframe=1d'
+  scan_interval: 300
+  headers:
+    Authorization: >
+      Bearer {{ state_attr('sensor.parqet_auth_sandra', 'access_token') }}
+  json_attributes_path: "$.performance"
+  json_attributes:
+    - gainGross
+    - gainNet
+    - returnGross
+    - returnNet
+  value_template: "OK"
+
+- platform: rest
+  name: Parqet API Sandra Returns 1y
+  resource: 'https://api.parqet.com/v1/portfolios/616c32ab490af660c8e1bdeb?timeframe=1y'
+  scan_interval: 300
+  headers:
+    Authorization: >
+      Bearer {{ state_attr('sensor.parqet_auth_sandra', 'access_token') }}
+  json_attributes_path: "$.performance"
+  json_attributes:
+    - gainGross
+    - gainNet
+    - returnGross
+    - returnNet
+  value_template: "OK"
+
+- platform: rest
+  name: Parqet API Sandra Returns 1m
+  resource: 'https://api.parqet.com/v1/portfolios/616c32ab490af660c8e1bdeb?timeframe=1m'
+  scan_interval: 300
+  headers:
+    Authorization: >
+      Bearer {{ state_attr('sensor.parqet_auth_sandra', 'access_token') }}
+  json_attributes_path: "$.performance"
+  json_attributes:
+    - gainGross
+    - gainNet
+    - returnGross
+    - returnNet
+  value_template: "OK"
+
+- platform: rest
+  name: Parqet API Sandra Returns since start
+  resource: 'https://api.parqet.com/v1/portfolios/616c32ab490af660c8e1bdeb?fallbackToPreferredTimeframe=true'
+  scan_interval: 300
+  headers:
+    Authorization: >
+      Bearer {{ state_attr('sensor.parqet_auth_sandra', 'access_token') }}
+  json_attributes_path: "$.performance"
+  json_attributes:
+    - gainGross
+    - gainNet
+    - returnGross
+    - returnNet
+  value_template: "OK"
+
+- platform: template
+  sensors:
+
+    # patrick
+    parqet_api_patrick_depot:
+      value_template: "{{ state_attr('sensor.parqet_api_patrick', 'assetDimensions')[0].value }}"
+      unit_of_measurement: Euro
+      icon_template: mdi:bank
+    parqet_api_patrick_crypto:
+      value_template: "{{ state_attr('sensor.parqet_api_patrick', 'assetDimensions')[1].value }}"
+      unit_of_measurement: Euro
+      icon_template: mdi:lock-clock
+    parqet_api_patrick_overall:
+      friendly_name: Absolute Value
+      value_template: >
+        {{ 
+          states('sensor.parqet_api_patrick_crypto') | float +
+          states('sensor.parqet_api_patrick_depot') | float
+        }}
+      unit_of_measurement: Euro
+      icon_template: mdi:cash
+    parqet_api_patrick_overall_returns_1d_abs:
+      friendly_name: 1d
+      value_template: "{{ state_attr('sensor.parqet_api_patrick_returns_1d', 'gainGross') | round }}"
+      unit_of_measurement: Euro
+      icon_template: mdi:trending-up
+    parqet_api_patrick_overall_returns_1d_rel:
+      friendly_name: 1d
+      value_template: "{{ state_attr('sensor.parqet_api_patrick_returns_1d', 'returnGross') | round(1) }}"
+      unit_of_measurement: '%'
+      icon_template: mdi:sack-percent
+    parqet_api_patrick_overall_returns_1w_abs:
+      friendly_name: 1w
+      value_template: "{{ state_attr('sensor.parqet_api_patrick_returns_1w', 'gainGross') | round }}"
+      unit_of_measurement: Euro
+      icon_template: mdi:trending-up
+    parqet_api_patrick_overall_returns_1w_rel:
+      friendly_name: 1w
+      value_template: "{{ state_attr('sensor.parqet_api_patrick_returns_1w', 'returnGross') | round(1) }}"
+      unit_of_measurement: '%'
+      icon_template: mdi:sack-percent
+    parqet_api_patrick_overall_returns_1y_abs:
+      friendly_name: 1y
+      value_template: "{{ state_attr('sensor.parqet_api_patrick_returns_1y', 'gainGross') | round }}"
+      unit_of_measurement: Euro
+      icon_template: mdi:trending-up
+    parqet_api_patrick_overall_returns_1y_rel:
+      friendly_name: 1y
+      value_template: "{{ state_attr('sensor.parqet_api_patrick_returns_1y', 'returnGross') | round(1) }}"
+      unit_of_measurement: '%'
+      icon_template: mdi:sack-percent
+    parqet_api_patrick_overall_returns_1m_abs:
+      friendly_name: 1m
+      value_template: "{{ state_attr('sensor.parqet_api_patrick_returns_1m', 'gainGross') | round }}"
+      unit_of_measurement: Euro
+      icon_template: mdi:trending-up
+    parqet_api_patrick_overall_returns_1m_rel:
+      friendly_name: 1m
+      value_template: "{{ state_attr('sensor.parqet_api_patrick_returns_1m', 'returnGross') | round(1) }}"
+      unit_of_measurement: '%'
+      icon_template: mdi:sack-percent
+    parqet_api_patrick_overall_returns_since_start_abs:
+      friendly_name: Since start
+      value_template: "{{ state_attr('sensor.parqet_api_patrick_returns_since_start', 'gainGross') | round }}"
+      unit_of_measurement: Euro
+      icon_template: mdi:trending-up
+    parqet_api_patrick_overall_returns_since_start_rel:
+      friendly_name: Since start
+      value_template: "{{ state_attr('sensor.parqet_api_patrick_returns_since_start', 'returnGross') | round(1) }}"
+      unit_of_measurement: '%'
+      icon_template: mdi:sack-percent
+
+    # sandra
+    parqet_api_sandra_depot:
+      friendly_name: Sandra (Comdirect)
+      value_template: "{{ state_attr('sensor.parqet_api_sandra', 'assetDimensions')[0].value }}"
+      unit_of_measurement: Euro
+      icon_template: mdi:trending-up
+    parqet_api_sandra_overall_returns_1d_abs:
+      friendly_name: 1d
+      value_template: "{{ state_attr('sensor.parqet_api_sandra_returns_1d', 'gainGross') | round }}"
+      unit_of_measurement: Euro
+      icon_template: mdi:trending-up
+    parqet_api_sandra_overall_returns_1d_rel:
+      friendly_name: 1d
+      value_template: "{{ state_attr('sensor.parqet_api_sandra_returns_1d', 'returnGross') | round(1) }}"
+      unit_of_measurement: '%'
+      icon_template: mdi:sack-percent
+    parqet_api_sandra_overall_returns_1w_abs:
+      friendly_name: 1w
+      value_template: "{{ state_attr('sensor.parqet_api_sandra_returns_1w', 'gainGross') | round }}"
+      unit_of_measurement: Euro
+      icon_template: mdi:trending-up
+    parqet_api_sandra_overall_returns_1w_rel:
+      friendly_name: 1w
+      value_template: "{{ state_attr('sensor.parqet_api_sandra_returns_1w', 'returnGross') | round(1) }}"
+      unit_of_measurement: '%'
+      icon_template: mdi:sack-percent
+    parqet_api_sandra_overall_returns_1y_abs:
+      friendly_name: 1y
+      value_template: "{{ state_attr('sensor.parqet_api_sandra_returns_1y', 'gainGross') | round }}"
+      unit_of_measurement: Euro
+      icon_template: mdi:trending-up
+    parqet_api_sandra_overall_returns_1y_rel:
+      friendly_name: 1y
+      value_template: "{{ state_attr('sensor.parqet_api_sandra_returns_1y', 'returnGross') | round(1) }}"
+      unit_of_measurement: '%'
+      icon_template: mdi:sack-percent
+    parqet_api_sandra_overall_returns_1m_abs:
+      friendly_name: 1m
+      value_template: "{{ state_attr('sensor.parqet_api_sandra_returns_1m', 'gainGross') | round }}"
+      unit_of_measurement: Euro
+      icon_template: mdi:trending-up
+    parqet_api_sandra_overall_returns_1m_rel:
+      friendly_name: 1m
+      value_template: "{{ state_attr('sensor.parqet_api_sandra_returns_1m', 'returnGross') | round(1) }}"
+      unit_of_measurement: '%'
+      icon_template: mdi:sack-percent
+    parqet_api_sandra_overall_returns_since_start_abs:
+      friendly_name: Since start
+      value_template: "{{ state_attr('sensor.parqet_api_sandra_returns_since_start', 'gainGross') | round }}"
+      unit_of_measurement: Euro
+      icon_template: mdi:trending-up
+    parqet_api_sandra_overall_returns_since_start_rel:
+      friendly_name: Since start
+      value_template: "{{ state_attr('sensor.parqet_api_sandra_returns_since_start', 'returnGross') | round(1) }}"
+      unit_of_measurement: '%'
+      icon_template: mdi:sack-percent
+    parqet_api_sandra_overall:
+      friendly_name: Sandra
+      value_template: >
+        {{ 
+          states('sensor.parqet_api_sandra_depot') | float
+        }}
+      unit_of_measurement: Euro
+      icon_template: mdi:cash
+
+    # overall
+    parqet_api_overall:
+      friendly_name: Both
+      value_template: >
+        {{ 
+          states('sensor.parqet_api_patrick_overall') | float +
+          states('sensor.parqet_api_sandra_overall') | float
+        }}
+      unit_of_measurement: Euro
+      icon_template: mdi:account-group

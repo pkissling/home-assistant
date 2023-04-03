@@ -63,10 +63,10 @@ good_night_google_assistant:
                 {{ state_attr('input_datetime.wakeup_time', 'minute') }}.
                 Good night!
       default:
-          service: notify.google_assistant_sdk
-          data:
-            target: Bedroom
-            message:  "No alarm set for tomorrow. Good night!"
+        service: notify.google_assistant_sdk
+        data:
+          target: Bedroom
+          message: "No alarm set for tomorrow. Good night!"
     - service: script.lights_ambient_turn_off
       data:
         transition: 300  # 5 min

@@ -213,7 +213,7 @@
     parqet_api_patrick_overall:
       friendly_name: Absolute Value
       value_template: >
-        {{ 
+        {{
           states('sensor.parqet_api_patrick_crypto') | float +
           states('sensor.parqet_api_patrick_depot') | float
         }}
@@ -329,7 +329,7 @@
     parqet_api_sandra_overall:
       friendly_name: Sandra
       value_template: >
-        {{ 
+        {{
           states('sensor.parqet_api_sandra_depot') | float
         }}
       unit_of_measurement: Euro
@@ -339,7 +339,7 @@
     parqet_api_overall:
       friendly_name: Both
       value_template: >
-        {{ 
+        {{
           states('sensor.parqet_api_patrick_overall') | float +
           states('sensor.parqet_api_sandra_overall') | float
         }}

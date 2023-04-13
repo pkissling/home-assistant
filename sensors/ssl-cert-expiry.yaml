@@ -7,8 +7,8 @@
   sensors:
     cert_expiry_days_ha:
       value_template: >
-        {% if states('sensor.cert_expiry_timestamp_ha') == 'unavailable' %}
-          {{ -1 }}
+        {% if not has_value('sensor.cert_expiry_timestamp_ha') %}
+          unavailable
         {% else %}
           {% set now_in_days = as_timestamp(now()) / 60 / 60 / 24 %}
           {% set expiry_in_days = as_timestamp(states('sensor.cert_expiry_timestamp_ha')) / 60 / 60 / 24 %}

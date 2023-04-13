@@ -20,6 +20,7 @@ include:
     - binary_sensor.window_*
     - sensor.*_illuminance_lux
     - sensor.*_power
+    - sensor.parqet_api_*
 
   entities:
     # SSL

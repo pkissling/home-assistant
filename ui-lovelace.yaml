@@ -153,7 +153,6 @@ views:
                 entity: switch.remote_off
                 name: 'Off'
 
-
       # Lights
       - type: entities
         entities:
@@ -181,6 +180,11 @@ views:
               entity: light.corridor
             entities:
               - light.corridor_sideboard
+          - type: custom:fold-entity-row
+            head:
+              entity: light.kitchen
+            entities:
+              - light.kitchen_countertop
 
       # Alarm Clock
       - type: entities

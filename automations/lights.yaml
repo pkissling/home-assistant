@@ -303,23 +303,3 @@
     entity_id: light.ambient
     data:
       transition: 60
-
-- alias: Light - Kitchen - Turn off when no motion
-  trigger:
-    platform: state
-    entity_id: binary_sensor.motion_kitchen_occupancy
-    to: 'off'
-    for:
-      minutes: 2
-  action:
-    service: switch.turn_off
-    entity_id: switch.countertop
-
-- alias: Light - Kitchen - Turn on when motion
-  trigger:
-    platform: state
-    entity_id: binary_sensor.motion_kitchen_occupancy
-    to: 'on'
-  action:
-    service: switch.turn_on
-    entity_id: switch.countertop

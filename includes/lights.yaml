@@ -33,8 +33,3 @@
   name: Corridor
   entities:
     - light.corridor_sideboard
-
-- platform: group
-  name: Kitchen
-  entities:
-    - light.kitchen_countertop

@@ -13,7 +13,7 @@ good_night_google_assistant:
             - service: light.turn_on
               entity_id: light.bedroom_wardrobe
               data:
-                brightness: 50
+                brightness: "{{ min(50, state_attr('light.bedroom_wardrobe', 'brightness')) }}"
                 transition: 120  # 2 min
     - service: media_player.turn_off
       entity_id: media_player.lg_webos_smart_tv
@@ -36,37 +36,50 @@ good_night_google_assistant:
               entity_id: input_boolean.summer_mode
               state: 'off'
           sequence:
-            service: notify.google_assistant_sdk
-            data:
-              target: Bedroom
-              message: >
-                Windows are open in:
-                {{
-                  expand('group.window_all')
-                  | selectattr('state', 'eq', 'on')
-                  | map(attribute='name')
-                  | join(',')
-                  | replace('Window', '')
-                }}
+            - service: tts.google_translate_say
+              entity_id: media_player.bedroom
+              data:
+                message: >
+                  Windows are open in:
+                  {{
+                    expand('group.window_all')
+                    | selectattr('state', 'eq', 'on')
+                    | map(attribute='name')
+                    | join(',')
+                    | replace('Window', '')
+                  }}
+            - wait_for_trigger:
+                platform: state
+                entity_id: media_player.bedroom
+                to: 'idle'
+              timeout: '0:00:20'
     - choose:
         - conditions:
             condition: state
             entity_id: switch.alarm
             state: 'on'
           sequence:
-            service: notify.google_assistant_sdk
+            service: tts.google_translate_say
+            entity_id: media_player.bedroom
             data:
-              target: Bedroom
               message: >
                 The alarm is set to
                 {{ state_attr('input_datetime.wakeup_time', 'hour') }}
                 {{ state_attr('input_datetime.wakeup_time', 'minute') }}.
                 Good night!
       default:
-        service: notify.google_assistant_sdk
+        service: tts.google_translate_say
+        entity_id: media_player.bedroom
         data:
-          target: Bedroom
           message: "No alarm set for tomorrow. Good night!"
+    - wait_for_trigger:
+        platform: state
+        entity_id: media_player.bedroom
+        from: playing
+        to: idle
+      timeout: '0:00:20'
+    - service: media_player.turn_off
+      entity_id: media_player.bedroom
     - service: script.lights_ambient_turn_off
       data:
         transition: 300  # 5 min

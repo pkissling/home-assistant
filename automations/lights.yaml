@@ -29,6 +29,7 @@
     service: script.lights_ambient_turn_off
     data:
       transition: 60  # 1 min
+
 - alias: Lights - Ambient - Turn on when somebody came home
   trigger:
     platform: state

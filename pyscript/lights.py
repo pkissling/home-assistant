@@ -58,8 +58,16 @@ def needs_full_brightness(light_entity_id):
         return False
     if light_entity_id in night_light_entity_ids:
         return False
-    return state.get(light_entity_id) == 'on'
+    if state.get(light_entity_id) == 'on':
+        return True
+    return False
 
 
 def turn_light_off(light_entity_id):
-    return light_entity_id in night_light_entity_ids or state.get('script.lights_ambient_turn_off') == 'on'
+    if light_entity_id in night_light_entity_ids:
+        return True
+    if state.get('script.lights_ambient_turn_off') == 'on':
+        return True
+    if state.get(light_entity_id) == 'off':
+        return True
+    return False

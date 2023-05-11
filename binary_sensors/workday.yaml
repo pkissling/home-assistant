@@ -1,6 +1,0 @@
----
-
-- platform: workday
-  country: !secret home_country
-  province: !secret home_province
-  days_offset: 6

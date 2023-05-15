@@ -23,7 +23,8 @@ def light_ambient_turn_on(
         log.info(f"Turn {light_entity_id} to full brightness")
         light.turn_on(entity_id=light_entity_id, brightness=full_brightness)
     else:
-        log.info(f"Turn {light_entity_id} to low brightness")
+        reason = needs_full_brightness_reason(light_entity_id)
+        log.info(f"Turn {light_entity_id} to low brightness. Reason: {reason}")
         night_light_entity_ids.add(light_entity_id)
         light.turn_on(entity_id=light_entity_id, brightness=dim_brightness)
     turn_light_off_at_start = turn_light_off(light_entity_id)
@@ -52,15 +53,23 @@ def is_sun():
 
 
 def needs_full_brightness(light_entity_id):
+    return needs_full_brightess_with_reason(light_entity_id)[0]
+
+
+def needs_full_brightness_reason(light_entity_id):
+    return needs_full_brightess_with_reason(light_entity_id)[1]
+
+
+def needs_full_brightess_with_reason(light_entity_id):
     if state.get('script.lights_ambient_turn_on') == 'on':
-        return True
+        return True, '"script.lights_ambient_turn_on" is on'
     if state.get('script.lights_ambient_turn_off') == 'on':
-        return False
+        return False, '"script.lights_ambient_turn_off" is on'
     if light_entity_id in night_light_entity_ids:
-        return False
+        return False, 'night_light is on'
     if state.get(light_entity_id) == 'on':
-        return True
-    return False
+        return True, 'light is on'
+    return False, "default value if no other condition met"
 
 
 def turn_light_off(light_entity_id):

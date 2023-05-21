@@ -1,5 +1,6 @@
 # global set of all entity_ids currently in night light mode
 night_light_entity_ids = set()
+active_light_entity_ids = set()
 
 
 @service
@@ -11,6 +12,7 @@ def light_ambient_turn_on(
         dim_after_mins=2):
 
     task.unique(light_entity_id)
+    active_light_entity_ids.add(light_entity_id)
 
     # conditions
     if is_sun():
@@ -44,8 +46,28 @@ def light_ambient_turn_on(
 
     task.sleep(60)
     night_light_entity_ids.discard(light_entity_id)
+    active_light_entity_ids.discard(light_entity_id)
 
     log.info(f"END light_ambient_turn_on: light_entity_id={light_entity_id}")
+
+
+@state_trigger("script.lights_ambient_turn_on == 'on'")
+def reset_light_ambient_turn_on():
+    for light_entity_id in active_light_entity_ids:
+        log.info(
+            f"Resetting {light_entity_id} due to 'script.lights_ambient_turn_on'")
+        task.unique(light_entity_id)
+        active_light_entity_ids.discard(light_entity_id)
+    active_light_entity_ids.clear()
+
+
+@state_trigger("script.lights_ambient_turn_off == 'on'")
+def reset_light_ambient_turn_off():
+    for light_entity_id in active_light_entity_ids:
+        log.info(
+            f"Resetting {light_entity_id} due to 'script.lights_ambient_turn_off'")
+        task.unique(light_entity_id)
+    active_light_entity_ids.clear()
 
 
 def is_sun():

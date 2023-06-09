@@ -1,3 +1,5 @@
+---
+
 binary_sensor:
   name: Internet Health Check
   command: 'curl https://google.com --silent > /dev/null && echo ON || echo OFF'

@@ -1,6 +1,4 @@
----
-
-- platform: command_line
+binary_sensor:
   name: Internet Health Check
   command: 'curl https://google.com --silent > /dev/null && echo ON || echo OFF'
   device_class: connectivity

@@ -1,3 +1,6 @@
+from datetime import datetime
+from datetime import timezone
+
 # global set of all entity_ids currently in night light mode
 night_light_entity_ids = set()
 active_light_entity_ids = set()
@@ -7,7 +10,6 @@ active_light_entity_ids = set()
 def light_ambient_turn_on(
         light_entity_id=None,
         motion_sensor_entity_id=None,
-        full_brightness=255,
         dim_brightness=50,
         dim_after_mins=2):
 
@@ -21,12 +23,14 @@ def light_ambient_turn_on(
     log.info(f"START light_ambient_turn_on: light_entity_id={light_entity_id}")
 
     # TURN ON
-    if needs_full_brightness(light_entity_id):
-        log.info(f"Turn {light_entity_id} to full brightness")
-        light.turn_on(entity_id=light_entity_id, brightness=full_brightness)
+    full_brightness, brightness_reason = needs_full_brightess(light_entity_id)
+    if full_brightness:
+        log.info(
+            f"RUN light_ambient_turn_on: Turning light to full brightness. light_entity_id={light_entity_id}, brightness_reason={brightness_reason}")
+        light.turn_on(entity_id=light_entity_id, brightness=255)
     else:
-        reason = needs_full_brightness_reason(light_entity_id)
-        log.info(f"Turn {light_entity_id} to low brightness. Reason: {reason}")
+        log.info(
+            f"RUN light_ambient_turn_on: Turning light to low brightness. light_entity_id={light_entity_id}, brightness_reason={brightness_reason}")
         night_light_entity_ids.add(light_entity_id)
         light.turn_on(entity_id=light_entity_id, brightness=dim_brightness)
     turn_light_off_at_start = turn_light_off(light_entity_id)
@@ -39,8 +43,12 @@ def light_ambient_turn_on(
     # TURN OFF
     turn_light_off_at_end = turn_light_off(light_entity_id)
     if turn_light_off_at_start or turn_light_off_at_end:
+        log.info(
+            f"RUN light_ambient_turn_on: Turning off light. light_entity_id={light_entity_id}")
         light.turn_off(entity_id=light_entity_id, transition=60)
     else:
+        log.info(
+            f"RUN light_ambient_turn_on: Dimming light. light_entity_id={light_entity_id}")
         light.turn_on(entity_id=light_entity_id,
                       transition=60, brightness=dim_brightness)
 
@@ -74,19 +82,15 @@ def is_sun():
     return binary_sensor.sun == 'on'
 
 
-def needs_full_brightness(light_entity_id):
-    return needs_full_brightess_with_reason(light_entity_id)[0]
-
-
-def needs_full_brightness_reason(light_entity_id):
-    return needs_full_brightess_with_reason(light_entity_id)[1]
-
-
-def needs_full_brightess_with_reason(light_entity_id):
+def needs_full_brightess(light_entity_id):
     if state.get('script.lights_ambient_turn_on') == 'on':
         return True, '"script.lights_ambient_turn_on" is on'
     if state.get('script.lights_ambient_turn_off') == 'on':
         return False, '"script.lights_ambient_turn_off" is on'
+    sun_state_changed_secs = (datetime.now(
+        tz=timezone.utc) - binary_sensor.sun.last_changed).total_seconds()
+    if sun_state_changed_secs < 300:
+        return True, '"sun set less than 5 minutes ago"'
     if light_entity_id in night_light_entity_ids:
         return False, 'night_light is on'
     if state.get(light_entity_id) == 'on':

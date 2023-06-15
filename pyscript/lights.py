@@ -13,12 +13,12 @@ def light_ambient_turn_on(
         dim_brightness=50,
         dim_after_mins=2):
 
-    task.unique(light_entity_id)
-    active_light_entity_ids.add(light_entity_id)
-
     # conditions
     if is_sun():
         return
+
+    task.unique(light_entity_id)
+    active_light_entity_ids.add(light_entity_id)
 
     log.info(f"START light_ambient_turn_on: light_entity_id={light_entity_id}")
 
@@ -79,14 +79,12 @@ def reset_light_ambient_turn_off():
 
 
 def is_sun():
-    return binary_sensor.sun == 'on'
+    return binary_sensor.sun == 'on' or state.get('script.lights_ambient_turn_off') == 'on'
 
 
 def needs_full_brightess(light_entity_id):
     if state.get('script.lights_ambient_turn_on') == 'on':
         return True, '"script.lights_ambient_turn_on" is on'
-    if state.get('script.lights_ambient_turn_off') == 'on':
-        return False, '"script.lights_ambient_turn_off" is on'
     sun_state_changed_secs = (datetime.now(
         tz=timezone.utc) - binary_sensor.sun.last_changed).total_seconds()
     if sun_state_changed_secs < 300:

@@ -124,6 +124,18 @@
   value_template: "OK"
 
 - platform: rest
+  name: Parqet API Patrick Realized since start
+  resource: 'https://api.parqet.com/v1/portfolios/266318594456945162?fallbackToPreferredTimeframe=true'
+  scan_interval: 300
+  headers:
+    Authorization: >
+      Bearer {{ state_attr('sensor.parqet_auth_patrick', 'access_token') }}
+  json_attributes_path: "$.performance.realized"
+  json_attributes:
+    - gainGross
+  value_template: "OK"
+
+- platform: rest
   name: Parqet API Sandra Returns 1w
   resource: 'https://api.parqet.com/v1/portfolios/616c32ab490af660c8e1bdeb?timeframe=1w'
   scan_interval: 300
@@ -198,6 +210,18 @@
     - returnNet
   value_template: "OK"
 
+- platform: rest
+  name: Parqet API Sandra Realized since start
+  resource: 'https://api.parqet.com/v1/portfolios/616c32ab490af660c8e1bdeb?fallbackToPreferredTimeframe=true'
+  scan_interval: 300
+  headers:
+    Authorization: >
+      Bearer {{ state_attr('sensor.parqet_auth_sandra', 'access_token') }}
+  json_attributes_path: "$.performance.realized"
+  json_attributes:
+    - gainGross
+  value_template: "OK"
+
 - platform: template
   sensors:
 
@@ -261,7 +285,12 @@
       icon_template: mdi:sack-percent
     parqet_api_patrick_overall_returns_since_start_abs:
       friendly_name: Since start
-      value_template: "{{ state_attr('sensor.parqet_api_patrick_returns_since_start', 'gainGross') | round }}"
+      value_template: >
+        {{
+          state_attr('sensor.parqet_api_patrick_returns_since_start', 'gainGross') | round
+            +
+          state_attr('sensor.parqet_api_patrick_realized_since_start', 'gainGross') | round
+        }}
       unit_of_measurement: Euro
       icon_template: mdi:trending-up
     parqet_api_patrick_overall_returns_since_start_rel:
@@ -318,7 +347,12 @@
       icon_template: mdi:sack-percent
     parqet_api_sandra_overall_returns_since_start_abs:
       friendly_name: Since start
-      value_template: "{{ state_attr('sensor.parqet_api_sandra_returns_since_start', 'gainGross') | round }}"
+      value_template: >
+        {{
+          state_attr('sensor.parqet_api_sandra_returns_since_start', 'gainGross') | round
+            +
+          state_attr('sensor.parqet_api_sandra_realized_since_start', 'gainGross') | round
+        }}
       unit_of_measurement: Euro
       icon_template: mdi:trending-up
     parqet_api_sandra_overall_returns_since_start_rel:

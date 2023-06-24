@@ -1,13 +1,5 @@
 ---
 
-
-- platform: min_max
-  name: Motion Study Illuminance Lux
-  type: mean
-  entity_ids:
-    - sensor.motion_study_ceiling_illuminance_lux
-    - sensor.motion_study_shelf_illuminance_lux
-
 - platform: min_max
   name: Motion Corridor Illuminance Lux
   type: mean

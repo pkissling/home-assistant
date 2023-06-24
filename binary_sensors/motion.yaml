@@ -22,5 +22,14 @@
             or
           is_state('binary_sensor.motion_study_shelf_occupancy', 'on')
             or
-          is_state('binary_sensor.motion_study_ceiling_occupancy', 'on')
+          is_state('binary_sensor.motion_study_main_occupancy', 'on')
+        }}
+
+    motion_study_desk_occupancy:
+      friendly_name: Study
+      value_template: >
+        {{
+          is_state('binary_sensor.motion_study_desk_1_occupancy', 'on')
+            or
+          is_state('binary_sensor.motion_study_desk_2_occupancy', 'on')
         }}

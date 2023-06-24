@@ -123,7 +123,7 @@
       data:
         transition: "{{ transition }}"
 
-- alias: Light - Study Shelf - Increase brightness on motion
+- alias: Light - Study - Increase brightness on motion
   trigger:
     - platform: state
       entity_id: binary_sensor.motion_study_occupancy
@@ -137,7 +137,6 @@
     data:
       light_entity_id: light.study_shelf
       motion_sensor_entity_id: binary_sensor.motion_study_occupancy
-      dim_after_mins: 15
 
 - alias: Light - Study Floor Lamp - Turn off when no motion for 15 mins
   trigger:
@@ -157,13 +156,13 @@
     service: light.turn_off
     entity_id: light.study_floor_lamp
 
-- alias: Light - Study Desk - Turn off when no motion for 15 mins
+- alias: Light - Study Desk - Turn off when no motion for 5 mins
   trigger:
     platform: state
     entity_id: binary_sensor.motion_study_occupancy
     to: 'off'
     for:
-      minutes: 15
+      minutes: 5
   condition:
     - condition: state
       entity_id: light.study_desk

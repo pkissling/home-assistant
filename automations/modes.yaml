@@ -21,7 +21,7 @@
       entity_id: binary_sensor.motion_study_desk_occupancy
       to: 'off'
       for:
-        minutes: 20
+        minutes: 5
     - platform: state
       entity_id: group.residents
       to: not_home

@@ -65,7 +65,6 @@ def reset_light_ambient_turn_on():
         log.info(
             f"Resetting {light_entity_id} due to 'script.lights_ambient_turn_on'")
         task.unique(light_entity_id)
-        active_light_entity_ids.discard(light_entity_id)
     active_light_entity_ids.clear()
 
 

@@ -9,6 +9,8 @@ exclude:
     - sensor.*_uptime
   entities:
     - input_text.google_api_key
+    - sensor.departure_s7_to_hauptbahnhof
+    - sensor.departure_u6_to_sendlinger_tor
     - sensor.harras_munchen_to_hauptbahnhof_munchen
     - sensor.harras_munchen_to_sendlinger_tor_munchen
     - sensor.mqtt_broker_heartbeat

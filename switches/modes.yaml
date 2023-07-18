@@ -64,3 +64,24 @@
           entity_id: switch.climate_all
         - service: input_boolean.turn_off
           entity_id: input_boolean.summer_mode
+
+    detached_light:
+      friendly_name: Detached Light
+      value_template: "{{ states('input_boolean.detached_light') }}"
+      turn_on:
+        - service: light.turn_on
+          entity_id: light.study_desk
+          data:
+            brightness: 255
+        - service: input_boolean.turn_on
+          entity_id: input_boolean.detached_light
+        - service: adaptive_lighting.set_manual_control
+          entity_id: switch.adaptive_lighting_study
+          data:
+            lights: light.study_desk
+            manual_control: false
+      turn_off:
+        - service: light.turn_off
+          entity_id: light.study_desk
+        - service: input_boolean.turn_off
+          entity_id: input_boolean.detached_light

@@ -1,5 +1,8 @@
 ---
 
+switch.detached_light:
+  icon: mdi:lamp
+
 switch.guest_mode:
   icon: mdi:human-male-female
 

@@ -86,6 +86,9 @@
     - condition: state
       entity_id: binary_sensor.lightlevel_study_dark
       state: 'on'
+    - condition: state
+      entity_id: switch.detached_light
+      state: 'off'
     - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
     - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'returning') }}"
   action:
@@ -115,6 +118,10 @@
         minutes: 30
       variables:
         transition: 60
+  condition:
+    condition: state
+    entity_id: switch.detached_light
+    state: 'off'
   action:
     - delay:
         seconds: 1
@@ -169,6 +176,9 @@
       state: 'on'
     - condition: state
       entity_id: input_boolean.home_office_mode
+      state: 'off'
+    - condition: state
+      entity_id: switch.detached_light
       state: 'off'
   action:
     service: light.turn_off

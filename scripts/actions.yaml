@@ -199,7 +199,3 @@ good_morning:
       entity_id: all
     - service: switch.turn_on
       entity_id: switch.radio_puls
-
-im_leaving:
-  mode: restart
-  sequence: []

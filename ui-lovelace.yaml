@@ -235,9 +235,6 @@ views:
               - icon: mdi:weather-sunset-up
                 entity: script.good_morning
                 name: Good Morning
-              - icon: mdi:exit-run
-                entity: script.im_leaving
-                name: I'm leaving
 
       # People at home
       - type: entities

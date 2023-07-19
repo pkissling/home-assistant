@@ -62,10 +62,10 @@
     entity_id: input_boolean.party_mode
     to: 'on'
   action:
-    - service: climate.set_temperature
-      data:
-        entity_id: all
-        temperature: 22
+    service: climate.set_temperature
+    data:
+      entity_id: all
+      temperature: 22
 
 - alias: Mode - Party Mode - Turn off
   trigger:
@@ -102,9 +102,9 @@
 
 - alias: Mode - TV Mode - Dim lights when TV Mode on
   trigger:
-    - platform: state
-      entity_id: input_boolean.tv_mode
-      to: 'on'
+    platform: state
+    entity_id: input_boolean.tv_mode
+    to: 'on'
   condition:
     condition: state
     entity_id: light.living_room
@@ -131,9 +131,9 @@
 
 - alias: Mode - TV Mode - Increase light brightness when TV Mode off
   trigger:
-    - platform: state
-      entity_id: input_boolean.tv_mode
-      to: 'off'
+    platform: state
+    entity_id: input_boolean.tv_mode
+    to: 'off'
   condition:
     - condition: state
       entity_id: light.living_room
@@ -162,16 +162,16 @@
 
 - alias: Mode - TV Mode - Turn off when light off
   trigger:
-    - platform: state
-      entity_id: light.living_room
-      to: 'off'
+    platform: state
+    entity_id: light.living_room
+    to: 'off'
   condition:
-    - condition: state
-      entity_id: input_boolean.tv_mode
-      state: 'on'
+    condition: state
+    entity_id: input_boolean.tv_mode
+    state: 'on'
   action:
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.tv_mode
+    service: input_boolean.turn_off
+    entity_id: input_boolean.tv_mode
 
 - alias: Mode - Guest Mode - Turn off daily vacuum when guest mode on
   trigger:

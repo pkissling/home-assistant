@@ -1,0 +1,12 @@
+---
+
+- platform: template
+  sensors:
+
+    light_study_color_temp:
+      value_template: >
+        {% if is_state('input_boolean.home_office_mode', 'on') and is_state('switch.detached_light', 'off') %}
+          5500
+        {% else %}
+          {{ state_attr('switch.adaptive_lighting_study', 'color_temp_kelvin')}}
+        {% endif %}

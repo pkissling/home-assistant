@@ -92,17 +92,11 @@
     - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'cleaning') }}"
     - "{{ not is_state('vacuum.xiaomi_vacuum_cleaner', 'returning') }}"
   action:
-    - service: adaptive_lighting.set_manual_control
-      entity_id: switch.adaptive_lighting_study
-      data:
-        lights: light.study
-        manual_control: true
-    - service: light.turn_on
-      entity_id: light.study_desk
-      data:
-        transition: "{{ transition }}"
-        brightness: 255
-        color_temp: 300
+    service: light.turn_on
+    entity_id: light.study_desk
+    data:
+      transition: "{{ transition }}"
+      brightness: 255
 
 - alias: Light - Study Desk - Turn off when home office mode off
   trigger:
@@ -123,12 +117,10 @@
     entity_id: switch.detached_light
     state: 'off'
   action:
-    - delay:
-        seconds: 1
-    - service: light.turn_off
-      entity_id: light.study_desk
-      data:
-        transition: "{{ transition }}"
+    service: light.turn_off
+    entity_id: light.study_desk
+    data:
+      transition: "{{ transition }}"
 
 - alias: Light - Study - Increase brightness on motion
   trigger:
@@ -249,35 +241,6 @@
       brightness: 100
       transition: 60  # 1 minute
 
-- alias: Light - Study Shelf - Brighter when home office mode on
-  trigger:
-    - platform: state
-      entity_id: input_boolean.home_office_mode
-      to: 'on'
-    - platform: state
-      entity_id: light.study_shelf
-      to: 'on'
-  condition:
-    - condition: state
-      entity_id: light.study_shelf
-      state: 'on'
-    - condition: state
-      entity_id: input_boolean.home_office_mode
-      state: 'on'
-    - condition: state
-      entity_id: script.lights_ambient_turn_off
-      state: 'off'
-  action:
-    - service: adaptive_lighting.set_manual_control
-      entity_id: switch.adaptive_lighting_study
-      data:
-        lights: light.study
-        manual_control: true
-    - service: light.turn_on
-      entity_id: light.study_shelf
-      data:
-        color_temp: 300
-
 - alias: Light - Study Shelf - Adaptive light on when home office mode off
   trigger:
     platform: state
@@ -313,3 +276,21 @@
     entity_id: light.ambient
     data:
       transition: 60
+
+- alias: Light - Study - Sync color temperature with sensor
+  trigger:
+    platform: template
+    value_template: >
+      {{
+        (states('sensor.light_study_color_temp') != state_attr('light.study', 'color_temp_kelvin'))
+          and
+        is_state('switch.adaptive_lighting_study', 'off')
+          and
+        is_state('light.study', 'on')
+      }}
+  action:
+    service: light.turn_on
+    entity_id: light.study
+    data:
+      transition: 10
+      kelvin: "{{ states('sensor.light_study_color_temp') }}"

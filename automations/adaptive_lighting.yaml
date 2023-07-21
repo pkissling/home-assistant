@@ -44,4 +44,3 @@
         entity_id: switch.adaptive_lighting_study
         lights: light.study
         adapt_brightness: false
-

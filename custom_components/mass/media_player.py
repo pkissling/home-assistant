@@ -11,9 +11,7 @@ from homeassistant.components.media_player import (
     MediaPlayerEnqueue,
     MediaPlayerEntity,
 )
-from homeassistant.components.media_player.browse_media import (
-    async_process_play_media_url,
-)
+from homeassistant.components.media_player.browse_media import async_process_play_media_url
 from homeassistant.components.media_player.const import (
     SUPPORT_BROWSE_MEDIA,
     SUPPORT_CLEAR_PLAYLIST,
@@ -84,7 +82,6 @@ SUPPORTED_FEATURES = (
 )
 
 STATE_MAPPING = {
-    PlayerState.OFF: STATE_OFF,
     PlayerState.IDLE: STATE_IDLE,
     PlayerState.PLAYING: STATE_PLAYING,
     PlayerState.PAUSED: STATE_PAUSED,
@@ -117,9 +114,7 @@ async def async_setup_entry(
         async_add_entities([MassPlayer(mass, event.object_id)])
 
     # register listener for new players
-    config_entry.async_on_unload(
-        mass.subscribe(handle_player_added, EventType.PLAYER_ADDED)
-    )
+    config_entry.async_on_unload(mass.subscribe(handle_player_added, EventType.PLAYER_ADDED))
     # add all current players
     for player in mass.players:
         added_ids.add(player.player_id)
@@ -128,6 +123,8 @@ async def async_setup_entry(
 
 class MassPlayer(MassBaseEntity, MediaPlayerEntity):
     """Representation of MediaPlayerEntity from Music Assistant Player."""
+
+    _attr_name = None
 
     def __init__(self, mass: MusicAssistantClient, player_id: str) -> None:
         """Initialize MediaPlayer entity."""
@@ -207,13 +204,13 @@ class MassPlayer(MassBaseEntity, MediaPlayerEntity):
             self._attr_media_position = player.elapsed_time
             self._attr_media_position_updated_at = player.elapsed_time_last_updated
         self._prev_time = self._attr_media_position
-        self._attr_media_image_url = self._get_media_image_url(queue)
+        self._update_media_image_url(queue)
         # update current media item infos
         media_artist = None
         media_album_artist = None
         media_album_name = None
         media_title = player.active_source
-        media_content_id = player.current_item_id
+        media_content_id = player.current_url
         media_duration = None
         # Music Assistant is the active source and actually has a MediaItem loaded
         if queue and queue.current_item and queue.current_item.media_item:
@@ -237,14 +234,14 @@ class MassPlayer(MassBaseEntity, MediaPlayerEntity):
         self._attr_media_content_id = media_content_id
         self._attr_media_duration = media_duration
 
-    def _get_media_image_url(self, queue: PlayerQueue) -> str | None:
-        """Get image URL for active queue item."""
+    def _update_media_image_url(self, queue: PlayerQueue) -> None:
+        """Update image URL forthe active queue item."""
         if queue is None or queue.current_item is None:
-            return None
+            self._attr_media_image_url = None
+            return
         if image := queue.current_item.image:
-            # TODO: handle local files via image proxy
-            return image.path
-        return None
+            self._attr_media_image_remotely_accessible = image.provider == "url"
+            self._attr_media_image_url = self.mass.get_image_url(image)
 
     async def async_media_play(self) -> None:
         """Send play command to device."""
@@ -323,13 +320,9 @@ class MassPlayer(MassBaseEntity, MediaPlayerEntity):
     async def async_set_repeat(self, repeat: str) -> None:
         """Set repeat state."""
         if queue := self.mass.players.get_player_queue(self.player.active_source):
-            await self.mass.players.queue_command_repeat(
-                queue.queue_id, RepeatMode(repeat)
-            )
+            await self.mass.players.queue_command_repeat(queue.queue_id, RepeatMode(repeat))
         else:
-            await self.mass.players.queue_command_repeat(
-                self.player_id, RepeatMode(repeat)
-            )
+            await self.mass.players.queue_command_repeat(self.player_id, RepeatMode(repeat))
 
     async def async_clear_playlist(self) -> None:
         """Clear players playlist."""
@@ -355,26 +348,16 @@ class MassPlayer(MassBaseEntity, MediaPlayerEntity):
             media_id = sourced_media.url
             media_id = async_process_play_media_url(self.hass, media_id)
         # try to handle playback of item by name
-        elif "://" not in media_id and (
-            item := await get_item_by_name(self.mass, media_id)
-        ):
+        elif "://" not in media_id and (item := await get_item_by_name(self.mass, media_id)):
             media_id = item.uri
 
         queue_opt = QUEUE_OPTION_MAP.get(enqueue, QueueOption.PLAY)
-        radio_mode = (
-            kwargs.get("radio_mode")
-            or kwargs.get("extra", {}).get("radio_mode")
-            or False
-        )
+        radio_mode = kwargs.get("radio_mode") or kwargs.get("extra", {}).get("radio_mode") or False
 
         if queue := self.mass.players.get_player_queue(self.player.active_source):
-            await self.mass.players.play_media(
-                queue.queue_id, media_id, queue_opt, radio_mode
-            )
+            await self.mass.players.play_media(queue.queue_id, media_id, queue_opt, radio_mode)
         else:
-            await self.mass.players.play_media(
-                self.player_id, media_id, queue_opt, radio_mode
-            )
+            await self.mass.players.play_media(self.player_id, media_id, queue_opt, radio_mode)
 
         # announce/alert support
         # is_tts = "/api/tts_proxy" in media_id
@@ -389,6 +372,4 @@ class MassPlayer(MassBaseEntity, MediaPlayerEntity):
         self, media_content_type=None, media_content_id=None
     ) -> BrowseMedia:
         """Implement the websocket media browsing helper."""
-        return await async_browse_media(
-            self.hass, self.mass, media_content_id, media_content_type
-        )
+        return await async_browse_media(self.hass, self.mass, media_content_id, media_content_type)

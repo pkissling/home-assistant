@@ -110,7 +110,7 @@
 
 - platform: rest
   name: Parqet API Patrick Returns since start
-  resource: 'https://api.parqet.com/v1/portfolios/266318594456945162?fallbackToPreferredTimeframe=true'
+  resource: 'https://api.parqet.com/v1/portfolios/266318594456945162?timeframe=max'
   scan_interval: 300
   headers:
     Authorization: >
@@ -125,7 +125,7 @@
 
 - platform: rest
   name: Parqet API Patrick Realized since start
-  resource: 'https://api.parqet.com/v1/portfolios/266318594456945162?fallbackToPreferredTimeframe=true'
+  resource: 'https://api.parqet.com/v1/portfolios/266318594456945162?timeframe=max'
   scan_interval: 300
   headers:
     Authorization: >
@@ -197,7 +197,7 @@
 
 - platform: rest
   name: Parqet API Sandra Returns since start
-  resource: 'https://api.parqet.com/v1/portfolios/616c32ab490af660c8e1bdeb?fallbackToPreferredTimeframe=true'
+  resource: 'https://api.parqet.com/v1/portfolios/616c32ab490af660c8e1bdeb?timeframe=max'
   scan_interval: 300
   headers:
     Authorization: >
@@ -212,7 +212,7 @@
 
 - platform: rest
   name: Parqet API Sandra Realized since start
-  resource: 'https://api.parqet.com/v1/portfolios/616c32ab490af660c8e1bdeb?fallbackToPreferredTimeframe=true'
+  resource: 'https://api.parqet.com/v1/portfolios/616c32ab490af660c8e1bdeb?timeframe=max'
   scan_interval: 300
   headers:
     Authorization: >

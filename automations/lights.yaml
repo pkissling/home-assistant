@@ -292,7 +292,7 @@
     service: light.turn_on
     entity_id: light.study_desk
     data:
-      transition: 10
+      transition: 2
       kelvin: "{{ states('sensor.light_study_color_temp') }}"
 
 - alias: Light - Study Shelf - Sync color temperature with sensor
@@ -310,7 +310,7 @@
     service: light.turn_on
     entity_id: light.study_shelf
     data:
-      transition: 10
+      transition: 2
       kelvin: "{{ states('sensor.light_study_color_temp') }}"
 
 - alias: Light - Study Floor Lamp - Sync color temperature with sensor
@@ -328,5 +328,5 @@
     service: light.turn_on
     entity_id: light.study_floor_lamp
     data:
-      transition: 10
+      transition: 2
       kelvin: "{{ states('sensor.light_study_color_temp') }}"

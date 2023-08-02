@@ -282,7 +282,7 @@
     platform: template
     value_template: >
       {{
-        (states('sensor.light_study_color_temp') != state_attr('light.study', 'color_temp_kelvin'))
+        (states('sensor.light_study_color_temp') != state_attr('light.study_desk', 'color_temp_kelvin'))
           and
         is_state('switch.adaptive_lighting_study', 'off')
           and
@@ -300,7 +300,7 @@
     platform: template
     value_template: >
       {{
-        (states('sensor.light_study_color_temp') != state_attr('light.study', 'color_temp_kelvin'))
+        (states('sensor.light_study_color_temp') != state_attr('light.study_shelf', 'color_temp_kelvin'))
           and
         is_state('switch.adaptive_lighting_study', 'off')
           and
@@ -318,7 +318,7 @@
     platform: template
     value_template: >
       {{
-        (states('sensor.light_study_color_temp') != state_attr('light.study', 'color_temp_kelvin'))
+        (states('sensor.light_study_color_temp') != state_attr('light.study_floor_lamp', 'color_temp_kelvin'))
           and
         is_state('switch.adaptive_lighting_study', 'off')
           and

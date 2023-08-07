@@ -13,6 +13,8 @@ from homeassistant.components.light import (
     ATTR_COLOR_TEMP_KELVIN,
     ATTR_HS_COLOR,
     ATTR_RGB_COLOR,
+    ATTR_RGBW_COLOR,
+    ATTR_RGBWW_COLOR,
     ATTR_TRANSITION,
     ATTR_XY_COLOR,
 )
@@ -27,7 +29,10 @@ COLOR_ATTRS = {  # Should ATTR_PROFILE be in here?
     ATTR_HS_COLOR,
     ATTR_RGB_COLOR,
     ATTR_XY_COLOR,
+    ATTR_RGBW_COLOR,
+    ATTR_RGBWW_COLOR,
 }
+
 
 BRIGHTNESS_ATTRS = {
     ATTR_BRIGHTNESS,
@@ -136,6 +141,7 @@ class AdaptationData:
     context: Context
     sleep_time: float
     service_call_datas: AsyncGenerator[ServiceData, None]
+    force: bool
     max_length: int
     which: Literal["brightness", "color", "both"]
     initial_sleep: bool = False
@@ -174,6 +180,7 @@ def prepare_adaptation_data(
     service_data: ServiceData,
     split: bool,
     filter_by_state: bool,
+    force: bool,
 ) -> AdaptationData:
     """Prepares a data object carrying all data required to execute an adaptation."""
     _LOGGER.debug(
@@ -204,6 +211,7 @@ def prepare_adaptation_data(
         context=context,
         sleep_time=sleep_time,
         service_call_datas=service_data_iterator,
+        force=force,
         max_length=service_datas_length,
         which=lighting_type,
     )

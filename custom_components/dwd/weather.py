@@ -2,8 +2,10 @@
 from __future__ import annotations
 
 from datetime import date, datetime, time, timedelta, timezone
+from enum import Enum
 import logging
 from typing import Any, Optional
+from homeassistant.components.weather import WeatherEntityFeature
 
 from homeassistant.helpers.entity import DeviceInfo
 from . import DwdDataUpdateCoordinator
@@ -50,7 +52,6 @@ from homeassistant.util import dt
 
 from .const import (
     ATTR_FORECAST_CLOUD_COVER,
-    ATTR_FORECAST_CUSTOM_DWD_WW,
     ATTRIBUTION,
     CONDITION_CLOUDY_THRESHOLD,
     CONDITION_PARTLYCLOUDY_THRESHOLD,
@@ -73,11 +74,15 @@ from .const import (
     DWD_MEASUREMENT_PRESSURE,
     DWD_MEASUREMENT_TEMPERATURE,
     DWD_MEASUREMENT_VISIBILITY,
-    FORECAST_MODE_DAILY,
-    FORECAST_MODE_HOURLY,
 )
 
 _LOGGER = logging.getLogger(__name__)
+
+
+class ForecastMode(Enum):
+    STANDARD = 0
+    DAILY = 1
+    HOURLY = 2
 
 
 async def async_setup_entry(
@@ -101,9 +106,17 @@ async def async_setup_entry(
             DwdWeather(
                 hass,
                 coordinator,
+                config_entry.unique_id,
+                config_entry,
+                ForecastMode.STANDARD,
+                device,
+            ),
+            DwdWeather(
+                hass,
+                coordinator,
                 f"{config_entry.unique_id}-daily",
                 config_entry,
-                FORECAST_MODE_DAILY,
+                ForecastMode.DAILY,
                 device,
             ),
             DwdWeather(
@@ -111,7 +124,7 @@ async def async_setup_entry(
                 coordinator,
                 f"{config_entry.unique_id}-hourly",
                 config_entry,
-                FORECAST_MODE_HOURLY,
+                ForecastMode.HOURLY,
                 device,
             ),
         ]
@@ -127,7 +140,7 @@ class DwdWeather(CoordinatorEntity, WeatherEntity):
         coordinator: DwdDataUpdateCoordinator,
         unique_id: str,
         config: ConfigEntry,
-        forecast_mode: int,
+        forecast_mode: ForecastMode,
         device: DeviceInfo,
     ) -> None:
         """Initialise the platform with a data instance and site."""
@@ -135,11 +148,24 @@ class DwdWeather(CoordinatorEntity, WeatherEntity):
         self._hass: HomeAssistant = hass
         self._unique_id: str = unique_id
         self._config: ConfigEntry = config
-        self._forecast_mode: int = forecast_mode
+        self._forecast_mode: ForecastMode = forecast_mode
         self._device: DeviceInfo = device
         self._conf_current_weather: str = self._config.options.get(
             CONF_CURRENT_WEATHER, CONF_CURRENT_WEATHER_DEFAULT
         )
+
+        self._attr_supported_features = 0
+        if self._config.options.get(CONF_FORECAST, CONF_FORECAST_DEFAULT):
+            if (
+                self._forecast_mode == ForecastMode.STANDARD
+                or self._forecast_mode == ForecastMode.DAILY
+            ):
+                self._attr_supported_features |= WeatherEntityFeature.FORECAST_DAILY
+            if (
+                self._forecast_mode == ForecastMode.STANDARD
+                or self._forecast_mode == ForecastMode.HOURLY
+            ):
+                self._attr_supported_features |= WeatherEntityFeature.FORECAST_HOURLY
 
     @property
     def unique_id(self) -> str:
@@ -153,9 +179,9 @@ class DwdWeather(CoordinatorEntity, WeatherEntity):
         name = self._config.title
         name_appendix = ""
 
-        if self._forecast_mode == FORECAST_MODE_HOURLY:
+        if self._forecast_mode == ForecastMode.HOURLY:
             name_appendix = " Hourly"
-        if self._forecast_mode == FORECAST_MODE_DAILY:
+        if self._forecast_mode == ForecastMode.DAILY:
             name_appendix = " Daily"
 
         if name is None:
@@ -177,6 +203,11 @@ class DwdWeather(CoordinatorEntity, WeatherEntity):
         return self._device
 
     @property
+    def entity_registry_enabled_default(self) -> bool:
+        """Return if the entity should be enabled when first added to the entity registry."""
+        return self._forecast_mode == ForecastMode.STANDARD
+
+    @property
     def condition(self) -> str | None:
         """Return the current condition."""
         if (
@@ -190,7 +221,7 @@ class DwdWeather(CoordinatorEntity, WeatherEntity):
                 if self._conf_current_weather == CONF_CURRENT_WEATHER_MEASUREMENT:
                     return None
                 else:
-                    forecast = self._get_forecast(FORECAST_MODE_HOURLY, 1)
+                    forecast = self._get_forecast(ForecastMode.HOURLY, 1)
                     if forecast is None or len(forecast) < 1:
                         return None
                     else:
@@ -201,7 +232,7 @@ class DwdWeather(CoordinatorEntity, WeatherEntity):
                     condition = ATTR_CONDITION_CLEAR_NIGHT
                 return condition
         elif self._conf_current_weather == CONF_CURRENT_WEATHER_FORECAST:
-            forecast = self._get_forecast(FORECAST_MODE_HOURLY, 1)
+            forecast = self._get_forecast(ForecastMode.HOURLY, 1)
             if forecast is None or len(forecast) < 1:
                 return None
             else:
@@ -282,7 +313,7 @@ class DwdWeather(CoordinatorEntity, WeatherEntity):
                 if self._conf_current_weather == CONF_CURRENT_WEATHER_MEASUREMENT:
                     return None
                 else:
-                    forecast = self._get_forecast(FORECAST_MODE_HOURLY, 1)
+                    forecast = self._get_forecast(ForecastMode.HOURLY, 1)
                     if forecast is None or len(forecast) < 1:
                         return None
                     else:
@@ -290,7 +321,7 @@ class DwdWeather(CoordinatorEntity, WeatherEntity):
             else:
                 return DwdWeather._str_to_float(str_value)
         elif self._conf_current_weather == CONF_CURRENT_WEATHER_FORECAST:
-            forecast = self._get_forecast(FORECAST_MODE_HOURLY, 1)
+            forecast = self._get_forecast(ForecastMode.HOURLY, 1)
             if forecast is None or len(forecast) < 1:
                 return None
             else:
@@ -327,10 +358,28 @@ class DwdWeather(CoordinatorEntity, WeatherEntity):
         if not self._config.options.get(CONF_FORECAST, CONF_FORECAST_DEFAULT):
             return None
 
+        if self._forecast_mode == ForecastMode.STANDARD:
+            return None
+
         return self._get_forecast(self._forecast_mode)
 
-    def _get_forecast(self, forecast_mode: int, max_hours: int = 0):
+    async def async_forecast_daily(self):
+        """Return the daily forecast."""
 
+        if not self._config.options.get(CONF_FORECAST, CONF_FORECAST_DEFAULT):
+            return None
+
+        return self._get_forecast(ForecastMode.DAILY)
+
+    async def async_forecast_hourly(self):
+        """Return the daily forecast."""
+
+        if not self._config.options.get(CONF_FORECAST, CONF_FORECAST_DEFAULT):
+            return None
+
+        return self._get_forecast(ForecastMode.HOURLY)
+
+    def _get_forecast(self, forecast_mode: ForecastMode, max_hours: int = 0):
         # We build both lists in parallel and just return the needed one. Although it's a small
         # overhead, it still makes thinks easier, because there is still much in common, because to
         # calculate the days most of the hourly stuff has to be done again.
@@ -403,7 +452,6 @@ class DwdWeather(CoordinatorEntity, WeatherEntity):
                         raw_weather_value = dwd_forecast_ww[i]
                         if raw_weather_value != "-":
                             weather_value = int(round(float(raw_weather_value), 0))
-                            hourly_item[ATTR_FORECAST_CUSTOM_DWD_WW] = weather_value
                             if weather_value == 0:
                                 if sun.is_up(self._hass, timestamp):
                                     hourly_item[
@@ -711,7 +759,6 @@ class DwdWeather(CoordinatorEntity, WeatherEntity):
                     if i < len(dwd_forecast_PPPP):
                         raw_value = dwd_forecast_PPPP[i]
                         if raw_value != "-":
-
                             hourly_item[ATTR_FORECAST_NATIVE_PRESSURE] = (
                                 float(raw_value) * 0.01
                             )
@@ -720,7 +767,6 @@ class DwdWeather(CoordinatorEntity, WeatherEntity):
                     if i < len(dwd_forecast_DD):
                         raw_value = dwd_forecast_DD[i]
                         if raw_value != "-":
-
                             hourly_item[ATTR_FORECAST_WIND_BEARING] = float(raw_value)
 
                     # FF is in m/s
@@ -737,7 +783,7 @@ class DwdWeather(CoordinatorEntity, WeatherEntity):
                     if max_hours > 0 and len(hourly_list) >= max_hours:
                         break
 
-        if forecast_mode == FORECAST_MODE_DAILY:
+        if forecast_mode == ForecastMode.DAILY:
             result = []
             if len(daily_list) > 0:
                 # Always add current day:
@@ -747,7 +793,7 @@ class DwdWeather(CoordinatorEntity, WeatherEntity):
                     if daily_list[i].has_enough_hours:
                         result.append(daily_list[i].values)
             return result
-        if forecast_mode == FORECAST_MODE_HOURLY:
+        if forecast_mode == ForecastMode.HOURLY:
             return hourly_list
 
     @staticmethod

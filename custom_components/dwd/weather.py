@@ -34,6 +34,9 @@ from homeassistant.components.weather import (
     ATTR_FORECAST_TIME,
     ATTR_FORECAST_WIND_BEARING,
     ATTR_FORECAST_NATIVE_WIND_SPEED,
+    ATTR_FORECAST_NATIVE_WIND_GUST_SPEED,
+    ATTR_FORECAST_CLOUD_COVERAGE,
+    ATTR_FORECAST_DEW_POINT,
     WeatherEntity,
 )
 from homeassistant.config_entries import ConfigEntry
@@ -51,7 +54,6 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from homeassistant.util import dt
 
 from .const import (
-    ATTR_FORECAST_CLOUD_COVER,
     ATTRIBUTION,
     CONDITION_CLOUDY_THRESHOLD,
     CONDITION_PARTLYCLOUDY_THRESHOLD,
@@ -67,9 +69,12 @@ from .const import (
     DWD_FORECAST,
     DWD_FORECAST_TIMESTAMP,
     DWD_MEASUREMENT,
+    DWD_MEASUREMENT_CLOUD_COVER_TOTAL,
+    DWD_MEASUREMENT_DEW_POINT,
     DWD_MEASUREMENT_HUMIDITY,
     DWD_MEASUREMENT_MEANWIND_DIRECTION,
     DWD_MEASUREMENT_MEANWIND_SPEED,
+    DWD_MEASUREMENT_MAXIMUM_WIND_SPEED,
     DWD_MEASUREMENT_PRESENT_WEATHER,
     DWD_MEASUREMENT_PRESSURE,
     DWD_MEASUREMENT_TEMPERATURE,
@@ -253,6 +258,13 @@ class DwdWeather(CoordinatorEntity, WeatherEntity):
         return UnitOfTemperature.CELSIUS
 
     @property
+    def native_dew_point(self) -> float | None:
+        """Return the dew point temperature in native units."""
+        return self._get_float_measurement_with_fallback(
+            DWD_MEASUREMENT_DEW_POINT, ATTR_FORECAST_DEW_POINT
+        )
+
+    @property
     def native_pressure(self) -> float | None:
         """Return the pressure."""
         return self._get_float_measurement_with_fallback(
@@ -269,6 +281,13 @@ class DwdWeather(CoordinatorEntity, WeatherEntity):
         return self._get_float_measurement_without_fallback(DWD_MEASUREMENT_HUMIDITY)
 
     @property
+    def cloud_coverage(self) -> float | None:
+        """Return the cloud coverage in %."""
+        return self._get_float_measurement_with_fallback(
+            DWD_MEASUREMENT_CLOUD_COVER_TOTAL, ATTR_FORECAST_CLOUD_COVERAGE
+        )
+
+    @property
     def native_visibility(self) -> float | None:
         """Return the humidity."""
         return self._get_float_measurement_without_fallback(DWD_MEASUREMENT_VISIBILITY)
@@ -276,6 +295,13 @@ class DwdWeather(CoordinatorEntity, WeatherEntity):
     @property
     def native_visibility_unit(self) -> str:
         return UnitOfLength.KILOMETERS
+
+    @property
+    def native_wind_gust_speed(self) -> float | None:
+        """Return the wind gust speed in native units."""
+        return self._get_float_measurement_with_fallback(
+            DWD_MEASUREMENT_MAXIMUM_WIND_SPEED, ATTR_FORECAST_NATIVE_WIND_GUST_SPEED
+        )
 
     @property
     def native_wind_speed(self) -> float | None:
@@ -399,12 +425,14 @@ class DwdWeather(CoordinatorEntity, WeatherEntity):
         dwd_forecast_timestamp = dwd_forecast.get(DWD_FORECAST_TIMESTAMP, [])
         dwd_forecast_TTT = dwd_forecast.get("TTT", [])
         dwd_forecast_ww = dwd_forecast.get("ww", [])
+        dwd_forecast_Td = dwd_forecast.get("Td", [])
         dwd_forecast_Neff = dwd_forecast.get("Neff", [])
         dwd_forecast_RR1c = dwd_forecast.get("RR1c", [])
         dwd_forecast_wwP = dwd_forecast.get("wwP", [])
         dwd_forecast_PPPP = dwd_forecast.get("PPPP", [])
         dwd_forecast_DD = dwd_forecast.get("DD", [])
         dwd_forecast_FF = dwd_forecast.get("FF", [])
+        dwd_forecast_FX1 = dwd_forecast.get("FX1", [])
 
         current_day: DwdWeatherDay = None
 
@@ -731,12 +759,23 @@ class DwdWeather(CoordinatorEntity, WeatherEntity):
                                     ATTR_FORECAST_CONDITION
                                 ] = ATTR_CONDITION_WINDY_VARIANT
 
+                    # Td is in K
+                    if i < len(dwd_forecast_Td):
+                        raw_dew_point_value = dwd_forecast_Td[i]
+                        if raw_dew_point_value != "-":
+                            dew_point_celcius = float(raw_dew_point_value) - 273.15
+                            hourly_item[ATTR_FORECAST_DEW_POINT] = round(
+                                dew_point_celcius, 1
+                            )
+
                     # Neff is in %
                     if i < len(dwd_forecast_Neff):
-                        raw_cloud_cover_value = dwd_forecast_Neff[i]
-                        if raw_cloud_cover_value != "-":
-                            cloud_cover_value = float(raw_cloud_cover_value)
-                            hourly_item[ATTR_FORECAST_CLOUD_COVER] = cloud_cover_value
+                        raw_cloud_coverage_value = dwd_forecast_Neff[i]
+                        if raw_cloud_coverage_value != "-":
+                            cloud_coverage_value = float(raw_cloud_coverage_value)
+                            hourly_item[
+                                ATTR_FORECAST_CLOUD_COVERAGE
+                            ] = cloud_coverage_value
 
                     # RR1c is in kg/m2 which is equal to mm
                     if i < len(dwd_forecast_RR1c):
@@ -776,6 +815,15 @@ class DwdWeather(CoordinatorEntity, WeatherEntity):
                             wind_speed_kmh = float(raw_value) * 3.6
                             hourly_item[ATTR_FORECAST_NATIVE_WIND_SPEED] = int(
                                 round(wind_speed_kmh, 0)
+                            )
+
+                    # FX1 is in m/s
+                    if i < len(dwd_forecast_FX1):
+                        raw_value = dwd_forecast_FX1[i]
+                        if raw_value != "-":
+                            wind_gust_speed_kmh = float(raw_value) * 3.6
+                            hourly_item[ATTR_FORECAST_NATIVE_WIND_GUST_SPEED] = int(
+                                round(wind_gust_speed_kmh, 0)
                             )
 
                     hourly_list.append(hourly_item)
@@ -828,15 +876,10 @@ class DwdWeatherDay:
 
         result[ATTR_FORECAST_TIME] = datetime.combine(self._day, time(0, 0, 0))
 
-        values = list(
-            filter(
-                lambda x: x is not None,
-                map(lambda x: x.get(ATTR_FORECAST_NATIVE_TEMP, None), self._hours),
-            )
-        )
-        if len(values) > 0:
-            result[ATTR_FORECAST_NATIVE_TEMP] = max(values)
-            result[ATTR_FORECAST_NATIVE_TEMP_LOW] = min(values)
+        temperature_values = self._get_hourly_values(ATTR_FORECAST_NATIVE_TEMP)
+        if len(temperature_values) > 0:
+            result[ATTR_FORECAST_NATIVE_TEMP] = max(temperature_values)
+            result[ATTR_FORECAST_NATIVE_TEMP_LOW] = min(temperature_values)
 
         # Danger: The following has a slight ruonding error. You can easily see that because if you
         # sum up RR1c ("Total precipitation during the last hour consistent with significant weather"),
@@ -844,44 +887,42 @@ class DwdWeatherDay:
         # consistent with significant weather"). Usually this seems not to be too big, e.g. a sum of
         # 1.7 mm instead of 1.6 mm. Unfortunately, we can't use RRdc either, because it's not aligned
         # to days.
-        values = list(
-            filter(
-                lambda x: x is not None,
-                map(
-                    lambda x: x.get(ATTR_FORECAST_NATIVE_PRECIPITATION, None),
-                    self._hours,
-                ),
-            )
+        precipitation_values = self._get_hourly_values(
+            ATTR_FORECAST_NATIVE_PRECIPITATION
         )
-        if len(values) > 0:
-            precipitation = sum(values)
+        if len(precipitation_values) > 0:
+            precipitation = sum(precipitation_values)
             result[ATTR_FORECAST_NATIVE_PRECIPITATION] = round(precipitation, 2)
 
-        values = list(
-            filter(
-                lambda x: x is not None,
-                map(
-                    lambda x: x.get(ATTR_FORECAST_NATIVE_PRESSURE, None),
-                    self._hours,
-                ),
-            )
-        )
-        if len(values) > 0:
-            pressure = sum(values) / len(values)
+        pressure_values = self._get_hourly_values(ATTR_FORECAST_NATIVE_PRESSURE)
+        if len(pressure_values) > 0:
+            pressure = sum(pressure_values) / len(pressure_values)
             result[ATTR_FORECAST_NATIVE_PRESSURE] = round(pressure, 1)
 
-        cloud_cover_sum = 0
-        cloud_cover_items = 0
-        cloud_cover_avg = 0
-        for hour in self._hours:
-            cloud_cover = hour.get(ATTR_FORECAST_CLOUD_COVER, None)
-            if cloud_cover is not None:
-                cloud_cover_sum += cloud_cover
-                cloud_cover_items += 1
+        wind_gust_speed_values = self._get_hourly_values(
+            ATTR_FORECAST_NATIVE_WIND_GUST_SPEED
+        )
+        if len(wind_gust_speed_values) > 0:
+            wind_gust_speed = max(wind_gust_speed_values)
+            result[ATTR_FORECAST_NATIVE_WIND_GUST_SPEED] = round(wind_gust_speed, 0)
 
-        if cloud_cover_items > 0:
-            cloud_cover_avg = cloud_cover_sum / cloud_cover_items
-            result[ATTR_FORECAST_CLOUD_COVER] = round(cloud_cover_avg, 0)
+        wind_speed_values = self._get_hourly_values(ATTR_FORECAST_NATIVE_WIND_SPEED)
+        if len(wind_speed_values) > 0:
+            wind_speed = sum(wind_speed_values) / len(wind_speed_values)
+            result[ATTR_FORECAST_NATIVE_WIND_SPEED] = round(wind_speed, 0)
+
+        cloud_coverage_sum = 0
+        cloud_coverage_items = 0
+        cloud_coverage_avg = 0
+        for hour in self._hours:
+            cloud_coverage = hour.get(ATTR_FORECAST_CLOUD_COVERAGE, None)
+            if cloud_coverage is not None:
+                cloud_coverage_sum += cloud_coverage
+                cloud_coverage_items += 1
+
+        if cloud_coverage_items > 0:
+            cloud_coverage_avg = cloud_coverage_sum / cloud_coverage_items
+            result[ATTR_FORECAST_CLOUD_COVERAGE] = round(cloud_coverage_avg, 0)
 
             condition_stats = {}
             for hour in self._hours:
@@ -915,9 +956,9 @@ class DwdWeatherDay:
                 > 0
             ):
                 result[ATTR_FORECAST_CONDITION] = ATTR_CONDITION_RAINY
-            elif cloud_cover_avg >= CONDITION_CLOUDY_THRESHOLD:
+            elif cloud_coverage_avg >= CONDITION_CLOUDY_THRESHOLD:
                 result[ATTR_FORECAST_CONDITION] = ATTR_CONDITION_CLOUDY
-            elif cloud_cover_avg >= CONDITION_PARTLYCLOUDY_THRESHOLD:
+            elif cloud_coverage_avg >= CONDITION_PARTLYCLOUDY_THRESHOLD:
                 result[ATTR_FORECAST_CONDITION] = ATTR_CONDITION_PARTLYCLOUDY
             elif condition_stats.get(ATTR_CONDITION_WINDY_VARIANT, 0) > 0:
                 result[ATTR_FORECAST_CONDITION] = ATTR_CONDITION_WINDY_VARIANT
@@ -931,6 +972,14 @@ class DwdWeatherDay:
                 result[ATTR_FORECAST_CONDITION] = ATTR_CONDITION_SUNNY
 
         return result
+
+    def _get_hourly_values(self, key: str) -> list:
+        return list(
+            filter(
+                lambda x: x is not None,
+                map(lambda x: x.get(key, None), self._hours),
+            )
+        )
 
     def __init__(self, day: date, dwd_forecast: dict[str, Any]) -> None:
         self._day: date = day

@@ -90,16 +90,17 @@ DWD_MEASUREMENT_TEMPERATURE = "dry_bulb_temperature_at_2_meter_above_ground"
 DWD_MEASUREMENT_PRESSURE = "pressure_reduced_to_mean_sea_level"
 DWD_MEASUREMENT_HUMIDITY = "relative_humidity"
 DWD_MEASUREMENT_VISIBILITY = "horizontal_visibility"
+DWD_MEASUREMENT_MAXIMUM_WIND_SPEED = "maximum_wind_speed_last_hour"
 DWD_MEASUREMENT_MEANWIND_SPEED = (
     "mean_wind_speed_during last_10_min_at_10_meters_above_ground"
 )
 DWD_MEASUREMENT_MEANWIND_DIRECTION = (
     "mean_wind_direction_during_last_10 min_at_10_meters_above_ground"
 )
+DWD_MEASUREMENT_CLOUD_COVER_TOTAL = "cloud_cover_total"
+DWD_MEASUREMENT_DEW_POINT = "dew_point_temperature_at_2_meter_above_ground"
 
 DWD_FORECAST_TIMESTAMP = "timestamp"
-
-ATTR_FORECAST_CLOUD_COVER = "cloud_cover"
 
 SOURCE_STATIONSLEXIKON = 0
 SOURCE_MOSMIX_STATIONSKATALOG = 1

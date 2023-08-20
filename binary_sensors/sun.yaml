@@ -18,12 +18,12 @@
           {% set sunset_time = actual_sunset_time %}
         {% endif %}
 
-        {% if is_number(states('sensor.motion_corridor_illuminance_lux')) %}
+        {% if is_number(states('sensor.motion_study_illuminance_lux')) %}
           {{
             sunrise_time <= states('sensor.time')
               and
             (
-              states('sensor.motion_corridor_illuminance_lux') | int > 50
+              states('sensor.motion_study_illuminance_lux') | int > 50
                 or
               states('sensor.time') < sunset_time
             )

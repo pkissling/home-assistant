@@ -100,7 +100,7 @@
     platform: state
     entity_id: media_player.lg_webos_smart_tv
     attribute: source
-    to: Pioneer
+    to: HDMI 2
   action:
     service: switch.turn_on
     entity_id: switch.living_room_chromecast
@@ -110,7 +110,7 @@
     platform: state
     entity_id: media_player.lg_webos_smart_tv
     attribute: source
-    from: Pioneer
+    from: HDMI 2
   condition:
     condition: not
     conditions:

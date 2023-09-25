@@ -121,6 +121,8 @@
     - gainNet
     - returnGross
     - returnNet
+    - invested
+    - value
   value_template: "OK"
 
 - platform: rest
@@ -208,6 +210,8 @@
     - gainNet
     - returnGross
     - returnNet
+    - invested
+    - value
   value_template: "OK"
 
 - platform: rest
@@ -295,7 +299,14 @@
       icon_template: mdi:trending-up
     parqet_api_patrick_overall_returns_since_start_rel:
       friendly_name: Since start
-      value_template: "{{ state_attr('sensor.parqet_api_patrick_returns_since_start', 'returnGross') | round(1) }}"
+      value_template: > 
+        {% if states('sensor.parqet_api_patrick_returns_since_start') == 'unavailable' or states('sensor.parqet_api_patrick_realized_since_start') == 'unavailable' %}
+          unavailable
+        {% else %}
+          {% set current_value =  state_attr('sensor.parqet_api_patrick_returns_since_start', 'value') | float + state_attr('sensor.parqet_api_patrick_realized_since_start', 'gainGross') | float %}
+          {% set initial_investment = state_attr('sensor.parqet_api_patrick_returns_since_start', 'invested') %}
+          {{ ((current_value - initial_investment) / initial_investment * 100) | round(1) }}
+        {% endif %}
       unit_of_measurement: '%'
       icon_template: mdi:sack-percent
 
@@ -357,7 +368,14 @@
       icon_template: mdi:trending-up
     parqet_api_sandra_overall_returns_since_start_rel:
       friendly_name: Since start
-      value_template: "{{ state_attr('sensor.parqet_api_sandra_returns_since_start', 'returnGross') | round(1) }}"
+      value_template: >
+        {% if states('sensor.parqet_api_sandra_returns_since_start') == 'unavailable' or states('sensor.parqet_api_sandra_realized_since_start') == 'unavailable' %}
+          unavailable
+        {% else %}
+          {% set current_value =  state_attr('sensor.parqet_api_sandra_returns_since_start', 'value') | float + state_attr('sensor.parqet_api_sandra_realized_since_start', 'gainGross') | float %}
+          {% set initial_investment = state_attr('sensor.parqet_api_sandra_returns_since_start', 'invested') %}
+          {{ ((current_value - initial_investment) / initial_investment * 100) | round(1) }}
+        {% endif %}
       unit_of_measurement: '%'
       icon_template: mdi:sack-percent
     parqet_api_sandra_overall:

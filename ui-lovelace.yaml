@@ -98,10 +98,12 @@ views:
           - sensor.departure_s7_to_hauptbahnhof
           - sensor.departure_u6_to_sendlinger_tor
 
-      # Sun card
-      - type: custom:sun-card
-        darkMode: true
-        timeFormat: 24h
+      # Horizon Card
+      - type: custom:horizon-card
+        fields:
+          dawn: false
+          dusk: false
+          noon: false
 
       # Toggle Modes
       - type: entities

@@ -200,6 +200,13 @@ views:
               entity: switch.alarm
           - entity: input_datetime.wakeup_time
 
+      # People at home
+      - type: entities
+        entities:
+          - person.patrick
+          - person.sandra
+          - input_boolean.person_guest
+
       # Temperature
       - type: custom:thermostat-bar-card
         entities:
@@ -237,10 +244,3 @@ views:
               - icon: mdi:weather-sunset-up
                 entity: script.good_morning
                 name: Good Morning
-
-      # People at home
-      - type: entities
-        entities:
-          - person.patrick
-          - person.sandra
-          - input_boolean.person_guest

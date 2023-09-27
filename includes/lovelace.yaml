@@ -13,8 +13,6 @@ resources:
     type: module
   - url: /hacsfiles/formulaone-card/formulaone-card.js
     type: module
-  - url: /hacsfiles/lovelace-github-entity-row/github-entity-row.js
-    type: module
   - url: /hacsfiles/lovelace-paper-buttons-row/paper-buttons-row.js
     type: module
   - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js

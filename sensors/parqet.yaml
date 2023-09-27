@@ -278,7 +278,7 @@
       icon_template: mdi:trending-up
     parqet_api_patrick_overall_returns_1d_rel:
       friendly_name: 1d
-      value_template: "{{ state_attr('sensor.parqet_api_patrick_returns_1d', 'returnGross') | round(1) }}"
+      value_template: "{{ state_attr('sensor.parqet_api_patrick_returns_1d', 'returnGross') | round(2) }}"
       unit_of_measurement: '%'
       icon_template: mdi:sack-percent
     parqet_api_patrick_overall_returns_1w_abs:
@@ -288,7 +288,7 @@
       icon_template: mdi:trending-up
     parqet_api_patrick_overall_returns_1w_rel:
       friendly_name: 1w
-      value_template: "{{ state_attr('sensor.parqet_api_patrick_returns_1w', 'returnGross') | round(1) }}"
+      value_template: "{{ state_attr('sensor.parqet_api_patrick_returns_1w', 'returnGross') | round(2) }}"
       unit_of_measurement: '%'
       icon_template: mdi:sack-percent
     parqet_api_patrick_overall_returns_1y_abs:
@@ -298,7 +298,7 @@
       icon_template: mdi:trending-up
     parqet_api_patrick_overall_returns_1y_rel:
       friendly_name: 1y
-      value_template: "{{ state_attr('sensor.parqet_api_patrick_returns_1y', 'returnGross') | round(1) }}"
+      value_template: "{{ state_attr('sensor.parqet_api_patrick_returns_1y', 'returnGross') | round(2) }}"
       unit_of_measurement: '%'
       icon_template: mdi:sack-percent
     parqet_api_patrick_overall_returns_1m_abs:
@@ -308,7 +308,7 @@
       icon_template: mdi:trending-up
     parqet_api_patrick_overall_returns_1m_rel:
       friendly_name: 1m
-      value_template: "{{ state_attr('sensor.parqet_api_patrick_returns_1m', 'returnGross') | round(1) }}"
+      value_template: "{{ state_attr('sensor.parqet_api_patrick_returns_1m', 'returnGross') | round(2) }}"
       unit_of_measurement: '%'
       icon_template: mdi:sack-percent
     parqet_api_patrick_overall_returns_since_start_abs:
@@ -331,7 +331,7 @@
         {% else %}
           {% set current_value = state_attr('sensor.parqet_api_patrick_returns_since_start', 'value') | float + state_attr('sensor.parqet_api_patrick_realized_since_start', 'gainGross') | float + state_attr('sensor.parqet_api_patrick_dividends_since_start', 'gainNet') | float %}
           {% set initial_investment = state_attr('sensor.parqet_api_patrick_returns_since_start', 'invested') %}
-          {{ ((current_value - initial_investment) / initial_investment * 100) | round(1) }}
+          {{ ((current_value - initial_investment) / initial_investment * 100) | round(2) }}
         {% endif %}
       unit_of_measurement: '%'
       icon_template: mdi:sack-percent
@@ -349,7 +349,7 @@
       icon_template: mdi:trending-up
     parqet_api_sandra_overall_returns_1d_rel:
       friendly_name: 1d
-      value_template: "{{ state_attr('sensor.parqet_api_sandra_returns_1d', 'returnGross') | round(1) }}"
+      value_template: "{{ state_attr('sensor.parqet_api_sandra_returns_1d', 'returnGross') | round(2) }}"
       unit_of_measurement: '%'
       icon_template: mdi:sack-percent
     parqet_api_sandra_overall_returns_1w_abs:
@@ -359,7 +359,7 @@
       icon_template: mdi:trending-up
     parqet_api_sandra_overall_returns_1w_rel:
       friendly_name: 1w
-      value_template: "{{ state_attr('sensor.parqet_api_sandra_returns_1w', 'returnGross') | round(1) }}"
+      value_template: "{{ state_attr('sensor.parqet_api_sandra_returns_1w', 'returnGross') | round(2) }}"
       unit_of_measurement: '%'
       icon_template: mdi:sack-percent
     parqet_api_sandra_overall_returns_1y_abs:
@@ -369,7 +369,7 @@
       icon_template: mdi:trending-up
     parqet_api_sandra_overall_returns_1y_rel:
       friendly_name: 1y
-      value_template: "{{ state_attr('sensor.parqet_api_sandra_returns_1y', 'returnGross') | round(1) }}"
+      value_template: "{{ state_attr('sensor.parqet_api_sandra_returns_1y', 'returnGross') | round(2) }}"
       unit_of_measurement: '%'
       icon_template: mdi:sack-percent
     parqet_api_sandra_overall_returns_1m_abs:
@@ -379,7 +379,7 @@
       icon_template: mdi:trending-up
     parqet_api_sandra_overall_returns_1m_rel:
       friendly_name: 1m
-      value_template: "{{ state_attr('sensor.parqet_api_sandra_returns_1m', 'returnGross') | round(1) }}"
+      value_template: "{{ state_attr('sensor.parqet_api_sandra_returns_1m', 'returnGross') | round(2) }}"
       unit_of_measurement: '%'
       icon_template: mdi:sack-percent
     parqet_api_sandra_overall_returns_since_start_abs:
@@ -402,7 +402,7 @@
         {% else %}
           {% set current_value = state_attr('sensor.parqet_api_sandra_returns_since_start', 'value') | float + state_attr('sensor.parqet_api_sandra_realized_since_start', 'gainGross') | float + state_attr('sensor.parqet_api_sandra_dividends_since_start', 'gainNet') | float %}
           {% set initial_investment = state_attr('sensor.parqet_api_sandra_returns_since_start', 'invested') %}
-          {{ ((current_value - initial_investment) / initial_investment * 100) | round(1) }}
+          {{ ((current_value - initial_investment) / initial_investment * 100) | round(2) }}
         {% endif %}
       unit_of_measurement: '%'
       icon_template: mdi:sack-percent

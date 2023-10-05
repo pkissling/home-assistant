@@ -7,8 +7,8 @@ views:
       # Clock / weather
       - type: custom:clock-weather-card
         entity: weather.home
-        date_pattern: dd.MM.yyyy
-        forecast_days: 6
+        forecast_rows: 6
+        date_pattern: ccc, dd. MMM yyyy
 
       # Vacuum
       - type: custom:vacuum-card
@@ -90,7 +90,6 @@ views:
           - name: Tash
             icon: mdi:trash-can
             service: script.vacuum_dust_bin
-
 
       # Departures
       - type: glance

@@ -9,6 +9,7 @@ views:
         entity: weather.home
         forecast_rows: 6
         date_pattern: ccc, dd. MMM yyyy
+        time_format: 24
 
       # Vacuum
       - type: custom:vacuum-card

@@ -8,6 +8,7 @@ http: !include includes/http.yaml
 logger: !include includes/logger.yaml
 lovelace: !include includes/lovelace.yaml
 media_extractor: !include includes/media_extractor.yaml
+panel_iframe: !include includes/panel_iframe.yaml
 person: !include includes/persons.yaml
 wake_on_lan:
 

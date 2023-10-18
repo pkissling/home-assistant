@@ -330,11 +330,15 @@
           unavailable
         {% else %}
           {% set current_value = state_attr('sensor.parqet_api_patrick_returns_since_start', 'value') | float + state_attr('sensor.parqet_api_patrick_realized_since_start', 'gainGross') | float + state_attr('sensor.parqet_api_patrick_dividends_since_start', 'gainNet') | float %}
-          {% set initial_investment = state_attr('sensor.parqet_api_patrick_returns_since_start', 'invested') %}
+          {% set initial_investment = states('sensor.parqet_api_patrick_invested_since_start') | float %}
           {{ ((current_value - initial_investment) / initial_investment * 100) | round(2) }}
         {% endif %}
       unit_of_measurement: '%'
       icon_template: mdi:sack-percent
+    parqet_api_patrick_invested_since_start:
+      friendly_name: Invested since start
+      value_template: "{{ state_attr('sensor.parqet_api_patrick_returns_since_start', 'invested') }}"
+      unit_of_measurement: Euro
 
     # sandra
     parqet_api_sandra_depot:
@@ -342,6 +346,14 @@
       value_template: "{{ state_attr('sensor.parqet_api_sandra', 'assetDimensions')[0].value }}"
       unit_of_measurement: Euro
       icon_template: mdi:trending-up
+    parqet_api_sandra_overall:
+      friendly_name: Sandra
+      value_template: >
+        {{
+          states('sensor.parqet_api_sandra_depot') | float
+        }}
+      unit_of_measurement: Euro
+      icon_template: mdi:cash
     parqet_api_sandra_overall_returns_1d_abs:
       friendly_name: 1d
       value_template: "{{ state_attr('sensor.parqet_api_sandra_returns_1d', 'gainGross') | round }}"
@@ -401,19 +413,15 @@
           unavailable
         {% else %}
           {% set current_value = state_attr('sensor.parqet_api_sandra_returns_since_start', 'value') | float + state_attr('sensor.parqet_api_sandra_realized_since_start', 'gainGross') | float + state_attr('sensor.parqet_api_sandra_dividends_since_start', 'gainNet') | float %}
-          {% set initial_investment = state_attr('sensor.parqet_api_sandra_returns_since_start', 'invested') %}
+          {% set initial_investment = states('sensor.parqet_api_sandra_invested_since_start') | float %}
           {{ ((current_value - initial_investment) / initial_investment * 100) | round(2) }}
         {% endif %}
       unit_of_measurement: '%'
       icon_template: mdi:sack-percent
-    parqet_api_sandra_overall:
-      friendly_name: Sandra
-      value_template: >
-        {{
-          states('sensor.parqet_api_sandra_depot') | float
-        }}
+    parqet_api_sandra_invested_since_start:
+      friendly_name: Invested since start
+      value_template: "{{ state_attr('sensor.parqet_api_sandra_returns_since_start', 'invested') }}"
       unit_of_measurement: Euro
-      icon_template: mdi:cash
 
     # overall
     parqet_api_overall:
@@ -422,6 +430,26 @@
         {{
           states('sensor.parqet_api_patrick_overall') | float +
           states('sensor.parqet_api_sandra_overall') | float
+        }}
+      unit_of_measurement: Euro
+      icon_template: mdi:account-group
+    parqet_api_overall_plus_realized_since_start:
+      friendly_name: Both
+      value_template: >
+        {{
+          states('sensor.parqet_api_patrick_overall') | float +
+          states('sensor.parqet_api_patrick_overall_returns_since_start_abs') | float +
+          states('sensor.parqet_api_sandra_overall') | float +
+          states('sensor.parqet_api_sandra_overall_returns_since_start_abs') | float
+        }}
+      unit_of_measurement: Euro
+      icon_template: mdi:account-group
+    parqet_api_overall_invested_since_start:
+      friendly_name: Both invested
+      value_template: >
+        {{
+          states('sensor.parqet_api_patrick_invested_since_start') | float +
+          states('sensor.parqet_api_sandra_invested_since_start') | float
         }}
       unit_of_measurement: Euro
       icon_template: mdi:account-group

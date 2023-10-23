@@ -156,34 +156,6 @@ views:
                 entity: switch.remote_off
                 name: 'Off'
 
-      # Lights
-      - type: entities
-        entities:
-          - type: custom:fold-entity-row
-            head:
-              entity: light.bedroom
-            entities:
-              - light.bedroom_wardrobe
-          - type: custom:fold-entity-row
-            head:
-              entity: light.living_room
-            entities:
-              - light.living_room_lamp
-              - light.living_room_couch
-              - light.living_room_tv
-          - type: custom:fold-entity-row
-            head:
-              entity: light.study
-            entities:
-              - light.study_desk
-              - light.study_shelf
-              - light.study_floor_lamp
-          - type: custom:fold-entity-row
-            head:
-              entity: light.corridor
-            entities:
-              - light.corridor_sideboard
-
       # Alarm Clock
       - type: entities
         entities:
@@ -207,6 +179,22 @@ views:
           - person.sandra
           - input_boolean.person_guest
 
+      # Actions
+      - type: entities
+        entities:
+          - type: custom:paper-buttons-row
+            styles:
+              "--pbs-button-color": "--var(primary-text-color)"
+            base_config:
+              layout: icon_name
+            buttons:
+              - icon: mdi:weather-night
+                entity: script.good_night
+                name: Good Night
+              - icon: mdi:weather-sunset-up
+                entity: script.good_morning
+                name: Good Morning
+
       # Temperature
       - type: custom:thermostat-bar-card
         entities:
@@ -228,19 +216,3 @@ views:
           - entity_id: climate.bedroom
             icon: mdi:bed-king-outline
             window_sensor: binary_sensor.window_bedroom_contact
-
-      # Actions
-      - type: entities
-        entities:
-          - type: custom:paper-buttons-row
-            styles:
-              "--pbs-button-color": "--var(primary-text-color)"
-            base_config:
-              layout: icon_name
-            buttons:
-              - icon: mdi:weather-night
-                entity: script.good_night
-                name: Good Night
-              - icon: mdi:weather-sunset-up
-                entity: script.good_morning
-                name: Good Morning

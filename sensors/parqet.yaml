@@ -437,9 +437,9 @@
       friendly_name: Both
       value_template: >
         {{
-          states('sensor.parqet_api_patrick_overall') | float +
+          states('sensor.parqet_api_patrick_invested_since_start') | float +
           states('sensor.parqet_api_patrick_overall_returns_since_start_abs') | float +
-          states('sensor.parqet_api_sandra_overall') | float +
+          states('sensor.parqet_api_sandra_invested_since_start') | float +
           states('sensor.parqet_api_sandra_overall_returns_since_start_abs') | float
         }}
       unit_of_measurement: Euro

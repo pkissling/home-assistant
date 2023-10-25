@@ -14,7 +14,6 @@ include:
     - climate
     - light
     - person
-    - weather
   entity_globs:
     - binary_sensor.motion_*
     - binary_sensor.window_*
@@ -56,3 +55,6 @@ include:
     - sensor.diskstation_physical_id_0_temperature
     - sensor.diskstation_ram_used_percent
     - sensor.diskstation_etc_hostname_used_percent
+
+    # Weather
+    - weather.home

@@ -105,6 +105,35 @@ views:
           dusk: false
           noon: false
 
+      # Lights
+      - type: entities
+        entities:
+          - type: custom:fold-entity-row
+            head:
+              entity: light.bedroom
+            entities:
+              - light.bedroom_wardrobe
+          - type: custom:fold-entity-row
+            head:
+              entity: light.living_room
+            entities:
+              - light.living_room_lamp
+              - light.living_room_couch
+              - light.living_room_tv
+          - type: custom:fold-entity-row
+            head:
+              entity: light.study
+            open: true
+            entities:
+              - light.study_desk
+              - light.study_shelf
+              - light.study_floor_lamp
+          - type: custom:fold-entity-row
+            head:
+              entity: light.corridor
+            entities:
+              - light.corridor_sideboard
+
       # Toggle Modes
       - type: entities
         entities:

@@ -28,4 +28,4 @@
       actionName: Start Vacuum
   action:
     service: vacuum.start
-    entity_id: vacuum.xiaomi_vacuum_cleaner
+    entity_id: vacuum.roborock

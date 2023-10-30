@@ -13,7 +13,7 @@ views:
 
       # Vacuum
       - type: custom:vacuum-card
-        entity: vacuum.xiaomi_vacuum_cleaner
+        entity: vacuum.roborock
         style: |
           ha-card {
             --vc-background: none;
@@ -50,43 +50,43 @@ views:
             icon: mdi:sofa
             service: xiaomi_miio.vacuum_clean_segment
             service_data:
-              entity_id: vacuum.xiaomi_vacuum_cleaner
+              entity_id: vacuum.roborock
               segments: 20
           - name: Kitchen
             icon: mdi:stove
             service: xiaomi_miio.vacuum_clean_segment
             service_data:
-              entity_id: vacuum.xiaomi_vacuum_cleaner
+              entity_id: vacuum.roborock
               segments: 21
           - name: Corridor
             icon: mdi:shoe-print
             service: xiaomi_miio.vacuum_clean_segment
             service_data:
-              entity_id: vacuum.xiaomi_vacuum_cleaner
+              entity_id: vacuum.roborock
               segments: 16
           - name: Bedroom
             icon: mdi:bed-king-outline
             service: xiaomi_miio.vacuum_clean_segment
             service_data:
-              entity_id: vacuum.xiaomi_vacuum_cleaner
+              entity_id: vacuum.roborock
               segments: 19
           - name: Study
             icon: mdi:desk-lamp
             service: xiaomi_miio.vacuum_clean_segment
             service_data:
-              entity_id: vacuum.xiaomi_vacuum_cleaner
+              entity_id: vacuum.roborock
               segments: 18
           - name: Toilet
             icon: mdi:toilet
             service: xiaomi_miio.vacuum_clean_segment
             service_data:
-              entity_id: vacuum.xiaomi_vacuum_cleaner
+              entity_id: vacuum.roborock
               segments: 17
           - name: Bathroom
             icon: mdi:shower
             service: xiaomi_miio.vacuum_clean_segment
             service_data:
-              entity_id: vacuum.xiaomi_vacuum_cleaner
+              entity_id: vacuum.roborock
               segments: 1
           - name: Tash
             icon: mdi:trash-can

@@ -25,16 +25,16 @@
       state: not_home
   action:
     - service: vacuum.start
-      entity_id: vacuum.xiaomi_vacuum_cleaner
+      entity_id: vacuum.roborock
     - service: vacuum.set_fan_speed
       data:
-        entity_id: vacuum.xiaomi_vacuum_cleaner
+        entity_id: vacuum.roborock
         fan_speed: '103'  # medium
 
 - alias: Vacuum - Notify on cleanup finished when not home
   trigger:
     platform: state
-    entity_id: vacuum.xiaomi_vacuum_cleaner
+    entity_id: vacuum.roborock
     to: returning
   condition:
     condition: state
@@ -46,9 +46,9 @@
       title: Roborock
       message: >
         Roborock finished Cleanup:
-        {{ states('sensor.xiaomi_vacuum_cleaner_last_clean_area') | int }} m²,
-        {{ (states('sensor.xiaomi_vacuum_cleaner_last_clean_duration') | float / 60) | round(0) }} minutes,
-        Battery {{ state_attr('vacuum.xiaomi_vacuum_cleaner', 'battery_level') }} %
+        {{ states('sensor.roborock_last_clean_area') | int }} m²,
+        {{ (states('sensor.roborock_last_clean_duration') | float / 60) | round(0) }} minutes,
+        Battery {{ state_attr('vacuum.roborock', 'battery_level') }} %
 
 - alias: Vacuum - Reset Daily Cleanup Boolean
   trigger:
@@ -61,7 +61,7 @@
 - alias: Vacuum - Trigger set states on cleanup done
   trigger:
     platform: state
-    entity_id: vacuum.xiaomi_vacuum_cleaner
+    entity_id: vacuum.roborock
     to: cleaning
     for:
       minutes: 20
@@ -72,24 +72,24 @@
 - alias: Vacuum - Notify on error
   trigger:
     platform: state
-    entity_id: vacuum.xiaomi_vacuum_cleaner
+    entity_id: vacuum.roborock
     to: error
   action:
     service: notify.patrick
     data:
       title: Roborock
       message: >
-        Roborock Error: {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.error }}
+        Roborock Error: {{ states.vacuum.roborock.attributes.error }}
 
 - alias: Vacuum - Send to Trash Bin
   trigger:
     platform: numeric_state
-    entity_id: vacuum.xiaomi_vacuum_cleaner
+    entity_id: vacuum.roborock
     attribute: battery_level
     above: 99
   condition:
     - condition: state
-      entity_id: vacuum.xiaomi_vacuum_cleaner
+      entity_id: vacuum.roborock
       state: docked
     - condition: numeric_state
       entity_id: sensor.vacuum_next_emptying

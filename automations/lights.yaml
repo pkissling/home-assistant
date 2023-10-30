@@ -31,6 +31,7 @@
       transition: 60  # 1 min
 
 - alias: Lights - Ambient - Turn on when somebody came home
+  mode: restart
   trigger:
     platform: state
     entity_id: group.residents
@@ -63,6 +64,7 @@
       transition: 60  # 1 min
 
 - alias: Light - Study Desk - Turn on when home office mode on and dark
+  mode: restart
   trigger:
     - platform: state
       entity_id: input_boolean.home_office_mode
@@ -99,6 +101,7 @@
       brightness: 255
 
 - alias: Light - Study Desk - Turn off when home office mode off
+  mode: restart
   trigger:
     - platform: state
       entity_id: input_boolean.home_office_mode
@@ -123,14 +126,15 @@
       transition: "{{ transition }}"
 
 - alias: Light - Study - Increase brightness on motion
+  mode: restart
   trigger:
-    - platform: state
-      entity_id: binary_sensor.motion_study_occupancy
-      to: 'on'
+    platform: state
+    entity_id: binary_sensor.motion_study_occupancy
+    to: 'on'
   condition:
-    - condition: state
-      entity_id: input_boolean.guest_mode
-      state: 'off'
+    condition: state
+    entity_id: input_boolean.guest_mode
+    state: 'off'
   action:
     service: pyscript.light_ambient_turn_on
     data:
@@ -138,6 +142,7 @@
       motion_sensor_entity_id: binary_sensor.motion_study_occupancy
 
 - alias: Light - Study Floor Lamp - Turn off when no motion for 15 mins
+  mode: restart
   trigger:
     platform: state
     entity_id: binary_sensor.motion_study_occupancy
@@ -156,6 +161,7 @@
     entity_id: light.study_floor_lamp
 
 - alias: Light - Study Desk - Turn off when no motion for 5 mins
+  mode: restart
   trigger:
     platform: state
     entity_id: binary_sensor.motion_study_occupancy
@@ -177,6 +183,7 @@
     entity_id: light.study_desk
 
 - alias: Light - Corridor Sideboard - Increase brightness on motion
+  mode: restart
   trigger:
     platform: state
     entity_id: binary_sensor.motion_corridor_occupancy
@@ -188,6 +195,7 @@
       motion_sensor_entity_id: binary_sensor.motion_corridor_occupancy
 
 - alias: Light - Living Room - Turn on night light
+  mode: restart
   trigger:
     platform: state
     entity_id: binary_sensor.motion_corridor_occupancy
@@ -206,6 +214,7 @@
       motion_sensor_entity_id: binary_sensor.motion_corridor_occupancy
 
 - alias: Light - Study Shelf - Turn on night light
+  mode: restart
   trigger:
     platform: state
     entity_id: binary_sensor.motion_corridor_occupancy
@@ -224,6 +233,7 @@
       motion_sensor_entity_id: binary_sensor.motion_corridor_occupancy
 
 - alias: Light - Bedroom Wardrobe - Reset after 45 mins
+  mode: restart
   trigger:
     platform: numeric_state
     entity_id: light.bedroom_wardrobe
@@ -242,6 +252,7 @@
       transition: 60  # 1 minute
 
 - alias: Light - Study Shelf - Adaptive light on when home office mode off
+  mode: restart
   trigger:
     platform: state
     entity_id: input_boolean.home_office_mode
@@ -258,6 +269,7 @@
       manual_control: false
 
 - alias: Light - Ambient - Turn off when no motion in Corridor for two hours
+  mode: restart
   trigger:
     platform: state
     entity_id: binary_sensor.motion_corridor_occupancy
@@ -278,6 +290,7 @@
       transition: 60
 
 - alias: Light - Study Desk - Sync color temperature with sensor
+  mode: restart
   trigger:
     platform: template
     value_template: >
@@ -296,6 +309,7 @@
       kelvin: "{{ states('sensor.light_study_color_temp') }}"
 
 - alias: Light - Study Shelf - Sync color temperature with sensor
+  mode: restart
   trigger:
     platform: template
     value_template: >
@@ -314,6 +328,7 @@
       kelvin: "{{ states('sensor.light_study_color_temp') }}"
 
 - alias: Light - Study Floor Lamp - Sync color temperature with sensor
+  mode: restart
   trigger:
     platform: template
     value_template: >

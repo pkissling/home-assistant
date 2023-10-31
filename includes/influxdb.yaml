@@ -27,9 +27,10 @@ include:
 
     # Internet
     - sensor.fritz_box_7590_b_received
-    - sensor.fritz_box_7590_b_sent
-    - sensor.fritz_box_7590_kib_s_received
-    - sensor.fritz_box_7590_kib_s_sent
+    - sensor.internetgatewaydevicev2_fritz_box_7590_b_received
+    - sensor.internetgatewaydevicev2_fritz_box_7590_b_sent
+    - sensor.internetgatewaydevicev2_fritz_box_7590_kib_s_received
+    - sensor.internetgatewaydevicev2_fritz_box_7590_kib_s_sent
     - sensor.speedtest_download
     - sensor.speedtest_ping
     - sensor.speedtest_upload

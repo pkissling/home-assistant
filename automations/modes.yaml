@@ -1,20 +1,5 @@
 ---
 
-- alias: Mode - Guest Mode - Mute Study speaker
-  trigger:
-    platform: state
-    entity_id: media_player.study
-  condition:
-    - condition: state
-      entity_id: input_boolean.guest_mode
-      state: 'on'
-    - "{{ not is_state_attr('media_player.study', 'is_volume_muted', true) }}"
-  action:
-    service: media_player.volume_mute
-    entity_id: media_player.study
-    data:
-      is_volume_muted: true
-
 - alias: Mode - Home Office Mode - Turn off
   trigger:
     - platform: state
@@ -53,140 +38,63 @@
     for:
       hours: 4
   action:
-    service: input_boolean.turn_off
-    entity_id: input_boolean.party_mode
+    - service: notify.patrick
+      data:
+        message: Party Mode turned off after 4 hours.
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.party_mode
 
-- alias: Mode - Party Mode - Turn on
+- alias: Mode - TV Mode - Sync with TV
   trigger:
     platform: state
-    entity_id: input_boolean.party_mode
-    to: 'on'
+    entity_id: media_player.lg_webos_smart_tv
+  action:
+    service: "input_boolean.turn_{{ trigger.to_state.state }}"
+    entity_id: input_boolean.tv_mode
+
+- alias: Mode - Guest Mode - Toggle daily vacuum when Guest Mode changed
+  trigger:
+    platform: state
+    entity_id: input_boolean.guest_mode
+  action:
+    service: "input_boolean.turn_{{ trigger.to_state.state }}"
+    entity_id: input_boolean.vacuum_daily_cleanup
+
+- alias: Mode - Guest mode - Turn off Home Office Mode when Guest Mode is turned on
+  trigger:
+    - platform: state
+      entity_id: input_boolean.guest_mode
+      to: 'on'
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.home_office_mode
+
+- alias: Mode - Party Mode - Turn on manual heating when Party Mode is turned on
+  trigger:
+    - platform: state
+      entity_id: input_boolean.guest_mode
+      to: 'on'
   action:
     service: climate.set_temperature
     data:
       entity_id: all
       temperature: 22
 
-- alias: Mode - Party Mode - Turn off
+- alias: Mode - Party Mode - Turn off manual heating when Party Mode is turned off
   trigger:
-    platform: state
-    entity_id: input_boolean.party_mode
-    to: 'off'
+    - platform: state
+      entity_id: input_boolean.guest_mode
+      to: 'on'
   action:
-    - service: climate.set_hvac_mode
-      data:
-        entity_id: all
-        hvac_mode: auto
+    service: climate.set_hvac_mode
+    data:
+      entity_id: all
+      hvac_mode: auto
 
-- alias: Mode - TV Mode - Turn on when watching TV
+- alias: Mode - Summer Mode - Sync climate with Summer Mode
   trigger:
     platform: state
-    entity_id: media_player.lg_webos_smart_tv
-    to: 'on'
+    entity_id: input_boolean.summer_mode
   action:
-    service: input_boolean.turn_on
-    entity_id: input_boolean.tv_mode
-
-- alias: Mode - TV Mode - Turn off when finished watching TV
-  trigger:
-    platform: state
-    entity_id: media_player.lg_webos_smart_tv
-    to: 'off'
-  condition:
-    condition: state
-    entity_id: input_boolean.tv_mode
-    state: 'on'
-  action:
-    service: input_boolean.turn_off
-    entity_id: input_boolean.tv_mode
-
-- alias: Mode - TV Mode - Dim lights when TV Mode on
-  trigger:
-    platform: state
-    entity_id: input_boolean.tv_mode
-    to: 'on'
-  condition:
-    condition: state
-    entity_id: light.living_room
-    state: 'on'
-  action:
-    - service: input_text.set_value
-      entity_id: input_text.old_brightness_living_room_couch
-      data:
-        value: "{{ state_attr('light.living_room_couch', 'brightness') }}"
-    - service: light.turn_on
-      entity_id: light.living_room
-      data:
-        brightness: 80
-        transition: 60
-    - service: input_text.set_value
-      entity_id: input_text.old_brightness_living_room_tv
-      data:
-        value: "{{ state_attr('light.living_room_tv', 'brightness') }}"
-    - service: light.turn_on
-      entity_id: light.living_room_tv
-      data:
-        brightness: 80
-        transition: 60
-
-- alias: Mode - TV Mode - Increase light brightness when TV Mode off
-  trigger:
-    platform: state
-    entity_id: input_boolean.tv_mode
-    to: 'off'
-  condition:
-    - condition: state
-      entity_id: light.living_room
-      state: 'on'
-    - "{{ states('input_text.old_brightness_living_room_couch') != '-' }}"
-    - "{{ states('input_text.old_brightness_living_room_tv') != '-' }}"
-  action:
-    - service: light.turn_on
-      entity_id: light.living_room
-      data:
-        brightness: "{{ states('input_text.old_brightness_living_room_couch') }}"
-        transition: 10
-    - service: input_text.set_value
-      entity_id: input_text.old_brightness_living_room_couch
-      data:
-        value: '-'
-    - service: light.turn_on
-      entity_id: light.living_room_tv
-      data:
-        brightness: "{{ states('input_text.old_brightness_living_room_tv') }}"
-        transition: 10
-    - service: input_text.set_value
-      entity_id: input_text.old_brightness_living_room_tv
-      data:
-        value: '-'
-
-- alias: Mode - TV Mode - Turn off when light off
-  trigger:
-    platform: state
-    entity_id: light.living_room
-    to: 'off'
-  condition:
-    condition: state
-    entity_id: input_boolean.tv_mode
-    state: 'on'
-  action:
-    service: input_boolean.turn_off
-    entity_id: input_boolean.tv_mode
-
-- alias: Mode - Guest Mode - Turn off daily vacuum when guest mode on
-  trigger:
-    platform: state
-    entity_id: input_boolean.guest_mode
-    to: 'on'
-  action:
-    service: input_boolean.turn_off
-    entity_id: input_boolean.vacuum_daily_cleanup
-
-- alias: Mode - Guest Mode - Turn on daily vacuum when guest mode off
-  trigger:
-    platform: state
-    entity_id: input_boolean.guest_mode
-    to: 'off'
-  action:
-    service: input_boolean.turn_on
-    entity_id: input_boolean.vacuum_daily_cleanup
+    service: "input_boolean.turn_{{ trigger.to_state.state }}"
+    entity_id: switch.climate_all

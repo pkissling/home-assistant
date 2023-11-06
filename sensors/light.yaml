@@ -3,10 +3,149 @@
 - platform: template
   sensors:
 
-    light_study_color_temp:
-      value_template: >
-        {% if is_state('input_boolean.home_office_mode', 'on') and is_state('switch.detached_light', 'off') %}
-          5500
-        {% else %}
-          {{ state_attr('switch.adaptive_lighting_study', 'color_temp_kelvin')}}
-        {% endif %}
+    light_study_desk:
+      value_template: unknown
+      attribute_templates:
+        brightness: >
+          {% if is_state('group.residents', 'not_home') %}
+            0
+          {% elif is_state('input_boolean.detached_light', 'on') %}
+            255
+          {% elif is_state('input_boolean.guest_mode', 'on') %}
+            0
+          {% elif is_state('input_boolean.home_office_mode', 'on') and is_state('binary_sensor.lightlevel_study_dark', 'on') %}
+            255
+          {% elif is_state('binary_sensor.sun', 'on') %}
+            0
+          {% else %}
+            {{ is_state('binary_sensor.motion_study_occupancy', 'on') | iif(255, 0) }}
+          {% endif %}
+        transition: >
+          {% if is_state('binary_sensor.motion_study_occupancy', 'on') %}
+            1
+          {% elif is_state('input_boolean.home_office_mode', 'on') %}
+            1
+          {% else %}
+            60
+          {% endif %}
+        color_temp_kelvin: &light_study_color_temp_kelvin >
+          {% if is_state('input_boolean.home_office_mode', 'on') %}
+            5500
+          {% else %}
+            {{ state_attr('switch.adaptive_lighting_study', 'color_temp_kelvin')}}
+          {% endif %}
+        target_entity_id: light.study_desk
+
+    light_study_floor_lamp:
+      value_template: unknown
+      attribute_templates:
+        brightness: >
+          {% if is_state('group.residents', 'not_home') %}
+            0
+          {% elif is_state('input_boolean.guest_mode', 'on') %}
+            0
+          {% elif is_state('input_boolean.home_office_mode', 'on') and is_state('binary_sensor.lightlevel_study_dark', 'on') %}
+            255
+          {% elif is_state('binary_sensor.sun', 'on') %}
+            0
+          {% else %}
+            {{ is_state('binary_sensor.motion_study_occupancy', 'on') | iif(255, 0) }}
+          {% endif %}
+        transition: >
+          {% if is_state('binary_sensor.motion_study_occupancy', 'on') %}
+            1
+          {% elif is_state('input_boolean.home_office_mode', 'on') %}
+            1
+          {% else %}
+            60
+          {% endif %}
+        color_temp_kelvin: *light_study_color_temp_kelvin
+        target_entity_id: light.study_floor_lamp
+
+    light_study_shelf:
+      value_template: unknown
+      attribute_templates:
+        brightness: >
+          {% if is_state('group.residents', 'not_home') %}
+            0
+          {% elif is_state('input_boolean.guest_mode', 'on') %}
+            0
+          {% elif is_state('input_boolean.home_office_mode', 'on') and is_state('binary_sensor.lightlevel_study_dark', 'on') %}
+            255
+          {% elif is_state('binary_sensor.sun', 'on') %}
+            0
+          {% elif is_state('binary_sensor.night_light', 'on') and is_state('binary_sensor.motion_study_occupancy', 'on') %}
+            50
+          {% elif is_state('binary_sensor.night_light', 'on') and is_state('binary_sensor.motion_corridor_occupancy', 'on') %}
+            50
+          {% else %}
+            {{ is_state('binary_sensor.motion_study_occupancy', 'on') | iif(255, 50) }}
+          {% endif %}
+        transition: >
+          {% if is_state('binary_sensor.motion_study_occupancy', 'on') %}
+            1
+          {% elif is_state('input_boolean.home_office_mode', 'on') %}
+            1
+          {% else %}
+            60
+          {% endif %}
+        color_temp_kelvin: *light_study_color_temp_kelvin
+        target_entity_id: light.study_shelf
+
+    light_living_room:
+      value_template: unknown
+      attribute_templates:
+        brightness: >
+          {% if is_state('group.residents', 'not_home') %}
+            0
+          {% elif is_state('binary_sensor.sun', 'on') %}
+            0
+          {% elif is_state('input_boolean.tv_mode', 'on') %}
+            80
+          {% elif is_state('binary_sensor.night_light', 'on') and is_state('input_boolean.guest_mode', 'on') %}
+            0
+          {% elif is_state('binary_sensor.night_light', 'on') %}
+            {{ is_state('binary_sensor.motion_corridor_occupancy', 'on') | iif(50, 0) }}
+          {% else %}
+            255
+          {% endif %}
+        transition: 60
+        color_temp_kelvin: "{{ state_attr('switch.adaptive_lighting_living_room', 'color_temp_kelvin')}}"
+        target_entity_id: light.living_room
+
+    light_corridor:
+      value_template: unknown
+      attribute_templates:
+        brightness: >
+          {% if is_state('group.residents', 'not_home') %}
+            0
+          {% elif is_state('binary_sensor.sun', 'on') %}
+            0
+          {% elif is_state('binary_sensor.night_light', 'on') %}
+            {{ is_state('binary_sensor.motion_corridor_occupancy', 'on') | iif(50, 0) }}
+          {% else %}
+            {{ is_state('binary_sensor.motion_corridor_occupancy', 'on') | iif(255, 50) }}
+          {% endif %}
+        color_temp_kelvin: "{{ state_attr('switch.adaptive_lighting_corridor', 'color_temp_kelvin')}}"
+        transition: >
+          {% if is_state('binary_sensor.motion_corridor_occupancy', 'on') %}
+            1
+          {% else %}
+            60
+          {% endif %}
+        target_entity_id: light.corridor
+
+    light_bedroom:
+      value_template: unknown
+      attribute_templates:
+        brightness: >
+          {% if is_state('group.residents', 'not_home') %}
+            0
+          {% elif is_state('binary_sensor.sun', 'on') %}
+            0
+          {% else %}
+            100
+          {% endif %}
+        color_temp_kelvin: "{{ state_attr('switch.adaptive_lighting_bedroom', 'color_temp_kelvin')}}"
+        transition: 60
+        target_entity_id: light.bedroom

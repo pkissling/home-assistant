@@ -137,12 +137,12 @@ views:
       # Toggle Modes
       - type: entities
         entities:
-          - switch.summer_mode
-          - switch.guest_mode
+          - input_boolean.summer_mode
+          - input_boolean.guest_mode
           - input_boolean.home_office_mode
-          - switch.party_mode
+          - input_boolean.party_mode
           - input_boolean.tv_mode
-          - switch.detached_light
+          - input_boolean.detached_light
           - input_boolean.vacuum_daily_cleanup
 
       # Media

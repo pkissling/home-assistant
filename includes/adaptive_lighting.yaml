@@ -1,32 +1,17 @@
 ---
 
 - name: bedroom
-  lights:
-    - light.bedroom_wardrobe
+  lights: []
   take_over_control: true
-  sleep_transition: 60
 
 - name: corridor
-  lights:
-    - light.corridor_sideboard
+  lights: []
   take_over_control: true
-  min_color_temp: 2300
-  sleep_transition: 60
 
 - name: living_room
-  lights:
-    - light.living_room_couch
-    - light.living_room_tv
-    - light.living_room_lamp
+  lights: []
   take_over_control: true
-  min_color_temp: 2300
-  sleep_transition: 60
 
 - name: study
-  lights:
-    - light.study_floor_lamp
-    - light.study_shelf
-    - light.study_desk
+  lights: []
   take_over_control: true
-  min_color_temp: 2300
-  sleep_transition: 60

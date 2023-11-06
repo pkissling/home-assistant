@@ -466,7 +466,6 @@
       data:
         hvac_mode: 'off'
 
-
 - alias: Thermostat - Kitchen - Force off when window open
   trigger:
     platform: time_pattern
@@ -515,37 +514,37 @@
     - platform: numeric_state
       entity_id: climate.kitchen
       attribute: temperature
-      above: 22.5
+      above: 22.0
       for:
         minutes: 1
     - platform: numeric_state
       entity_id: climate.living_room
       attribute: temperature
-      above: 22.5
+      above: 22.0
       for:
         minutes: 1
     - platform: numeric_state
       entity_id: climate.bedroom
       attribute: temperature
-      above: 22.5
+      above: 22.0
       for:
         minutes: 1
     - platform: numeric_state
       entity_id: climate.study
       attribute: temperature
-      above: 22.5
+      above: 22.0
       for:
         minutes: 1
     - platform: numeric_state
       entity_id: climate.bathroom
       attribute: temperature
-      above: 22.5
+      above: 22.0
       for:
         minutes: 1
     - platform: numeric_state
       entity_id: climate.toilet
       attribute: temperature
-      above: 22.5
+      above: 22.0
       for:
         minutes: 1
   condition:
@@ -554,4 +553,4 @@
     service: climate.set_temperature
     data:
       entity_id: "{{ trigger.entity_id }}"
-      temperature: 22.5
+      temperature: 22.0

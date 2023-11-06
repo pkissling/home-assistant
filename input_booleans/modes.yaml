@@ -1,16 +1,24 @@
 ---
 
 detached_light:
+  name: Detached Light
+  icon: mdi:lamp
 
 guest_mode:
+  name: Guest Mode
+  icon: mdi:human-male-female
 
 home_office_mode:
   name: Home Office Mode
   icon: mdi:laptop
 
-party_mode:
-
 summer_mode:
+  name: Summer Mode
+  icon: mdi:weather-sunny
+
+party_mode:
+  name: Party Mode
+  icon: mdi:party-popper
 
 tv_mode:
   name: TV Mode

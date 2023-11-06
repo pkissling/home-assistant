@@ -77,23 +77,13 @@
         entity_id: sensor.amplifier_power
         above: 10
 
-- alias: Remote - TV - Turn Amplifier on when TV running
+- alias: Remote - TV - Sync amplifier with TV
   trigger:
     platform: state
     entity_id: media_player.lg_webos_smart_tv
-    to: 'on'
   action:
-    service: switch.turn_on
+    service: "switch.turn_{{ trigger.to_state.state }}"
     entity_id: switch.living_room_tv
-
-- alias: Remote - TV - Turn Amplifier off when TV off
-  trigger:
-    platform: state
-    entity_id: media_player.lg_webos_smart_tv
-    to: 'off'
-  action:
-    service: remote.turn_off
-    entity_id: remote.living_room
 
 - alias: Remote - TV - Switch to Chromecast when HDMI2 selected
   trigger:

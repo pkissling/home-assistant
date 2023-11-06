@@ -2,19 +2,12 @@
 
 good_night_google_assistant:
   mode: restart
-  # Dim bedroom light down, if on
   sequence:
-    - choose:
-        - conditions:
-            - condition: state
-              entity_id: light.bedroom_wardrobe
-              state: 'on'
-          sequence:
-            - service: light.turn_on
-              entity_id: light.bedroom_wardrobe
-              data:
-                brightness: "{{ min(50, state_attr('light.bedroom_wardrobe', 'brightness')) }}"
-                transition: 120  # 2 min
+    - service: light.turn_on
+      entity_id: light.bedroom_wardrobe
+      data:
+        brightness: 0
+        transition: 180  # 3 min
     - service: media_player.turn_off
       entity_id: media_player.lg_webos_smart_tv
     - service: input_boolean.turn_off
@@ -80,7 +73,8 @@ good_night_google_assistant:
       timeout: '0:00:20'
     - service: media_player.turn_off
       entity_id: media_player.bedroom
-    - service: script.lights_ambient_turn_off
+    - service: light.turn_off
+      entity_id: all
       data:
         transition: 300  # 5 min
     - delay: 300  # 5 mins
@@ -103,7 +97,7 @@ good_night:
               entity_id: input_boolean.summer_mode
               state: 'off'
             - condition: state
-              entity_id: switch.guest_mode
+              entity_id: input_boolean.guest_mode
               state: 'off'
           sequence:
             service: mqtt.publish
@@ -111,7 +105,7 @@ good_night:
               topic: wallpanel/corridor/command
               payload: >
                 {%
-                  set open_windows =  expand('group.window_all')
+                  set open_windows = expand('group.window_all')
                   | selectattr('state', 'eq', 'on')
                   | map(attribute='name')
                   | join(',')
@@ -121,7 +115,7 @@ good_night:
     - choose:
         - conditions:
             - condition: state
-              entity_id: switch.guest_mode
+              entity_id: input_boolean.guest_mode
               state: 'off'
           sequence:
             - choose:
@@ -158,20 +152,8 @@ good_night:
                 brightness: 10
                 transition: 10
             - delay: 10
-    - choose:
-        - conditions:
-            - condition: state
-              entity_id: light.study_floor_lamp
-              state: 'on'
-            - condition: state
-              entity_id: switch.guest_mode
-              state: 'off'
-          sequence:
-            - service: light.turn_off
-              entity_id: light.study_floor_lamp
-              data:
-                transition: 120  # 2 mins
-    - service: script.lights_ambient_turn_off
+    - service: light.turn_off
+      entity_id: all
       data:
         transition: 120  # 2 min
     - delay: 120  # 2 mins
@@ -179,10 +161,7 @@ good_night:
 good_morning:
   mode: restart
   sequence:
-    - service: script.lights_ambient_turn_on
-      data:
-        transition: 10
-    # Wait some seconds until news is being read
+    # Wait some seconds until news was read
     - delay: 30  # seconds
     - wait_for_trigger:
         - platform: state

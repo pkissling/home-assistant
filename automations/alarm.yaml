@@ -3,8 +3,10 @@
 - alias: Alarm - Morning Routine - Sunrise Lights
   trigger:
     platform: template
-    # TODO
-    value_template: "{{ ((strptime(states('sensor.time'), '%H:%M').time().hour * 60 + strptime(states('sensor.time'), '%H:%M').time().minute) * 60) | int == (state_attr('input_datetime.wakeup_time', 'timestamp') | int) - 60 * 15 }}"
+    value_template: >
+      {% set current_time = now().hour * 60 + now().minute %}
+      {% set wakeup_time = state_attr('input_datetime.wakeup_time', 'timestamp') | int / 60 %}
+      {{ current_time == wakeup_time - 15 }}
   condition:
     - condition: state
       entity_id: switch.alarm
@@ -13,14 +15,10 @@
       entity_id: group.residents
       state: home
   action:
-    - service: script.lights_ambient_turn_on
-      data:
-        transition: 1800  # 30 min
-    # Control wardrobe light independently of script
     - service: light.turn_on
       entity_id: light.bedroom_wardrobe
       data:
-        brightness: 220
+        brightness: 255
         transition: 1800  # 30 mins
 
 - alias: Alarm - Morning Routine - News and Radio
@@ -45,21 +43,7 @@
   condition:
     condition: template
     value_template: >
-      {% if (now().weekday() + 6) % 7 == 1 %}
-        {% set alarm_in_6_days = states('input_boolean.alarm_weekday_1') %}
-      {% elif (now().weekday() + 6) % 7== 2 %}
-        {% set alarm_in_6_days = states('input_boolean.alarm_weekday_2') %}
-      {% elif (now().weekday() + 6) % 7 == 3 %}
-        {% set alarm_in_6_days = states('input_boolean.alarm_weekday_3') %}
-      {% elif (now().weekday() + 6) % 7 == 4 %}
-        {% set alarm_in_6_days = states('input_boolean.alarm_weekday_4') %}
-      {% elif (now().weekday() + 6) % 7 == 5 %}
-        {% set alarm_in_6_days = states('input_boolean.alarm_weekday_5') %}
-      {% elif (now().weekday() + 6) % 7 == 6 %}
-        {% set alarm_in_6_days = states('input_boolean.alarm_weekday_6') %}
-      {% else %}
-        {% set alarm_in_6_days = states('input_boolean.alarm_weekday_0') %}
-      {% endif %}
+      {% set alarm_in_6_days = states('input_boolean.alarm_weekday_' ~ (now().weekday() + 6) % 7) %}
       {{ states('binary_sensor.workday_sensor') != alarm_in_6_days }}
   action:
     - service: input_boolean.toggle

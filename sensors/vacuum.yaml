@@ -9,10 +9,8 @@
 
     vacuum_next_emptying:
       value_template: >
-        {% set last_emptying = states('input_text.vacuum_last_emptying') | int %}
-        {% set next_emptying = last_emptying + 200 %}
-        {% set current = states('sensor.roborock_total_clean_area') | int %}
-        {{ next_emptying - current }}
+        {% set m2_since_last_emptying = states('input_text.vacuum_cleaned_m2_since_last_emptying') | int %}
+        {{ 200 - m2_since_last_emptying }}
       unit_of_measurement: m²
 
     vacuum_filter_left:

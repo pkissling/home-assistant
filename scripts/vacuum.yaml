@@ -9,6 +9,6 @@ vacuum_dust_bin:
         x_coord: 24500
         y_coord: 32300
     - service: input_text.set_value
-      entity_id: input_text.vacuum_last_emptying
+      entity_id: input_text.vacuum_cleaned_m2_since_last_emptying
       data:
-        value: "{{ states('sensor.roborock_total_clean_area') }}"
+        value: 0

@@ -100,3 +100,13 @@
       data:
         title: Roborock
         message: Please empty dust bin!
+
+- alias: Vacuum - Update vacuum_cleaned_m2_since_last_emptying
+  trigger:
+    platform: state
+    entity_id: sensor.roborock_last_clean_area
+  action:
+    service: input_text.set_value
+    entity_id: input_text.vacuum_cleaned_m2_since_last_emptying
+    data:
+      value: "{{ states('input_text.vacuum_cleaned_m2_since_last_emptying') | int + states('sensor.roborock_last_clean_area') | int }}"

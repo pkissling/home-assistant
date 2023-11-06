@@ -2,7 +2,3 @@
 
 sensor.vacuum_battery:
   friendly_name: Vacuum
-
-sensor.vacuum_next_emptying:
-  friendly_name: Next emptying in
-  icon: mdi:trash-can

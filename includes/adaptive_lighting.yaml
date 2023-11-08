@@ -1,17 +1,23 @@
 ---
 
 - name: bedroom
-  lights: []
-  take_over_control: true
+  lights:
+    - light.bedroom
+  take_over_control: false
 
 - name: corridor
-  lights: []
-  take_over_control: true
+  lights:
+    - light.corridor
+  take_over_control: false
+  min_color_temp: 2300
 
 - name: living_room
-  lights: []
-  take_over_control: true
+  lights:
+    - light.living_room
+  take_over_control: false
+  min_color_temp: 2300
 
 - name: study
   lights: []
-  take_over_control: true
+  take_over_control: false
+  min_color_temp: 2300

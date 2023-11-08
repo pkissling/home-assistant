@@ -7,5 +7,5 @@
         {{
           is_state('binary_sensor.sun', 'off')
             and
-          now().hour >= 23 or now().hour < 9
+          ((now().hour >= 23) or (now().hour <= 6)) and now().minute < 30
         }}

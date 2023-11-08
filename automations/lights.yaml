@@ -21,6 +21,7 @@
 
 - alias: Light - Sync with sensor
   mode: parallel
+  max: 20
   trigger:
     - platform: state
       entity_id: sensor.light_study_floor_lamp
@@ -44,22 +45,13 @@
       entity_id: sensor.light_living_room
       attribute: brightness
     - platform: state
-      entity_id: sensor.light_living_room
-      attribute: color_temp_kelvin
-    - platform: state
       entity_id: sensor.light_corridor
       attribute: brightness
     - platform: state
-      entity_id: sensor.light_corridor
-      attribute: color_temp_kelvin
-    - platform: state
       entity_id: sensor.light_bedroom
       attribute: brightness
-    - platform: state
-      entity_id: sensor.light_bedroom
-      attribute: color_temp_kelvin
   action:
-    service: light.turn_on
+    service: pyscript.adjust_light
     data:
       entity_id: "{{ state_attr(trigger.entity_id, 'target_entity_id') }}"
       brightness: "{{ state_attr(trigger.entity_id, 'brightness') }}"

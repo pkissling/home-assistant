@@ -2,6 +2,7 @@
 
 default: info
 logs:
+  custom_components.adaptive_lighting: debug
   custom_components.deutschebahn.sensor: fatal
   custom_components.yahoofinance.coordinator: warn
   homeassistant.components.ipp.coordinator: fatal

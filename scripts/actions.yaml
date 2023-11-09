@@ -14,6 +14,10 @@ good_night_google_assistant:
       entity_id: input_boolean.home_office_mode
     - service: switch.turn_off
       entity_id: switch.remote_off
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.party_mode
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.night_light_mode
     - wait_for_trigger:
         platform: state
         entity_id: media_player.bedroom
@@ -77,7 +81,6 @@ good_night_google_assistant:
       entity_id: all
       data:
         transition: 300  # 5 min
-    - delay: 300  # 5 mins
 
 good_night:
   mode: restart
@@ -88,6 +91,10 @@ good_night:
       entity_id: input_boolean.home_office_mode
     - service: switch.turn_off
       entity_id: switch.remote_off
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.party_mode
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.night_light_mode
     - choose:
         - conditions:
             - condition: state
@@ -156,7 +163,6 @@ good_night:
       entity_id: all
       data:
         transition: 120  # 2 min
-    - delay: 120  # 2 mins
 
 good_morning:
   mode: restart

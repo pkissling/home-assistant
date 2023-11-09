@@ -144,6 +144,7 @@ views:
           - input_boolean.tv_mode
           - input_boolean.detached_light
           - input_boolean.vacuum_daily_cleanup
+          - input_boolean.night_light_mode
 
       # Media
       - type: entities

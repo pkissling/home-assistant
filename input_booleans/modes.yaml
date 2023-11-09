@@ -12,6 +12,10 @@ home_office_mode:
   name: Home Office Mode
   icon: mdi:laptop
 
+night_light_mode:
+  name: Night Light Mode
+  icon: mdi:lightbulb-on-outline
+
 summer_mode:
   name: Summer Mode
   icon: mdi:weather-sunny

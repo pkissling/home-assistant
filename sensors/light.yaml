@@ -15,12 +15,10 @@
             0
           {% elif is_state('input_boolean.home_office_mode', 'on') and is_state('binary_sensor.lightlevel_study_dark', 'on') %}
             255
-          {% elif is_state('input_boolean.party_mode', 'on') %}
-            {{ is_state('binary_sensor.motion_study_occupancy', 'on') | iif(255, 0) }}
-          {% elif is_state('binary_sensor.night_light', 'on') and is_state('binary_sensor.motion_study_occupancy', 'on') %}
-            50
           {% elif is_state('binary_sensor.sun', 'on') %}
             0
+          {% elif is_state('input_boolean.night_light_mode', 'on') %}
+            {{ is_state('binary_sensor.motion_study_occupancy', 'on') | iif(50, 0) }}
           {% else %}
             {{ is_state('binary_sensor.motion_study_occupancy', 'on') | iif(255, 0) }}
           {% endif %}
@@ -50,12 +48,10 @@
             0
           {% elif is_state('input_boolean.home_office_mode', 'on') and is_state('binary_sensor.lightlevel_study_dark', 'on') %}
             255
-          {% elif is_state('input_boolean.party_mode', 'on') %}
-            {{ is_state('binary_sensor.motion_study_occupancy', 'on') | iif(255, 0) }}
-          {% elif is_state('binary_sensor.night_light', 'on') and is_state('binary_sensor.motion_study_occupancy', 'on') %}
-            50
           {% elif is_state('binary_sensor.sun', 'on') %}
             0
+          {% elif is_state('input_boolean.night_light_mode', 'on') %}
+            {{ is_state('binary_sensor.motion_study_occupancy', 'on') | iif(50, 0) }}
           {% else %}
             {{ is_state('binary_sensor.motion_study_occupancy', 'on') | iif(255, 0) }}
           {% endif %}
@@ -73,15 +69,13 @@
             0
           {% elif is_state('input_boolean.home_office_mode', 'on') and is_state('binary_sensor.lightlevel_study_dark', 'on') %}
             255
-          {% elif is_state('input_boolean.party_mode', 'on') %}
-            {{ is_state('binary_sensor.motion_study_occupancy', 'on') | iif(255, 0) }}
-          {% elif is_state('binary_sensor.night_light', 'on') and is_state('binary_sensor.motion_study_occupancy', 'on') %}
-            50
-          {% elif is_state('binary_sensor.night_light', 'on') and is_state('binary_sensor.motion_corridor_occupancy', 'on') %}
-            50
-          {% elif is_state('binary_sensor.night_light', 'on') and is_state('binary_sensor.motion_study_occupancy', 'off') %}
-            0
           {% elif is_state('binary_sensor.sun', 'on') %}
+            0
+          {% elif is_state('input_boolean.night_light_mode', 'on') and is_state('binary_sensor.motion_corridor_occupancy', 'on') %}
+            50
+          {% elif is_state('input_boolean.night_light_mode', 'on') and is_state('binary_sensor.motion_study_occupancy', 'on') %}
+            50
+          {% elif is_state('input_boolean.night_light_mode', 'on') %}
             0
           {% else %}
             {{ is_state('binary_sensor.motion_study_occupancy', 'on') | iif(255, 50) }}
@@ -98,13 +92,13 @@
             0
           {% elif is_state('binary_sensor.sun', 'on') %}
             0
-          {% elif is_state('input_boolean.party_mode', 'on') %}
+          {% elif is_state('input_boolean.night_light_mode', 'on') %}
             255
           {% elif is_state('input_boolean.tv_mode', 'on') %}
             80
-          {% elif is_state('binary_sensor.night_light', 'on') and is_state('input_boolean.guest_mode', 'on') %}
+          {% elif is_state('input_boolean.night_light_mode', 'on') and is_state('input_boolean.guest_mode', 'on') %}
             0
-          {% elif is_state('binary_sensor.night_light', 'on') %}
+          {% elif is_state('input_boolean.night_light_mode', 'on') %}
             {{ is_state('binary_sensor.motion_corridor_occupancy', 'on') | iif(50, 0) }}
           {% else %}
             255
@@ -120,9 +114,7 @@
             0
           {% elif is_state('binary_sensor.sun', 'on') %}
             0
-          {% elif is_state('input_boolean.party_mode', 'on') %}
-            {{ is_state('binary_sensor.motion_corridor_occupancy', 'on') | iif(255, 50) }}
-          {% elif is_state('binary_sensor.night_light', 'on') %}
+          {% elif is_state('input_boolean.night_light_mode', 'on') %}
             {{ is_state('binary_sensor.motion_corridor_occupancy', 'on') | iif(50, 0) }}
           {% else %}
             {{ is_state('binary_sensor.motion_corridor_occupancy', 'on') | iif(255, 50) }}

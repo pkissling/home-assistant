@@ -24,9 +24,6 @@
       entity_id: input_boolean.guest_mode
       state: 'off'
     - condition: state
-      entity_id: person.patrick
-      state: home
-    - condition: state
       entity_id: input_boolean.home_office_mode
       state: 'off'
   action:
@@ -75,7 +72,7 @@
 - alias: Mode - Party Mode - Turn on manual heating when Party Mode is turned on
   trigger:
     - platform: state
-      entity_id: input_boolean.guest_mode
+      entity_id: input_boolean.party_mode
       to: 'on'
   action:
     service: climate.set_temperature
@@ -86,7 +83,7 @@
 - alias: Mode - Party Mode - Turn off manual heating when Party Mode is turned off
   trigger:
     - platform: state
-      entity_id: input_boolean.guest_mode
+      entity_id: input_boolean.party_mode
       to: 'on'
   action:
     service: climate.set_hvac_mode
@@ -101,3 +98,22 @@
   action:
     service: "input_boolean.turn_{{ trigger.to_state.state }}"
     entity_id: switch.climate_all
+
+- alias: Mode - Night Light Mode - Turn on
+  trigger:
+    - platform: time
+      at: '23:00'
+  action:
+    service: input_boolean.turn_on
+    entity_id: input_boolean.night_light_mode
+
+- alias: Mode - Night Light Mode - Turn off
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.sun
+      to: 'off'
+    - platform: time
+      at: '06:30'
+  action:
+    service: input_boolean.turn_off
+    entity_id: input_boolean.night_light_mode

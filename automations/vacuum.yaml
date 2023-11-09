@@ -109,4 +109,4 @@
     service: input_text.set_value
     entity_id: input_text.vacuum_cleaned_m2_since_last_emptying
     data:
-      value: "{{ states('input_text.vacuum_cleaned_m2_since_last_emptying') | int + states('sensor.roborock_last_clean_area') | int }}"
+      value: "{{ states('input_text.vacuum_cleaned_m2_since_last_emptying') | int + states('sensor.roborock_last_clean_area') | default(0) | int }}"

@@ -85,22 +85,22 @@
     service: "switch.turn_{{ trigger.to_state.state }}"
     entity_id: switch.living_room_tv
 
-- alias: Remote - TV - Switch to Chromecast when HDMI2 selected
+- alias: Remote - TV - Switch to Chromecast when Pioneer selected
   trigger:
     platform: state
     entity_id: media_player.lg_webos_smart_tv
     attribute: source
-    to: HDMI 2
+    to: Pioneer
   action:
     service: switch.turn_on
     entity_id: switch.living_room_chromecast
 
-- alias: Remote - TV - Switch back to TV when HDMI2 not selected
+- alias: Remote - TV - Switch back to TV when Pioneer not selected
   trigger:
     platform: state
     entity_id: media_player.lg_webos_smart_tv
     attribute: source
-    from: HDMI 2
+    from: Pioneer
   condition:
     condition: not
     conditions:

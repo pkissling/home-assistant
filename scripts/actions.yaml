@@ -16,8 +16,6 @@ good_night_google_assistant:
       entity_id: switch.remote_off
     - service: input_boolean.turn_off
       entity_id: input_boolean.party_mode
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.night_light_mode
     - wait_for_trigger:
         platform: state
         entity_id: media_player.bedroom
@@ -93,7 +91,7 @@ good_night:
       entity_id: switch.remote_off
     - service: input_boolean.turn_off
       entity_id: input_boolean.party_mode
-    - service: input_boolean.turn_off
+    - service: input_boolean.turn_on
       entity_id: input_boolean.night_light_mode
     - choose:
         - conditions:

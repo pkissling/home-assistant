@@ -83,10 +83,13 @@
 
 - alias: Vacuum - Send to Trash Bin
   trigger:
-    platform: numeric_state
-    entity_id: vacuum.roborock
-    attribute: battery_level
-    above: 99
+    - platform: numeric_state
+      entity_id: vacuum.roborock
+      attribute: battery_level
+      above: 99
+    - platform: state
+      entity_id: person.residents
+      to: home
   condition:
     - condition: state
       entity_id: vacuum.roborock
@@ -94,6 +97,13 @@
     - condition: numeric_state
       entity_id: sensor.vacuum_next_emptying
       below: 1
+    - condition: state
+      entity_id: person.residents
+      state: home
+    - condition: numeric_state
+      entity_id: vacuum.roborock
+      attribute: battery_level
+      above: 99
   action:
     - service: script.vacuum_dust_bin
     - service: notify.patrick

@@ -3,10 +3,9 @@
 good_night_google_assistant:
   mode: restart
   sequence:
-    - service: light.turn_on
-      entity_id: light.bedroom_wardrobe
+    - service: light.turn_off
+      entity_id: all
       data:
-        brightness: 0
         transition: 180  # 3 min
     - service: media_player.turn_off
       entity_id: media_player.lg_webos_smart_tv
@@ -75,10 +74,6 @@ good_night_google_assistant:
       timeout: '0:00:20'
     - service: media_player.turn_off
       entity_id: media_player.bedroom
-    - service: light.turn_off
-      entity_id: all
-      data:
-        transition: 300  # 5 min
 
 good_night:
   mode: restart

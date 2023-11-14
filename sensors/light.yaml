@@ -92,14 +92,12 @@
             0
           {% elif is_state('binary_sensor.sun', 'on') %}
             0
-          {% elif is_state('input_boolean.night_light_mode', 'on') %}
-            {{ is_state('binary_sensor.motion_study_occupancy', 'on') | iif(50, 0) }}
-          {% elif is_state('input_boolean.tv_mode', 'on') %}
-            80
           {% elif is_state('input_boolean.night_light_mode', 'on') and is_state('input_boolean.guest_mode', 'on') %}
             0
           {% elif is_state('input_boolean.night_light_mode', 'on') %}
             {{ is_state('binary_sensor.motion_corridor_occupancy', 'on') | iif(50, 0) }}
+          {% elif is_state('input_boolean.tv_mode', 'on') %}
+            80
           {% else %}
             255
           {% endif %}

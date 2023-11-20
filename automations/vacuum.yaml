@@ -87,10 +87,31 @@
       entity_id: vacuum.roborock
       attribute: battery_level
       above: 99
+    - platform: numeric_state
+      entity_id: sensor.vacuum_next_emptying
+      below: 1
     - platform: state
-      entity_id: person.residents
+      entity_id: group.residents
       to: home
+    - platform: state
+      entity_id: vacuum.roborock
+      to: docked
+    - platform: state
+      entity_id: input_boolean.guest_mode
+      to: 'off'
+    - platform: time
+      at: '08:00:00'
   condition:
+    - condition: numeric_state
+      entity_id: vacuum.roborock
+      attribute: battery_level
+      above: 99
+    - condition: numeric_state
+      entity_id: sensor.vacuum_next_emptying
+      below: 1
+    - condition: state
+      entity_id: group.residents
+      state: home
     - condition: state
       entity_id: vacuum.roborock
       state: docked
@@ -98,12 +119,11 @@
       entity_id: sensor.vacuum_next_emptying
       below: 1
     - condition: state
-      entity_id: person.residents
-      state: home
-    - condition: numeric_state
-      entity_id: vacuum.roborock
-      attribute: battery_level
-      above: 99
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+    - condition: time
+      after: '08:00:00'
+      before: '20:00:00'
   action:
     - service: script.vacuum_dust_bin
     - service: notify.patrick

@@ -3,10 +3,11 @@
 - platform: template
   sensors:
     lightlevel_study_dark:
+      delay_off:
+        minutes: 5
       value_template: >
         {% if is_number(states('sensor.motion_study_illuminance_lux')) %}
-          {% set lux = states('sensor.motion_study_illuminance_lux') | int - is_state('light.study_floor_lamp', 'on') | iif(10 , 0) %}
-          {{ lux < 70 }}
+          {{ states('sensor.motion_study_illuminance_lux') < 70 }}
         {% else %}
           {{ is_state('sun.sun', 'below_horizon') }}
         {% endif %}

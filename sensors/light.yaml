@@ -101,7 +101,12 @@
           {% else %}
             255
           {% endif %}
-        transition: 60
+        transition: >
+          {% if is_state('binary_sensor.motion_corridor_occupancy', 'on') and is_state('input_boolean.guest_mode', 'off') and is_state('input_boolean.night_light_mode', 'on') %}
+            1
+          {% else %}
+            60
+          {% endif %}
         target_entity_id: light.living_room
 
     light_corridor:

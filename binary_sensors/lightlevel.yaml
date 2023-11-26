@@ -7,7 +7,7 @@
         minutes: 5
       value_template: >
         {% if is_number(states('sensor.motion_study_illuminance_lux')) %}
-          {{ states('sensor.motion_study_illuminance_lux') < 70 }}
+          {{ states('sensor.motion_study_illuminance_lux') | int < 70 }}
         {% else %}
           {{ is_state('sun.sun', 'below_horizon') }}
         {% endif %}

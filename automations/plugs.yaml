@@ -8,6 +8,9 @@
     - platform: state
       entity_id: person.patrick
       to: home
+    - platform: state
+      entity_id: input_boolean.guest-mode
+      to: 'off'
   condition:
     - condition: state
       entity_id: person.patrick
@@ -15,6 +18,9 @@
     - condition: state
       entity_id: input_boolean.home_office_mode
       state: 'on'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
   action:
     service: switch.turn_on
     entity_id: switch.monitor

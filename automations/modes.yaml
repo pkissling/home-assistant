@@ -57,7 +57,7 @@
     platform: state
     entity_id: input_boolean.guest_mode
   action:
-    service: "input_boolean.turn_{{ trigger.to_state.state }}"
+    service: "input_boolean.turn_{{ trigger.from_state.state }}"
     entity_id: input_boolean.vacuum_daily_cleanup
 
 - alias: Mode - Guest mode - Turn off Home Office Mode when Guest Mode is turned on

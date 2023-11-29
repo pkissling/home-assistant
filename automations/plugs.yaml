@@ -9,7 +9,7 @@
       entity_id: person.patrick
       to: home
     - platform: state
-      entity_id: input_boolean.guest-mode
+      entity_id: input_boolean.guest_mode
       to: 'off'
   condition:
     - condition: state

@@ -102,7 +102,7 @@
 - alias: Mode - Night Light Mode - Turn on
   trigger:
     - platform: time
-      at: '23:00'
+      at: '00:00'
   action:
     service: input_boolean.turn_on
     entity_id: input_boolean.night_light_mode

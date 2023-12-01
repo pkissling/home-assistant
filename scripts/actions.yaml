@@ -161,16 +161,16 @@ good_morning:
   mode: restart
   sequence:
     - choose:
-      - conditions:
-          - condition: state
-            entity_id: binary_sensor.sun
-            state: 'off'
-        sequence:
-          - service: light.turn_on
-            entity_id: light.bedroom_wardrobe
-            data:
-              brightness: 200
-              transition: 60  # 1 min
+        - conditions:
+            - condition: state
+              entity_id: binary_sensor.sun
+              state: 'off'
+          sequence:
+            - service: light.turn_on
+              entity_id: light.bedroom_wardrobe
+              data:
+                brightness: 200
+                transition: 60  # 1 min
     # Wait some seconds until news was read
     - delay: 30  # seconds
     - wait_for_trigger:

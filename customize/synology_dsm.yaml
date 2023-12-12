@@ -3,6 +3,3 @@
 sensor.diskstation_uptime:
   friendly_name: Uptime
   icon: mdi:clock-check-outline
-
-binary_sensor.diskstation_ping:
-  friendly_name: Ping

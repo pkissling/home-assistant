@@ -12,4 +12,4 @@
         minutes: 2
   action:
     service: switch.turn_{{ trigger.to_state.state }}
-    entity_id: switch.display_tab_corridor
+    entity_id: switch.lenovo_tab_m10_fhd_plus_screen

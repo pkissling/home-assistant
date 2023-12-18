@@ -29,11 +29,11 @@ tts/
 __pycache__
 *.pyc
 
-# Music Assistant
-music_assistant.db-journal
-
 # local HACS plugins
 clock_weather_card.yaml
 
 # own HACS plugin
 www/community/clock-weather-card/*
+
+# Google Assistant
+service_account.json

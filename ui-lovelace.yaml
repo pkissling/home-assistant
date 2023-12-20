@@ -14,11 +14,6 @@ views:
       # Vacuum
       - type: custom:vacuum-card
         entity: vacuum.roborock
-        style: |
-          ha-card {
-            --vc-background: none;
-            --vc-toolbar-background: none;
-          }
         show_name: false
         compact_view: true
         stats:
@@ -171,20 +166,42 @@ views:
               - icon: mdi:pulse
                 entity: switch.radio_puls
           - type: custom:paper-buttons-row
-            styles:
-              "--pbs-button-color": "--var(primary-text-color)"
             base_config:
               layout: icon_name
             buttons:
               - icon: mdi:television
-                entity: switch.living_room_tv
+                entity: select.living_room_activities
+                active: tv
                 name: TV
+                tap_action:
+                  action: call-service
+                  service: select.select_option
+                  target:
+                    entity_id: select.living_room_activities
+                  service_data:
+                    option: TV
               - icon: mdi:cast
-                entity: switch.living_room_chromecast
+                entity: select.living_room_activities
                 name: Chromecast
+                active: chromecast
+                tap_action:
+                  action: call-service
+                  service: select.select_option
+                  target:
+                    entity_id: select.living_room_activities
+                  service_data:
+                    option: Chromecast
               - icon: mdi:power
-                entity: switch.remote_off
+                entity: select.living_room_activities
                 name: 'Off'
+                active: power_off
+                tap_action:
+                  action: call-service
+                  service: select.select_option
+                  target:
+                    entity_id: select.living_room_activities
+                  service_data:
+                    option: power_off
 
       # Alarm Clock
       - type: entities

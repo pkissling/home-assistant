@@ -11,8 +11,11 @@ good_night_google_assistant:
       entity_id: media_player.lg_webos_smart_tv
     - service: input_boolean.turn_off
       entity_id: input_boolean.home_office_mode
-    - service: switch.turn_off
-      entity_id: switch.remote_off
+    - service: select.select_option
+      target:
+        entity_id: select.living_room_activities
+      data:
+        option: power_off
     - service: input_boolean.turn_off
       entity_id: input_boolean.party_mode
     - wait_for_trigger:
@@ -82,8 +85,11 @@ good_night:
       entity_id: media_player.lg_webos_smart_tv
     - service: input_boolean.turn_off
       entity_id: input_boolean.home_office_mode
-    - service: switch.turn_off
-      entity_id: switch.remote_off
+    - service: select.select_option
+      target:
+        entity_id: select.living_room_activities
+      data:
+        option: power_off
     - service: input_boolean.turn_off
       entity_id: input_boolean.party_mode
     - service: input_boolean.turn_on

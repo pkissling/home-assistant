@@ -7,11 +7,14 @@
     to: playing
   condition:
     condition: state
-    entity_id: remote.living_room
-    state: 'off'
+    entity_id: select.living_room_activities
+    state: power_off
   action:
-    service: switch.turn_on
-    entity_id: switch.living_room_chromecast
+    service: select.select_option
+    target:
+      entity_id: select.living_room_activities
+    data:
+      option: Chromecast
 
 - alias: Remote - Amplifier - Turn off if still running
   trigger:
@@ -82,8 +85,11 @@
     platform: state
     entity_id: media_player.lg_webos_smart_tv
   action:
-    service: "switch.turn_{{ trigger.to_state.state }}"
-    entity_id: switch.living_room_tv
+    service: select.select_option
+    target:
+      entity_id: select.living_room_activities
+    data:
+      option: "{{ iif(trigger.to_state.state === 'off', 'power_off', 'TV') }}"
 
 - alias: Remote - TV - Switch to Chromecast when Pioneer selected
   trigger:
@@ -92,8 +98,11 @@
     attribute: source
     to: Pioneer
   action:
-    service: switch.turn_on
-    entity_id: switch.living_room_chromecast
+    service: select.select_option
+    target:
+      entity_id: select.living_room_activities
+    data:
+      option: Chromecast
 
 - alias: Remote - TV - Switch back to TV when Pioneer not selected
   trigger:
@@ -108,8 +117,11 @@
       entity_id: media_player.lg_webos_smart_tv
       state: 'off'
   action:
-    service: switch.turn_on
-    entity_id: switch.living_room_tv
+    service: select.select_option
+    target:
+      entity_id: select.living_room_activities
+    data:
+      option: TV
 
 - alias: Remote - Turn off remote when All Speakers stopped/paused casting for 30 seconds
   trigger:
@@ -140,11 +152,14 @@
         minutes: 5
   condition:
     - condition: state
-      entity_id: switch.living_room_chromecast
-      state: 'on'
+      entity_id: select.living_room_activities
+      state: Chromecast
     - condition: state
       entity_id: media_player.lg_webos_smart_tv
       state: 'off'
   action:
-    service: remote.turn_off
-    entity_id: remote.living_room
+    service: select.select_option
+    target:
+      entity_id: select.living_room_activities
+    data:
+      option: power_off

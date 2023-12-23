@@ -6,7 +6,7 @@
   scan_interval: 300
   method: POST
   headers:
-    Content-Type: "application/json;charset=UTF-8"
+    Content-Type: application/json
     apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0NDA2OTg4NiwiZXhwIjoxOTU5NjQ1ODg2fQ.uKWmTelFEpT6So2QIeA8NSsT0O4NWMr8qHfEeTppVbA"
   payload: !secret parqet_auth_patrick
   json_attributes:
@@ -19,7 +19,7 @@
   scan_interval: 300
   method: POST
   headers:
-    Content-Type: "application/json;charset=UTF-8"
+    Content-Type: application/json
     apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0NDA2OTg4NiwiZXhwIjoxOTU5NjQ1ODg2fQ.uKWmTelFEpT6So2QIeA8NSsT0O4NWMr8qHfEeTppVbA"
   payload: !secret parqet_auth_sandra
   json_attributes:
@@ -28,24 +28,32 @@
 
 - platform: rest
   name: Parqet API Patrick
-  resource: 'https://api.parqet.com/v1/portfolios/266318594456945162/charts/allocation'
+  resource: 'https://api.parqet.com/v1/allocation/assemble'
+  method: POST
   scan_interval: 300
   headers:
+    Accept: application/json
+    Content-Type: application/json
     Authorization: >
       Bearer {{ state_attr('sensor.parqet_auth_patrick', 'access_token') }}
   json_attributes:
     - assetDimensions
+  payload: '{"portfolioIds":["266318594456945162"],"holdingIds":[],"currency":"EUR","assetTypes":[]}'
   value_template: "OK"
 
 - platform: rest
   name: Parqet API Sandra
-  resource: 'https://api.parqet.com/v1/portfolios/616c32ab490af660c8e1bdeb/charts/allocation'
+  resource: 'https://api.parqet.com/v1/allocation/assemble'
+  method: POST
   scan_interval: 300
   headers:
+    Content-Type: application/json
+    Accept: application/json
     Authorization: >
       Bearer {{ state_attr('sensor.parqet_auth_sandra', 'access_token') }}
   json_attributes:
     - assetDimensions
+  payload: '{"portfolioIds":["616c32ab490af660c8e1bdeb"],"holdingIds":[],"currency":"EUR","assetTypes":[]}'
   value_template: "OK"
 
 - platform: rest

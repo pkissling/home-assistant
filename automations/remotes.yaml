@@ -80,16 +80,17 @@
         entity_id: sensor.amplifier_power
         above: 10
 
-- alias: Remote - TV - Sync amplifier with TV
+- alias: Remote - TV - Turn amplifier off with TV
   trigger:
     platform: state
     entity_id: media_player.lg_webos_smart_tv
+    to: 'off'
   action:
     service: select.select_option
     target:
       entity_id: select.living_room_activities
     data:
-      option: "{{ iif(trigger.to_state.state === 'off', 'power_off', 'TV') }}"
+      option: power_off
 
 - alias: Remote - TV - Switch to Chromecast when Pioneer selected
   trigger:
@@ -104,12 +105,12 @@
     data:
       option: Chromecast
 
-- alias: Remote - TV - Switch back to TV when Pioneer not selected
+- alias: Remote - TV - Switch to Chromecast when Pioneer selected
   trigger:
     platform: state
     entity_id: media_player.lg_webos_smart_tv
     attribute: source
-    from: Pioneer
+    not_to: Pioneer
   condition:
     condition: not
     conditions:

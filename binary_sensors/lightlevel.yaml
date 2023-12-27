@@ -5,6 +5,8 @@
     lightlevel_study_dark:
       delay_off:
         minutes: 5
+      delay_on:
+        minutes: 1
       value_template: >
         {% if is_number(states('sensor.motion_study_illuminance_lux')) %}
           {{ states('sensor.motion_study_illuminance_lux') | int < 70 }}

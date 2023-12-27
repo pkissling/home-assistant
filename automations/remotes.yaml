@@ -105,18 +105,16 @@
     data:
       option: Chromecast
 
-- alias: Remote - TV - Switch to Chromecast when Pioneer selected
+- alias: Remote - TV - Switch back to TV when Pioneer not selected
   trigger:
     platform: state
     entity_id: media_player.lg_webos_smart_tv
     attribute: source
     not_to: Pioneer
   condition:
-    condition: not
-    conditions:
-      condition: state
-      entity_id: media_player.lg_webos_smart_tv
-      state: 'off'
+    condition: state
+    entity_id: media_player.lg_webos_smart_tv
+    state: 'on'
   action:
     service: select.select_option
     target:

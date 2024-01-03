@@ -136,6 +136,8 @@
       entity_id: climate.study
       attribute: temperature
       below: 16
+    - conition: input_boolean.guest_mode
+      state: 'off'
   action:
     - service: notify.patrick
       data:

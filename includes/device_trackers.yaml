@@ -1,9 +1,0 @@
----
-
-# Tado
-- platform: tado
-  username: !secret tado_username
-  password: !secret tado_password
-  home_id: !secret tado_home_id
-  new_device_defaults:
-    track_new_devices: false

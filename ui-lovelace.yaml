@@ -88,10 +88,10 @@ views:
             service: script.vacuum_dust_bin
 
       # Departures
-      - type: glance
-        entities:
-          - sensor.departure_s7_to_hauptbahnhof
-          - sensor.departure_u6_to_sendlinger_tor
+      - type: tile
+        entity: sensor.departure_s7_to_hauptbahnhof
+      - type: tile
+        entity: sensor.departure_u6_to_sendlinger_tor
 
       # Horizon Card
       - type: custom:horizon-card
@@ -118,7 +118,6 @@ views:
           - type: custom:fold-entity-row
             head:
               entity: light.study
-            open: true
             entities:
               - light.study_desk
               - light.study_shelf
@@ -226,22 +225,6 @@ views:
           - person.sandra
           - input_boolean.person_guest
 
-      # Actions
-      - type: entities
-        entities:
-          - type: custom:paper-buttons-row
-            styles:
-              "--pbs-button-color": "--var(primary-text-color)"
-            base_config:
-              layout: icon_name
-            buttons:
-              - icon: mdi:weather-night
-                entity: script.good_night
-                name: Good Night
-              - icon: mdi:weather-sunset-up
-                entity: script.good_morning
-                name: Good Morning
-
       # Temperature
       - type: custom:thermostat-bar-card
         entities:
@@ -263,3 +246,19 @@ views:
           - entity_id: climate.bedroom
             icon: mdi:bed-king-outline
             window_sensor: binary_sensor.window_bedroom_contact
+
+      # Actions
+      - type: entities
+        entities:
+          - type: custom:paper-buttons-row
+            styles:
+              "--pbs-button-color": "--var(primary-text-color)"
+            base_config:
+              layout: icon_name
+            buttons:
+              - icon: mdi:weather-night
+                entity: script.good_night
+                name: Good Night
+              - icon: mdi:weather-sunset-up
+                entity: script.good_morning
+                name: Good Morning

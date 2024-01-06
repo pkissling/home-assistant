@@ -153,8 +153,6 @@ views:
               progress: true
           - input_number.volume_offset
           - type: custom:paper-buttons-row
-            styles:
-              "--pbs-button-color": "--var(primary-text-color)"
             base_config:
               layout: icon_name
             buttons:
@@ -251,8 +249,6 @@ views:
       - type: entities
         entities:
           - type: custom:paper-buttons-row
-            styles:
-              "--pbs-button-color": "--var(primary-text-color)"
             base_config:
               layout: icon_name
             buttons:

@@ -1,38 +1,9 @@
 ---
 
-- alias: Plug - Monitor - Turn on with home office mode when Patrick home
+- alias: Plug - Monitor - Sync with home office mode
   trigger:
-    - platform: state
-      entity_id: input_boolean.home_office_mode
-      to: 'on'
-    - platform: state
-      entity_id: person.patrick
-      to: home
-    - platform: state
-      entity_id: input_boolean.guest_mode
-      to: 'off'
-  condition:
-    - condition: state
-      entity_id: person.patrick
-      state: home
-    - condition: state
-      entity_id: input_boolean.home_office_mode
-      state: 'on'
-    - condition: state
-      entity_id: input_boolean.guest_mode
-      state: 'off'
+    platform: state
+    entity_id: input_boolean.home_office_mode
   action:
-    service: switch.turn_on
-    entity_id: switch.monitor
-
-- alias: Plug - Monitor - Turn off with home office mode
-  trigger:
-    - platform: state
-      entity_id: input_boolean.home_office_mode
-      to: 'off'
-    - platform: state
-      entity_id: person.patrick
-      to: not_home
-  action:
-    service: switch.turn_off
+    service: "switch.turn_{{ trigger.to_state.state }}"
     entity_id: switch.monitor

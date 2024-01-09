@@ -24,6 +24,7 @@ core
 deps/
 ssl/
 tts/
+image/
 
 # Python cache
 __pycache__

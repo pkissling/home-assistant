@@ -20,8 +20,17 @@
     entity_id: sensor.0x2c1165fffe68cb8a_action
     to: 1_single
   action:
-    service: input_boolean.toggle
-    entity_id: input_boolean.home_office_mode
+    - service: light.turn_on
+      entity_id: light.study_desk
+      data:
+        color_name: "{{ is_state('input_boolean.home_office_mode', 'off') | iif('green', 'red') }}"
+    - service: light.turn_on
+      entity_id: light.study_desk
+      data:
+        flash: short
+    - delay: 1
+    - service: input_boolean.toggle
+      entity_id: input_boolean.home_office_mode
 
 - alias: Mode - Party Mode - Turn off after 4 hours
   trigger:

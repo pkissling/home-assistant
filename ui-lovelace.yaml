@@ -246,15 +246,15 @@ views:
             window_sensor: binary_sensor.window_bedroom_contact
 
       # Actions
-      - type: entities
-        entities:
-          - type: custom:paper-buttons-row
-            base_config:
-              layout: icon_name
-            buttons:
-              - icon: mdi:weather-night
-                entity: script.good_night
-                name: Good Night
-              - icon: mdi:weather-sunset-up
-                entity: script.good_morning
-                name: Good Morning
+      - type: horizontal-stack
+        cards:
+          - type: button
+            entity: script.good_night
+            icon_height: 36px
+            icon: mdi:weather-night
+            name: Good Night
+          - type: button
+            entity: script.good_morning
+            icon: mdi:weather-sunset-up
+            icon_height: 36px
+            name: Good Morning

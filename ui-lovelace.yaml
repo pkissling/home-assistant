@@ -249,12 +249,20 @@ views:
       - type: horizontal-stack
         cards:
           - type: button
-            entity: script.good_night
-            icon_height: 36px
-            icon: mdi:weather-night
-            name: Good Night
-          - type: button
-            entity: script.good_morning
             icon: mdi:weather-sunset-up
             icon_height: 36px
             name: Good Morning
+            tap_action:
+              action: call-service
+              service: script.turn_on
+              data:
+                entity_id: script.good_morning
+          - type: button
+            icon_height: 36px
+            icon: mdi:weather-night
+            name: Good Night
+            tap_action:
+              action: call-service
+              service: script.turn_on
+              data:
+                entity_id: script.good_night

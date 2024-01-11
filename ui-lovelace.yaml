@@ -95,6 +95,7 @@ views:
 
       # Horizon Card
       - type: custom:horizon-card
+        time_format: '24'
         fields:
           dawn: false
           dusk: false

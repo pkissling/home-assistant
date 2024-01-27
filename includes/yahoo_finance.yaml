@@ -5,6 +5,7 @@ symbols:
   - ^IXIC
   - ^GSPC
   - ^GDAXI
+  - MWL=F
   - ETH-USD
   - BTC-USD
   - EURUSD=X

@@ -20,6 +20,8 @@
         entity_id: light.bedroom_wardrobe
         brightness: 1
         transition: 1
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.night_light_mode
     # wait 1 minute until adaptive lighting has adjusted color temperature
     - delay: 00:01:00
     - service: pyscript.adjust_light

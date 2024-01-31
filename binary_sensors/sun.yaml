@@ -25,7 +25,7 @@
             sunrise_time <= states('sensor.time')
               and
             (
-              states('sensor.motion_study_illuminance_lux') | int > 50
+              is_state('binary_sensor.lightlevel_study_dark', 'off')
                 or
               states('sensor.time') < sunset_time
             )

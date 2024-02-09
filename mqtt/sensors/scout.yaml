@@ -1,6 +1,6 @@
 ---
 
-- name: Unhealhy Docker Containers
+- name: Unhealthy Docker Containers
   unique_id: docker_unhealthy_containers
   state_topic: scout/unhealthy-containers
   unit_of_measurement: Containers

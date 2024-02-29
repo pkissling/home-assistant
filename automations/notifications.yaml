@@ -103,9 +103,9 @@
     platform: template
     value_template: >
       {{
-        states('device_tracker.tado_patricks_iphone')
+        states('device_tracker.patricks_iphone_2')
           !=
-        states('device_tracker.router_patricks_iphone')
+        states('device_tracker.patricks_iphone_3')
       }}
     for:
       hours: 1
@@ -120,9 +120,9 @@
     platform: template
     value_template: >
       {{
-        states('device_tracker.tado_sandras_iphone')
+        states('device_tracker.sandras_iphone_2')
           !=
-        states('device_tracker.router_sandras_iphone')
+        states('device_tracker.sandras_iphone_3')
       }}
     for:
       hours: 1

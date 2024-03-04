@@ -103,7 +103,7 @@
     platform: state
     entity_id: input_boolean.summer_mode
   action:
-    service: "input_boolean.turn_{{ trigger.to_state.state }}"
+    service: "switch.turn_{{ 'on' if trigger.to_state.state == 'off' else 'off' }}"
     entity_id: switch.climate_all
 
 - alias: Mode - Night Light Mode - Turn on

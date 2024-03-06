@@ -162,3 +162,18 @@
       entity_id: select.living_room_activities
     data:
       option: power_off
+
+- alias: Remote - TV - Switch to Pioneer when Chromecast playing
+  trigger:
+    platform: state
+    entity_id: media_player.chromecast
+    to: playing
+  condition:
+    condition: state
+    entity_id: media_player.all_speakers
+    state: 'off'
+  action:
+    service: media_player.select_source
+    entity_id: media_player.lg_webos_smart_tv
+    data:
+      source: Pioneer

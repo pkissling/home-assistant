@@ -15,20 +15,13 @@
       entity_id: group.residents
       state: home
   action:
-    - service: pyscript.adjust_light
-      data:
-        entity_id: light.bedroom_wardrobe
-        brightness: 1
-        transition: 1
     - service: input_boolean.turn_off
       entity_id: input_boolean.night_light_mode
-    # wait 1 minute until adaptive lighting has adjusted color temperature
-    - delay: 00:01:00
-    - service: pyscript.adjust_light
+    - service: script.repeat_turn_on_light
       data:
-        entity_id: light.bedroom_wardrobe
-        brightness: 200
-        transition: 1740  # 29 mins
+        entity_id: light.bedroom
+        duration: 30
+
 
 - alias: Alarm - Morning Routine - News and Radio
   trigger:

@@ -165,13 +165,22 @@
 
 - alias: Remote - TV - Switch to Pioneer when Chromecast playing
   trigger:
-    platform: state
-    entity_id: media_player.chromecast
-    to: playing
+    - platform: state
+      entity_id: media_player.chromecast
+      to: playing
+    - platform: state
+      entity_id: media_player.lg_webos_smart_tv
+      to: 'on'
   condition:
-    condition: state
-    entity_id: media_player.all_speakers
-    state: 'off'
+    - condition: state
+      entity_id: media_player.all_speakers
+      state: 'off'
+    - condition: state
+      entity_id: media_player.lg_webos_smart_tv
+      state: 'on'
+    - condition: state
+      entity_id: media_player.chromecast
+      state: playing
   action:
     service: media_player.select_source
     entity_id: media_player.lg_webos_smart_tv

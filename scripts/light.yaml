@@ -16,7 +16,7 @@ repeat_turn_on_light:
             data:
               variables:
                 entity_id: "{{ entity_id }}"
-                brightness: 255
+                brightness: 200
                 transition: "{{ (30 - repeat.index) * 60 }}"
           - delay: 00:01:00
         until: "{{ repeat.index > duration or is_state(entity_id, 'off') }}"

@@ -36,7 +36,7 @@
       state: home
   action:
     service: switch.turn_on
-    entity_id: switch.radio_nrj
+    entity_id: switch.radio_puls
 
 - alias: Alarm - Toggle alarm when alarm needs adjustment due to workday
   trigger:

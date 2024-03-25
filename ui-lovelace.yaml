@@ -10,6 +10,11 @@ views:
         forecast_rows: 6
         date_pattern: ccc, dd. MMM yyyy
         time_format: 24
+        card_mod:
+          style: |
+            clock-weather-card-today-right-wrap-center {
+              font-size: 4rem !important;
+            }
 
       # Vacuum
       - type: custom:vacuum-card

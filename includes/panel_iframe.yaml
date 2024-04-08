@@ -1,6 +1,0 @@
----
-
-grafana:
-  title: Grafana
-  url: !secret grafana_url
-  icon: mdi:view-dashboard

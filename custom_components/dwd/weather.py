@@ -1,4 +1,5 @@
 """Support for DWD weather service."""
+
 from __future__ import annotations
 
 from datetime import UTC, date, datetime, time, timedelta
@@ -33,6 +34,7 @@ from homeassistant.components.weather import (
     ATTR_FORECAST_PRECIPITATION_PROBABILITY,
     ATTR_FORECAST_TIME,
     ATTR_FORECAST_WIND_BEARING,
+    DOMAIN as WEATHER_DOMAIN,
     SingleCoordinatorWeatherEntity,
     WeatherEntityFeature,
 )
@@ -44,7 +46,7 @@ from homeassistant.const import (
     UnitOfTemperature,
 )
 from homeassistant.core import HomeAssistant, callback
-from homeassistant.helpers import sun
+from homeassistant.helpers import entity_registry as er, sun
 from homeassistant.helpers.device_registry import DeviceEntryType
 from homeassistant.helpers.entity import DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
@@ -85,7 +87,6 @@ _LOGGER = logging.getLogger(__name__)
 class ForecastMode(Enum):
     """The forecast mode of a Weather entity."""
 
-    STANDARD = 0
     DAILY = 1
     HOURLY = 2
 
@@ -97,6 +98,7 @@ async def async_setup_entry(
 ):
     """Add a weather entity from a config_entry."""
     coordinator: DwdDataUpdateCoordinator = hass.data[DOMAIN][config_entry.entry_id]
+    entity_registry = er.async_get(hass)
 
     device = {
         "identifiers": {(DOMAIN, config_entry.unique_id)},
@@ -106,6 +108,22 @@ async def async_setup_entry(
         "entry_type": DeviceEntryType.SERVICE,
     }
 
+    # Remove hourly entity from legacy config entries
+    if hourly_entity_id := entity_registry.async_get_entity_id(
+        WEATHER_DOMAIN,
+        DOMAIN,
+        f"{config_entry.unique_id}-hourly",
+    ):
+        entity_registry.async_remove(hourly_entity_id)
+
+    # Remove daily entity from legacy config entries
+    if daily_entity_id := entity_registry.async_get_entity_id(
+        WEATHER_DOMAIN,
+        DOMAIN,
+        f"{config_entry.unique_id}-daily",
+    ):
+        entity_registry.async_remove(daily_entity_id)
+
     async_add_entities(
         [
             DwdWeather(
@@ -113,23 +131,6 @@ async def async_setup_entry(
                 coordinator,
                 config_entry.unique_id,
                 config_entry,
-                ForecastMode.STANDARD,
-                device,
-            ),
-            DwdWeather(
-                hass,
-                coordinator,
-                f"{config_entry.unique_id}-daily",
-                config_entry,
-                ForecastMode.DAILY,
-                device,
-            ),
-            DwdWeather(
-                hass,
-                coordinator,
-                f"{config_entry.unique_id}-hourly",
-                config_entry,
-                ForecastMode.HOURLY,
                 device,
             ),
         ]
@@ -145,7 +146,6 @@ class DwdWeather(SingleCoordinatorWeatherEntity[DwdDataUpdateCoordinator]):
         coordinator: DwdDataUpdateCoordinator,
         unique_id: str,
         config: ConfigEntry,
-        forecast_mode: ForecastMode,
         device: DeviceInfo,
     ) -> None:
         """Initialize."""
@@ -153,19 +153,12 @@ class DwdWeather(SingleCoordinatorWeatherEntity[DwdDataUpdateCoordinator]):
         self._hass: HomeAssistant = hass
         self._attr_unique_id = unique_id
         self._config: ConfigEntry = config
-        self._forecast_mode: ForecastMode = forecast_mode
         self._attr_device_info = device
         self._conf_current_weather: str = self._config.options.get(
             CONF_CURRENT_WEATHER, CONF_CURRENT_WEATHER_DEFAULT
         )
 
         name = self._config.title
-        name_appendix = ""
-
-        if self._forecast_mode == ForecastMode.HOURLY:
-            name_appendix = " Hourly"
-        if self._forecast_mode == ForecastMode.DAILY:
-            name_appendix = " Daily"
 
         if name is None:
             name = self.hass.config.location_name
@@ -173,18 +166,14 @@ class DwdWeather(SingleCoordinatorWeatherEntity[DwdDataUpdateCoordinator]):
         if name is None:
             name = "DWD"
 
-        self._attr_name = f"{name}{name_appendix}"
+        self._attr_name = name
 
-        self._attr_entity_registry_enabled_default = (
-            self._forecast_mode == ForecastMode.STANDARD
-        )
+        self._attr_entity_registry_enabled_default = True
 
         self._attr_supported_features = 0
         if self._config.options.get(CONF_FORECAST, CONF_FORECAST_DEFAULT):
-            if self._forecast_mode in (ForecastMode.STANDARD, ForecastMode.DAILY):
-                self._attr_supported_features |= WeatherEntityFeature.FORECAST_DAILY
-            if self._forecast_mode in (ForecastMode.STANDARD, ForecastMode.HOURLY):
-                self._attr_supported_features |= WeatherEntityFeature.FORECAST_HOURLY
+            self._attr_supported_features |= WeatherEntityFeature.FORECAST_DAILY
+            self._attr_supported_features |= WeatherEntityFeature.FORECAST_HOURLY
 
         self._attr_native_temperature_unit = UnitOfTemperature.CELSIUS
         self._attr_native_pressure_unit = UnitOfPressure.HPA
@@ -338,18 +327,6 @@ class DwdWeather(SingleCoordinatorWeatherEntity[DwdDataUpdateCoordinator]):
         else:
             return None
 
-    @property
-    def forecast(self):
-        """Return the forecast array."""
-
-        if not self._config.options.get(CONF_FORECAST, CONF_FORECAST_DEFAULT):
-            return None
-
-        if self._forecast_mode == ForecastMode.STANDARD:
-            return None
-
-        return self._get_forecast(self._forecast_mode)
-
     @callback
     def _async_forecast_daily(self):
         """Return the daily forecast in native units."""
@@ -445,282 +422,282 @@ class DwdWeather(SingleCoordinatorWeatherEntity[DwdDataUpdateCoordinator]):
                             weather_value = int(round(float(raw_weather_value), 0))
                             if weather_value == 0:
                                 if sun.is_up(self._hass, timestamp):
-                                    hourly_item[
-                                        ATTR_FORECAST_CONDITION
-                                    ] = ATTR_CONDITION_SUNNY
+                                    hourly_item[ATTR_FORECAST_CONDITION] = (
+                                        ATTR_CONDITION_SUNNY
+                                    )
                                 else:
-                                    hourly_item[
-                                        ATTR_FORECAST_CONDITION
-                                    ] = ATTR_CONDITION_CLEAR_NIGHT
+                                    hourly_item[ATTR_FORECAST_CONDITION] = (
+                                        ATTR_CONDITION_CLEAR_NIGHT
+                                    )
                             elif 1 <= weather_value <= 2:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_PARTLYCLOUDY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_PARTLYCLOUDY
+                                )
                             elif weather_value == 3:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_CLOUDY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_CLOUDY
+                                )
                             elif 4 <= weather_value <= 12:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_FOG
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_FOG
+                                )
                             elif weather_value == 13:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_LIGHTNING
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_LIGHTNING
+                                )
                             elif 14 <= weather_value <= 16:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_RAINY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_RAINY
+                                )
                             elif weather_value == 17:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_LIGHTNING
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_LIGHTNING
+                                )
                             elif weather_value == 18:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_WINDY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_WINDY
+                                )
                             elif weather_value == 19:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_WINDY_VARIANT
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_WINDY_VARIANT
+                                )
                             elif 20 <= weather_value <= 21:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_RAINY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_RAINY
+                                )
                             elif weather_value == 22:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_SNOWY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_SNOWY
+                                )
                             elif weather_value == 23:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_SNOWY_RAINY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_SNOWY_RAINY
+                                )
                             elif 24 <= weather_value <= 25:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_RAINY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_RAINY
+                                )
                             elif weather_value == 26:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_SNOWY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_SNOWY
+                                )
                             elif weather_value == 27:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_HAIL
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_HAIL
+                                )
                             elif weather_value == 28:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_FOG
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_FOG
+                                )
                             elif weather_value == 29:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_LIGHTNING_RAINY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_LIGHTNING_RAINY
+                                )
                             elif 30 <= weather_value <= 39:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_WINDY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_WINDY
+                                )
                             elif 40 <= weather_value <= 49:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_FOG
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_FOG
+                                )
                             elif 50 <= weather_value <= 63:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_RAINY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_RAINY
+                                )
                             elif 64 <= weather_value <= 65:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_POURING
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_POURING
+                                )
                             elif 66 <= weather_value <= 67:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_RAINY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_RAINY
+                                )
                             elif 68 <= weather_value <= 69:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_SNOWY_RAINY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_SNOWY_RAINY
+                                )
                             elif 70 <= weather_value <= 79:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_SNOWY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_SNOWY
+                                )
                             elif 80 <= weather_value <= 81:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_RAINY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_RAINY
+                                )
                             elif weather_value == 82:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_POURING
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_POURING
+                                )
                             elif 83 <= weather_value <= 84:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_SNOWY_RAINY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_SNOWY_RAINY
+                                )
                             elif 85 <= weather_value <= 88:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_SNOWY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_SNOWY
+                                )
                             elif 89 <= weather_value <= 90:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_HAIL
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_HAIL
+                                )
                             elif 91 <= weather_value <= 99:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_LIGHTNING_RAINY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_LIGHTNING_RAINY
+                                )
                             elif weather_value == 100:
                                 if sun.is_up(self._hass, timestamp):
-                                    hourly_item[
-                                        ATTR_FORECAST_CONDITION
-                                    ] = ATTR_CONDITION_SUNNY
+                                    hourly_item[ATTR_FORECAST_CONDITION] = (
+                                        ATTR_CONDITION_SUNNY
+                                    )
                                 else:
-                                    hourly_item[
-                                        ATTR_FORECAST_CONDITION
-                                    ] = ATTR_CONDITION_CLEAR_NIGHT
+                                    hourly_item[ATTR_FORECAST_CONDITION] = (
+                                        ATTR_CONDITION_CLEAR_NIGHT
+                                    )
                             elif 101 <= weather_value <= 102:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_PARTLYCLOUDY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_PARTLYCLOUDY
+                                )
                             elif weather_value == 103:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_CLOUDY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_CLOUDY
+                                )
                             elif 104 <= weather_value <= 105:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_FOG
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_FOG
+                                )
                             elif weather_value == 110:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_FOG
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_FOG
+                                )
                             elif weather_value == 111:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_SNOWY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_SNOWY
+                                )
                             elif weather_value == 112:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_LIGHTNING
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_LIGHTNING
+                                )
                             elif weather_value == 118:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_WINDY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_WINDY
+                                )
                             elif weather_value == 120:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_FOG
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_FOG
+                                )
                             elif 121 <= weather_value <= 123:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_RAINY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_RAINY
+                                )
                             elif weather_value == 124:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_SNOWY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_SNOWY
+                                )
                             elif weather_value == 125:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_RAINY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_RAINY
+                                )
                             elif weather_value == 126:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_LIGHTNING_RAINY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_LIGHTNING_RAINY
+                                )
                             elif 127 <= weather_value <= 129:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_WINDY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_WINDY
+                                )
                             elif 130 <= weather_value <= 135:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_FOG
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_FOG
+                                )
                             elif 140 <= weather_value <= 141:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_RAINY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_RAINY
+                                )
                             elif weather_value == 142:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_POURING
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_POURING
+                                )
                             elif weather_value == 143:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_RAINY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_RAINY
+                                )
                             elif weather_value == 144:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_POURING
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_POURING
+                                )
                             elif 145 <= weather_value <= 146:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_HAIL
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_HAIL
+                                )
                             elif 147 <= weather_value <= 148:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_RAINY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_RAINY
+                                )
                             elif 150 <= weather_value <= 158:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_RAINY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_RAINY
+                                )
                             elif 160 <= weather_value <= 162:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_RAINY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_RAINY
+                                )
                             elif weather_value == 163:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_POURING
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_POURING
+                                )
                             elif 164 <= weather_value <= 165:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_RAINY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_RAINY
+                                )
                             elif weather_value == 166:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_POURING
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_POURING
+                                )
                             elif 167 <= weather_value <= 168:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_SNOWY_RAINY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_SNOWY_RAINY
+                                )
                             elif 170 <= weather_value <= 178:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_SNOWY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_SNOWY
+                                )
                             elif 180 <= weather_value <= 182:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_RAINY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_RAINY
+                                )
                             elif 183 <= weather_value <= 184:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_POURING
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_POURING
+                                )
                             elif 185 <= weather_value <= 187:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_SNOWY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_SNOWY
+                                )
                             elif weather_value == 189:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_HAIL
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_HAIL
+                                )
                             elif 190 <= weather_value <= 191:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_LIGHTNING
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_LIGHTNING
+                                )
                             elif 192 <= weather_value <= 193:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_LIGHTNING_RAINY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_LIGHTNING_RAINY
+                                )
                             elif weather_value == 194:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_LIGHTNING
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_LIGHTNING
+                                )
                             elif 195 <= weather_value <= 196:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_LIGHTNING_RAINY
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_LIGHTNING_RAINY
+                                )
                             elif weather_value == 199:
-                                hourly_item[
-                                    ATTR_FORECAST_CONDITION
-                                ] = ATTR_CONDITION_WINDY_VARIANT
+                                hourly_item[ATTR_FORECAST_CONDITION] = (
+                                    ATTR_CONDITION_WINDY_VARIANT
+                                )
 
                     # Td is in K
                     if i < len(dwd_forecast_Td):
@@ -736,18 +713,18 @@ class DwdWeather(SingleCoordinatorWeatherEntity[DwdDataUpdateCoordinator]):
                         raw_cloud_coverage_value = dwd_forecast_Neff[i]
                         if raw_cloud_coverage_value != "-":
                             cloud_coverage_value = float(raw_cloud_coverage_value)
-                            hourly_item[
-                                ATTR_FORECAST_CLOUD_COVERAGE
-                            ] = cloud_coverage_value
+                            hourly_item[ATTR_FORECAST_CLOUD_COVERAGE] = (
+                                cloud_coverage_value
+                            )
 
                     # RR1c is in kg/m2 which is equal to mm
                     if i < len(dwd_forecast_RR1c):
                         raw_value = dwd_forecast_RR1c[i]
                         if raw_value != "-":
                             precipitation_mm = float(raw_value)
-                            hourly_item[
-                                ATTR_FORECAST_NATIVE_PRECIPITATION
-                            ] = precipitation_mm
+                            hourly_item[ATTR_FORECAST_NATIVE_PRECIPITATION] = (
+                                precipitation_mm
+                            )
 
                     # wwP is in %
                     if i < len(dwd_forecast_wwP):

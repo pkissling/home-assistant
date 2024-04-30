@@ -1,4 +1,5 @@
 """The DWD component."""
+
 from __future__ import annotations
 
 import codecs
@@ -186,8 +187,8 @@ class DwdDataUpdateCoordinator(DataUpdateCoordinator):
                 )
 
             if (
-                conf_current_weather == CONF_CURRENT_WEATHER_HYBRID
-                or conf_current_weather == CONF_CURRENT_WEATHER_FORECAST
+                conf_current_weather
+                in (CONF_CURRENT_WEATHER_HYBRID, CONF_CURRENT_WEATHER_FORECAST)
                 or conf_forecast
             ):
                 # Fetch forecast, if new data is available (using ETag header).

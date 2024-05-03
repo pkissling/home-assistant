@@ -132,6 +132,7 @@
   trigger:
     platform: state
     entity_id: sensor.roborock_last_clean_area
+    not_from: unavailable
   action:
     service: input_text.set_value
     entity_id: input_text.vacuum_cleaned_m2_since_last_emptying

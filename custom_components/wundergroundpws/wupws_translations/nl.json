@@ -1,0 +1,30 @@
+{
+  "dewpt": "Dauwpunt",
+  "elev": "Verhoging",
+  "heatIndex": "Warmte-index",
+  "humidity": "Relatieve vochtigheid",
+  "neighborhood": "Buurt",
+  "obsTimeLocal": "Lokale observatietijd",
+  "precipRate": "Neerslagsnelheid",
+  "precipTotal": "Neerslag vandaag",
+  "pressure": "Druk",
+  "solarRadiation": "Zonnestraling",
+  "stationID": "Station-ID",
+  "temp": "Temperatuur",
+  "uv": "UV-index",
+  "windChill": "Gevoelstemperatuur",
+  "windDirectionCardinal": "Windrichting - Kardinaal",
+  "windGust": "Windvlaag",
+  "windSpeed": "Windsnelheid",
+  "winddir": "Windrichting - Graden",
+  "narrative": "Samenvatting van het weer",
+  "qpfSnow": "Sneeuw hoeveelheid",
+  "daypart": {
+    "expired": "Vandaag verlopen",
+    "narrative": "Voorspelling Samenvatting",
+    "precipChance": "Kans op neerslag",
+    "qpf": "Hoeveelheid neerslag",
+    "temperature": "Verwachte temperatuur",
+    "windSpeed": "Gemiddelde wind"
+  }
+}

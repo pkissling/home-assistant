@@ -1,0 +1,30 @@
+{
+  "dewpt": "Duggpunkt",
+  "elev": "Høyde",
+  "heatIndex": "Varmeindeks",
+  "humidity": "Relativ fuktighet",
+  "neighborhood": "Nabolag",
+  "obsTimeLocal": "Lokal observasjonstid",
+  "precipRate": "Nedbørshastighet",
+  "precipTotal": "Nedbør i dag",
+  "pressure": "Press",
+  "solarRadiation": "Solstråling",
+  "stationID": "Stasjons-ID",
+  "temp": "Temperatur",
+  "uv": "UV-indeks",
+  "windChill": "Vindavkjøling",
+  "windDirectionCardinal": "Vindretning - kardinal",
+  "windGust": "Vindkast",
+  "windSpeed": "Vindfart",
+  "winddir": "Vindretning - grader",
+  "narrative": "Væroppsummering",
+  "qpfSnow": "Snømengde",
+  "daypart": {
+    "expired": "I dag gikk ut",
+    "narrative": "Prognosesammendrag",
+    "precipChance": "Nedbørsannsynlighet",
+    "qpf": "Nedbørsmengde",
+    "temperature": "Varsel temperatur",
+    "windSpeed": "Gjennomsnittlig vind"
+  }
+}

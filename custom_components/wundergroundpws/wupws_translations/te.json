@@ -1,0 +1,30 @@
+{
+  "dewpt": "మంచు బిందువు",
+  "elev": "ఎలివేషన్",
+  "heatIndex": "ఉష్ణ సూచిక",
+  "humidity": "సాపేక్ష ఆర్ద్రత",
+  "neighborhood": "ఇరుగుపొరుగు",
+  "obsTimeLocal": "స్థానిక పరిశీలన సమయం",
+  "precipRate": "అవపాతం రేటు",
+  "precipTotal": "నేడు అవపాతం",
+  "pressure": "ఒత్తిడి",
+  "solarRadiation": "సౌర వికిరణం",
+  "stationID": "స్టేషన్ ID",
+  "temp": "ఉష్ణోగ్రత",
+  "uv": "UV సూచిక",
+  "windChill": "చల్ల గాలి",
+  "windDirectionCardinal": "గాలి దిశ - కార్డినల్",
+  "windGust": "విండ్ గస్ట్",
+  "windSpeed": "గాలి వేగం",
+  "winddir": "గాలి దిశ - డిగ్రీలు",
+  "narrative": "వాతావరణ సారాంశం",
+  "qpfSnow": "మంచు మొత్తం",
+  "daypart": {
+    "expired": "ఈరోజు గడువు ముగిసింది",
+    "narrative": "సూచన సారాంశం",
+    "precipChance": "అవపాతం సంభావ్యత",
+    "qpf": "అవపాతం మొత్తం",
+    "temperature": "సూచన ఉష్ణోగ్రత",
+    "windSpeed": "సగటు గాలి"
+  }
+}

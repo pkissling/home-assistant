@@ -1,0 +1,30 @@
+{
+  "dewpt": "Daggarmark",
+  "elev": "Hækkun",
+  "heatIndex": "Hitavísitala",
+  "humidity": "Hlutfallslegur raki",
+  "neighborhood": "Hverfi",
+  "obsTimeLocal": "Staðbundinn athugunartími",
+  "precipRate": "Úrkomuhraði",
+  "precipTotal": "Úrkoma í dag",
+  "pressure": "Þrýstingur",
+  "solarRadiation": "Sólargeislun",
+  "stationID": "Stöðvarkenni",
+  "temp": "Hitastig",
+  "uv": "UV vísitala",
+  "windChill": "Vindkæling",
+  "windDirectionCardinal": "Vindátt - Cardinal",
+  "windGust": "Vindhviða",
+  "windSpeed": "Vindhraði",
+  "winddir": "Vindátt - gráður",
+  "narrative": "Veður samantekt",
+  "qpfSnow": "Snjómagn",
+  "daypart": {
+    "expired": "Í dag rann út",
+    "narrative": "Samantekt spá",
+    "precipChance": "Úrkomulíkur",
+    "qpf": "Úrkomumagn",
+    "temperature": "Spá um hitastig",
+    "windSpeed": "Meðalvindur"
+  }
+}

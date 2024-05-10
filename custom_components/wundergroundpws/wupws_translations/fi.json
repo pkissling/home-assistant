@@ -1,0 +1,30 @@
+{
+  "dewpt": "Kastepiste",
+  "elev": "Korkeus",
+  "heatIndex": "Lämpöindeksi",
+  "humidity": "Suhteellinen kosteus",
+  "neighborhood": "Naapurustossa",
+  "obsTimeLocal": "Paikallinen havaintoaika",
+  "precipRate": "Sademäärä",
+  "precipTotal": "Sade tänään",
+  "pressure": "Paine",
+  "solarRadiation": "Auringonsäteily",
+  "stationID": "Aseman tunnus",
+  "temp": "Lämpötila",
+  "uv": "UV-indeksi",
+  "windChill": "Tuulen jäähdytys",
+  "windDirectionCardinal": "Tuulen suunta - Cardinal",
+  "windGust": "Tuulenpuuska",
+  "windSpeed": "Tuulen nopeus",
+  "winddir": "Tuulen suunta - astetta",
+  "narrative": "Sää yhteenveto",
+  "qpfSnow": "Lumen määrä",
+  "daypart": {
+    "expired": "Tänään Vanhentunut",
+    "narrative": "Ennusteen yhteenveto",
+    "precipChance": "Sateen todennäköisyys",
+    "qpf": "Sademäärä",
+    "temperature": "Ennuste lämpötila",
+    "windSpeed": "Keskimääräinen tuuli"
+  }
+}

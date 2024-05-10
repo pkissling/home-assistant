@@ -1,0 +1,30 @@
+{
+  "dewpt": "Çiy nöqtəsi",
+  "elev": "Yüksəklik",
+  "heatIndex": "İstilik indeksi",
+  "humidity": "Nisbi Rütubət",
+  "neighborhood": "Qonşuluq",
+  "obsTimeLocal": "Yerli Müşahidə Vaxtı",
+  "precipRate": "Yağıntının dərəcəsi",
+  "precipTotal": "Bu gün yağıntı",
+  "pressure": "Təzyiq",
+  "solarRadiation": "Günəş radiasiyası",
+  "stationID": "Stansiya ID",
+  "temp": "Temperatur",
+  "uv": "UV indeksi",
+  "windChill": "Külək Soyuq",
+  "windDirectionCardinal": "Küləyin istiqaməti - Kardinal",
+  "windGust": "Güclü Külək",
+  "windSpeed": "Külək sürəti",
+  "winddir": "Küləyin istiqaməti - dərəcə",
+  "narrative": "Hava xülasəsi",
+  "qpfSnow": "Qar miqdarı",
+  "daypart": {
+    "expired": "Bu gün Bitdi",
+    "narrative": "Proqnozun xülasəsi",
+    "precipChance": "Yağış ehtimalı",
+    "qpf": "Yağıntının miqdarı",
+    "temperature": "Proqnoz Temperatur",
+    "windSpeed": "Orta Külək"
+  }
+}

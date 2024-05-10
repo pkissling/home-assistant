@@ -1,0 +1,30 @@
+{
+  "dewpt": "Dugpunkt",
+  "elev": "Højde",
+  "heatIndex": "Varmeindeks",
+  "humidity": "Relativ luftfugtighed",
+  "neighborhood": "Kvarter",
+  "obsTimeLocal": "Lokal observationstid",
+  "precipRate": "Nedbørshastighed",
+  "precipTotal": "Nedbør i dag",
+  "pressure": "Tryk",
+  "solarRadiation": "Solstråling",
+  "stationID": "Stations-id",
+  "temp": "Temperatur",
+  "uv": "UV-indeks",
+  "windChill": "Vind Chill",
+  "windDirectionCardinal": "Vindretning - kardinal",
+  "windGust": "Vindstød",
+  "windSpeed": "Vindhastighed",
+  "winddir": "Vindretning - grader",
+  "narrative": "Vejroversigt",
+  "qpfSnow": "Snemængde",
+  "daypart": {
+    "expired": "I dag udløb",
+    "narrative": "Oversigt over prognosen",
+    "precipChance": "Sandsynlighed for nedbør",
+    "qpf": "Nedbørsmængde",
+    "temperature": "Prognose temperatur",
+    "windSpeed": "Gennemsnitlig vind"
+  }
+}

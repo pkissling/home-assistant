@@ -1,0 +1,30 @@
+{
+  "dewpt": "පිනි පොයින්ට්",
+  "elev": "උන්නතාංශය",
+  "heatIndex": "තාප දර්ශකය",
+  "humidity": "සාපේක්ෂ ආර්ද්රතාව",
+  "neighborhood": "අසල් වැසියෝ",
+  "obsTimeLocal": "දේශීය නිරීක්ෂණ කාලය",
+  "precipRate": "වර්ෂාපතන අනුපාතය",
+  "precipTotal": "අද වර්ෂාපතනය",
+  "pressure": "පීඩනය",
+  "solarRadiation": "සූර්ය විකිරණ",
+  "stationID": "ස්ථාන හැඳුනුම්පත",
+  "temp": "උෂ්ණත්වය",
+  "uv": "UV දර්ශකය",
+  "windChill": "හුළං මිරිස්",
+  "windDirectionCardinal": "සුළං දිශාව - කාදිනල්",
+  "windGust": "සුළං රළ",
+  "windSpeed": "සුළං වේගය",
+  "winddir": "සුළං දිශාව - අංශක",
+  "narrative": "කාලගුණ සාරාංශය",
+  "qpfSnow": "හිම ප්රමාණය",
+  "daypart": {
+    "expired": "අද කල් ඉකුත් විය",
+    "narrative": "අනාවැකි සාරාංශය",
+    "precipChance": "වර්ෂාපතන සම්භාවිතාව",
+    "qpf": "වර්ෂාපතන ප්රමාණය",
+    "temperature": "පුරෝකථන උෂ්ණත්වය",
+    "windSpeed": "සාමාන්ය සුළං"
+  }
+}

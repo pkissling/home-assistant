@@ -1,0 +1,30 @@
+{
+  "dewpt": "Dewpoint",
+  "elev": "Elevation",
+  "heatIndex": "Heat Index",
+  "humidity": "Relative Humidity",
+  "neighborhood": "Neighborhood",
+  "obsTimeLocal": "Local Observation Time",
+  "precipRate": "Precipitation Rate",
+  "precipTotal": "Precipitation Today",
+  "pressure": "Pressure",
+  "solarRadiation": "Solar Radiation",
+  "stationID": "Station ID",
+  "temp": "Temperature",
+  "uv": "UV Index",
+  "windChill": "Wind Chill",
+  "windDirectionCardinal": "Wind Direction - Cardinal",
+  "windGust": "Wind Gust",
+  "windSpeed": "Wind Speed",
+  "winddir": "Wind Direction - Degrees",
+  "narrative": "Weather Summary",
+  "qpfSnow": "Snow Amount",
+  "daypart": {
+    "expired": "Today Expired",
+    "narrative": "Forecast Summary",
+    "precipChance": "Precipitation Probability",
+    "qpf": "Precipitation Amount",
+    "temperature": "Forecast Temperature",
+    "windSpeed": "Average Wind"
+  }
+}

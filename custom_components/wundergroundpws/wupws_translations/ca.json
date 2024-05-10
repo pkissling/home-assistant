@@ -1,0 +1,30 @@
+{
+  "dewpt": "Punt de rosada",
+  "elev": "Elevació",
+  "heatIndex": "Índex de calor",
+  "humidity": "Humitat relativa",
+  "neighborhood": "Barri",
+  "obsTimeLocal": "Hora d'observació local",
+  "precipRate": "Taxa de precipitació",
+  "precipTotal": "Precipitació avui",
+  "pressure": "Pressió",
+  "solarRadiation": "Radiació solar",
+  "stationID": "ID de l'estació",
+  "temp": "Temperatura",
+  "uv": "Índex UV",
+  "windChill": "Fred del vent",
+  "windDirectionCardinal": "Direcció del vent - Cardinal",
+  "windGust": "Ratxa de vent",
+  "windSpeed": "Velocitat del vent",
+  "winddir": "Direcció del vent - graus",
+  "narrative": "Resum del temps",
+  "qpfSnow": "Quantitat de neu",
+  "daypart": {
+    "expired": "Avui caducat",
+    "narrative": "Resum de previsió",
+    "precipChance": "Probabilitat de precipitació",
+    "qpf": "Quantitat de precipitació",
+    "temperature": "Previsió de temperatura",
+    "windSpeed": "Vent mitjà"
+  }
+}

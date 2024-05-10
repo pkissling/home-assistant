@@ -1,0 +1,30 @@
+{
+  "dewpt": "이슬점",
+  "elev": "높이",
+  "heatIndex": "열 지수",
+  "humidity": "상대 습도",
+  "neighborhood": "이웃",
+  "obsTimeLocal": "현지 관찰 시간",
+  "precipRate": "강수량",
+  "precipTotal": "오늘의 강수량",
+  "pressure": "압력",
+  "solarRadiation": "태양 복사",
+  "stationID": "스테이션 ID",
+  "temp": "온도",
+  "uv": "자외선 지수",
+  "windChill": "차가운 바람",
+  "windDirectionCardinal": "풍향 - 추기경",
+  "windGust": "돌풍",
+  "windSpeed": "바람 속도",
+  "winddir": "풍향 - 도",
+  "narrative": "날씨 요약",
+  "qpfSnow": "적설량",
+  "daypart": {
+    "expired": "오늘 만료됨",
+    "narrative": "예측 요약",
+    "precipChance": "강수 확률",
+    "qpf": "강수량",
+    "temperature": "예측 온도",
+    "windSpeed": "평균 바람"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "dewpt": "điểm sương",
+  "elev": "độ cao",
+  "heatIndex": "Chỉ số nhiệt",
+  "humidity": "Độ ẩm tương đối",
+  "neighborhood": "Hàng xóm",
+  "obsTimeLocal": "Thời gian quan sát địa phương",
+  "precipRate": "Tỷ lệ mưa",
+  "precipTotal": "Lượng mưa hôm nay",
+  "pressure": "Áp lực",
+  "solarRadiation": "Bức xạ năng lượng mặt trời",
+  "stationID": "ID trạm",
+  "temp": "Nhiệt độ",
+  "uv": "Chỉ số UV",
+  "windChill": "gió lạnh",
+  "windDirectionCardinal": "Hướng Gió - Hồng Y",
+  "windGust": "Cơn gió mạnh",
+  "windSpeed": "Tốc độ gió",
+  "winddir": "Hướng gió - Độ",
+  "narrative": "Tóm tắt thời tiết",
+  "qpfSnow": "Lượng tuyết",
+  "daypart": {
+    "expired": "Hôm nay hết hạn",
+    "narrative": "Tóm tắt dự báo",
+    "precipChance": "Xác suất lượng mưa",
+    "qpf": "Lượng mưa",
+    "temperature": "Dự báo nhiệt độ",
+    "windSpeed": "Gió trung bình"
+  }
+}

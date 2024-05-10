@@ -1,0 +1,30 @@
+{
+  "dewpt": "Rosný bod",
+  "elev": "Nadmorská výška",
+  "heatIndex": "Tepelný index",
+  "humidity": "Relatívna vlhkosť",
+  "neighborhood": "Okolie",
+  "obsTimeLocal": "Miestny čas pozorovania",
+  "precipRate": "Miera zrážok",
+  "precipTotal": "Dnešné zrážky",
+  "pressure": "Tlak",
+  "solarRadiation": "Slnečné žiarenie",
+  "stationID": "ID stanice",
+  "temp": "Teplota",
+  "uv": "UV index",
+  "windChill": "Wind Chill",
+  "windDirectionCardinal": "Smer vetra - kardinál",
+  "windGust": "Náraz vetra",
+  "windSpeed": "Rýchlosť vetra",
+  "winddir": "Smer vetra - Stupne",
+  "narrative": "Súhrn počasia",
+  "qpfSnow": "Množstvo snehu",
+  "daypart": {
+    "expired": "Dnes vypršala platnosť",
+    "narrative": "Zhrnutie predpovede",
+    "precipChance": "Pravdepodobnosť zrážok",
+    "qpf": "Množstvo zrážok",
+    "temperature": "Predpoveď teploty",
+    "windSpeed": "Priemerný vietor"
+  }
+}

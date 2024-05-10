@@ -1,0 +1,30 @@
+{
+  "dewpt": "ઝાકળ બિંદુ",
+  "elev": "એલિવેશન",
+  "heatIndex": "હીટ ઇન્ડેક્સ",
+  "humidity": "સંબંધિત ભેજનું પ્રમાણ",
+  "neighborhood": "પડોશી",
+  "obsTimeLocal": "સ્થાનિક અવલોકન સમય",
+  "precipRate": "વરસાદ દર",
+  "precipTotal": "આજે વરસાદ",
+  "pressure": "દબાણ",
+  "solarRadiation": "સૌર કિરણોત્સર્ગ",
+  "stationID": "સ્ટેશન ID",
+  "temp": "તાપમાન",
+  "uv": "યુવી ઇન્ડેક્સ",
+  "windChill": "વિન્ડ ચિલ",
+  "windDirectionCardinal": "પવનની દિશા - કાર્ડિનલ",
+  "windGust": "પવન ગસ્ટ",
+  "windSpeed": "પવનની ઝડપ",
+  "winddir": "પવનની દિશા - ડિગ્રી",
+  "narrative": "હવામાન સારાંશ",
+  "qpfSnow": "સ્નો જથ્થો",
+  "daypart": {
+    "expired": "આજે એક્સપાયર",
+    "narrative": "આગાહી સારાંશ",
+    "precipChance": "વરસાદની સંભાવના",
+    "qpf": "વરસાદની માત્રા",
+    "temperature": "આગાહી તાપમાન",
+    "windSpeed": "સરેરાશ પવન"
+  }
+}

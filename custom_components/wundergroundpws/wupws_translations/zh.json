@@ -1,0 +1,30 @@
+{
+  "dewpt": "露点",
+  "elev": "海拔",
+  "heatIndex": "热度指数",
+  "humidity": "相对湿度",
+  "neighborhood": "邻里",
+  "obsTimeLocal": "当地观测时间",
+  "precipRate": "降水率",
+  "precipTotal": "今日降水",
+  "pressure": "压力",
+  "solarRadiation": "太阳辐射",
+  "stationID": "站号",
+  "temp": "温度",
+  "uv": "紫外线指数",
+  "windChill": "风寒",
+  "windDirectionCardinal": "风向 - 红衣主教",
+  "windGust": "阵风",
+  "windSpeed": "风速",
+  "winddir": "风向 - 度",
+  "narrative": "天气摘要",
+  "qpfSnow": "雪量",
+  "daypart": {
+    "expired": "今天过期",
+    "narrative": "预测摘要",
+    "precipChance": "降水概率",
+    "qpf": "降水量",
+    "temperature": "预报温度",
+    "windSpeed": "平均风"
+  }
+}

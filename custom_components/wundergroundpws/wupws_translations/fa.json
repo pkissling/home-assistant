@@ -1,0 +1,30 @@
+{
+  "dewpt": "نقطه شبنم",
+  "elev": "ارتفاع",
+  "heatIndex": "شاخص گرما",
+  "humidity": "رطوبت نسبی",
+  "neighborhood": "محله",
+  "obsTimeLocal": "زمان مشاهده محلی",
+  "precipRate": "نرخ بارندگی",
+  "precipTotal": "بارش امروز",
+  "pressure": "فشار",
+  "solarRadiation": "تابش خورشیدی",
+  "stationID": "شناسه ایستگاه",
+  "temp": "درجه حرارت",
+  "uv": "شاخص اشعه ماوراء بنفش",
+  "windChill": "باد سرد",
+  "windDirectionCardinal": "جهت باد - کاردینال",
+  "windGust": "وزش باد",
+  "windSpeed": "سرعت باد",
+  "winddir": "جهت باد - درجه",
+  "narrative": "خلاصه آب و هوا",
+  "qpfSnow": "مقدار برف",
+  "daypart": {
+    "expired": "امروز منقضی شد",
+    "narrative": "خلاصه پیش بینی",
+    "precipChance": "احتمال بارش",
+    "qpf": "مقدار بارندگی",
+    "temperature": "پیش بینی دما",
+    "windSpeed": "باد متوسط"
+  }
+}

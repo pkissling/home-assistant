@@ -1,0 +1,30 @@
+{
+  "dewpt": "Taupunkt",
+  "elev": "Elevation",
+  "heatIndex": "Hitzeindex",
+  "humidity": "Relative Luftfeuchtigkeit",
+  "neighborhood": "Gegend",
+  "obsTimeLocal": "Lokale Beobachtungszeit",
+  "precipRate": "Niederschlagsrate",
+  "precipTotal": "Niederschlag heute",
+  "pressure": "Druck",
+  "solarRadiation": "Sonnenstrahlung",
+  "stationID": "Stations-ID",
+  "temp": "Temperatur",
+  "uv": "UV-Index",
+  "windChill": "Windchill",
+  "windDirectionCardinal": "Windrichtung - Kardinal",
+  "windGust": "Windstoß",
+  "windSpeed": "Windgeschwindigkeit",
+  "winddir": "Windrichtung - Grad",
+  "narrative": "Wetterzusammenfassung",
+  "qpfSnow": "Schneemenge",
+  "daypart": {
+    "expired": "Heute abgelaufen",
+    "narrative": "Prognosezusammenfassung",
+    "precipChance": "Niederschlagswahrscheinlichkeit",
+    "qpf": "Niederschlagsmenge",
+    "temperature": "Voraussichtliche Temperatur",
+    "windSpeed": "Durchschnittlicher Wind"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "dewpt": "Titik embun",
+  "elev": "Ketinggian",
+  "heatIndex": "Indeks panas",
+  "humidity": "Kelembaban relatif",
+  "neighborhood": "Lingkungan",
+  "obsTimeLocal": "Waktu Pengamatan Lokal",
+  "precipRate": "Tingkat Curah Hujan",
+  "precipTotal": "Curah Hujan Hari Ini",
+  "pressure": "Tekanan",
+  "solarRadiation": "Radiasi sinar matahari",
+  "stationID": "ID stasiun",
+  "temp": "Suhu",
+  "uv": "Indeks uv",
+  "windChill": "Angin dingin",
+  "windDirectionCardinal": "Arah Angin - Kardinal",
+  "windGust": "Angin Hembusan",
+  "windSpeed": "Kecepatan angin",
+  "winddir": "Arah Angin - Derajat",
+  "narrative": "Ringkasan Cuaca",
+  "qpfSnow": "Jumlah Salju",
+  "daypart": {
+    "expired": "Hari ini Kedaluwarsa",
+    "narrative": "Ringkasan Prakiraan",
+    "precipChance": "Probabilitas Curah Hujan",
+    "qpf": "Jumlah Curah Hujan",
+    "temperature": "Prakiraan Suhu",
+    "windSpeed": "Angin Rata-Rata"
+  }
+}

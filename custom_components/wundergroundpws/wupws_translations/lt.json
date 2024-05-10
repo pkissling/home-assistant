@@ -1,0 +1,30 @@
+{
+  "dewpt": "Rasos taškas",
+  "elev": "Pakilimas",
+  "heatIndex": "Šilumos indeksas",
+  "humidity": "Santykinė drėgmė",
+  "neighborhood": "Kaimynystė",
+  "obsTimeLocal": "Vietinis stebėjimo laikas",
+  "precipRate": "Kritulių norma",
+  "precipTotal": "Krituliai šiandien",
+  "pressure": "Slėgis",
+  "solarRadiation": "Saulės radiacija",
+  "stationID": "Stoties ID",
+  "temp": "Temperatūra",
+  "uv": "UV indeksas",
+  "windChill": "Vėjo atšalimas",
+  "windDirectionCardinal": "Vėjo kryptis – kardinolas",
+  "windGust": "Vėjo gūsis",
+  "windSpeed": "Vėjo greitis",
+  "winddir": "Vėjo kryptis – laipsniai",
+  "narrative": "Orų santrauka",
+  "qpfSnow": "Sniego kiekis",
+  "daypart": {
+    "expired": "Šiandien Baigėsi galiojimo laikas",
+    "narrative": "Prognozės santrauka",
+    "precipChance": "Kritulių tikimybė",
+    "qpf": "Kritulių kiekis",
+    "temperature": "Temperatūros prognozė",
+    "windSpeed": "Vidutinis vėjas"
+  }
+}

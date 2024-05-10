@@ -1,0 +1,30 @@
+{
+  "dewpt": "Нуқтаи шабнам",
+  "elev": "Баландӣ",
+  "heatIndex": "Индекси гармӣ",
+  "humidity": "Рутубати нисбӣ",
+  "neighborhood": "Гузар",
+  "obsTimeLocal": "Вақти мушоҳидаи маҳаллӣ",
+  "precipRate": "Меъёри боришот",
+  "precipTotal": "Боришоти имрӯз",
+  "pressure": "Фишор",
+  "solarRadiation": "Радиатсияи офтобӣ",
+  "stationID": "ID истгоҳ",
+  "temp": "Ҳарорат",
+  "uv": "Индекси ултрабунафш",
+  "windChill": "Хунукии шамол",
+  "windDirectionCardinal": "Самти шамол - Кардинал",
+  "windGust": "Шамоли шамол",
+  "windSpeed": "Суръати шамол",
+  "winddir": "Самти шамол - Дараҷаҳо",
+  "narrative": "Хулосаи обу ҳаво",
+  "qpfSnow": "Миқдори барф",
+  "daypart": {
+    "expired": "Имрӯз ба охир расид",
+    "narrative": "Хулосаи пешгӯӣ",
+    "precipChance": "Эҳтимолияти боришот",
+    "qpf": "Микдори боришот",
+    "temperature": "Ҳарорати пешгӯӣ",
+    "windSpeed": "Шамоли миёна"
+  }
+}

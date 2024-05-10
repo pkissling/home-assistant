@@ -1,0 +1,30 @@
+{
+  "dewpt": "Dewpoint",
+  "elev": "Belentlik",
+  "heatIndex": "Atylylyk görkezijisi",
+  "humidity": "Otnositel çyglylyk",
+  "neighborhood": "Goňşuçylyk",
+  "obsTimeLocal": "Localerli syn etmegiň wagty",
+  "precipRate": "Ygalyň derejesi",
+  "precipTotal": "Bu gün ýagyş",
+  "pressure": "Basyş",
+  "solarRadiation": "Gün radiasiýasy",
+  "stationID": "Wokzal belgisi",
+  "temp": "Temperatura",
+  "uv": "UV görkezijisi",
+  "windChill": "Windel sowuklygy",
+  "windDirectionCardinal": "Windeliň ugry - Kardinal",
+  "windGust": "Windel öwüsýär",
+  "windSpeed": "Windeliň tizligi",
+  "winddir": "Windeliň ugry - derejeler",
+  "narrative": "Howanyň gysgaça mazmuny",
+  "qpfSnow": "Gar mukdary",
+  "daypart": {
+    "expired": "Şu gün gutardy",
+    "narrative": "Çaklamanyň gysgaça mazmuny",
+    "precipChance": "Ygalyň ähtimallygy",
+    "qpf": "Ygalyň mukdary",
+    "temperature": "Çaklama temperaturasy",
+    "windSpeed": "Ortaça ýel"
+  }
+}

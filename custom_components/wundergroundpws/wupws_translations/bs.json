@@ -1,0 +1,30 @@
+{
+  "dewpt": "Tačka rose",
+  "elev": "Elevacija",
+  "heatIndex": "Indeks topline",
+  "humidity": "Relativna vlažnost",
+  "neighborhood": "Neighbourhood",
+  "obsTimeLocal": "Vrijeme lokalnog posmatranja",
+  "precipRate": "Stopa padavina",
+  "precipTotal": "Padavine danas",
+  "pressure": "Pritisak",
+  "solarRadiation": "Solar Radiation",
+  "stationID": "ID stanice",
+  "temp": "Temperatura",
+  "uv": "UV indeks",
+  "windChill": "Hladan vjetar",
+  "windDirectionCardinal": "Smjer vjetra - kardinalni",
+  "windGust": "Wind Gust",
+  "windSpeed": "Brzina vjetra",
+  "winddir": "Smjer vjetra - stepeni",
+  "narrative": "Weather Summary",
+  "qpfSnow": "Količina snijega",
+  "daypart": {
+    "expired": "Today Expired",
+    "narrative": "Sažetak prognoze",
+    "precipChance": "Vjerojatnost padavina",
+    "qpf": "Količina padavina",
+    "temperature": "Prognoza temperature",
+    "windSpeed": "Average Wind"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "dewpt": "Punto di rugiada",
+  "elev": "Elevazione",
+  "heatIndex": "Indice di calore",
+  "humidity": "Umidità relativa",
+  "neighborhood": "Quartiere",
+  "obsTimeLocal": "Tempo di osservazione locale",
+  "precipRate": "Tasso di precipitazione",
+  "precipTotal": "Precipitazioni oggi",
+  "pressure": "Pressione",
+  "solarRadiation": "Radiazione solare",
+  "stationID": "ID stazione",
+  "temp": "Temperatura",
+  "uv": "Indice UV",
+  "windChill": "Vento gelido",
+  "windDirectionCardinal": "Direzione del vento - Cardinale",
+  "windGust": "Raffica di vento",
+  "windSpeed": "Velocità del vento",
+  "winddir": "Direzione del vento - Gradi",
+  "narrative": "Riepilogo meteo",
+  "qpfSnow": "Quantità di neve",
+  "daypart": {
+    "expired": "Scaduto oggi",
+    "narrative": "Riepilogo previsioni",
+    "precipChance": "Probabilità di precipitazioni",
+    "qpf": "Quantità di precipitazioni",
+    "temperature": "Temperatura prevista",
+    "windSpeed": "Vento medio"
+  }
+}

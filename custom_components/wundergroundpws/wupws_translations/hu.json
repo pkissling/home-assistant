@@ -1,0 +1,30 @@
+{
+  "dewpt": "Harmatpont",
+  "elev": "Magasság",
+  "heatIndex": "Hő index",
+  "humidity": "Relatív páratartalom",
+  "neighborhood": "Szomszédság",
+  "obsTimeLocal": "Helyi megfigyelési idő",
+  "precipRate": "Csapadékarány",
+  "precipTotal": "Csapadék ma",
+  "pressure": "Nyomás",
+  "solarRadiation": "Napsugárzás",
+  "stationID": "Állomásazonosító",
+  "temp": "Hőfok",
+  "uv": "UV mutató",
+  "windChill": "Szélhűtés",
+  "windDirectionCardinal": "Szélirány - Cardinal",
+  "windGust": "Széllökés",
+  "windSpeed": "Szélsebesség",
+  "winddir": "szélirány - fok",
+  "narrative": "Időjárás összefoglaló",
+  "qpfSnow": "Hó mennyisége",
+  "daypart": {
+    "expired": "Ma lejárt",
+    "narrative": "Előrejelzés összefoglalója",
+    "precipChance": "Csapadék valószínűsége",
+    "qpf": "Csapadék mennyisége",
+    "temperature": "Előrejelzési hőmérséklet",
+    "windSpeed": "Átlagos szél"
+  }
+}

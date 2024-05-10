@@ -1,0 +1,30 @@
+{
+  "dewpt": "Točka rosišča",
+  "elev": "Nadmorska višina",
+  "heatIndex": "Toplotni indeks",
+  "humidity": "Relativna vlažnost",
+  "neighborhood": "Soseska",
+  "obsTimeLocal": "Lokalni opazovalni čas",
+  "precipRate": "Stopnja padavin",
+  "precipTotal": "Padavine danes",
+  "pressure": "Pritisk",
+  "solarRadiation": "Sončno sevanje",
+  "stationID": "ID postaje",
+  "temp": "Temperatura",
+  "uv": "UV indeks",
+  "windChill": "Wind Chill",
+  "windDirectionCardinal": "Smer vetra - kardinal",
+  "windGust": "Sunek vetra",
+  "windSpeed": "Hitrost vetra",
+  "winddir": "Smer vetra - stopinje",
+  "narrative": "Vremenski povzetek",
+  "qpfSnow": "Količina snega",
+  "daypart": {
+    "expired": "Danes poteklo",
+    "narrative": "Povzetek napovedi",
+    "precipChance": "Verjetnost padavin",
+    "qpf": "Količina padavin",
+    "temperature": "Napoved temperature",
+    "windSpeed": "Povprečni veter"
+  }
+}

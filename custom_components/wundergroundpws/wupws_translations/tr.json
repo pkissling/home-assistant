@@ -1,0 +1,30 @@
+{
+  "dewpt": "çiğ noktası",
+  "elev": "Yükseklik",
+  "heatIndex": "Isı İndeksi",
+  "humidity": "Bağıl nem",
+  "neighborhood": "Komşu",
+  "obsTimeLocal": "Yerel Gözlem Süresi",
+  "precipRate": "Yağış Oranı",
+  "precipTotal": "Bugün Yağış",
+  "pressure": "Basınç",
+  "solarRadiation": "Güneş radyasyonu",
+  "stationID": "istasyon kimliği",
+  "temp": "Sıcaklık",
+  "uv": "UV Endeksi",
+  "windChill": "rüzgar soğuğu",
+  "windDirectionCardinal": "Rüzgar Yönü - Kardinal",
+  "windGust": "Sert Rüzgar",
+  "windSpeed": "Rüzgar hızı",
+  "winddir": "Rüzgar Yönü - Dereceler",
+  "narrative": "Hava Durumu Özeti",
+  "qpfSnow": "Kar Miktarı",
+  "daypart": {
+    "expired": "Bugün Süresi Doldu",
+    "narrative": "Tahmin Özeti",
+    "precipChance": "Yağış Olasılığı",
+    "qpf": "Yağış Miktarı",
+    "temperature": "Tahmini Sıcaklık",
+    "windSpeed": "Ortalama Rüzgar"
+  }
+}

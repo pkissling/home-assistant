@@ -1,0 +1,30 @@
+{
+  "dewpt": "ओसांक",
+  "elev": "ऊंचाई",
+  "heatIndex": "ताप सूचकांक",
+  "humidity": "सापेक्षिक आर्द्रता",
+  "neighborhood": "अड़ोस-पड़ोस",
+  "obsTimeLocal": "स्थानीय अवलोकन समय",
+  "precipRate": "वर्षा दर",
+  "precipTotal": "वर्षा आज",
+  "pressure": "दबाव",
+  "solarRadiation": "सौर विकिरण",
+  "stationID": "स्टेशन आईडी",
+  "temp": "तापमान",
+  "uv": "यूवी सूचकांक",
+  "windChill": "शीतल पवन",
+  "windDirectionCardinal": "हवा की दिशा - कार्डिनल",
+  "windGust": "हवा का झौंका",
+  "windSpeed": "हवा की गति",
+  "winddir": "हवा की दिशा - डिग्री",
+  "narrative": "मौसम सारांश",
+  "qpfSnow": "हिम राशि",
+  "daypart": {
+    "expired": "आज समाप्त हो गया",
+    "narrative": "पूर्वानुमान सारांश",
+    "precipChance": "वर्षा की संभावना",
+    "qpf": "वर्षा की मात्रा",
+    "temperature": "पूर्वानुमान तापमान",
+    "windSpeed": "औसत हवा"
+  }
+}

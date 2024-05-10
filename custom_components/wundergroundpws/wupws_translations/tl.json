@@ -1,0 +1,30 @@
+{
+  "dewpt": "Dewpoint",
+  "elev": "Elevation",
+  "heatIndex": "Index ng init",
+  "humidity": "Kamag-anak na Humidity",
+  "neighborhood": "Kapitbahayan",
+  "obsTimeLocal": "Oras ng Lokal na Pagmamasid",
+  "precipRate": "Rate ng Pag-ulan",
+  "precipTotal": "Precipitation Ngayon",
+  "pressure": "Presyon",
+  "solarRadiation": "Solar Radiation",
+  "stationID": "Station ID",
+  "temp": "Temperatura",
+  "uv": "UV index",
+  "windChill": "Malamig na hangin",
+  "windDirectionCardinal": "Direksyon ng Hangin - Cardinal",
+  "windGust": "Bugso ng hangin",
+  "windSpeed": "Bilis ng hangin",
+  "winddir": "Direksyon ng Hangin - Degrees",
+  "narrative": "Buod ng Panahon",
+  "qpfSnow": "Halaga ng Niyebe",
+  "daypart": {
+    "expired": "Ngayong Nag-expire",
+    "narrative": "Buod ng Pagtataya",
+    "precipChance": "Probability ng Precipitation",
+    "qpf": "Halaga ng Pag-ulan",
+    "temperature": "Pagtataya ng Temperatura",
+    "windSpeed": "Average na Hangin"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "dewpt": "Punct de condensare",
+  "elev": "Altitudinea",
+  "heatIndex": "Index de caldura",
+  "humidity": "Umiditate relativă",
+  "neighborhood": "Cartier",
+  "obsTimeLocal": "Ora locală de observare",
+  "precipRate": "Rata precipitațiilor",
+  "precipTotal": "Precipitații astăzi",
+  "pressure": "Presiune",
+  "solarRadiation": "Radiatie solara",
+  "stationID": "ID stație",
+  "temp": "Temperatura",
+  "uv": "Index UV",
+  "windChill": "Răcirea vântului",
+  "windDirectionCardinal": "Direcția vântului - Cardinal",
+  "windGust": "Rafala de vant",
+  "windSpeed": "Viteza vântului",
+  "winddir": "Direcția vântului - grade",
+  "narrative": "Rezumatul vremii",
+  "qpfSnow": "Cantitatea de zăpadă",
+  "daypart": {
+    "expired": "Azi a expirat",
+    "narrative": "Rezumatul prognozei",
+    "precipChance": "Probabilitatea precipitațiilor",
+    "qpf": "Cantitatea de precipitații",
+    "temperature": "Temperatura prognozată",
+    "windSpeed": "Vânt mediu"
+  }
+}

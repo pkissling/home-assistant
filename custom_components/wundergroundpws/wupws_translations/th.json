@@ -1,0 +1,30 @@
+{
+  "dewpt": "จุดน้ำค้าง",
+  "elev": "ระดับความสูง",
+  "heatIndex": "ดัชนีความร้อน",
+  "humidity": "ความชื้นสัมพัทธ์",
+  "neighborhood": "ละแวกบ้าน",
+  "obsTimeLocal": "เวลาสังเกตการณ์ในท้องถิ่น",
+  "precipRate": "อัตราหยาดน้ำฟ้า",
+  "precipTotal": "ฝนวันนี้",
+  "pressure": "ความดัน",
+  "solarRadiation": "รังสีสุริยะ",
+  "stationID": "รหัสสถานี",
+  "temp": "อุณหภูมิ",
+  "uv": "ดัชนีรังสียูวี",
+  "windChill": "ลมหนาว",
+  "windDirectionCardinal": "ทิศทางลม - พระคาร์ดินัล",
+  "windGust": "ลมกระโชก",
+  "windSpeed": "ความเร็วลม",
+  "winddir": "ทิศทางลม - องศา",
+  "narrative": "สรุปสภาพอากาศ",
+  "qpfSnow": "ปริมาณหิมะ",
+  "daypart": {
+    "expired": "วันนี้หมดอายุ",
+    "narrative": "สรุปการพยากรณ์",
+    "precipChance": "ความน่าจะเป็นของฝน",
+    "qpf": "ปริมาณน้ำฝน",
+    "temperature": "อุณหภูมิพยากรณ์",
+    "windSpeed": "ลมปานกลาง"
+  }
+}

@@ -7,9 +7,11 @@ resources:
     type: module
   - url: /hacsfiles/bar-card/bar-card.js
     type: module
-  - url: /hacsfiles/lovelace-fold-entity-row/fold-entity-row.js
-    type: module
   - url: /hacsfiles/formulaone-card/formulaone-card.js
+    type: module
+  - url: /hacsfiles/lovelace-hourly-weather/hourly-weather.js
+    type: module
+  - url: /hacsfiles/lovelace-fold-entity-row/fold-entity-row.js
     type: module
   - url: /hacsfiles/lovelace-horizon-card/lovelace-horizon-card.js
     type: module

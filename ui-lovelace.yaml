@@ -16,6 +16,12 @@ views:
               font-size: 4rem !important;
             }
 
+      # Hourly Weather
+      - type: custom:hourly-weather
+        entity: weather.home
+        name: null
+        icons: true
+
       # Vacuum
       - type: custom:vacuum-card
         entity: vacuum.roborock

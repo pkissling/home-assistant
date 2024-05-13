@@ -99,6 +99,7 @@
     - gainNet
     - returnGross
     - returnNet
+    - izf
   value_template: "OK"
 
 - platform: rest
@@ -131,6 +132,7 @@
     - returnNet
     - invested
     - value
+    - izf
   value_template: "OK"
 
 - platform: rest
@@ -200,6 +202,7 @@
     - gainNet
     - returnGross
     - returnNet
+    - izf
   value_template: "OK"
 
 - platform: rest
@@ -232,6 +235,7 @@
     - returnNet
     - invested
     - value
+    - izf
   value_template: "OK"
 
 - platform: rest
@@ -347,6 +351,16 @@
       friendly_name: Invested since start
       value_template: "{{ state_attr('sensor.parqet_api_patrick_returns_since_start', 'invested') }}"
       unit_of_measurement: Euro
+    parqet_api_patrick_overall_irr_1y:
+      friendly_name: 1y
+      value_template: "{{ state_attr('sensor.parqet_api_patrick_returns_1y', 'izf') }}"
+      unit_of_measurement: '%'
+      icon_template: mdi:sack-percent
+    parqet_api_patrick_overall_irr_since_start:
+      friendly_name: 1m
+      value_template: "{{ state_attr('sensor.parqet_api_patrick_returns_since_start', 'izf') }}"
+      unit_of_measurement: Euro
+      icon_template: mdi:trending-up
 
     # sandra
     parqet_api_sandra_depot:
@@ -461,3 +475,13 @@
         }}
       unit_of_measurement: Euro
       icon_template: mdi:account-group
+    parqet_api_sandra_overall_irr_1y:
+      friendly_name: 1y
+      value_template: "{{ state_attr('sensor.parqet_api_sandra_returns_1y', 'izf') }}"
+      unit_of_measurement: '%'
+      icon_template: mdi:sack-percent
+    parqet_api_sandra_overall_irr_since_start:
+      friendly_name: 1m
+      value_template: "{{ state_attr('sensor.parqet_api_sandra_returns_since_start', 'izf') }}"
+      unit_of_measurement: Euro
+      icon_template: mdi:trending-up

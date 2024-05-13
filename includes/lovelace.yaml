@@ -9,6 +9,8 @@ resources:
     type: module
   - url: /hacsfiles/formulaone-card/formulaone-card.js
     type: module
+  - url: /hacsfiles/kiosk-mode/kiosk-mode.js
+    type: module
   - url: /hacsfiles/lovelace-hourly-weather/hourly-weather.js
     type: module
   - url: /hacsfiles/lovelace-fold-entity-row/fold-entity-row.js

@@ -17,11 +17,29 @@
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.night_light_mode
-    - service: script.repeat_turn_on_light
+    - service: light.turn_on
+      entity_id: light.bedroom
       data:
-        entity_id: light.bedroom
-        duration: 30
-
+        brightness: 1
+    - service: adaptive_lighting.apply
+      entity_id: switch.adaptive_lighting_bedroom
+      data:
+        lights: light.bedroom
+        adapt_brightness: false
+        turn_on_lights: true
+    - service: switch.turn_off
+      entity_id: switch.adaptive_lighting_bedroom
+    - delay:
+        seconds: 5
+    - service: light.turn_on
+      entity_id: light.bedroom
+      data:
+        brightness: 200
+        transition: 1800  # 30 min
+    - delay:
+        minutes: 30
+    - service: switch.turn_on
+      entity_id: switch.adaptive_lighting_bedroom
 
 - alias: Alarm - Morning Routine - News and Radio
   trigger:

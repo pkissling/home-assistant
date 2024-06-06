@@ -5,3 +5,4 @@ logs:
   custom_components.deutschebahn.sensor: fatal
   custom_components.yahoofinance.coordinator: fatal
   homeassistant.components.ipp.coordinator: fatal
+  pyfritzhome.fritzhome: warn

@@ -1,15 +1,25 @@
 ---
 
-- alias: Tab - Display - Sync with corridor motion
+- alias: Tab - Display - Turn on when motion
   trigger:
-    - platform: state
-      entity_id: binary_sensor.motion_corridor_occupancy
-      to: 'on'
-    - platform: state
-      entity_id: binary_sensor.motion_corridor_occupancy
-      to: 'off'
-      for:
-        minutes: 2
+    platform: state
+    entity_id: binary_sensor.motion_corridor_occupancy
+    to: 'on'
   action:
-    service: switch.turn_{{ trigger.to_state.state }}
+    service: switch.turn_on
     entity_id: switch.display_tab_corridor
+
+- alias: Tab - Display - Turn off when no motion for 2 mins
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_corridor_occupancy
+    to: 'off'
+    for:
+      minutes: 2
+  action:
+    - service: mqtt.publish
+      data:
+        topic: wallpanel/corridor/command
+        payload: '{"url": "http://192.168.0.2:8123?hide_header" }'
+    - service: switch.turn_off
+      entity_id: switch.display_tab_corridor

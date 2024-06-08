@@ -23,9 +23,13 @@ views:
             entity: weather.home
             num_segments: 24
             label_spacing: 4
-            round_temperatures: true
+            hide_temperatures: true
             name: null
             icons: true
+
+          - type: iframe
+            url: https://radar.wo-cloud.com/mobile/wr?wrx=47.871,11.448&wrm=7&wro=true
+            aspect_ratio: 120%
 
       # Vacuum
       - type: custom:vacuum-card
@@ -104,10 +108,10 @@ views:
             service: script.vacuum_dust_bin
 
       # Departures
-      - type: tile
-        entity: sensor.departure_s7_to_hauptbahnhof
-      - type: tile
-        entity: sensor.departure_u6_to_sendlinger_tor
+      # - type: tile
+      #   entity: sensor.departure_s7_to_hauptbahnhof
+      # - type: tile
+      #   entity: sensor.departure_u6_to_sendlinger_tor
 
       # Horizon Card
       - type: custom:horizon-card

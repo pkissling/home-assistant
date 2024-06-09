@@ -7,7 +7,6 @@ homeassistant: !include includes/homeassistant.yaml
 http: !include includes/http.yaml
 logger: !include includes/logger.yaml
 lovelace: !include includes/lovelace.yaml
-media_extractor: !include includes/media_extractor.yaml
 wake_on_lan:
 
 # Include files with lists

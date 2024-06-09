@@ -27,3 +27,7 @@ party_mode:
 tv_mode:
   name: TV Mode
   icon: mdi:television
+
+vacuum_after_leave:
+  name: Vacuum after leave
+  icon: mdi:vacuum

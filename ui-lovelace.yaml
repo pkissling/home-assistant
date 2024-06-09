@@ -160,6 +160,7 @@ views:
           - input_boolean.detached_light
           - input_boolean.vacuum_daily_cleanup
           - input_boolean.night_light_mode
+          - input_boolean.vacuum_after_leave
 
       # Media
       - type: entities

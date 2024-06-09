@@ -138,3 +138,23 @@
     entity_id: input_text.vacuum_cleaned_m2_since_last_emptying
     data:
       value: "{{ states('input_text.vacuum_cleaned_m2_since_last_emptying') | int + states('sensor.roborock_last_clean_area') | default(0) | int }}"
+
+- alias: Vacuum - Start cleaning when last person has left the apartment
+  trigger:
+    platform: state
+    entity_id: binary_sensor.door_corridor_contact
+    to: 'off'
+  condition:
+    condition: state
+    entity_id: input_boolean.vacuum_after_leave
+    state: 'on'
+  action:
+    - wait_for_trigger:
+        platform: state
+        entity_id: binary_sensor.door_corridor_contact
+        from: 'on'
+        to: 'off'
+    - service: vacuum.start
+      entity_id: vacuum.roborock
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.vacuum_after_leave

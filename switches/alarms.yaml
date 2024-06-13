@@ -6,11 +6,7 @@
     alarm:
       friendly_name: Alarm
       value_template: >
-        {% if is_number(states('sensor.alarm_offset')) %}
-            {%  set offset = states('sensor.alarm_offset') | int %}
-        {% else %}
-            {% set offset = 0 %}
-        {% endif %}
+        {% set offset = states('sensor.alarm_offset') | int %}
         {% if (now().weekday() + offset) % 7 == 1 %}
           {{ is_state('input_boolean.alarm_weekday_1', 'on') }}
         {% elif (now().weekday() + offset) % 7 == 2 %}

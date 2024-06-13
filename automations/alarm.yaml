@@ -4,9 +4,9 @@
   trigger:
     platform: template
     value_template: >
-      {% set current_time = now().hour * 60 + now().minute %}
-      {% set wakeup_time = state_attr('input_datetime.wakeup_time', 'timestamp') | int / 60 %}
-      {{ current_time == wakeup_time - 15 }}
+      {% set current_time = (now().hour * 60 + now().minute) * 60 %}
+      {% set wakeup_time = state_attr('input_datetime.wakeup_time', 'timestamp') %}
+      {{ current_time == wakeup_time - (15 * 60) }}
   condition:
     - condition: state
       entity_id: switch.alarm
@@ -62,16 +62,14 @@
     at: '12:00:00'
   condition:
     condition: template
-    value_template: >
-      {% set alarm_in_6_days = states('input_boolean.alarm_weekday_' ~ (now().weekday() + 6) % 7) %}
-      {{ states('binary_sensor.workday_sensor') != alarm_in_6_days }}
+    value_template: "{{ states('binary_sensor.workday_sensor') != states('input_boolean.alarm_weekday_' ~ now().weekday()) }}"
   action:
     - service: input_boolean.toggle
       data:
-        entity_id: "input_boolean.alarm_weekday_{{ (now().weekday() + 6) % 7 }}"
+        entity_id: "input_boolean.alarm_weekday_{{ now().weekday() }}"
     - service: notify.patrick
       data:
         title: Alarm Clock
         message: >
           {% set days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] %}
-          Alarm for next {{ days[(now().weekday() + 6) % 7] }} turned {{ states('binary_sensor.workday_sensor') }}.
+          Alarm for next {{ days[now().weekday()] }} turned {{ states('binary_sensor.workday_sensor') }}.

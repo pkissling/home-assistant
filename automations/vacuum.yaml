@@ -141,19 +141,41 @@
 
 - alias: Vacuum - Start cleaning when last person has left the apartment
   trigger:
-    platform: state
-    entity_id: binary_sensor.door_corridor_contact
-    to: 'off'
+    - platform: state
+      entity_id: binary_sensor.motion_corridor_occupancy
+      to: 'off'
+      for:
+        minutes: 5
+    - platform: state
+      entity_id: binary_sensor.motion_kitchen_occupancy
+      to: 'off'
+      for:
+        minutes: 5
+    - platform: state
+      entity_id: binary_sensor.motion_study_occupancy
+      to: 'off'
+      for:
+        minutes: 5
   condition:
-    condition: state
-    entity_id: input_boolean.vacuum_after_leave
-    state: 'on'
+    - condition: state
+      entity_id: input_boolean.vacuum_after_leave
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.motion_corridor_occupancy
+      state: 'off'
+      for:
+        minutes: 5
+    - condition: state
+      entity_id: binary_sensor.motion_kitchen_occupancy
+      state: 'off'
+      for:
+        minutes: 5
+    - condition: state
+      entity_id: binary_sensor.motion_study_occupancy
+      state: 'off'
+      for:
+        minutes: 5
   action:
-    - wait_for_trigger:
-        platform: state
-        entity_id: binary_sensor.door_corridor_contact
-        from: 'on'
-        to: 'off'
     - service: vacuum.start
       entity_id: vacuum.roborock
     - service: input_boolean.turn_off

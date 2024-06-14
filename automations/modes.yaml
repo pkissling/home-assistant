@@ -128,3 +128,17 @@
   action:
     service: input_boolean.turn_off
     entity_id: input_boolean.night_light_mode
+
+- alias: Mode - Guest Mode - Notify Guest Mode Mode still on
+  trigger:
+    platform: time
+    at: '12:00:00'
+  condition:
+    condition: state
+    entity_id: input_boolean.guest_mode
+    state: 'on'
+  action:
+    service: notify.patrick
+    data:
+      title: Guest Mode is on
+      message: Guest Mode is still on

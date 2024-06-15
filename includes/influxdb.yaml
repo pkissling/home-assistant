@@ -20,6 +20,7 @@ include:
     - sensor.*_illuminance_lux
     - sensor.*_power
     - sensor.parqet_api_*
+    - sensor.gw1100a_*
 
   entities:
     # SSL

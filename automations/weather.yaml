@@ -1,0 +1,23 @@
+---
+
+- alias: Weather - Rain Rate - Notify on rain change
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.weather_rain_not_rain_duration
+    below: 1
+  action:
+    service: notify.patrick
+    data:
+      title: >
+        {% if is_state('binary_sensor.weather_raining', 'on') %}
+          🌧️ Rain started ☔
+        {% else %}
+          ☀️ Rain ended 🌤️
+        {% endif %}
+      message: >
+        {% if is_state('binary_sensor.weather_raining', 'on') %}
+          Current rate: {{ states('sensor.gw1100a_rain_rate') }} mm/m2.
+          Last rain was {{ trigger.from_state.state / 60 }} hours ago.
+        {% else %}
+          The rain has stopped after {{ trigger.from_state.state }} minutes.
+        {% endif %}

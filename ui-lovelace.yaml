@@ -8,7 +8,7 @@ views:
         cards:
           # Clock / weather
           - type: custom:clock-weather-card
-            entity: weather.home
+            entity: weather.imunic626
             forecast_rows: 6
             date_pattern: ccc, dd. MMM yyyy
             time_format: 24
@@ -106,12 +106,6 @@ views:
           - name: Tash
             icon: mdi:trash-can
             service: script.vacuum_dust_bin
-
-      # Departures
-      # - type: tile
-      #   entity: sensor.departure_s7_to_hauptbahnhof
-      # - type: tile
-      #   entity: sensor.departure_u6_to_sendlinger_tor
 
       # Horizon Card
       - type: custom:horizon-card

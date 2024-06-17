@@ -16,8 +16,17 @@
         {% endif %}
       message: >
         {% if is_state('binary_sensor.weather_raining', 'on') %}
-          Current rate: {{ states('sensor.gw1100a_rain_rate') }} mm/m2.
-          Last rain was {{ trigger.from_state.state / 60 }} hours ago.
+          Current rate: {{ states('sensor.gw1100a_rain_rate') }} mm/m2. Last rain was {{ (trigger.from_state.state | int / 60) | round }} hours ago.
         {% else %}
           The rain has stopped after {{ trigger.from_state.state }} minutes.
         {% endif %}
+
+- alias: Weather - last_rain_not_rain_change - Update
+  trigger:
+    platform: state
+    entity_id: binary_sensor.weather_raining
+  action:
+    service: input_datetime.set_datetime
+    entity_id: input_datetime.last_rain_not_rain_change
+    data:
+      datetime: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"

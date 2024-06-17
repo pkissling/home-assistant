@@ -1,0 +1,5 @@
+---
+
+last_rain_not_rain_change:
+  has_date: true
+  has_time: true

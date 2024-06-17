@@ -5,6 +5,6 @@
     weather_rain_not_rain_duration:
       unit_of_measurement: "min"
       value_template: >
-        {% set rain_start = states.binary_sensor.weather_raining.last_changed %}
+        {% set rain_start = states('input_datetime.last_rain_not_rain_change') | as_datetime | as_local %}
         {% set rain_end = now() %}
         {{ ((rain_end - rain_start).total_seconds() / 60) | round(0) }}

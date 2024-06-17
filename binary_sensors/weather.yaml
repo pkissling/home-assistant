@@ -4,4 +4,4 @@
   sensors:
     weather_raining:
       value_template: "{{ states('sensor.gw1100a_rain_rate') | float > 0 }}"
-      delay_off: 00:02:00
+      delay_off: 00:10:00

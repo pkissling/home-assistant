@@ -39,3 +39,15 @@
     data:
       title: Residents - Guest Mode
       message: Manual Resident Guest Mode is still on.
+
+- alias: Residents - Sync guest with input boolean
+  mode: queued
+  trigger:
+    platform: state
+    entity_id: input_boolean.person_guest
+  action:
+    service: device_tracker.see
+    data:
+      dev_id: guest
+      location_name: "{{ 'home' if is_state(trigger.entity_id, 'on') else 'not_home' }}"
+      source_type: router

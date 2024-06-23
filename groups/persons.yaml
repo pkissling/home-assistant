@@ -5,4 +5,4 @@ residents:
   entities:
     - person.patrick
     - person.sandra
-    - sensor.person_guest
+    - device_tracker.guest

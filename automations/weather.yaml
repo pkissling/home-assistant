@@ -25,6 +25,9 @@
   trigger:
     platform: state
     entity_id: binary_sensor.weather_raining
+    not_from:
+      - unavailable
+      - unknown
   action:
     service: input_datetime.set_datetime
     entity_id: input_datetime.last_rain_not_rain_change

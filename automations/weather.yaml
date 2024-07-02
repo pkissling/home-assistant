@@ -18,7 +18,7 @@
         {% if is_state('binary_sensor.weather_raining', 'on') %}
           Current rate: {{ states('sensor.gw1100a_rain_rate') }} mm/m2. Last rain was {{ (trigger.from_state.state | int / 60) | round }} hours ago.
         {% else %}
-          The rain has stopped after {{ (trigger.from_state.state | int) - 10 }} minutes with an overall {{ states('sensor.gw1100a_event_rain_rate') }} mm.
+          The rain has stopped after {{ (trigger.from_state.state | int) - 10 }} minutes with an overall {{ states('sensor.gw1100a_event_rain_rate') }} mm/m2.
         {% endif %}
 
 - alias: Weather - last_rain_not_rain_change - Update

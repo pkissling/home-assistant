@@ -60,3 +60,6 @@ include:
 
     # Weather
     - weather.home
+
+    # Plants
+    - sensor.plant_sensor_6aec_moisture

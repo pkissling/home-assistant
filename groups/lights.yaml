@@ -1,0 +1,10 @@
+---
+
+# required to turn off all lights with transition.
+# when i use `entity_id: all`, transition will be ignored and lights will turn off immediately
+lights_all:
+  entities:
+    - light.bedroom
+    - light.corridor
+    - light.living_room
+    - light.study

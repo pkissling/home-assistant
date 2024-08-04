@@ -4,7 +4,7 @@ good_night_google_assistant:
   mode: restart
   sequence:
     - service: light.turn_off
-      entity_id: all
+      entity_id: group.lights_all  # otherwise `transition` is ignored
       data:
         transition: 180  # 3 min
     - service: media_player.turn_off
@@ -159,7 +159,7 @@ good_night:
                 transition: 10
             - delay: 10
     - service: light.turn_off
-      entity_id: all
+      entity_id: group.lights_all  # otherwise `transition` is ignored
       data:
         transition: 120  # 2 min
 

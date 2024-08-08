@@ -7,20 +7,20 @@
     departure_s7_to_hauptbahnhof:
       friendly_name: S7 - Hauptbahnhof
       value_template: >
-        {% set departure = state_attr('sensor.harras_munchen_to_hauptbahnhof_munchen', 'departure') %}
-        {% set delay = state_attr('sensor.harras_munchen_to_hauptbahnhof_munchen', 'delay') %}
-        {% set departure_next = state_attr('sensor.harras_munchen_to_hauptbahnhof_munchen', 'next_1') %}
-        {% set delay_next = state_attr('sensor.harras_munchen_to_hauptbahnhof_munchen', 'next_1_delay') %}
+        {% set departure = state_attr('sensor.harras_munchen_to_hauptbahnhof_munchen', 'departures')[0].departure %}
+        {% set delay = state_attr('sensor.harras_munchen_to_hauptbahnhof_munchen', 'departures')[0].delay %}
+        {% set departure_next = state_attr('sensor.harras_munchen_to_hauptbahnhof_munchen', 'departures')[1].departure %}
+        {% set delay_next = state_attr('sensor.harras_munchen_to_hauptbahnhof_munchen', 'departures')[1].delay %}
         {% set first = departure + ' (+' + delay | string + ')' if delay != 0 else departure %}
         {% set next = departure_next + ' (+' + delay_next | string + ')' if delay_next != 0 else departure_next %}
         {{ first }} & {{ next }}
     departure_u6_to_sendlinger_tor:
       friendly_name: U6 - Sendlinger Tor
       value_template: >
-        {% set departure = state_attr('sensor.harras_munchen_to_sendlinger_tor_munchen', 'departure') %}
-        {% set delay = state_attr('sensor.harras_munchen_to_sendlinger_tor_munchen', 'delay') %}
-        {% set departure_next = state_attr('sensor.harras_munchen_to_sendlinger_tor_munchen', 'next_1') %}
-        {% set delay_next = state_attr('sensor.harras_munchen_to_sendlinger_tor_munchen', 'next_1_delay') %}
+        {% set departure = state_attr('sensor.harras_munchen_to_sendlinger_tor_munchen', 'departures')[0].departure %}
+        {% set delay = state_attr('sensor.harras_munchen_to_sendlinger_tor_munchen', 'departures')[0].delay %}
+        {% set departure_next = state_attr('sensor.harras_munchen_to_sendlinger_tor_munchen', 'departures')[1].departure %}
+        {% set delay_next = state_attr('sensor.harras_munchen_to_sendlinger_tor_munchen', 'departures')[1].delay %}
         {% set first = departure + ' (+' + delay | string + ')' if delay != 0 else departure %}
         {% set next = departure_next + ' (+' + delay_next | string + ')' if delay_next != 0 else departure_next %}
         {{ first }} & {{ next }}

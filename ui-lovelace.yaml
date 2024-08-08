@@ -23,7 +23,7 @@ views:
           - type: custom:hourly-weather
             entity: weather.home
             num_segments: 24
-            label_spacing: 4
+            label_spacing: 5
             hide_temperatures: true
             name: null
             icons: true

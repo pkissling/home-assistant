@@ -12,7 +12,6 @@ views:
             forecast_rows: 6
             date_pattern: ccc, dd. MMM yyyy
             time_format: 24
-            show_decimal: true
             temperature_sensor: sensor.gw1100a_outdoor_temperature
             card_mod:
               style: |

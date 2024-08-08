@@ -40,7 +40,6 @@ LOGGER_PATH = "custom_components.pyscript"
 REQUIREMENTS_FILE = "requirements.txt"
 REQUIREMENTS_PATHS = ("", "apps/*", "modules/*", "scripts/**")
 
-WATCHDOG_OBSERVER = "watch_dog_observer"
 WATCHDOG_TASK = "watch_dog_task"
 
 ALLOWED_IMPORTS = {

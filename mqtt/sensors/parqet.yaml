@@ -15,106 +15,106 @@
 
 - name: 1d
   object_id: parqet_api_patrick_overall_returns_1d_abs
-  state_topic: parqet/patrick/portfolio/performance/1d/gainGross
+  state_topic: parqet/patrick/performance/1d/gainGross
   unit_of_measurement: Euro
   icon: mdi:trending-up
   value_template: "{{ value | round }}"
 
 - name: 1d
   object_id: parqet_api_patrick_overall_returns_1d_rel
-  state_topic: parqet/patrick/portfolio/performance/1d/returnGross
+  state_topic: parqet/patrick/performance/1d/returnGross
   unit_of_measurement: '%'
   icon: mdi:sack-percent
   value_template: "{{ value | round(2) }}"
 
 - name: 1w
   object_id: parqet_api_patrick_overall_returns_1w_abs
-  state_topic: parqet/patrick/portfolio/performance/1w/gainGross
+  state_topic: parqet/patrick/performance/1w/gainGross
   unit_of_measurement: Euro
   icon: mdi:trending-up
   value_template: "{{ value | round }}"
 
 - name: 1w
   object_id: parqet_api_patrick_overall_returns_1w_rel
-  state_topic: parqet/patrick/portfolio/performance/1w/returnGross
+  state_topic: parqet/patrick/performance/1w/returnGross
   unit_of_measurement: '%'
   icon: mdi:sack-percent
   value_template: "{{ value | round(2) }}"
 
 - name: 1m
   object_id: parqet_api_patrick_overall_returns_1m_abs
-  state_topic: parqet/patrick/portfolio/performance/1m/gainGross
+  state_topic: parqet/patrick/performance/1m/gainGross
   unit_of_measurement: Euro
   icon: mdi:trending-up
   value_template: "{{ value | round }}"
 
 - name: 1m
   object_id: parqet_api_patrick_overall_returns_1m_rel
-  state_topic: parqet/patrick/portfolio/performance/1m/returnGross
+  state_topic: parqet/patrick/performance/1m/returnGross
   unit_of_measurement: '%'
   icon: mdi:sack-percent
   value_template: "{{ value | round(2) }}"
 
 - name: 1y
   object_id: parqet_api_patrick_overall_returns_1y_abs
-  state_topic: parqet/patrick/portfolio/performance/1y/gainGross
+  state_topic: parqet/patrick/performance/1y/gainGross
   unit_of_measurement: Euro
   value_template: "{{ value | round }}"
 
 - name: 1y
   object_id: parqet_api_patrick_overall_returns_1y_rel
-  state_topic: parqet/patrick/portfolio/performance/1y/returnGross
+  state_topic: parqet/patrick/performance/1y/returnGross
   unit_of_measurement: '%'
   icon: mdi:sack-percent
   value_template: "{{ value | round(2) }}"
 
 - name: Since start
   object_id: parqet_api_patrick_returns_since_start_abs
-  state_topic: parqet/patrick/portfolio/performance/max/gainGross
+  state_topic: parqet/patrick/performance/max/gainGross
   unit_of_measurement: Euro
   value_template: "{{ value | round }}"
 
 - name: Since start
   object_id: parqet_api_patrick_returns_since_start_rel
-  state_topic: parqet/patrick/portfolio/performance/max/returnGross
+  state_topic: parqet/patrick/performance/max/returnGross
   unit_of_measurement: '%'
   icon: mdi:sack-percent
   value_template: "{{ value | round(2) }}"
 
 - name: Parqet API Patrick Value Since Start Absolute
   object_id: parqet_api_patrick_value_since_start_abs
-  state_topic: parqet/patrick/portfolio/performance/max/value
+  state_topic: parqet/patrick/performance/max/value
   unit_of_measurement: Euro
   value_template: "{{ value | round }}"
 
 - name: Parqet API Patrick Overall Realized Since Start Absolute
   object_id: parqet_api_patrick_overall_realized_since_start_abs
-  state_topic: parqet/patrick/portfolio/realized/max/gainGross
+  state_topic: parqet/patrick/realized/max/gainGross
   unit_of_measurement: Euro
   value_template: "{{ value | round }}"
 
 - name: Parqet API Patrick Overall Dividends Since Start Absolute
   object_id: parqet_api_patrick_overall_dividends_since_start_abs
-  state_topic: parqet/patrick/portfolio/dividends/max/gainNet
+  state_topic: parqet/patrick/dividends/max/gainNet
   unit_of_measurement: Euro
   value_template: "{{ value | round }}"
 
 - name: Parqet API Patrick Invested Since Start
   object_id: parqet_api_patrick_invested_since_start
-  state_topic: parqet/patrick/portfolio/performance/max/invested
+  state_topic: parqet/patrick/performance/max/invested
   unit_of_measurement: Euro
   value_template: "{{ value | round }}"
 
 - name: Parqet API Patrick Overall IRR 1y
   object_id: parqet_api_patrick_overall_irr_1y
-  state_topic: parqet/patrick/portfolio/performance/1y/irr
+  state_topic: parqet/patrick/performance/1y/irr
   unit_of_measurement: '%'
   icon: mdi:sack-percent
   value_template: "{{ value | round(2) }}"
 
 - name: Parqet API Patrick Overall IRR Since Start
   object_id: parqet_api_patrick_overall_irr_since_start
-  state_topic: parqet/patrick/portfolio/performance/max/irr
+  state_topic: parqet/patrick/performance/max/irr
   unit_of_measurement: '%'
   icon: mdi:sack-percent
   value_template: "{{ value | round(2) }}"
@@ -128,106 +128,106 @@
 
 - name: 1d
   object_id: parqet_api_sandra_overall_returns_1d_abs
-  state_topic: parqet/sandra/portfolio/performance/1d/gainGross
+  state_topic: parqet/sandra/performance/1d/gainGross
   unit_of_measurement: Euro
   icon: mdi:trending-up
   value_template: "{{ value | round }}"
 
 - name: 1d
   object_id: parqet_api_sandra_overall_returns_1d_rel
-  state_topic: parqet/sandra/portfolio/performance/1d/returnGross
+  state_topic: parqet/sandra/performance/1d/returnGross
   unit_of_measurement: '%'
   icon: mdi:sack-percent
   value_template: "{{ value | round(2) }}"
 
 - name: 1w
   object_id: parqet_api_sandra_overall_returns_1w_abs
-  state_topic: parqet/sandra/portfolio/performance/1w/gainGross
+  state_topic: parqet/sandra/performance/1w/gainGross
   unit_of_measurement: Euro
   icon: mdi:trending-up
   value_template: "{{ value | round }}"
 
 - name: 1w
   object_id: parqet_api_sandra_overall_returns_1w_rel
-  state_topic: parqet/sandra/portfolio/performance/1w/returnGross
+  state_topic: parqet/sandra/performance/1w/returnGross
   unit_of_measurement: '%'
   icon: mdi:sack-percent
   value_template: "{{ value | round(2) }}"
 
 - name: 1m
   object_id: parqet_api_sandra_overall_returns_1m_abs
-  state_topic: parqet/sandra/portfolio/performance/1m/gainGross
+  state_topic: parqet/sandra/performance/1m/gainGross
   unit_of_measurement: Euro
   icon: mdi:trending-up
   value_template: "{{ value | round }}"
 
 - name: 1m
   object_id: parqet_api_sandra_overall_returns_1m_rel
-  state_topic: parqet/sandra/portfolio/performance/1m/returnGross
+  state_topic: parqet/sandra/performance/1m/returnGross
   unit_of_measurement: '%'
   icon: mdi:sack-percent
   value_template: "{{ value | round(2) }}"
 
 - name: 1y
   object_id: parqet_api_sandra_overall_returns_1y_abs
-  state_topic: parqet/sandra/portfolio/performance/1y/gainGross
+  state_topic: parqet/sandra/performance/1y/gainGross
   unit_of_measurement: Euro
   value_template: "{{ value | round }}"
 
 - name: 1y
   object_id: parqet_api_sandra_overall_returns_1y_rel
-  state_topic: parqet/sandra/portfolio/performance/1y/returnGross
+  state_topic: parqet/sandra/performance/1y/returnGross
   unit_of_measurement: '%'
   icon: mdi:sack-percent
   value_template: "{{ value | round(2) }}"
 
 - name: Since start
   object_id: parqet_api_sandra_returns_since_start_abs
-  state_topic: parqet/sandra/portfolio/performance/max/gainGross
+  state_topic: parqet/sandra/performance/max/gainGross
   unit_of_measurement: Euro
   value_template: "{{ value | round }}"
 
 - name: Since start
   object_id: parqet_api_sandra_returns_since_start_rel
-  state_topic: parqet/sandra/portfolio/performance/max/returnGross
+  state_topic: parqet/sandra/performance/max/returnGross
   unit_of_measurement: '%'
   icon: mdi:sack-percent
   value_template: "{{ value | round(2) }}"
 
 - name: Parqet API Sandra Value Since Start Absolute
   object_id: parqet_api_sandra_value_since_start_abs
-  state_topic: parqet/sandra/portfolio/performance/max/value
+  state_topic: parqet/sandra/performance/max/value
   unit_of_measurement: Euro
   value_template: "{{ value | round }}"
 
 - name: Parqet API Sandra Overall Realized Since Start Absolute
   object_id: parqet_api_sandra_overall_realized_since_start_abs
-  state_topic: parqet/sandra/portfolio/realized/max/gainGross
+  state_topic: parqet/sandra/realized/max/gainGross
   unit_of_measurement: Euro
   value_template: "{{ value | round }}"
 
 - name: Parqet API Sandra Overall Dividends Since Start Absolute
   object_id: parqet_api_sandra_overall_dividends_since_start_abs
-  state_topic: parqet/sandra/portfolio/dividends/max/gainNet
+  state_topic: parqet/sandra/dividends/max/gainNet
   unit_of_measurement: Euro
   value_template: "{{ value | round }}"
 
 - name: Parqet API Sandra Invested Since Start
   object_id: parqet_api_sandra_invested_since_start
-  state_topic: parqet/sandra/portfolio/performance/max/invested
+  state_topic: parqet/sandra/performance/max/invested
   unit_of_measurement: Euro
   value_template: "{{ value | round }}"
 
 - name: Parqet API Sandra Overall IRR 1y
   object_id: parqet_api_sandra_overall_irr_1y
-  state_topic: parqet/sandra/portfolio/performance/1y/irr
+  state_topic: parqet/sandra/performance/1y/irr
   unit_of_measurement: '%'
   icon: mdi:sack-percent
   value_template: "{{ value | round(2) }}"
 
 - name: Parqet API Sandra Overall IRR Since Start
   object_id: parqet_api_sandra_overall_irr_since_start
-  state_topic: parqet/sandra/portfolio/performance/max/irr
+  state_topic: parqet/sandra/performance/max/irr
   unit_of_measurement: '%'
   icon: mdi:sack-percent
   value_template: "{{ value | round(2) }}"

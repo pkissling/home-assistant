@@ -4,31 +4,19 @@
   sensors:
     sun:
       value_template: >
-        {% set actual_sunrise_time = (as_timestamp(state_attr('sun.sun' , 'next_rising')) + (60 * 60)) | timestamp_custom('%H:%M') %}
-        {% set latest_light_off_time = is_state('input_boolean.summer_mode', 'off') | iif('09:00', '08:00') %}
-        {% if actual_sunrise_time < latest_light_off_time %}
-          {% set sunrise_time = latest_light_off_time %}
-        {% else %}
-          {% set sunrise_time = actual_sunrise_time %}
-        {% endif %}
+        {% set actual_sunrise_time = (as_timestamp(state_attr('sun.sun', 'next_rising')) + 3600) | timestamp_custom('%H:%M') %}
+        {% set latest_light_off_time = '09:00' if is_state('input_boolean.summer_mode', 'off') else '08:00' %}
+        {% set sunrise_time = max(actual_sunrise_time, latest_light_off_time) %}
 
-        {% set actual_sunset_time = (as_timestamp(state_attr('sun.sun' , 'next_setting')) - (60 * 60)) | timestamp_custom('%H:%M') %}
-        {% set earliest_light_on_time = is_state('input_boolean.summer_mode', 'off') | iif('16:00', '17:00') %}
-        {% if actual_sunset_time > earliest_light_on_time %}
-          {% set sunset_time = earliest_light_on_time %}
-        {% else %}
-          {% set sunset_time = actual_sunset_time %}
-        {% endif %}
+        {% set actual_sunset_time = (as_timestamp(state_attr('sun.sun', 'next_setting')) - 3600) | timestamp_custom('%H:%M') %}
+        {% set earliest_light_on_time = '16:00' if is_state('input_boolean.summer_mode', 'off') else '17:00' %}
+        {% set sunset_time = min(actual_sunset_time, earliest_light_on_time) %}
 
-        {% if is_number(states('sensor.motion_study_illuminance_lux')) %}
+        {% if states('sensor.gw1100a_solar_lux') | is_number %}
           {{
-            sunrise_time <= states('sensor.time')
-              and
-            (
-              is_state('binary_sensor.lightlevel_study_dark', 'off')
-                or
-              states('sensor.time') < sunset_time
-            )
+            is_state('binary_sensor.outside_dark', 'off')
+              or
+            sunrise_time <= states('sensor.time') < sunset_time
           }}
         {% else %}
           {{ is_state('sun.sun', 'above_horizon') }}

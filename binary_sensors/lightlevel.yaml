@@ -19,4 +19,4 @@
         minutes: 10
       delay_on:
         minutes: 10
-      value_template: "{{ states('sensor.gw1100a_solar_lux') | int < 3000 }}"
+      value_template: "{{ states('sensor.gw1100a_solar_lux') | int < 5000 }}"

@@ -14,9 +14,13 @@
 
         {% if states('sensor.gw1100a_solar_lux') | is_number %}
           {{
-            is_state('binary_sensor.outside_dark', 'off')
-              or
-            sunrise_time <= states('sensor.time') < sunset_time
+            sunrise_time <= states('sensor.time')
+              and
+            (
+              is_state('binary_sensor.outside_dark', 'off')
+                or
+              states('sensor.time') < sunset_time
+            )
           }}
         {% else %}
           {{ is_state('sun.sun', 'above_horizon') }}

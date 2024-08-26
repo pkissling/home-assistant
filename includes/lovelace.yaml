@@ -7,6 +7,8 @@ resources:
     type: module
   - url: /hacsfiles/bar-card/bar-card.js
     type: module
+  - url: /hacsfiles/Bubble-Card/bubble-card.js
+    type: module
   - url: /hacsfiles/button-card/button-card.js
     type: module
   - url: /hacsfiles/compass-card/compass-card.js

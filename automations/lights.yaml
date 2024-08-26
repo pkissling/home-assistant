@@ -51,9 +51,9 @@
       entity_id: sensor.light_bedroom
       attribute: brightness
   action:
-    service: pyscript.adjust_light
+    service: light.turn_on
     data:
       entity_id: "{{ state_attr(trigger.entity_id, 'target_entity_id') }}"
       brightness: "{{ state_attr(trigger.entity_id, 'brightness') }}"
-      color_temp_kelvin: "{{ state_attr(trigger.entity_id, 'color_temp_kelvin') }}"
+      kelvin: "{{ state_attr(trigger.entity_id, 'color_temp_kelvin') }}"
       transition: "{{ state_attr(trigger.entity_id, 'transition') }}"

@@ -39,6 +39,7 @@
             {{ state_attr('switch.adaptive_lighting_study', 'color_temp_kelvin')}}
           {% endif %}
         target_entity_id: light.study_desk
+        adaptive_lighting_switch_entity_id: switch.adaptive_lighting_study
 
     light_study_floor_lamp:
       value_template: unknown
@@ -62,6 +63,7 @@
         transition: *light_study_transition
         color_temp_kelvin: *light_study_color_temp_kelvin
         target_entity_id: light.study_floor_lamp
+        adaptive_lighting_switch_entity_id: switch.adaptive_lighting_study
 
     light_study_shelf:
       value_template: unknown
@@ -89,6 +91,7 @@
         transition: *light_study_transition
         color_temp_kelvin: *light_study_color_temp_kelvin
         target_entity_id: light.study_shelf
+        adaptive_lighting_switch_entity_id: switch.adaptive_lighting_study
 
     light_living_room:
       value_template: unknown
@@ -117,6 +120,7 @@
           {% endif %}
         target_entity_id: light.living_room
         color_temp_kelvin: "{{ state_attr('switch.adaptive_lighting_living_room', 'color_temp_kelvin') }}"
+        adaptive_lighting_switch_entity_id: switch.adaptive_lighting_living_room
 
     light_corridor:
       value_template: unknown
@@ -141,6 +145,7 @@
           {% endif %}
         target_entity_id: light.corridor
         color_temp_kelvin: "{{ state_attr('switch.adaptive_lighting_corridor', 'color_temp_kelvin') }}"
+        adaptive_lighting_switch_entity_id: switch.adaptive_lighting_corridor
 
     light_bedroom:
       value_template: unknown
@@ -156,3 +161,4 @@
         transition: 60
         target_entity_id: light.bedroom
         color_temp_kelvin: "{{ state_attr('switch.adaptive_lighting_bedroom', 'color_temp_kelvin') }}"
+        adaptive_lighting_switch_entity_id: switch.adaptive_lighting_bedroom

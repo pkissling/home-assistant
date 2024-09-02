@@ -36,7 +36,8 @@
     - service: light.turn_on
       entity_id: light.study_desk
       data:
-        color_temp_kelvin: "{{ state_attr('sensor.light_study_desk', 'color_temp_kelvin') }}"
+        brightness: "{{ state_attr('sensor.light_study_desk', 'brightness') }}"
+        kelvin: 5500
 
 - alias: Mode - Party Mode - Turn off after 4 hours
   trigger:

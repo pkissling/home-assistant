@@ -17,15 +17,21 @@
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.night_light_mode
+    - service: adaptive_lighting.set_manual_control
+      entity_id: switch.adaptive_lighting_bedroom
+      data:
+        manual_control: true
     - service: light.turn_on
       entity_id: light.bedroom
       data:
         brightness: 200
-        transition: 1800  # 30 min
+        transition: 900  # 15 min
     - delay:
         minutes: 30
-    - service: switch.turn_on
+    - service: adaptive_lighting.set_manual_control
       entity_id: switch.adaptive_lighting_bedroom
+      data:
+        manual_control: false
 
 - alias: Alarm - Morning Routine - News and Radio
   trigger:

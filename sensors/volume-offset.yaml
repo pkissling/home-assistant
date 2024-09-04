@@ -12,7 +12,7 @@
         {% set default_volume = 0.1 %}
         {% if not is_state('media_player.kitchen', 'playing') and not is_state('media_player.kitchen', 'buffering') and not is_state('media_player.kitchen', 'paused') %}
           {{ default_volume }}
-        {% elif is_state_attr('media_player.kitchen', 'media_content_id', 'https://dispatcher.rndfnk.com/br/puls/live/aac/low') %}
+        {% elif is_state_attr('media_player.kitchen', 'media_content_id', 'http://dispatcher.rndfnk.com/br/puls/live/mp3/mid') %}
           {{ default_volume + 0.15 }}
         {% elif is_state_attr('media_player.kitchen', 'media_content_id', 'https://stream.regenbogen.de/unplugged/aac-128/tunein') %}
           {{ default_volume }}
@@ -37,7 +37,7 @@
         {% set default_volume = 0.1 %}
         {% if not is_state('media_player.bathroom', 'playing') and not is_state('media_player.bathroom', 'buffering') and not is_state('media_player.bathroom', 'paused') %}
           {{ default_volume }}
-        {% elif is_state_attr('media_player.bathroom', 'media_content_id', 'https://dispatcher.rndfnk.com/br/puls/live/aac/low') %}
+        {% elif is_state_attr('media_player.bathroom', 'media_content_id', 'http://dispatcher.rndfnk.com/br/puls/live/mp3/mid') %}
           {{ default_volume + 0.15 }}
         {% elif is_state_attr('media_player.bathroom', 'media_content_id', 'https://stream.regenbogen.de/unplugged/aac-128/tunein') %}
           {{ default_volume }}
@@ -62,7 +62,7 @@
         {% set default_volume = 0.3 %}
         {% if not is_state('media_player.bedroom', 'playing') and not is_state('media_player.bedroom', 'buffering') and not is_state('media_player.bedroom', 'paused') %}
           {{ default_volume }}
-        {% elif is_state_attr('media_player.bedroom', 'media_content_id', 'https://dispatcher.rndfnk.com/br/puls/live/aac/low') %}
+        {% elif is_state_attr('media_player.bedroom', 'media_content_id', 'http://dispatcher.rndfnk.com/br/puls/live/mp3/mid') %}
           {{ default_volume - 0.05 }}
         {% elif is_state_attr('media_player.bedroom', 'media_content_id', 'https://stream.regenbogen.de/unplugged/aac-128/tunein') %}
           {{ default_volume - 0.2 }}
@@ -87,7 +87,7 @@
         {% set default_volume = 0.1 %}
         {% if not is_state('media_player.living_room', 'playing') and not is_state('media_player.living_room', 'buffering') and not is_state('media_player.living_room', 'paused') %}
           {{ default_volume }}
-        {% elif is_state_attr('media_player.living_room', 'media_content_id', 'https://dispatcher.rndfnk.com/br/puls/live/aac/low') %}
+        {% elif is_state_attr('media_player.living_room', 'media_content_id', 'http://dispatcher.rndfnk.com/br/puls/live/mp3/mid') %}
           {{ default_volume + 0.15 }}
         {% elif is_state_attr('media_player.living_room', 'media_content_id', 'https://stream.regenbogen.de/unplugged/aac-128/tunein') %}
           {{ default_volume }}
@@ -114,7 +114,7 @@
           0
         {% elif not is_state('media_player.study', 'playing') and not is_state('media_player.study', 'buffering') and not is_state('media_player.study', 'paused') %}
           {{ default_volume }}
-        {% elif is_state_attr('media_player.study', 'media_content_id', 'https://dispatcher.rndfnk.com/br/puls/live/aac/low') %}
+        {% elif is_state_attr('media_player.study', 'media_content_id', 'http://dispatcher.rndfnk.com/br/puls/live/mp3/mid') %}
           {{ default_volume + 0.15 }}
         {% elif is_state_attr('media_player.study', 'media_content_id', 'https://stream.regenbogen.de/unplugged/aac-128/tunein') %}
           {{ default_volume }}
@@ -139,7 +139,7 @@
         {% set default_volume = 0.5 %}
         {% if not is_state('media_player.chromecast', 'playing') and not is_state('media_player.chromecast', 'buffering') and not is_state('media_player.chromecast', 'paused') %}
           {{ default_volume }}
-        {% elif is_state_attr('media_player.chromecast', 'media_content_id', 'https://dispatcher.rndfnk.com/br/puls/live/aac/low') %}
+        {% elif is_state_attr('media_player.chromecast', 'media_content_id', 'http://dispatcher.rndfnk.com/br/puls/live/mp3/mid') %}
           {{ default_volume + 0.2 }}
         {% elif is_state_attr('media_player.chromecast', 'media_content_id', 'https://stream.regenbogen.de/unplugged/aac-128/tunein') %}
           {{ default_volume + 0.2 }}

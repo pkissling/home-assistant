@@ -30,12 +30,12 @@
 
     radio_puls:
       friendly_name: Puls
-      value_template: "{{ is_state_attr('media_player.all_speakers', 'media_content_id', 'https://dispatcher.rndfnk.com/br/puls/live/aac/low') }}"
+      value_template: "{{ is_state_attr('media_player.all_speakers', 'media_content_id', 'http://dispatcher.rndfnk.com/br/puls/live/mp3/mid') }}"
       turn_on:
         service: media_player.play_media
         entity_id: media_player.all_speakers
         data:
-          media_content_id: https://dispatcher.rndfnk.com/br/puls/live/aac/low
+          media_content_id: http://streams.br.de/puls_2.m3u
           media_content_type: music
       turn_off:
         service: media_player.turn_off

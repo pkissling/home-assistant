@@ -13,7 +13,7 @@ jobs:
       - name: Set up Ruby 2.6
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.6
+          ruby-version: 3.4.8
       - name: Install Awesome Bot
         run: gem install awesome_bot
       - name: Run Awesome Bot

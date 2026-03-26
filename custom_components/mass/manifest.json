@@ -16,7 +16,7 @@
     "music_assistant"
   ],
   "requirements": [
-    "music-assistant==2.1.3"
+    "music-assistant==2.6.0"
   ],
   "version": "2024.8.1",
   "zeroconf": [
